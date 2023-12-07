@@ -1,0 +1,9 @@
+{
+  "name": "@gbeata/config-ts",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}
