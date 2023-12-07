@@ -1,0 +1,17 @@
+{
+  "name": "@gbeata/config-eslint",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "G",
+  "license": "MIT",
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.13.2",
+    "@typescript-eslint/parser": "^6.13.2",
+    "eslint-config-prettier": "^9.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
