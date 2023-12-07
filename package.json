@@ -4,16 +4,29 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prepare": "husky install",
+    "commit": "git add -A && git cz",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  },
   "packageManager": "pnpm@8.9.0",
   "devDependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "@gbeata/config-eslint": "workspace:^",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-git": "^1.8.0",
     "eslint": "^8.55.0",
+    "husky": "^8.0.3",
     "prettier": "^3.1.0",
-    "turbo": "^1.11.0",
-    "@gbeata/config-eslint": "workspace:^"
+    "turbo": "^1.11.0"
   }
 }
