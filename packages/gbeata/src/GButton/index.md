@@ -11,10 +11,10 @@ group:
 
 ```tsx
 import React, { useState } from 'react';
-import { GButton } from 'gbeata';
+import { GButton, setPermissionList } from 'gbeata';
 
 export default function Demo() {
-  return <GButton onClick={() => alert('阿米娅')}>gbeata</GButton>;
+  return <GButton onClick={() => alert('G')}>gbeata</GButton>;
 }
 ```
 
@@ -28,7 +28,7 @@ import { GButton } from 'gbeata';
 
 export default function Demo() {
   return (
-    <GButton sub onClick={() => alert('阿米娅')}>
+    <GButton sub onClick={() => alert('G')}>
       gbeata
     </GButton>
   );
@@ -65,7 +65,7 @@ import { GButton } from 'gbeata';
 
 export default function Demo() {
   return (
-    <GButton tooltip="你好" onClick={() => alert('阿米娅')}>
+    <GButton tooltip="你好" onClick={() => alert('G')}>
       悬浮提示
     </GButton>
   );
@@ -76,10 +76,10 @@ export default function Demo() {
 
 ```tsx
 import React from 'react';
-import { GButton } from 'gbeata';
+import { GButton, setPermissionList } from 'gbeata';
 
 // 注释掉此行，将不会展示相关按钮
-// setPermissionList(['delete']);
+setPermissionList(['delete']);
 
 export default function Demo() {
   return <GButton permission="delete">删除</GButton>;
