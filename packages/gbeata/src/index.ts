@@ -1,6 +1,7 @@
+import { default as GButton } from './GButton';
 import { error, info, success, warning } from './GMessage';
 import { default as GTagGroup } from './GTagGroup';
-export { GTagGroup, error, info, success, warning };
+export { GButton, GTagGroup, error, info, success, warning };
 
 export default {
   success,
@@ -8,4 +9,5 @@ export default {
   error,
   warning,
   GTagGroup,
+  GButton,
 };

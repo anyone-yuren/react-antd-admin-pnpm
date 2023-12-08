@@ -69,6 +69,7 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
+    "classnames": "^2.3.2",
     "dumi-theme-antd-style": "^0.29.7"
   }
 }
