@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky install",
-    "commit": "git add -A && git cz",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "commit": "git add -A && git cz"
   },
   "keywords": [],
   "author": "",
