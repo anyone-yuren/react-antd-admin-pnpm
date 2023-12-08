@@ -11,6 +11,9 @@ importers:
       antd:
         specifier: ^5.12.1
         version: 5.12.1(react-dom@18.2.0)(react@18.2.0)
+      antd-style:
+        specifier: ^3.6.1
+        version: 3.6.1(@types/react@18.2.42)(antd@5.12.1)(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       '@commitlint/cli':
         specifier: ^18.4.3

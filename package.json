@@ -33,6 +33,7 @@
     "turbo": "^1.11.0"
   },
   "dependencies": {
-    "antd": "^5.12.1"
+    "antd": "^5.12.1",
+    "antd-style": "^3.6.1"
   }
 }
