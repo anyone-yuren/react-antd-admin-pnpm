@@ -5,4 +5,14 @@ export default defineConfig({
   themeConfig: {
     name: 'gbeata',
   },
+  extraBabelPlugins: [
+    [
+      'babel-plugin-import',
+      {
+        libraryName: 'antd',
+        libraryDirectory: 'es',
+        style: true,
+      },
+    ],
+  ],
 });
