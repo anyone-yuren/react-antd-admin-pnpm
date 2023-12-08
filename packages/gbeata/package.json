@@ -67,5 +67,8 @@
   ],
   "gitHooks": {
     "pre-commit": "lint-staged"
+  },
+  "dependencies": {
+    "dumi-theme-antd-style": "^0.29.7"
   }
 }
