@@ -35,6 +35,10 @@
       "prettier --parser=typescript --write"
     ]
   },
+  "dependencies": {
+    "classnames": "^2.3.2",
+    "dumi-theme-antd-style": "^0.29.7"
+  },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
@@ -56,6 +60,7 @@
   },
   "peerDependencies": {
     "antd": "^5.12.1",
+    "antd-style": "^3.6.1",
     "react": ">=16.9.0",
     "react-dom": ">=16.9.0"
   },
@@ -67,9 +72,5 @@
   ],
   "gitHooks": {
     "pre-commit": "lint-staged"
-  },
-  "dependencies": {
-    "classnames": "^2.3.2",
-    "dumi-theme-antd-style": "^0.29.7"
   }
 }

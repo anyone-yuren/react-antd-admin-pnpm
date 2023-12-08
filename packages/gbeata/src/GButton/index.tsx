@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
 import { omitObj } from '../utils';
 import { GButtonProps } from './g-button';
+import useStyles from './style';
 
 interface AnyKeyProps {
   [key: string]: any;
@@ -62,6 +63,7 @@ let keys = [
   'omitKeys',
 ];
 export default function GButton(props: GButtonProps) {
+  const { styles, cx } = useStyles();
   const [, setRefresh] = useState<number>(0);
   let params: AnyKeyProps = {
     ...props,
@@ -80,16 +82,16 @@ export default function GButton(props: GButtonProps) {
   }
 
   // 控制样式
-  let className: string[] | string = [`mw-button`];
+  let className: string[] | string = [styles.gButton];
 
   // 是否在折叠按钮里面
   if (props.__simple) {
-    className.push('simple');
+    className.push(styles.simple);
   }
 
   // 是否是次级按钮
   if (props.sub) {
-    className.push('sub');
+    className.push(styles.sub);
   }
 
   // 是否有自定义样式
