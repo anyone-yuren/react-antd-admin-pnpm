@@ -1,10 +1,6 @@
 ---
-nav:
-  path: /components
-title: '标签选择'
-group:
-  title: 组件
-  order: 1
+nav: 组件
+group: 表单组件
 ---
 
 # GTagGroup 标签选择
