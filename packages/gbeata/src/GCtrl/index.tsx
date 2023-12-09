@@ -2,7 +2,7 @@ import { DownOutlined } from '@ant-design/icons';
 import { Divider, Dropdown, Menu, Space } from 'antd';
 import classNames from 'classnames';
 import React, { ReactNode, useEffect, useState } from 'react';
-// import MwAction from '../GAction';
+import GAction from '../GAction';
 import MwButton, { addRefresh, hasPermission } from '../GButton';
 import { CTRL_DEFAULT_MAX, CTRL_DEFAULT_MORE_TEXT } from '../constant';
 import locale from '../locale';
@@ -19,10 +19,10 @@ const getCtrlItem = (node: any, key?: any, defaultProps?: AnyKeyProps) => {
   let props = { ...node.props };
 
   if (
-    node?.type?.componentName === 'MwAction' ||
-    node?.type?.componentName === 'MwButton'
+    node?.type?.componentName === 'GAction' ||
+    node?.type?.componentName === 'GButton'
   ) {
-    return <MwAction key={key} type="link" {...defaultProps} {...props} />;
+    return <GAction key={key} type="link" {...defaultProps} {...props} />;
   }
   return node;
 };

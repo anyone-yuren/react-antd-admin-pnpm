@@ -63,7 +63,7 @@ let keys = [
   'omitKeys',
 ];
 export default function GButton(props: GButtonProps) {
-  const { styles, cx } = useStyles();
+  const { styles } = useStyles();
   const [, setRefresh] = useState<number>(0);
   let params: AnyKeyProps = {
     ...props,

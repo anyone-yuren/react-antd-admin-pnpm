@@ -1,76 +1,76 @@
-import { CSSProperties, ReactNode } from 'react';
-import { MwSearchTableField } from '../MwSearchTable/mw-search-table';
-import { AnyKeyProps } from '../types/AnyKeyProps';
-import { FormValues } from '../types/FormValues';
+import { ReactNode, CSSProperties } from 'react'
+import { AnyKeyProps } from '../types/AnyKeyProps'
+import { MwSearchTableField } from '../MwSearchTable/mw-search-table'
+import { FormValues } from '../types/FormValues'
 
 export interface ColSize {
-  xs?: number;
-  sm?: number;
-  md?: number;
-  lg?: number;
-  xl?: number;
-  xxl?: number;
+  xs?: number
+  sm?: number
+  md?: number
+  lg?: number
+  xl?: number
+  xxl?: number
 }
 
-export interface GFormProps {
+export interface MwFormProps {
   /** 配置项 */
-  fields?: Array<MwFormField | MwSearchTableField>;
+  fields?: Array<MwFormField | MwSearchTableField>
   /** form 名称 */
-  name?: string;
+  name?: string
   /** 子元素 */
-  children?: ReactNode;
+  children?: ReactNode
   /** 控制元素 */
-  ref?: any;
+  ref?: any
   /** 默认 span 值 */
-  span?: number;
+  span?: number
   /** form 的其它属性 */
-  props?: AnyKeyProps;
+  props?: AnyKeyProps
   /** Form.Item 的其它属性 */
-  formItemProps?: AnyKeyProps;
+  formItemProps?: AnyKeyProps
   /** 是否只读 */
-  readonly?: boolean;
+  readonly?: boolean
   /** 是否用 Description 样式展示 */
-  desc?: boolean;
+  desc?: boolean
   /** 只读模式是否无背景 */
-  noBackground?: boolean;
+  noBackground?: boolean
   /** 样式 */
-  className?: string;
+  className?: string
   /** 样式 */
-  style?: CSSProperties;
+  style?: CSSProperties
   /** label 对齐方式 */
-  labelAlign?: 'left' | 'right';
+  labelAlign?: 'left' | 'right'
   /** 表单的间距 */
-  gutter?: number;
+  gutter?: number
   /** 布局 */
   layout?: {
-    labelCol?: AnyKeyProps;
-    wrapperCol?: AnyKeyProps;
-  };
+    labelCol?: AnyKeyProps
+    wrapperCol?: AnyKeyProps
+  }
   /** 表单布局方式 */
-  formLayout?: 'horizontal' | 'vertical' | 'inline' | string;
+  formLayout?: 'horizontal' | 'vertical' | 'inline' | string
   /** 提交事件 */
-  onConfirm?(form: FormValues): any;
+  onConfirm?(form: FormValues): any
   /** 提交事件 跟 onConfirm 效果一致 */
-  onSubmit?(form: FormValues): any;
+  onSubmit?(form: FormValues): any
   /** 提交事件 跟 onConfirm 效果一致 */
-  onFinish?(form: FormValues): any;
-  [key: string]: any;
+  onFinish?(form: FormValues): any
+  [key: string]: any
 }
 
 export interface RegisterFieldProps {
   /** 类型 */
-  type: string;
+  type: string
   /** 默认值 */
-  defaultValue: any;
+  defaultValue: any
   /** formItem 的 valuePropName，比如 Checkbox 时，valuePropName = 'checked' */
-  valuePropName?: string;
+  valuePropName?: string
   /** render */
   render: (
     field: MwFormField,
     setFieldsValue: (values: FormValues) => void,
     readonly: boolean,
-    addFieldListener: (key: string, fieldListener: FieldListener) => void,
-  ) => ReactNode;
+    addFieldListener: (key: string, fieldListener: FieldListener) => void
+  ) => ReactNode
 }
 
 /**
@@ -78,9 +78,9 @@ export interface RegisterFieldProps {
  */
 export interface Field {
   /** 标题 */
-  title?: ReactNode | string;
+  title?: ReactNode | string
   /** 相应的 key */
-  key?: string;
+  key?: string
   /**
    * 可以选择下面 type 对应的类型
    * @param input 输入框
@@ -123,7 +123,7 @@ export interface Field {
     | 'tag-group'
     | 'html'
     | 'list'
-    | string;
+    | string
   /**
    * 配置项，是一个数组，数组每个对象可以配置[{ label; value; disable? }]
    * @param {Array} 选项
@@ -131,84 +131,80 @@ export interface Field {
    * @param value 实际所取到的值
    * @param disable 是否禁用
    */
-  options?: Array<Option>;
-  [key: string]: any;
+  options?: Array<Option>
+  [key: string]: any
 }
 
 export interface Option {
   /** 页面展示的值 */
-  label?: ReactNode | string | number;
+  label?: ReactNode | string | number
   /** 实际所取到的值 */
-  value: any;
+  value: any
   /** 是否禁用 */
-  disabled?: boolean;
+  disabled?: boolean
   /** 子元素 */
-  children?: Array<Option>;
+  children?: Array<Option>
   /** 描述，card-group 时使用 */
-  description?: ReactNode | string | number;
+  description?: ReactNode | string | number
   /** 图片，card-group 时使用 */
-  cover?: ReactNode | string | number;
-  [key: string]: any;
+  cover?: ReactNode | string | number
+  [key: string]: any
 }
 
 export interface MwFormField extends Field {
   /** 相应的 key，会跟最后表单取到的项目相关; form 的 key 值必填 */
-  key: string;
+  key: string
   /** Grid Col 占位 [0 - 24] */
-  span?: number | string;
+  span?: number | string
   /** Grid Col 偏移 */
-  offset?: number | string;
+  offset?: number | string
   /** 默认值 */
-  defaultValue?: any;
+  defaultValue?: any
   /** 是否默认必填 */
-  required?: boolean | string;
+  required?: boolean | string
   /** 是否默认只读 */
-  readonly?: boolean | string;
+  readonly?: boolean | string
   /** 权限配置 */
-  rules?: Array<AnyKeyProps>;
+  rules?: Array<AnyKeyProps>
   /** 是否展示，保留占位; 保留默认值 */
-  visible?: boolean | Function | string;
+  visible?: boolean | Function | string
   /** 是否展示，不会占位; 保留默认值 */
-  hidden?: boolean | Function | string;
+  hidden?: boolean | Function | string
   /** 是否可编辑 */
-  editable?: boolean | string;
+  editable?: boolean | string
   /** 原生的属性 */
   props?: {
     /** 输入框、选择框未输入文字时的提示 */
-    placeholder?: string;
-    [key: string]: any;
-  };
+    placeholder?: string
+    [key: string]: any
+  }
   /** formItem 的属性 */
-  formItemProps?: AnyKeyProps;
+  formItemProps?: AnyKeyProps
   /** 自定义 content 内容 */
-  renderContent?(field: MwFormField, values: FormValues): ReactNode;
+  renderContent?(field: MwFormField, values: FormValues): ReactNode
   /** 自定义 render */
-  render?(field: MwFormField, values: FormValues): ReactNode;
+  render?(field: MwFormField, values: FormValues): ReactNode
   /** 数据变化监听 */
-  onChange?(
-    value: ReactNode,
-    values: FormValues,
-    setFieldsValue: (values: FormValues) => void,
-  ): void;
+  onChange?(value: ReactNode, values: FormValues, setFieldsValue: (values: FormValues) => void): void
   /** 提示文字 */
-  help?: string | ReactNode;
+  help?: string | ReactNode
   /** 时间格式化的开始时间 */
-  startKey?: string;
+  startKey?: string
   /** 时间格式化的结束时间 */
-  endKey?: string;
+  endKey?: string
   /** 重新渲染 */
-  reSetting?(values: FormValues, mode: string): MwFormField;
+  reSetting?(values: FormValues, mode: string): MwFormField
   /** 初始化参数 */
-  _values?: AnyKeyProps;
+  _values?: AnyKeyProps
   /** 默认排序 */
-  order?: number | string;
+  order?: number | string
   /** 日期格式化规则 */
-  formatRule?: string;
+  formatRule?: string
   /** readonly 下的日期格式化规则 */
-  readonlyFormatRule?: string;
+  readonlyFormatRule?: string
   /** 提示文本 */
-  tooltip?: string;
-  [key: string]: any;
+  tooltip?: string
+  [key: string]: any
 }
 
 /**
@@ -216,7 +212,4 @@ export interface MwFormField extends Field {
  * @param value 变化的值
  * @param field 变化了的 field
  */
-export type FieldListener = (
-  value: any,
-  field: MwFormField | MwSearchTableField,
-) => void;
+export type FieldListener = (value: any, field: MwFormField | MwSearchTableField) => void

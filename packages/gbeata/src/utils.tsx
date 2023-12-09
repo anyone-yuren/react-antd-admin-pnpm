@@ -1,8 +1,9 @@
+import { Badge, Tag } from 'antd';
+import moment from 'moment';
 import React from 'react';
-import { AnyKeyProps } from './types/AnyKeyProps';
-// import { Option } from './MwForm/mw-form'
-// import { Badge, Tag } from 'antd'
+import { Option } from './MwForm/mw-form';
 import { TABLE_DEFAULT_ROW_KEY } from './constant';
+import { AnyKeyProps } from './types/AnyKeyProps';
 
 /**
  * 拷贝对象
@@ -141,18 +142,18 @@ export const getCurrencyValue = (value: any) => {
  * @param value 当前值
  * @param options 选项列表
  */
-// export const getValueByOptions = (value: any, options: Array<Option>) => {
-//   let option = options.find(option => option.value === value)
-//   return option ? option.label : value
-// }
+export const getValueByOptions = (value: any, options: Array<Option>) => {
+  let option = options.find((option) => option.value === value);
+  return option ? option.label : value;
+};
 
 /**
  * 输出 YYYY-MM-DD 格式
  * @param value
  */
-// export const getDate = (value: any) => {
-//   return value ? moment(value).format('YYYY-MM-DD') : value
-// }
+export const getDate = (value: any) => {
+  return value ? moment(value).format('YYYY-MM-DD') : value;
+};
 
 /**
  * @desc渲染一个带颜色的状态
@@ -162,27 +163,37 @@ export const getCurrencyValue = (value: any) => {
  *
  * @returns ReactNode
  */
-// export const renderStatus = (status: string | number, options: Option[], type: 'badge' | 'tag' = 'badge') => {
-//   const selectOption: Option | undefined = options.find(({ value }: AnyKeyProps) => value === status)
+export const renderStatus = (
+  status: string | number,
+  options: Option[],
+  type: 'badge' | 'tag' = 'badge',
+) => {
+  const selectOption: Option | undefined = options.find(
+    ({ value }: AnyKeyProps) => value === status,
+  );
 
-//   if (!selectOption || !selectOption.label) {
-//     return status
-//   }
+  if (!selectOption || !selectOption.label) {
+    return status;
+  }
 
-//   if (!selectOption.color && !selectOption.status) {
-//     return selectOption.label
-//   }
+  if (!selectOption.color && !selectOption.status) {
+    return selectOption.label;
+  }
 
-//   return (
-//     <div>
-//       {type === 'badge' ? (
-//         <Badge color={selectOption.color} status={selectOption.status} text={selectOption.label} />
-//       ) : (
-//         <Tag color={selectOption.color}>{selectOption.label}</Tag>
-//       )}
-//     </div>
-//   )
-// }
+  return (
+    <div>
+      {type === 'badge' ? (
+        <Badge
+          color={selectOption.color}
+          status={selectOption.status}
+          text={selectOption.label}
+        />
+      ) : (
+        <Tag color={selectOption.color}>{selectOption.label}</Tag>
+      )}
+    </div>
+  );
+};
 
 /**
  * 复制一个对象，只选择其中某些 key
@@ -245,8 +256,11 @@ export const getRowKey = (
  * @param rowKey
  * @returns
  */
-// export const getKey = (record: AnyKeyProps, rowKey?: ((item: AnyKeyProps) => React.Key) | string) => {
-//   return record[getRowKey(record, rowKey)]
-// }
+export const getKey = (
+  record: AnyKeyProps,
+  rowKey?: ((item: AnyKeyProps) => React.Key) | string,
+) => {
+  return record[getRowKey(record, rowKey)];
+};
 
 export default {};
