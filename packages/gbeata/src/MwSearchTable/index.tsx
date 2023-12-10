@@ -11,7 +11,7 @@ import React, {
 } from 'react'
 import MwSearch from '../MwSearch'
 import MwForm from '../MwForm'
-import MwTable from '../MwTable'
+import MwTable from '../GTable'
 import MwDialogForm from '../MwDialogForm'
 import useSelection from './use/useSelection'
 import {
@@ -23,7 +23,7 @@ import {
 } from './mw-search-table'
 import { isObj, omitObj, optionObj } from '../utils'
 import { getDefaultValue } from '../MwForm'
-import { LoadParams, MwTableField } from '../MwTable/mw-table'
+import { LoadParams, MwTableField } from '../GTable/mw-table'
 import { MwSearchField } from '../MwSearch/mw-search'
 import { AnyKeyProps } from '../types/AnyKeyProps'
 import { Space } from 'antd'

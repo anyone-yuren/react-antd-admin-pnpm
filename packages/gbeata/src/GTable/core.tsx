@@ -1,11 +1,10 @@
-import React from 'react'
-import { ReactNode, Dispatch, SetStateAction } from 'react'
-import { TABLE_CTRL_KEY } from '../constant'
-import { MwTableField } from './mw-table'
-import { AnyKeyProps } from '../types/AnyKeyProps'
-import { Tooltip } from 'antd'
-import { QuestionCircleOutlined } from '@ant-design/icons'
-import './mw-table.less'
+import { QuestionCircleOutlined } from '@ant-design/icons';
+import { Tooltip } from 'antd';
+import React, { Dispatch, ReactNode, SetStateAction } from 'react';
+import { TABLE_CTRL_KEY } from '../constant';
+import { AnyKeyProps } from '../types/AnyKeyProps';
+import { MwTableField } from './g-table';
+import './mw-table.less';
 
 export const install = (renderMap: AnyKeyProps) => {
   /**
@@ -21,10 +20,10 @@ export const install = (renderMap: AnyKeyProps) => {
     params: AnyKeyProps,
     tableData: Array<AnyKeyProps>,
     setTableData: Dispatch<SetStateAction<Array<AnyKeyProps>>>,
-    props?: AnyKeyProps
+    props?: AnyKeyProps,
   ) => {
     // 支持 tooltip 属性
-    let title = field.__alias || field.title
+    let title = field.__alias || field.title;
     if (field.tooltip) {
       title = (
         <span>
@@ -33,68 +32,72 @@ export const install = (renderMap: AnyKeyProps) => {
             <QuestionCircleOutlined style={{ marginLeft: 4 }} />
           </Tooltip>
         </span>
-      )
+      );
     }
 
     let tableField: AnyKeyProps = {
       key: field.key,
       dataIndex: field.key,
       ...field,
-      title
-    }
+      title,
+    };
     if (field.render) {
-      tableField.render = field.render
+      tableField.render = field.render;
     }
 
     if (Array.isArray(field.children)) {
-      field.children = field.children.map(field => {
-        return getAyTableField(field, params, tableData, setTableData)
-      })
+      field.children = field.children.map((field) => {
+        return getAyTableField(field, params, tableData, setTableData);
+      });
     }
 
     // options 自动注册
     if (field.options && !field.render && !tableField.renderType) {
-      tableField.renderType = '__options'
+      tableField.renderType = '__options';
     }
 
     // 处理筛选
     if (field.filter && field.options) {
-      tableField.filters = field.filters || JSON.parse(JSON.stringify(field.options).replace(/"label"/g, '"text"'))
-      tableField.filteredValue = params.filters[field.key]
-      field.filterMultiple = field.filterMultiple || false
+      tableField.filters =
+        field.filters ||
+        JSON.parse(JSON.stringify(field.options).replace(/"label"/g, '"text"'));
+      tableField.filteredValue = params.filters[field.key];
+      field.filterMultiple = field.filterMultiple || false;
     }
 
     // 处理排序
     if (field.sort) {
-      let sorts = params.sorts
+      let sorts = params.sorts;
       // 寻找在 params 存在的排序
-      let sortItem = sorts.find((item: AnyKeyProps) => item.key === field.key)
+      let sortItem = sorts.find((item: AnyKeyProps) => item.key === field.key);
       if (!sortItem) {
         // 不存在直接清空
-        tableField.sortOrder = false
+        tableField.sortOrder = false;
       } else {
         // 存在排序，则值为设置后的排序
-        tableField.sortOrder = sortItem.order
+        tableField.sortOrder = sortItem.order;
       }
-      tableField.sorter = field.sorter || { multiple: field.sortOrder }
+      tableField.sorter = field.sorter || { multiple: field.sortOrder };
     }
 
     // 多余显示 ...
     if (field.ellipsis) {
       tableField.ellipsis = {
-        showTitle: false
-      }
-      tableField.renderType = '__ellipsis'
+        showTitle: false,
+      };
+      tableField.renderType = '__ellipsis';
     }
 
     // 处理可编辑行
     if (field.editable) {
-      tableField.renderType = field.renderType ? field.renderType : 'editable-cell-input'
+      tableField.renderType = field.renderType
+        ? field.renderType
+        : 'editable-cell-input';
       tableField.onCell = (record: AnyKeyProps) => {
         // 多行编辑下，优先执行配置上的属性
-        let fieldCellProps = {}
+        let fieldCellProps = {};
         if (field.onCell) {
-          fieldCellProps = field?.onCell(record)
+          fieldCellProps = field?.onCell(record);
         }
         return {
           ...fieldCellProps,
@@ -102,9 +105,9 @@ export const install = (renderMap: AnyKeyProps) => {
           field: field,
           tableData,
           setTableData,
-          tableProps: props
-        }
-      }
+          tableProps: props,
+        };
+      };
     }
 
     if (
@@ -112,12 +115,21 @@ export const install = (renderMap: AnyKeyProps) => {
       renderMap[tableField.renderType] &&
       typeof renderMap[tableField.renderType] === 'function'
     ) {
-      tableField.render = (text: ReactNode, record: AnyKeyProps, index: number) => {
-        return renderMap[tableField.renderType]({ text, record, index, field: tableField })
-      }
+      tableField.render = (
+        text: ReactNode,
+        record: AnyKeyProps,
+        index: number,
+      ) => {
+        return renderMap[tableField.renderType]({
+          text,
+          record,
+          index,
+          field: tableField,
+        });
+      };
     }
-    return tableField
-  }
+    return tableField;
+  };
 
   /**
    * 重新过滤配置项
@@ -134,51 +146,55 @@ export const install = (renderMap: AnyKeyProps) => {
     tableData: Array<AnyKeyProps>,
     setTableData: Dispatch<SetStateAction<Array<AnyKeyProps>>>,
     ctrl?: MwTableField,
-    props?: AnyKeyProps
+    props?: AnyKeyProps,
   ): Array<MwTableField> => {
     let tableFields = fields
-      .filter(field => {
+      .filter((field) => {
         if (field.__extraTouched) {
-          return field.__hidden === false
+          return field.__hidden === false;
         }
         if (typeof field.hidden === 'function') {
-          return field.hidden()
+          return field.hidden();
         }
-        return field.hidden !== true
+        return field.hidden !== true;
       })
-      .map(field => {
-        return getAyTableField(field, params, tableData, setTableData, props)
-      })
+      .map((field) => {
+        return getAyTableField(field, params, tableData, setTableData, props);
+      });
 
     // 保证操作列在最后
-    if (ctrl && ctrl.render && tableFields.every(field => field.key !== TABLE_CTRL_KEY)) {
-      ctrl.key = TABLE_CTRL_KEY
-      ctrl.title = ctrl.title || '操作'
-      ctrl.order = 999
-      ctrl.__order = 999
-      tableFields.push(ctrl)
+    if (
+      ctrl &&
+      ctrl.render &&
+      tableFields.every((field) => field.key !== TABLE_CTRL_KEY)
+    ) {
+      ctrl.key = TABLE_CTRL_KEY;
+      ctrl.title = ctrl.title || '操作';
+      ctrl.order = 999;
+      ctrl.__order = 999;
+      tableFields.push(ctrl);
     }
     // 排序
     tableFields = tableFields.sort((a: MwTableField, b: MwTableField) => {
-      return a.order - b.order
-    })
+      return a.order - b.order;
+    });
 
     // 二次排序
-    if (tableFields.some(field => field.__extraTouched)) {
+    if (tableFields.some((field) => field.__extraTouched)) {
       tableFields = tableFields.sort((a: MwTableField, b: MwTableField) => {
-        return (a.__order || 0) - (b?.__order || 0)
-      })
+        return (a.__order || 0) - (b?.__order || 0);
+      });
     }
 
-    return tableFields
-  }
+    return tableFields;
+  };
 
   return {
     getAyTableField,
-    getAyTableFields
-  }
-}
+    getAyTableFields,
+  };
+};
 
 export default {
-  install
-}
+  install,
+};

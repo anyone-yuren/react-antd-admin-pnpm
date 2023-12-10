@@ -36,8 +36,10 @@
     ]
   },
   "dependencies": {
+    "@minko-fe/use-antd-resizable-header": "^2.9.0",
     "classnames": "^2.3.2",
-    "dumi-theme-antd-style": "^0.29.7"
+    "dumi-theme-antd-style": "^0.29.7",
+    "moment": "^2.29.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",

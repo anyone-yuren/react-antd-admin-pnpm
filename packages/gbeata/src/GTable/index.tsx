@@ -10,7 +10,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { MwListContext } from '../MwList/context';
+import { MwListContext } from '../GList/context';
 import { SortItem } from '../MwSearchTable/mw-search-table';
 import {
   TABLE_DEFAULT_ROW_KEY,
