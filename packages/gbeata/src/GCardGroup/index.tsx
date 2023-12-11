@@ -2,11 +2,11 @@ import classNames from 'classnames';
 import React, { CSSProperties } from 'react';
 import { Option } from '../GForm/g-form';
 import { FORM_DEFAULT_VALUE_CARD_GROUP } from '../constant';
-import './index.less';
+import useStyles from './style';
 
 type ValueType = Array<string | number> | string | number | undefined;
 
-export interface MwCardGroupProps {
+export interface GCardGroupProps {
   value?: any;
   onChange?: (values: ValueType) => void;
   /** 是否支持选择多个 */
@@ -25,15 +25,24 @@ export interface MwCardGroupProps {
   style?: CSSProperties;
 }
 
-const classPrefix = 'mw-card-group';
-
-const getCoverNode = (option: Option, props: MwCardGroupProps) => {
+/**
+ * Returns the cover node for the given option.
+ * @param option - The option object.
+ * @param props - The props object.
+ * @param styles - The styles object.
+ * @returns The cover node or `null`.
+ */
+const getCoverNode = (
+  option: Option,
+  props: GCardGroupProps,
+  styles: any,
+): React.ReactNode | null => {
   const { size } = props;
   return option.cover ? (
     <div
       className={classNames(
-        `${classPrefix}-cover`,
-        !option.label && !option.description && `${classPrefix}-no-info`,
+        `${styles.gCardGroup}-cover`,
+        !option.label && !option.description && `${styles.gCardGroup}-no-info`,
       )}
     >
       {typeof option.cover === 'string' ? (
@@ -51,7 +60,8 @@ const getCoverNode = (option: Option, props: MwCardGroupProps) => {
   ) : null;
 };
 
-export default function GCardGroup(props: MwCardGroupProps) {
+export default function GCardGroup(props: GCardGroupProps) {
+  const { styles } = useStyles();
   const {
     value = [],
     onChange,
@@ -70,6 +80,11 @@ export default function GCardGroup(props: MwCardGroupProps) {
     if (option.disabled || readonly) {
       return;
     }
+    const triggerChange = (value: any) => {
+      if (onChange) {
+        onChange(value);
+      }
+    };
     if (multiple && Array.isArray(value)) {
       // 多选
       if (value.includes(option.value)) {
@@ -89,45 +104,41 @@ export default function GCardGroup(props: MwCardGroupProps) {
     }
   };
 
-  const triggerChange = (value: any) => {
-    if (onChange) {
-      onChange(value);
-    }
-  };
-
   return (
     <ul
       className={classNames(
         className,
-        classPrefix,
-        classPrefix + '-' + size,
-        readonly && `${classPrefix}-readonly`,
-        multiple && `${classPrefix}-multiple`,
+        styles.gCardGroup,
+        styles.gCardGroup + '-' + size,
+        readonly && `${styles.gCardGroup}-readonly`,
+        multiple && `${styles.gCardGroup}-multiple`,
       )}
       style={style}
     >
       {(options || []).map((option) => (
         <li
           className={classNames(
-            `${classPrefix}-option`,
+            `${styles.gCardGroup}-option`,
             (multiple
               ? value.includes(option.value)
-              : value === option.value) && `${classPrefix}-option-active`,
-            option.description && `${classPrefix}-option-has-desc`,
-            option.disabled === true && `${classPrefix}-option-disabled`,
+              : value === option.value) && `${styles.gCardGroup}-option-active`,
+            option.description && `${styles.gCardGroup}-option-has-desc`,
+            option.disabled === true && `${styles.gCardGroup}-option-disabled`,
           )}
           key={option.value}
           style={cardStyle}
           onClick={() => handleSelect(option)}
         >
-          {getCoverNode(option, props)}
+          {getCoverNode(option, props, styles)}
           {(!!option.label || !!option.description) && (
-            <div className={`${classPrefix}-info`}>
+            <div className={`${styles.gCardGroup}-info`}>
               {!!option.label && (
-                <div className={`${classPrefix}-title`}>{option.label}</div>
+                <div className={`${styles.gCardGroup}-title`}>
+                  {option.label}
+                </div>
               )}
               {!!option.description && (
-                <div className={`${classPrefix}-desc`}>
+                <div className={`${styles.gCardGroup}-desc`}>
                   {option.description}
                 </div>
               )}

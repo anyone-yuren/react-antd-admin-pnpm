@@ -1,4 +1,5 @@
 import GButton, { setPermissionList } from './GButton';
+import GCardGroup from './GCardGroup';
 import GDialogForm from './GDialogForm';
 import GField from './GField';
 import GFields from './GFields';
@@ -9,6 +10,7 @@ import { default as GTagGroup } from './GTagGroup';
 import MwDialog, { setGlobalDialogField } from './MwDialog';
 export {
   GButton,
+  GCardGroup,
   GDialogForm,
   GField,
   GFields,
@@ -42,4 +44,5 @@ export default {
   GDialogForm,
   GSearch,
   setSearchDefaultVisibleRow,
+  GCardGroup,
 };
