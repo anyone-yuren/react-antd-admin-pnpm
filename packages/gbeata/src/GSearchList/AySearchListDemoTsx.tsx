@@ -1,30 +1,44 @@
-import React from 'react'
-import { MwSearchList, MwAction, MwCtrl, MwTableCtrlField, AnyKeyProps, MwFields, MwField } from 'multiway'
-import { List, Space, Avatar, Row, Col } from 'antd'
-import { listApi, addApi, updateApi, deleteApi, professionOptions } from '../api'
+import { Avatar, Col, List, Row, Space } from 'antd';
+import {
+  AnyKeyProps,
+  GAction,
+  GCtrl,
+  GField,
+  GFields,
+  GSearchList,
+  GTableCtrlField,
+} from 'gbeata';
+import React from 'react';
+import {
+  addApi,
+  deleteApi,
+  listApi,
+  professionOptions,
+  updateApi,
+} from '../api';
 
-const ctrl: MwTableCtrlField = {
+const ctrl: GTableCtrlField = {
   width: 200,
   render: (value, record) => {
     return (
-      <MwCtrl>
-        <MwAction record={record} action="update">
+      <GCtrl>
+        <GAction record={record} action="update">
           编辑
-        </MwAction>
-        <MwAction record={record} action="delete">
+        </GAction>
+        <GAction record={record} action="delete">
           删除
-        </MwAction>
-        <MwAction record={record} action="view">
+        </GAction>
+        <GAction record={record} action="view">
           详情
-        </MwAction>
-      </MwCtrl>
-    )
-  }
-}
+        </GAction>
+      </GCtrl>
+    );
+  },
+};
 
 export default function AySearchDemo() {
   return (
-    <MwSearchList
+    <GSearchList
       title="列表标题"
       selectionType="checkbox"
       selectShowKey="cn"
@@ -33,12 +47,18 @@ export default function AySearchDemo() {
       rowKey="sort_id"
       deleteApi={deleteApi}
       pagination={{
-        pageSize: 20
+        pageSize: 20,
       }}
       listHeader={
-        <Row style={{ backgroundColor: '#fafafa', padding: '12px 24px', fontWeight: 500 }}>
+        <Row
+          style={{
+            backgroundColor: '#fafafa',
+            padding: '12px 24px',
+            fontWeight: 500,
+          }}
+        >
           <Col flex="20px">
-            <MwSearchList.SelectionAll />
+            <GSearchList.SelectionAll />
           </Col>
           <Col flex="1" style={{ paddingLeft: 8 }}>
             干员信息
@@ -53,26 +73,26 @@ export default function AySearchDemo() {
           3: '⭐️⭐️⭐️⭐️',
           2: '⭐️⭐️⭐️',
           1: '⭐️⭐️',
-          0: '⭐️'
-        }
+          0: '⭐️',
+        };
         return (
           <List.Item
             key={record.sort_id}
             actions={[
-              <MwCtrl>
-                <MwAction record={record} action="view">
+              <GCtrl>
+                <GAction record={record} action="view">
                   详情
-                </MwAction>
-                <MwAction record={record} action="update">
+                </GAction>
+                <GAction record={record} action="update">
                   编辑
-                </MwAction>
-                <MwAction record={record} action="delete">
+                </GAction>
+                <GAction record={record} action="delete">
                   删除
-                </MwAction>
-              </MwCtrl>
+                </GAction>
+              </GCtrl>,
             ]}
           >
-            <MwSearchList.Selection record={record} style={{ marginRight: 8 }} />
+            <GSearchList.Selection record={record} style={{ marginRight: 8 }} />
             <List.Item.Meta
               avatar={<Avatar src={record.icon} size="large" />}
               title={
@@ -84,26 +104,38 @@ export default function AySearchDemo() {
             />
             <div>{record.moredes || '暂时没有干员信息。'}</div>
           </List.Item>
-        )
+        );
       }}
       dialogFormExtend={{
         updateApi,
-        addApi
+        addApi,
       }}
     >
-      <MwFields>
-        <MwField
+      <GFields>
+        <GField
           title="英文名"
           key="en"
           search
-          dialog={{ required: true, rules: [{ pattern: /^[a-z|A-Z|0-9]{1,}$/, message: '请输入字母或者数字' }] }}
+          dialog={{
+            required: true,
+            rules: [
+              { pattern: /^[a-z|A-Z|0-9]{1,}$/, message: '请输入字母或者数字' },
+            ],
+          }}
         />
-        <MwField title="中文名" key="cn" search dialog={{ required: true }} />
-        <MwField title="职业" key="class" type="select" search dialog options={professionOptions} />
-        <MwField title="职描述业" key="des" type="textarea" dialog />
-      </MwFields>
-      <MwAction action="batch-delete">批量删除</MwAction>
-      <MwAction action="add">新增</MwAction>
-    </MwSearchList>
-  )
+        <GField title="中文名" key="cn" search dialog={{ required: true }} />
+        <GField
+          title="职业"
+          key="class"
+          type="select"
+          search
+          dialog
+          options={professionOptions}
+        />
+        <GField title="职描述业" key="des" type="textarea" dialog />
+      </GFields>
+      <GAction action="batch-delete">批量删除</GAction>
+      <GAction action="add">新增</GAction>
+    </GSearchList>
+  );
 }
