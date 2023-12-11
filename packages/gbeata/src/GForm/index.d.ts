@@ -8,8 +8,8 @@ export declare function registerField(
   field: RegisterFieldProps,
 ): void;
 
-declare const MwForm: React.ForwardRefExoticComponent<
+declare const GForm: React.ForwardRefExoticComponent<
   GFormProps & React.RefAttributes<HTMLDivElement>
 >;
 
-export default MwForm;
+export default GForm;

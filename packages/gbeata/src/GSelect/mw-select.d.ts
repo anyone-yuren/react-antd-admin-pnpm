@@ -1,6 +1,6 @@
-import { Option } from '../MwForm/mw-form'
-import { SelectProps } from 'antd/lib/select'
+import { SelectProps } from 'antd/lib/select';
+import { Option } from '../GForm/g-form';
 
 interface MwSelectProps extends SelectProps<any> {
-  options?: Array<Option>
+  options?: Array<Option>;
 }

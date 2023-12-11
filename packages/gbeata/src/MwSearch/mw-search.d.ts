@@ -1,34 +1,34 @@
-import { AnyKeyProps } from '../types/AnyKeyProps'
-import { MwFormField } from '../MwForm/mw-form'
-import { ExtendField } from '../MwSearchTable/mw-search-table'
+import { GFormField } from '../GForm/g-form';
+import { ExtendField } from '../MwSearchTable/mw-search-table';
+import { AnyKeyProps } from '../types/AnyKeyProps';
 
 export interface MwSearchProps {
-  fields: Array<MwSearchField>
-  onConfirm?(values: AnyKeyProps): void
-  onReset?(): void
-  formExtend?: AnyKeyProps
+  fields: Array<MwSearchField>;
+  onConfirm?(values: AnyKeyProps): void;
+  onReset?(): void;
+  formExtend?: AnyKeyProps;
   /** 是否默认打开 */
-  defaultOpen?: boolean
+  defaultOpen?: boolean;
   /** 是否展示切换开关 */
-  toggleVisible?: boolean
+  toggleVisible?: boolean;
   /** 查询占用的格数 */
-  actionSpan?: number
+  actionSpan?: number;
   /** mini 状态展示 n 行 */
-  visibleRow?: number
+  visibleRow?: number;
   /** 查询、展示、展开按钮是否可见 */
-  actionVisible?: boolean
+  actionVisible?: boolean;
   /** 是否平铺展示 */
-  inline?: boolean
-  [key: string]: any
+  inline?: boolean;
+  [key: string]: any;
 }
 
-export interface MwSearchField extends MwFormField {
-  search?: ExtendField
+export interface MwSearchField extends GFormField {
+  search?: ExtendField;
   span?: {
-    large: number
-    middle: number
-    small: number
-    mini: number
-  }
-  [key: string]: any
+    large: number;
+    middle: number;
+    small: number;
+    mini: number;
+  };
+  [key: string]: any;
 }

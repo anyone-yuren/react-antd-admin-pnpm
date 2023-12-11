@@ -1,6 +1,6 @@
 @import '../less/variable.less';
 
-@mw-form-desc-border-color: #f0f0f0;
+@g-form-desc-border-color: #f0f0f0;
 
 .full-width {
   .max-width {
@@ -8,15 +8,15 @@
   }
 }
 
-.mw-form-no-background {
-  .mw-form-text {
+.g-form-no-background {
+  .g-form-text {
     padding-left: 0;
     border-color: transparent;
     background-color: transparent;
   }
 }
 
-.mw-form {
+.g-form {
   .required-mark {
     line-height: 1;
     display: inline-block;
@@ -45,13 +45,13 @@
       height: calc(100% + 1px);
       margin-top: -1px;
       margin-left: -1px;
-      border: 1px solid @mw-form-desc-border-color;
+      border: 1px solid @g-form-desc-border-color;
       margin-bottom: 0;
     }
 
     .ant-form-item-label {
       padding: 16px 24px;
-      border-right: 1px solid @mw-form-desc-border-color;
+      border-right: 1px solid @g-form-desc-border-color;
       background-color: #fafafa;
     }
 
@@ -59,12 +59,12 @@
       padding: 16px 24px;
     }
 
-    .mw-form-text {
+    .g-form-text {
       border-color: #fff;
       background-color: #fff;
     }
 
-    .mw-form-group {
+    .g-form-group {
       .ant-form-item-control {
         padding: 0;
       }
@@ -76,7 +76,7 @@
 
     &.readonly {
       &.desc {
-        .mw-form-group {
+        .g-form-group {
           .ant-col {
             width: unset;
             flex: unset;
@@ -89,10 +89,10 @@
       .ant-form-item-label {
         width: 100%;
         border-right: none;
-        border-bottom: 1px solid @mw-form-desc-border-color;
+        border-bottom: 1px solid @g-form-desc-border-color;
       }
 
-      .mw-form-text {
+      .g-form-text {
         padding-left: 0;
       }
     }
@@ -118,7 +118,7 @@
   }
 }
 
-.mw-form-text {
+.g-form-text {
   min-height: 32px;
   border-radius: 2px;
   padding: 4px 11px;
@@ -128,7 +128,7 @@
   background-color: #f5f7f9;
 }
 
-.mw-form-divider {
+.g-form-divider {
   min-height: 32px;
   line-height: 1;
   display: flex;
@@ -182,7 +182,7 @@
 }
 
 &.dark {
-  .mw-form-text {
+  .g-form-text {
     border-color: #434343;
     background-color: #434343;
   }
@@ -197,7 +197,7 @@
       border-color: #434343;
     }
 
-    .mw-form-text {
+    .g-form-text {
       border-color: #434343;
       background-color: #434343;
     }

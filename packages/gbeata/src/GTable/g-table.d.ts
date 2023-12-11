@@ -1,171 +1,171 @@
-import { ReactNode } from 'react'
-import { Option } from '../MwForm/mw-form'
-import { TableRowSelection } from 'antd/lib/table/interface'
-import { AnyKeyProps } from '../types/AnyKeyProps'
-import { SizeType } from 'antd/lib/config-provider/SizeContext'
+import { SizeType } from 'antd/lib/config-provider/SizeContext';
+import { TableRowSelection } from 'antd/lib/table/interface';
+import { ReactNode } from 'react';
+import { Option } from '../GForm/g-form';
+import { AnyKeyProps } from '../types/AnyKeyProps';
 
 export interface MwListProps {
-  title?: string | ReactNode
-  children?: ReactNode
-  header?: ReactNode
-  size?: SizeType
-  api?(params: AnyKeyProps): Promise<AnyKeyProps>
+  title?: string | ReactNode;
+  children?: ReactNode;
+  header?: ReactNode;
+  size?: SizeType;
+  api?(params: AnyKeyProps): Promise<AnyKeyProps>;
   /** 列表项 */
-  fields: Array<MwTableField>
+  fields: Array<MwTableField>;
   /** 列表数据 */
-  data?: Array<any>
+  data?: Array<any>;
   /** 操作列 */
-  ctrl?: MwTableField
+  ctrl?: MwTableField;
   /** 列表前面的 selection */
-  rowSelection?: TableRowSelection<AnyKeyProps>
+  rowSelection?: TableRowSelection<AnyKeyProps>;
   /** 列表查询完成监听 */
-  onLoad?(records: Array<AnyKeyProps>, data: any): void
+  onLoad?(records: Array<AnyKeyProps>, data: any): void;
   /** rowKey */
-  rowKey?: ((record: AnyKeyProps) => string) | string
+  rowKey?: ((record: AnyKeyProps) => string) | string;
   /** 加载玩数据过滤 */
-  filterData?(data: AnyKeyProps): AnyKeyProps
+  filterData?(data: AnyKeyProps): AnyKeyProps;
   /** 查询前过滤 */
-  beforeSearch?(data: AnyKeyProps): AnyKeyProps
+  beforeSearch?(data: AnyKeyProps): AnyKeyProps;
   /** 分页参数 */
-  pagination?: any
-  className?: string
+  pagination?: any;
+  className?: string;
   /** list 其它属性 */
-  listExtend?: AnyKeyProps
+  listExtend?: AnyKeyProps;
   /** 默认查询数据 */
-  defaultSearchValue?: AnyKeyProps
+  defaultSearchValue?: AnyKeyProps;
   /** 默认过滤参数 */
-  defaultFiltersValue?: AnyKeyProps
+  defaultFiltersValue?: AnyKeyProps;
   /** 插入按钮 */
-  btnBefore?: ReactNode
+  btnBefore?: ReactNode;
   /** 是否展示导出按钮 */
-  exportVisible?: boolean
+  exportVisible?: boolean;
   /** 更多查询数据, 额外带的查询数据用 */
-  extendSearchParams?: AnyKeyProps
+  extendSearchParams?: AnyKeyProps;
   /** 表格是否自动请求 */
-  autoload?: false
+  autoload?: false;
   /** 渲染元素 */
-  renderItem: (record: AnyKeyProps, index: number) => ReactNode
+  renderItem: (record: AnyKeyProps, index: number) => ReactNode;
   /** 请求数据变化事件 */
-  onParamsChange?(params: AnyKeyProps): void
+  onParamsChange?(params: AnyKeyProps): void;
   /** 列表头部 */
-  listHeader?: ReactNode
+  listHeader?: ReactNode;
   /** 提示文本 */
-  tooltip?: string
+  tooltip?: string;
 }
 export interface MwTableProps {
-  title?: string | ReactNode
-  children?: ReactNode
-  header?: ReactNode
-  rowClassName?: ((record: AnyKeyProps) => string) | string
-  size?: SizeType
-  api?(params: AnyKeyProps): Promise<AnyKeyProps>
+  title?: string | ReactNode;
+  children?: ReactNode;
+  header?: ReactNode;
+  rowClassName?: ((record: AnyKeyProps) => string) | string;
+  size?: SizeType;
+  api?(params: AnyKeyProps): Promise<AnyKeyProps>;
   /** 列表项 */
-  fields: Array<MwTableField>
+  fields: Array<MwTableField>;
   /** 列表数据 */
-  data?: Array<any>
+  data?: Array<any>;
   /** 操作列 */
-  ctrl?: MwTableField
+  ctrl?: MwTableField;
   /** 表格前面的 selection */
-  rowSelection?: TableRowSelection<AnyKeyProps>
+  rowSelection?: TableRowSelection<AnyKeyProps>;
   /** 表格查询完成监听 */
-  onLoad?(records: Array<AnyKeyProps>, data: any): void
+  onLoad?(records: Array<AnyKeyProps>, data: any): void;
   /** rowKey */
-  rowKey?: ((record: AnyKeyProps) => string) | string
+  rowKey?: ((record: AnyKeyProps) => string) | string;
   /** 横向滚动宽度 */
-  scrollX?: number
+  scrollX?: number;
   /** 表格高度 */
-  height?: number
+  height?: number;
   /** 加载玩数据过滤 */
-  filterData?(data: AnyKeyProps): AnyKeyProps
+  filterData?(data: AnyKeyProps): AnyKeyProps;
   /** 查询前过滤 */
-  beforeSearch?(data: AnyKeyProps): AnyKeyProps
+  beforeSearch?(data: AnyKeyProps): AnyKeyProps;
   /** 展开事件 */
-  onExpand?(expanded: boolean, record: AnyKeyProps): void
+  onExpand?(expanded: boolean, record: AnyKeyProps): void;
   /** 分页参数 */
-  pagination?: any
-  className?: string
+  pagination?: any;
+  className?: string;
   /** table 其它属性 */
-  tableExtend?: AnyKeyProps
+  tableExtend?: AnyKeyProps;
   /** 默认查询数据 */
-  defaultSearchValue?: AnyKeyProps
+  defaultSearchValue?: AnyKeyProps;
   /** 默认过滤参数 */
-  defaultFiltersValue?: AnyKeyProps
+  defaultFiltersValue?: AnyKeyProps;
   /** 默认排序参数 */
-  defaultSortsValue?: Array<{ key: string; order: 'ascend' | 'descend' }>
+  defaultSortsValue?: Array<{ key: string; order: 'ascend' | 'descend' }>;
   /** 在导入前面插入按钮 */
-  btnBefore?: ReactNode
+  btnBefore?: ReactNode;
   /** 统计数据，放在导入按钮前面 */
-  dataAnalysis?: Array<Option>
+  dataAnalysis?: Array<Option>;
   /** 是否展示导出按钮 */
-  exportVisible?: boolean
+  exportVisible?: boolean;
   /** 更多查询数据, 额外带的查询数据用 */
-  extendSearchParams?: AnyKeyProps
+  extendSearchParams?: AnyKeyProps;
   /** 表格编辑模式 */
-  editMode?: 'row' | 'col'
+  editMode?: 'row' | 'col';
   /** 表格是否自动请求 */
-  autoload?: false
+  autoload?: false;
   /** 请求数据变化事件 */
-  onParamsChange?(params: AnyKeyProps): void
+  onParamsChange?(params: AnyKeyProps): void;
   /** 列表头部 */
-  tableHeader?: ReactNode
+  tableHeader?: ReactNode;
   /** 是否使用 Table 自带的 Pagination */
-  useOriginPagination?: boolean
+  useOriginPagination?: boolean;
   /** 获取查询参数 */
-  getSearchParams?: () => AnyKeyProps
-  resizableHeader?: boolean
+  getSearchParams?: () => AnyKeyProps;
+  resizableHeader?: boolean;
 }
 
 export interface MwTableField {
   /** 标题 */
-  title?: ReactNode | string
+  title?: ReactNode | string;
   /** 唯一 key，dataIndex 默认会跟此值一样 */
-  key?: string
+  key?: string;
   /** 渲染可选项 */
-  options?: Array<Option>
+  options?: Array<Option>;
   /** 过滤的默认值 */
-  defaultFilterValue?: any
+  defaultFilterValue?: any;
   /** 排序的默认值 */
-  defaultSortsValue?: 'ascend' | 'descend'
+  defaultSortsValue?: 'ascend' | 'descend';
   /** render 函数 */
-  render?(text: ReactNode, record: AnyKeyProps, index: number): ReactNode
+  render?(text: ReactNode, record: AnyKeyProps, index: number): ReactNode;
   /** 控制列 */
-  ctrl?: Array<ReactNode>
+  ctrl?: Array<ReactNode>;
   /** 渲染方式 */
-  renderType?: string
+  renderType?: string;
   /** 是否隐藏这一列 */
-  hidden?: boolean | (() => boolean)
+  hidden?: boolean | (() => boolean);
   /** 提示文本 */
-  tooltip?: string
-  __extraTouched?: boolean
-  __hidden?: boolean
-  __order?: number
-  [key: string]: any
+  tooltip?: string;
+  __extraTouched?: boolean;
+  __hidden?: boolean;
+  __order?: number;
+  [key: string]: any;
 }
 
 export interface MwTableCtrlField extends MwTableField {
   /** render 函数 */
-  render(text: ReactNode, record: AnyKeyProps, index: number): ReactNode
+  render(text: ReactNode, record: AnyKeyProps, index: number): ReactNode;
 }
 
 export interface RenderProps {
-  text: string | any
-  record: AnyKeyProps
-  index: number
-  field: AnyKeyProps
+  text: string | any;
+  record: AnyKeyProps;
+  index: number;
+  field: AnyKeyProps;
 }
 
 export interface LoadParams {
   /** 分页参数 */
   pagination: {
     /** 当前第 n 页 */
-    current: number
+    current: number;
     /** 每页多少条 */
-    pageSize: number
-  }
-  sorts: Array<AnyKeyProps>
-  filters: AnyKeyProps
+    pageSize: number;
+  };
+  sorts: Array<AnyKeyProps>;
+  filters: AnyKeyProps;
   /** 查询额外参数 */
-  search: AnyKeyProps
+  search: AnyKeyProps;
 
-  _action?: string
+  _action?: string;
 }

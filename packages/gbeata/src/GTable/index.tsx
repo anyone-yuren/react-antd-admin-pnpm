@@ -473,12 +473,12 @@ export default forwardRef(function MwTable(props: MwTableProps, ref) {
     if (title || btnBefore) {
       return true;
     }
-    // 检查是否拥有除了 MwFields 以外的子元素
+    // 检查是否拥有除了 GFields 以外的子元素
     if (children) {
       let checkChildren = Array.isArray(children) ? [...children] : [children];
       // @ts-ignore
       if (
-        checkChildren.filter((node) => node?.type?.componentName !== 'MwFields')
+        checkChildren.filter((node) => node?.type?.componentName !== 'GFields')
           .length > 0
       ) {
         return true;

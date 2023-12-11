@@ -3,7 +3,7 @@ import { isValidElement } from 'react';
 import { FORM_TYPE_DATE, FORM_TYPE_DATE_RANGE } from '../constant';
 import { FormValues } from '../types/FormValues';
 import { isObj } from '../utils';
-import { MwFormField } from './g-form';
+import { GFormField } from './g-form';
 
 /** 是否是表达式 */
 export const isExpression = (value: string) => {
@@ -31,10 +31,10 @@ export function parseExpression(expression: string, formValues: FormValues) {
  * @returns 新的配置项
  */
 export default function parseFields(
-  fields: Array<MwFormField>,
+  fields: Array<GFormField>,
   formatValues: FormValues,
 ) {
-  const loop = (field: MwFormField): MwFormField => {
+  const loop = (field: GFormField): GFormField => {
     const { children, ...rest } = field;
 
     for (const key in rest) {
@@ -68,7 +68,7 @@ export default function parseFields(
  */
 export const getDateValue = (
   value: any,
-  field: MwFormField,
+  field: GFormField,
   readonly?: boolean,
 ) => {
   // 获得格式化日期格式

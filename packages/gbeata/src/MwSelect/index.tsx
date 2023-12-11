@@ -1,6 +1,6 @@
 import { Select } from 'antd';
 import React, { forwardRef } from 'react';
-import { Option } from '../MwForm/mw-form';
+import { Option } from '../GForm/g-form';
 import { omitObj } from '../utils';
 import { GSelectProps } from './g-select';
 

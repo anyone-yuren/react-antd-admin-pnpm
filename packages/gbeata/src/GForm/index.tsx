@@ -13,8 +13,8 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { convertChildrenToField } from '../GFields/convertFields';
 import MwCard from '../MwCard';
-import { convertChildrenToField } from '../MwFields/convertFields';
 import { MwSearchField } from '../MwSearch/mw-search';
 import { MwSearchTableField } from '../MwSearchTable/mw-search-table';
 import { theme } from '../Theme';
@@ -43,8 +43,8 @@ import { AnyKeyProps } from '../types/AnyKeyProps';
 import { FormValues } from '../types/FormValues';
 import { copy, omitObj } from '../utils';
 import { install } from './FieldsInit';
-import MwFormList from './MwFormList';
-import { GFormProps, MwFormField, RegisterFieldProps } from './g-form';
+import GFormList from './GFormList';
+import { GFormField, GFormProps, RegisterFieldProps } from './g-form';
 import parseFields, { getDateValue } from './parseFields';
 
 moment.locale('zh-cn');
@@ -73,8 +73,8 @@ install(registerField);
  * @param field 配置项
  */
 const getNoVisibleField = (
-  field: MwFormField | MwSearchTableField,
-): MwFormField | MwSearchTableField => {
+  field: GFormField | MwSearchTableField,
+): GFormField | MwSearchTableField => {
   return {
     ...field,
     title: '',
@@ -86,7 +86,7 @@ const getNoVisibleField = (
  * 生成 placeholder
  * @param field 配置项
  */
-const getPlaceholder = (field: MwFormField | MwSearchTableField): string => {
+const getPlaceholder = (field: GFormField | MwSearchTableField): string => {
   const defaultProps = field.props;
 
   if (defaultProps && defaultProps.placeholder) {
@@ -136,10 +136,10 @@ const getPlaceholder = (field: MwFormField | MwSearchTableField): string => {
  * @param fields 配置列表
  */
 export const getDefaultValue = (
-  fields: Array<MwFormField | MwSearchField | MwSearchTableField>,
+  fields: Array<GFormField | MwSearchField | MwSearchTableField>,
 ) => {
   let form: AnyKeyProps = {};
-  fields.forEach((field: MwFormField | MwSearchField | MwSearchTableField) => {
+  fields.forEach((field: GFormField | MwSearchField | MwSearchTableField) => {
     if (
       [FORM_TYPE_CARD, FORM_TYPE_GROUP, FORM_TYPE_INPUT_GROUP].includes(
         field.type || '',
@@ -201,12 +201,12 @@ export const getDefaultValue = (
 
 export const getFieldDefaultValue = (
   key: string,
-  fields: Array<MwFormField | MwSearchField | MwSearchTableField>,
+  fields: Array<GFormField | MwSearchField | MwSearchTableField>,
 ) => {
   if (!key) {
     return '';
   }
-  let field: any = getField(key, fields as Array<MwFormField>);
+  let field: any = getField(key, fields as Array<GFormField>);
   if (field) {
     let type = field.type || 'input';
     // 如果配置项里存在默认值，直接返回默认值，否则从默认值表里获取
@@ -274,8 +274,8 @@ const usedKeys = [
  * @param field 配置项
  */
 const getTag = (
-  field: MwFormField | MwSearchTableField,
-  fields: Array<MwFormField | MwSearchTableField>,
+  field: GFormField | MwSearchTableField,
+  fields: Array<GFormField | MwSearchTableField>,
   formInstans: AnyKeyProps,
   readonly?: boolean,
   childrenType?: string,
@@ -320,7 +320,7 @@ const getTag = (
  * @param childrenType 子类型
  */
 const getFormItem = (
-  fields: Array<MwFormField | MwSearchTableField>,
+  fields: Array<GFormField | MwSearchTableField>,
   formInstans: AnyKeyProps,
   props: GFormProps,
   childrenType?: 'group' | 'card' | 'input-group' | 'list',
@@ -328,227 +328,224 @@ const getFormItem = (
   const { span, readonly, formLayout, gutter } = props;
   const ayFormProps: GFormProps = props;
 
-  return fields.map(
-    (field: MwFormField | MwSearchTableField, index: number) => {
-      // 把其它属性 添加到 props 里面
-      field = {
-        ...field,
-        props: {
-          ...omitObj(field, fieldKeys),
-          ...field.props,
-        },
-      };
+  return fields.map((field: GFormField | MwSearchTableField, index: number) => {
+    // 把其它属性 添加到 props 里面
+    field = {
+      ...field,
+      props: {
+        ...omitObj(field, fieldKeys),
+        ...field.props,
+      },
+    };
 
-      const fieldSpan =
-        field.span !== 0 ? field.span || span || 24 : span || 24;
+    const fieldSpan = field.span !== 0 ? field.span || span || 24 : span || 24;
 
-      if (field.type === FORM_TYPE_CARD) {
-        let children = field.children || [];
-        if (!Array.isArray(children)) {
-          children = [children];
-        }
-        let content = getFormItem(
-          children as Array<MwFormField | MwSearchTableField>,
-          formInstans,
-          ayFormProps,
-          FORM_TYPE_CARD,
-        );
-        return (
-          <Col key={field.key} span={field.span || 24}>
-            <MwCard title={field.title} {...field.props}>
-              <Row gutter={gutter}>{content}</Row>
-            </MwCard>
-          </Col>
-        );
+    if (field.type === FORM_TYPE_CARD) {
+      let children = field.children || [];
+      if (!Array.isArray(children)) {
+        children = [children];
       }
-
-      let visible = true;
-
-      // 隐藏该项目，保留占位，但是保留值
-      if (field.visible !== undefined) {
-        visible =
-          typeof field.visible === 'function' ? field.visible() : field.visible;
-      }
-
-      let hidden = false;
-
-      // 隐藏该项目，不保留占位，但是保留值
-      if (field.hidden !== undefined) {
-        hidden =
-          typeof field.hidden === 'function' ? field.hidden() : field.hidden;
-      }
-
-      // 隐藏该项，只显示占位，保留 form 值
-      if (!visible || hidden) {
-        field = getNoVisibleField(field);
-      }
-
-      // 设置 Form.Item 的属性
-      let formItemProps: AnyKeyProps = {
-        ...field.formItemProps,
-        label: field.title,
-        name: field.key,
-        extra: field.help,
-      };
-
-      // 如果自元素类型是列表，则重置 name，此时一定有 field.formItemProps
-      if (childrenType === FORM_TYPE_LIST) {
-        formItemProps.name = field.formItemProps.name;
-      }
-
-      // 组合元素的 formItem 不需要样式
-      if (
-        childrenType === FORM_TYPE_GROUP ||
-        childrenType === FORM_TYPE_INPUT_GROUP
-      ) {
-        formItemProps.noStyle = true;
-      }
-
-      // 设定 开关、多选框 等的值类型 （这是 ant design form 的限制）
-      if (field.type && fieldMap[field.type]) {
-        formItemProps.valuePropName =
-          fieldMap[field.type].valuePropName || 'value';
-      }
-
-      // 设置每个【表单项】的占位
-      const colProps: ColProps = {
-        span: fieldSpan,
-        offset: field.offset,
-      };
-
-      // 填充 rules 属性
-      if (field.rules) {
-        formItemProps.rules = [...field.rules];
-      }
-
-      // 填充快捷 required 属性
-      if (field.required) {
-        let rule = {
-          required: true,
-          message: getPlaceholder(field) + locale.form.requiredText,
-        };
-        if (field.children && field.type !== FORM_TYPE_CHECKBOX) {
-          formItemProps.label = (
-            <span>
-              <span className="required-mark">*</span>
-              {field.title}
-            </span>
-          );
-        } else {
-          if (formItemProps.rules) {
-            formItemProps.rules.push(rule);
-          } else {
-            formItemProps.rules = [rule];
-          }
-        }
-      }
-
-      // 不保留占位
-      if (hidden) {
-        colProps.span = 0;
-        colProps.xs = 0;
-        colProps.sm = 0;
-        colProps.md = 0;
-        colProps.lg = 0;
-        colProps.xl = 0;
-      }
-
-      // 不显示状态下 rule 无效
-      if (hidden || !visible) {
-        formItemProps.rules = [];
-      }
-
-      // 支持 tooltip 属性
-      if (field.tooltip) {
-        formItemProps.label = (
-          <span>
-            {field.title}
-            <Tooltip placement="top" title={field.tooltip}>
-              <QuestionCircleOutlined style={{ marginLeft: 4 }} />
-            </Tooltip>
-          </span>
-        );
-      }
-
-      let tag: ReactNode;
-
-      switch (field.type) {
-        // 组合类型
-        case FORM_TYPE_GROUP:
-          tag = (
-            <Row className="mw-form-group" {...field.props}>
-              {getFormItem(
-                field.children as Array<MwFormField | MwSearchTableField>,
-                formInstans,
-                ayFormProps,
-                FORM_TYPE_GROUP,
-              )}
-            </Row>
-          );
-          break;
-        // 输入框组合
-        case FORM_TYPE_INPUT_GROUP:
-          tag = (
-            <Input.Group compact {...field.props}>
-              {getFormItem(
-                field.children as Array<MwFormField | MwSearchTableField>,
-                formInstans,
-                ayFormProps,
-                FORM_TYPE_INPUT_GROUP,
-              )}
-            </Input.Group>
-          );
-          break;
-        // 列表类型
-        case FORM_TYPE_LIST:
-          tag = (
-            <MwFormList
-              field={field as MwFormField}
-              formInstant={formInstans}
-              getFormItem={getFormItem}
-              ayFormProps={ayFormProps}
-            />
-          );
-          break;
-
-        default:
-          tag = getTag(field, fields, formInstans, readonly, childrenType);
-          break;
-      }
-
-      // const content = field.render ? (
-      //   field.render(field as MwFormField, formInstans.getFieldsValue() || getDefaultValue(fields), index)
-      // ) : (
-      //   <Form.Item key={field.key} {...formItemProps}>
-      //     {tag}
-      //   </Form.Item>
-      // )
-      const content = (
-        <Form.Item key={field.key} {...formItemProps}>
-          {tag}
-        </Form.Item>
+      let content = getFormItem(
+        children as Array<GFormField | MwSearchTableField>,
+        formInstans,
+        ayFormProps,
+        FORM_TYPE_CARD,
       );
-
-      if (formLayout === 'inline' || childrenType === FORM_TYPE_INPUT_GROUP) {
-        return content;
-      }
-
       return (
-        <Col key={field.key} {...colProps}>
-          {content}
+        <Col key={field.key} span={field.span || 24}>
+          <MwCard title={field.title} {...field.props}>
+            <Row gutter={gutter}>{content}</Row>
+          </MwCard>
         </Col>
       );
-    },
-  );
+    }
+
+    let visible = true;
+
+    // 隐藏该项目，保留占位，但是保留值
+    if (field.visible !== undefined) {
+      visible =
+        typeof field.visible === 'function' ? field.visible() : field.visible;
+    }
+
+    let hidden = false;
+
+    // 隐藏该项目，不保留占位，但是保留值
+    if (field.hidden !== undefined) {
+      hidden =
+        typeof field.hidden === 'function' ? field.hidden() : field.hidden;
+    }
+
+    // 隐藏该项，只显示占位，保留 form 值
+    if (!visible || hidden) {
+      field = getNoVisibleField(field);
+    }
+
+    // 设置 Form.Item 的属性
+    let formItemProps: AnyKeyProps = {
+      ...field.formItemProps,
+      label: field.title,
+      name: field.key,
+      extra: field.help,
+    };
+
+    // 如果自元素类型是列表，则重置 name，此时一定有 field.formItemProps
+    if (childrenType === FORM_TYPE_LIST) {
+      formItemProps.name = field.formItemProps.name;
+    }
+
+    // 组合元素的 formItem 不需要样式
+    if (
+      childrenType === FORM_TYPE_GROUP ||
+      childrenType === FORM_TYPE_INPUT_GROUP
+    ) {
+      formItemProps.noStyle = true;
+    }
+
+    // 设定 开关、多选框 等的值类型 （这是 ant design form 的限制）
+    if (field.type && fieldMap[field.type]) {
+      formItemProps.valuePropName =
+        fieldMap[field.type].valuePropName || 'value';
+    }
+
+    // 设置每个【表单项】的占位
+    const colProps: ColProps = {
+      span: fieldSpan,
+      offset: field.offset,
+    };
+
+    // 填充 rules 属性
+    if (field.rules) {
+      formItemProps.rules = [...field.rules];
+    }
+
+    // 填充快捷 required 属性
+    if (field.required) {
+      let rule = {
+        required: true,
+        message: getPlaceholder(field) + locale.form.requiredText,
+      };
+      if (field.children && field.type !== FORM_TYPE_CHECKBOX) {
+        formItemProps.label = (
+          <span>
+            <span className="required-mark">*</span>
+            {field.title}
+          </span>
+        );
+      } else {
+        if (formItemProps.rules) {
+          formItemProps.rules.push(rule);
+        } else {
+          formItemProps.rules = [rule];
+        }
+      }
+    }
+
+    // 不保留占位
+    if (hidden) {
+      colProps.span = 0;
+      colProps.xs = 0;
+      colProps.sm = 0;
+      colProps.md = 0;
+      colProps.lg = 0;
+      colProps.xl = 0;
+    }
+
+    // 不显示状态下 rule 无效
+    if (hidden || !visible) {
+      formItemProps.rules = [];
+    }
+
+    // 支持 tooltip 属性
+    if (field.tooltip) {
+      formItemProps.label = (
+        <span>
+          {field.title}
+          <Tooltip placement="top" title={field.tooltip}>
+            <QuestionCircleOutlined style={{ marginLeft: 4 }} />
+          </Tooltip>
+        </span>
+      );
+    }
+
+    let tag: ReactNode;
+
+    switch (field.type) {
+      // 组合类型
+      case FORM_TYPE_GROUP:
+        tag = (
+          <Row className="g-form-group" {...field.props}>
+            {getFormItem(
+              field.children as Array<GFormField | MwSearchTableField>,
+              formInstans,
+              ayFormProps,
+              FORM_TYPE_GROUP,
+            )}
+          </Row>
+        );
+        break;
+      // 输入框组合
+      case FORM_TYPE_INPUT_GROUP:
+        tag = (
+          <Input.Group compact {...field.props}>
+            {getFormItem(
+              field.children as Array<GFormField | MwSearchTableField>,
+              formInstans,
+              ayFormProps,
+              FORM_TYPE_INPUT_GROUP,
+            )}
+          </Input.Group>
+        );
+        break;
+      // 列表类型
+      case FORM_TYPE_LIST:
+        tag = (
+          <GFormList
+            field={field as GFormField}
+            formInstant={formInstans}
+            getFormItem={getFormItem}
+            ayFormProps={ayFormProps}
+          />
+        );
+        break;
+
+      default:
+        tag = getTag(field, fields, formInstans, readonly, childrenType);
+        break;
+    }
+
+    // const content = field.render ? (
+    //   field.render(field as GFormField, formInstans.getFieldsValue() || getDefaultValue(fields), index)
+    // ) : (
+    //   <Form.Item key={field.key} {...formItemProps}>
+    //     {tag}
+    //   </Form.Item>
+    // )
+    const content = (
+      <Form.Item key={field.key} {...formItemProps}>
+        {tag}
+      </Form.Item>
+    );
+
+    if (formLayout === 'inline' || childrenType === FORM_TYPE_INPUT_GROUP) {
+      return content;
+    }
+
+    return (
+      <Col key={field.key} {...colProps}>
+        {content}
+      </Col>
+    );
+  });
 };
 
 const getField = (
   key: string,
-  fields: Array<MwFormField | MwSearchTableField>,
+  fields: Array<GFormField | MwSearchTableField>,
 ) => {
-  let field: MwFormField | MwSearchTableField | null = null;
+  let field: GFormField | MwSearchTableField | null = null;
 
-  const loop = (fields: Array<MwFormField | MwSearchTableField>) => {
+  const loop = (fields: Array<GFormField | MwSearchTableField>) => {
     for (let i = 0; i < fields.length; i++) {
       let item = fields[i];
       if (item.key === key) {
@@ -572,7 +569,7 @@ const getField = (
  */
 const formatValues = (
   values: AnyKeyProps,
-  fields: Array<MwFormField | MwSearchTableField>,
+  fields: Array<GFormField | MwSearchTableField>,
 ): AnyKeyProps => {
   let result: AnyKeyProps = {};
   for (let key in values) {
@@ -638,7 +635,7 @@ const formatValues = (
  */
 const handleConfirm = (
   values: AnyKeyProps,
-  fields: Array<MwFormField | MwSearchTableField>,
+  fields: Array<GFormField | MwSearchTableField>,
   onConfirm?: (values: FormValues) => void,
   onFinish?: (values: FormValues) => void,
   onSubmit?: (values: FormValues) => void,
@@ -665,7 +662,7 @@ const handleConfirm = (
 const handleChange = (
   changedValues: AnyKeyProps,
   allValues: AnyKeyProps,
-  fields: Array<MwFormField | MwSearchTableField>,
+  fields: Array<GFormField | MwSearchTableField>,
   setFieldsValue: (params: AnyKeyProps) => void,
 ) => {
   for (let key in changedValues) {
@@ -680,7 +677,7 @@ const handleChange = (
 };
 
 /**
- * 获取 MwForm 样式
+ * 获取 GForm 样式
  * @param className 外部 className
  * @param desc 是否处于文档模式
  * @param readonly 是否处于只读模式
@@ -692,7 +689,7 @@ const getAyFormClassName = (
   readonly?: boolean,
   noBackground?: boolean,
 ) => {
-  const classList = ['mw-form', theme];
+  const classList = ['g-form', theme];
   if (className) {
     classList.push(className);
   }
@@ -703,7 +700,7 @@ const getAyFormClassName = (
     classList.push('readonly');
   }
   if (noBackground) {
-    classList.push('mw-form-no-background');
+    classList.push('g-form-no-background');
   }
   return classList.join(' ');
 };
@@ -727,7 +724,7 @@ export const funcs = [
   'validateFields',
 ];
 
-export default forwardRef(function MwForm(props: GFormProps, ref: Ref<any>) {
+export default forwardRef(function GForm(props: GFormProps, ref: Ref<any>) {
   const {
     fields: originFields,
     formLayout = 'horizontal',
@@ -748,9 +745,9 @@ export default forwardRef(function MwForm(props: GFormProps, ref: Ref<any>) {
   } = props;
 
   // 子元素转化出来的 fields + 标签上的 fields
-  const totalFields: Array<MwFormField> = useMemo(() => {
+  const totalFields: Array<GFormField> = useMemo(() => {
     const childrenFields = convertChildrenToField(children);
-    return [...(originFields || []), ...childrenFields] as Array<MwFormField>;
+    return [...(originFields || []), ...childrenFields] as Array<GFormField>;
   }, [originFields, children]);
 
   /** 当前表单值 */
@@ -844,11 +841,11 @@ export default forwardRef(function MwForm(props: GFormProps, ref: Ref<any>) {
    * @returns object
    */
   const getValues = (
-    fields: MwFormField | MwSearchTableField,
+    fields: GFormField | MwSearchTableField,
     readonly?: boolean,
   ) => {
     let result: AnyKeyProps = {};
-    fields?.forEach((field: MwFormField | MwSearchTableField) => {
+    fields?.forEach((field: GFormField | MwSearchTableField) => {
       if (!field.key) {
         return;
       }

@@ -1,7 +1,7 @@
 import { Badge, Tag } from 'antd';
 import moment from 'moment';
 import React from 'react';
-import { Option } from './MwForm/mw-form';
+import { Option } from './GForm/g-form';
 import { TABLE_DEFAULT_ROW_KEY } from './constant';
 import { AnyKeyProps } from './types/AnyKeyProps';
 

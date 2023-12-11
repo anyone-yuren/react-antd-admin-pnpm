@@ -73,7 +73,7 @@ export const install = (
     defaultValue: FORM_DEFAULT_VALUE_INPUT,
     render: ({ field, readonly, getFieldValue }: AnyKeyProps) => {
       return readonly ? (
-        <span className="mw-form-text">
+        <span className="g-form-text">
           {getFieldValue(field.key) || FORM_READONLY_EMPTY}
         </span>
       ) : (
@@ -96,7 +96,7 @@ export const install = (
     defaultValue: FORM_DEFAULT_VALUE_SEARCH,
     render: ({ field, readonly, getFieldValue, formInstans }: AnyKeyProps) => {
       return readonly ? (
-        <span className="mw-form-text">
+        <span className="g-form-text">
           {getFieldValue(field.key) || FORM_READONLY_EMPTY}
         </span>
       ) : (
@@ -125,7 +125,7 @@ export const install = (
     defaultValue: FORM_DEFAULT_VALUE_NUMBER,
     render: ({ field, readonly, getFieldValue }: AnyKeyProps) =>
       readonly ? (
-        <span className="mw-form-text">
+        <span className="g-form-text">
           {getFieldValue(field.key) || FORM_READONLY_EMPTY}
         </span>
       ) : (
@@ -145,7 +145,7 @@ export const install = (
     defaultValue: FORM_DEFAULT_VALUE_PERCENT,
     render: ({ field, readonly, getFieldValue }: AnyKeyProps) =>
       readonly ? (
-        <span className="mw-form-text">
+        <span className="g-form-text">
           {getFieldValue(field.key) || FORM_READONLY_EMPTY}%
         </span>
       ) : (
@@ -169,7 +169,7 @@ export const install = (
     defaultValue: FORM_DEFAULT_VALUE_PASSWORD,
     render: ({ field, readonly, getFieldValue }: AnyKeyProps) =>
       readonly ? (
-        <span className="mw-form-text">
+        <span className="g-form-text">
           {(getFieldValue(field.key) + '').replace(/./g, '*') ||
             FORM_READONLY_EMPTY}
         </span>
@@ -191,7 +191,7 @@ export const install = (
     defaultValue: FORM_DEFAULT_VALUE_TEXTAREA,
     render: ({ field, readonly, getFieldValue }: AnyKeyProps) =>
       readonly ? (
-        <span className="mw-form-text">
+        <span className="g-form-text">
           {getFieldValue(field.key) || FORM_READONLY_EMPTY}
         </span>
       ) : (
@@ -226,7 +226,7 @@ export const install = (
           text = getValueByOptions(value, field.options);
         }
         return (
-          <span className="mw-form-text">{text || FORM_READONLY_EMPTY}</span>
+          <span className="g-form-text">{text || FORM_READONLY_EMPTY}</span>
         );
       }
 
@@ -300,7 +300,7 @@ export const install = (
         text = '';
       }
       return readonly ? (
-        <span className="mw-form-text">{text || FORM_READONLY_EMPTY}</span>
+        <span className="g-form-text">{text || FORM_READONLY_EMPTY}</span>
       ) : (
         <DatePicker
           className="max-width"
@@ -337,7 +337,7 @@ export const install = (
         }
       }
       return readonly ? (
-        <span className="mw-form-text">{text || FORM_READONLY_EMPTY}</span>
+        <span className="g-form-text">{text || FORM_READONLY_EMPTY}</span>
       ) : (
         <DatePicker.RangePicker
           placeholder={[locale.form.startDate, locale.form.endDate]}

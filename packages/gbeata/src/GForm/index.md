@@ -1,15 +1,16 @@
 ---
 nav: 组件
 group: 表单form
+order: 0
 ---
 
-# GForm 表单 <Badge>0.0.1</Badge>
+# GForm 表单
 
 ## 基础表单
 
 ```tsx
 import React from 'react';
-import { GForm, MwButton, GFormField, FormValues } from 'gbeata';
+import { GForm, GButton, GFormField, FormValues } from 'gbeata';
 
 const fields: Array<GFormField> = [
   {
@@ -39,9 +40,9 @@ export default function Demo() {
       onConfirm={handleConfirm}
       style={{ width: 400, margin: '0 auto' }}
     >
-      <MwButton style={{ marginLeft: 120 }} type="primary" htmlType="submit">
+      <GButton style={{ marginLeft: 120 }} type="primary" htmlType="submit">
         提交
-      </MwButton>
+      </GButton>
     </GForm>
   );
 }
@@ -51,7 +52,7 @@ export default function Demo() {
 
 ```tsx
 import React from 'react';
-import { GForm, MwButton, MwFields, MwField } from 'gbeata';
+import { GForm, GButton, GFields, GField } from 'gbeata';
 
 const TYPE_OPTIONS = [
   { label: '狙击干员', value: '1' },
@@ -66,13 +67,13 @@ export default function Demo() {
 
   return (
     <GForm onConfirm={handleConfirm} style={{ width: 400, margin: '0 auto' }}>
-      <MwFields>
-        <MwField key="name" title="干员名称" />
-        <MwField key="type" type="select" options={TYPE_OPTIONS} title="职业" />
-      </MwFields>
-      <MwButton style={{ marginLeft: 120 }} type="primary" htmlType="submit">
+      <GFields>
+        <GField key="name" title="干员名称" />
+        <GField key="type" type="select" options={TYPE_OPTIONS} title="职业" />
+      </GFields>
+      <GButton style={{ marginLeft: 120 }} type="primary" htmlType="submit">
         提交
-      </MwButton>
+      </GButton>
     </GForm>
   );
 }
@@ -104,15 +105,15 @@ export default function Demo() {
   onConfirm={handleConfirm}
 - fields={fields}
 >
-+ <MwFields>
-+   <MwFields>
-+     <MwField key="name" title="干员名称" />
-+     <MwField key="type" type="select" options={TYPE_OPTIONS} title="职业" />
-+   </MwFields>
-+ </MwFields>
-  <MwButton style={{ marginLeft: 120 }} type="primary" htmlType="submit">
++ <GFields>
++   <GFields>
++     <GField key="name" title="干员名称" />
++     <GField key="type" type="select" options={TYPE_OPTIONS} title="职业" />
++   </GFields>
++ </GFields>
+  <GButton style={{ marginLeft: 120 }} type="primary" htmlType="submit">
     提交
-  </MwButton>
+  </GButton>
 </GForm>
 ```
 
@@ -120,7 +121,7 @@ export default function Demo() {
 
 ```tsx
 import React from 'react';
-import { GForm, MwButton, GFormField, FormValues } from 'gbeata';
+import { GForm, GButton, GFormField, FormValues } from 'gbeata';
 
 const fields: Array<GFormField> = [
   {
@@ -156,20 +157,20 @@ export default function Demo() {
       onConfirm={handleConfirm}
       style={{ width: 400, margin: '0 auto' }}
     >
-      <MwButton
+      <GButton
         style={{ marginLeft: 120 }}
         block
         type="primary"
         htmlType="submit"
       >
         登录
-      </MwButton>
+      </GButton>
     </GForm>
   );
 }
 ```
 
-只是换了另一种风格写 `fields` 而已，请不要用其它元素包裹住 `MwFields` 和 `MwField`。
+只是换了另一种风格写 `fields` 而已，请不要用其它元素包裹住 `GFields` 和 `GField`。
 
 ## 表单布局
 
@@ -324,7 +325,7 @@ export default function Demo() {
 
 ```tsx
 import React from 'react';
-import { GForm, MwButton, GFormField } from 'gbeata';
+import { GForm, GButton, GFormField } from 'gbeata';
 import { Card } from 'antd';
 
 const fields: Array<GFormField> = [
@@ -358,9 +359,9 @@ export default function Demo() {
         onConfirm={handleConfirm}
         style={{ width: 400, margin: '0 auto' }}
       >
-        <MwButton style={{ marginLeft: 120 }} type="primary" htmlType="submit">
+        <GButton style={{ marginLeft: 120 }} type="primary" htmlType="submit">
           提交
-        </MwButton>
+        </GButton>
       </GForm>
     </Card>
   );
@@ -384,7 +385,7 @@ const fields: Array<GFormField> = [
 
 ```tsx
 import React from 'react';
-import { GForm, MwButton, GFormField } from 'gbeata';
+import { GForm, GButton, GFormField } from 'gbeata';
 import { Card } from 'antd';
 
 const fields: Array<GFormField> = [
@@ -415,9 +416,9 @@ export default function Demo() {
         onConfirm={handleConfirm}
         style={{ width: 400, margin: '0 auto' }}
       >
-        <MwButton style={{ marginLeft: 120 }} type="primary" htmlType="submit">
+        <GButton style={{ marginLeft: 120 }} type="primary" htmlType="submit">
           提交
-        </MwButton>
+        </GButton>
       </GForm>
     </Card>
   );
@@ -428,7 +429,7 @@ export default function Demo() {
 
 ```tsx
 import React, { useState } from 'react';
-import { GForm, MwButton, GFormField, AnyKeyProps } from 'gbeata';
+import { GForm, GButton, GFormField, AnyKeyProps } from 'gbeata';
 import { Switch, Col, Tag } from 'antd';
 import moment from 'moment';
 
@@ -687,13 +688,9 @@ export default function Demo() {
         onConfirm={(values) => setSubmitValues(values)}
       >
         <Col span={24}>
-          <MwButton
-            style={{ marginLeft: 120 }}
-            type="primary"
-            htmlType="submit"
-          >
+          <GButton style={{ marginLeft: 120 }} type="primary" htmlType="submit">
             提交
-          </MwButton>
+          </GButton>
         </Col>
       </GForm>
 
@@ -711,7 +708,7 @@ export default function Demo() {
 
 ```tsx
 import React from 'react';
-import { GForm, MwButton, GFormField, FormValues } from 'gbeata';
+import { GForm, GButton, GFormField, FormValues } from 'gbeata';
 
 export default function Demo() {
   const fields: Array<GFormField> = [
@@ -744,9 +741,9 @@ export default function Demo() {
   return (
     <GForm fields={fields} formLayout="vertical" onConfirm={handleConfirm}>
       <div>
-        <MwButton type="primary" htmlType="submit">
+        <GButton type="primary" htmlType="submit">
           提交
-        </MwButton>
+        </GButton>
       </div>
     </GForm>
   );
@@ -771,7 +768,7 @@ const fields: Array<GFormField> = [
 
 ```tsx
 import React, { useState } from 'react';
-import { GForm, MwButton, GFormField, FormValues } from 'gbeata';
+import { GForm, GButton, GFormField, FormValues } from 'gbeata';
 
 export default function Demo() {
   const [hidden, setHidden] = useState(true);
@@ -804,9 +801,9 @@ export default function Demo() {
       onConfirm={handleConfirm}
       style={{ width: 400, margin: '0 auto' }}
     >
-      <MwButton type="primary" htmlType="submit">
+      <GButton type="primary" htmlType="submit">
         提交
-      </MwButton>
+      </GButton>
     </GForm>
   );
 }
@@ -828,7 +825,7 @@ const fields: Array<GFormField> = [
 
 ```tsx
 import React from 'react';
-import { GForm, MwButton, GFormField, FormValues } from 'gbeata';
+import { GForm, GButton, GFormField, FormValues } from 'gbeata';
 
 const fields: Array<GFormField> = [
   {
@@ -857,9 +854,9 @@ export default function Demo() {
       onConfirm={handleConfirm}
       style={{ width: 400, margin: '0 auto' }}
     >
-      <MwButton type="primary" htmlType="submit">
+      <GButton type="primary" htmlType="submit">
         提交
-      </MwButton>
+      </GButton>
     </GForm>
   );
 }
@@ -917,7 +914,7 @@ const fields: Array<GFormField> = [
 
 ```tsx
 import React, { useState } from 'react';
-import { GForm, MwButton, GFormField } from 'gbeata';
+import { GForm, GButton, GFormField } from 'gbeata';
 import { Switch } from 'antd';
 
 const fields: Array<GFormField> = [
@@ -1043,9 +1040,9 @@ export default function Demo() {
         fields={fields}
         onConfirm={handleConfirm}
       >
-        <MwButton type="primary" htmlType="submit">
+        <GButton type="primary" htmlType="submit">
           提交
-        </MwButton>
+        </GButton>
       </GForm>
     </>
   );
@@ -1109,7 +1106,7 @@ const fields: Array<GFormField> = [
 
 ```tsx
 import React, { useState, useRef } from 'react';
-import { GForm, MwButton, GFormField } from 'gbeata';
+import { GForm, GButton, GFormField } from 'gbeata';
 import { Switch, Space, Card } from 'antd';
 import moment from 'moment';
 
@@ -1245,10 +1242,10 @@ export default function Demo() {
         onConfirm={handleConfirm}
       >
         <Space style={{ marginTop: 16, marginLeft: 120 }}>
-          <MwButton type="primary" htmlType="submit">
+          <GButton type="primary" htmlType="submit">
             提交
-          </MwButton>
-          <MwButton onClick={getFieldsValue}>获取当前输入值</MwButton>
+          </GButton>
+          <GButton onClick={getFieldsValue}>获取当前输入值</GButton>
         </Space>
       </GForm>
     </Card>
@@ -1330,7 +1327,7 @@ export default function Demo() {
 | 参数名        | 说明                                           | 参数类型                               | 默认值       | 版本   |
 | ------------- | ---------------------------------------------- | -------------------------------------- | ------------ | ------ |
 | fields        | 配置项                                         | Array<[GFormField][2]>                 | -            | -      |
-| name          | form 名称，一般不需要填                        | string                                 | 'mw-form'    | -      |
+| name          | form 名称，一般不需要填                        | string                                 | 'g-form'     | -      |
 | span          | antd Grid 的 Col 组件的 span 属性类似          | 1 ～ 24                                | 12           | -      |
 | readonly      | 只读模式                                       | boolean                                | false        | -      |
 | noBackground  | 取消只读模式下的背景色                         | boolean                                | false        | 0.57.0 |
@@ -1464,7 +1461,7 @@ const fields: Array<Field> = [
 [GFormfield]: ./form#GFormField-参数
 [cardform]: ./form/card-form
 [groupform]: ./form/group-form
-[listform]: ./form/mw-form-list
+[listform]: ./form/g-form-list
 [cardgroup]: ./form/mw-card-group#在表单中使用
 [taggroup]: ./form/mw-tag-group#在表单中使用
 [日期格式化]: ./form/date-format

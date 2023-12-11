@@ -1,89 +1,91 @@
-import { SizeType } from 'antd/lib/config-provider/SizeContext'
-import { ReactNode } from 'react'
-import { MwTableCtrlField, MwTableField } from '../MwTable/mw-table'
-import { MwFormField, Field } from '../MwForm/mw-form'
-import { MwDialogFormProps, MwDialogFormField, ModeType } from '../MwDialogForm/mw-dialog-form'
-import { AnyKeyProps } from '../types/AnyKeyProps'
+import { SizeType } from 'antd/lib/config-provider/SizeContext';
+import { ReactNode } from 'react';
+import {
+  MwDialogFormField,
+  MwDialogFormProps,
+} from '../MwDialogForm/g-dialog-form';
+import { MwTableCtrlField } from '../MwTable/mw-table';
+import { AnyKeyProps } from '../types/AnyKeyProps';
 
 export interface SearchListInitConfig extends AnyKeyProps {
   /** 扩展栏是否显示 */
-  extraVisible?: boolean
+  extraVisible?: boolean;
   /** 扩展栏【刷新】按钮是否显示 */
-  extraRefreshVisible?: boolean
+  extraRefreshVisible?: boolean;
   /** 扩展栏【密度】按钮是否显示 */
-  extraSizeVisible?: boolean
+  extraSizeVisible?: boolean;
   /** 扩展栏【密度】按钮默认值 */
-  extraSizeDefaultValue?: SizeType
+  extraSizeDefaultValue?: SizeType;
   /** 扩展栏【展示列】按钮是否显示 */
-  extraSettingVisible?: boolean
+  extraSettingVisible?: boolean;
   /** 扩展栏【全屏】按钮是否显示 */
-  extraFullscreenVisible?: boolean
+  extraFullscreenVisible?: boolean;
 }
 
 export interface MwSearchListProps extends SearchListInitConfig {
   /** 标题 */
-  title?: string | ReactNode
+  title?: string | ReactNode;
   /** 配置项 */
-  fields?: Array<MwSearchTableField>
+  fields?: Array<MwSearchTableField>;
   /** 子元素 */
-  children?: Array<ReactNode> | ReactNode
+  children?: Array<ReactNode> | ReactNode;
   /** 请求列表接口 */
-  api?(params: AnyKeyProps): Promise<AnyKeyProps>
+  api?(params: AnyKeyProps): Promise<AnyKeyProps>;
   /** 删除接口 Api */
-  deleteApi?(params: Array<string>): Promise<any>
+  deleteApi?(params: Array<string>): Promise<any>;
   /** 表格数据（当不需要 api，由自己控制时使用） */
-  data?: Array<AnyKeyProps>
+  data?: Array<AnyKeyProps>;
   /** 表格操作列（写法跟正常的 filed 一致） */
-  ctrl?: MwTableCtrlField
+  ctrl?: MwTableCtrlField;
   /** 为空时表示没有选框 */
-  selectionType?: 'checkbox' | 'radio'
+  selectionType?: 'checkbox' | 'radio';
   /** 选项改变事件 */
-  onSelectionChange?(selection: Array<Row>): void
+  onSelectionChange?(selection: Array<Row>): void;
   /** rowKey */
-  rowKey?: ((record: AnyKeyProps) => string) | string
+  rowKey?: ((record: AnyKeyProps) => string) | string;
   /** 选择时列表展示的 key */
-  selectShowKey?: string
+  selectShowKey?: string;
   /** dialog form 的配置 */
-  dialogFormExtend?: MwDialogFormProps
+  dialogFormExtend?: MwDialogFormProps;
   /** 弹窗表单的配置项 */
-  formField?: Array<MwDialogFormField>
+  formField?: Array<MwDialogFormField>;
   /** 滚动的 X 轴数值 */
-  scrollX?: number
+  scrollX?: number;
   /** 表格高度 */
-  height?: number
+  height?: number;
   /** 列表过滤 */
-  filterData?(data: AnyKeyProps): AnyKeyProps
+  filterData?(data: AnyKeyProps): AnyKeyProps;
   /** 提交前过滤 */
-  beforeSearch?(data: AnyKeyProps): AnyKeyProps
+  beforeSearch?(data: AnyKeyProps): AnyKeyProps;
   /** 展开事件 */
-  onExpand?(expanded: boolean, record: AnyKeyProps): void
+  onExpand?(expanded: boolean, record: AnyKeyProps): void;
   /** 分页参数 */
-  pagination?: any
+  pagination?: any;
   /** 节点插入在查询和表格之间 */
-  center?: ReactNode
+  center?: ReactNode;
   /** 表格查询完成监听 */
-  onLoad?(records: Array<AnyKeyProps>, data: any): void
+  onLoad?(records: Array<AnyKeyProps>, data: any): void;
   /** 查询区域是否展示 */
-  searchVisible?: boolean
+  searchVisible?: boolean;
   /** talbe 其它属性 */
-  tableExtend?: AnyKeyProps
+  tableExtend?: AnyKeyProps;
   /** 指令完成事件 */
-  onFinish?(key: string, data?: any): void
+  onFinish?(key: string, data?: any): void;
   /** 在前面插入按钮 */
-  btnBefore?: ReactNode
+  btnBefore?: ReactNode;
   /** 更多查询数据, 额外带的查询数据用 */
-  extendSearchParams?: AnyKeyProps
+  extendSearchParams?: AnyKeyProps;
   /** 表格底部插入元素 */
-  after?: ReactNode
+  after?: ReactNode;
   /** 顶部插入元素 */
-  before?: ReactNode
+  before?: ReactNode;
   /** 选择功能的配置 */
-  rowSelection?: AnyKeyProps
+  rowSelection?: AnyKeyProps;
   /** 查询扩展 */
-  searchExtend?: AnyKeyProps
+  searchExtend?: AnyKeyProps;
 }
 
 export interface MwSelectionProps {
-  record: AnyKeyProps
-  disabled?: boolean
+  record: AnyKeyProps;
+  disabled?: boolean;
 }

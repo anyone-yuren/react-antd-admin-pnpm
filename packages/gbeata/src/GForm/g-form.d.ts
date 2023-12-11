@@ -14,7 +14,7 @@ export interface ColSize {
 
 export interface GFormProps {
   /** 配置项 */
-  fields?: Array<MwFormField | MwSearchTableField>;
+  fields?: Array<GFormField | MwSearchTableField>;
   /** form 名称 */
   name?: string;
   /** 子元素 */
@@ -66,7 +66,7 @@ export interface RegisterFieldProps {
   valuePropName?: string;
   /** render */
   render: (
-    field: MwFormField,
+    field: GFormField,
     setFieldsValue: (values: FormValues) => void,
     readonly: boolean,
     addFieldListener: (key: string, fieldListener: FieldListener) => void,
@@ -74,7 +74,7 @@ export interface RegisterFieldProps {
 }
 
 /**
- * 所有 field 的 最小单元，会被这些类型扩展: MwForm AySearch MwTable MwSearchTable MwDialogForm
+ * 所有 field 的 最小单元，会被这些类型扩展: GForm AySearch MwTable MwSearchTable MwDialogForm
  */
 export interface Field {
   /** 标题 */
@@ -151,7 +151,7 @@ export interface Option {
   [key: string]: any;
 }
 
-export interface MwFormField extends Field {
+export interface GFormField extends Field {
   /** 相应的 key，会跟最后表单取到的项目相关; form 的 key 值必填 */
   key: string;
   /** Grid Col 占位 [0 - 24] */
@@ -183,9 +183,9 @@ export interface MwFormField extends Field {
   /** formItem 的属性 */
   formItemProps?: AnyKeyProps;
   /** 自定义 content 内容 */
-  renderContent?(field: MwFormField, values: FormValues): ReactNode;
+  renderContent?(field: GFormField, values: FormValues): ReactNode;
   /** 自定义 render */
-  render?(field: MwFormField, values: FormValues): ReactNode;
+  render?(field: GFormField, values: FormValues): ReactNode;
   /** 数据变化监听 */
   onChange?(
     value: ReactNode,
@@ -199,7 +199,7 @@ export interface MwFormField extends Field {
   /** 时间格式化的结束时间 */
   endKey?: string;
   /** 重新渲染 */
-  reSetting?(values: FormValues, mode: string): MwFormField;
+  reSetting?(values: FormValues, mode: string): GFormField;
   /** 初始化参数 */
   _values?: AnyKeyProps;
   /** 默认排序 */
@@ -220,5 +220,5 @@ export interface MwFormField extends Field {
  */
 export type FieldListener = (
   value: any,
-  field: MwFormField | MwSearchTableField,
+  field: GFormField | MwSearchTableField,
 ) => void;

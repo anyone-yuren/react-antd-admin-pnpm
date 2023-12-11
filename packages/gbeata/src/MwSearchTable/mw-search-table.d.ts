@@ -1,12 +1,12 @@
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import { ReactNode } from 'react';
+import { Field, GFormField } from '../GForm/g-form';
 import { MwTableCtrlField, MwTableField } from '../GTable/mw-table';
 import {
   ModeType,
   MwDialogFormField,
   MwDialogFormProps,
-} from '../MwDialogForm/mw-dialog-form';
-import { Field, MwFormField } from '../MwForm/mw-form';
+} from '../MwDialogForm/g-dialog-form';
 import { AnyKeyProps } from '../types/AnyKeyProps';
 import { FormValues } from '../types/FormValues';
 import { Record } from '../types/Record';
@@ -100,7 +100,7 @@ export interface MwSearchTableProps extends SearchTableInitConfig {
   /** 是否使用 Table 自带的 Pagination */
   useOriginPagination?: boolean;
 }
-export interface ExtendField extends Omit<MwFormField, 'key'> {
+export interface ExtendField extends Omit<GFormField, 'key'> {
   key?: string;
   /**
    * 是否必填
