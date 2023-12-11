@@ -17,7 +17,7 @@ import './mw-ctrl.less';
  */
 const getCtrlItem = (node: any, key?: any, defaultProps?: AnyKeyProps) => {
   let props = { ...node.props };
-
+  debugger;
   if (
     node?.type?.componentName === 'GAction' ||
     node?.type?.componentName === 'GButton'

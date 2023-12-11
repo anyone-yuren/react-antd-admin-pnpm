@@ -370,11 +370,12 @@ export const getActionProps = (
   return props;
 };
 
-export default function MwAction(props: GActionProps) {
+export default function GAction(props: GActionProps) {
+  debugger;
   const searchTable: any = useContext(GSearchTableContext);
   const form = useContext(EditableContext);
   const actionProps = getActionProps(props, searchTable, form);
   return <GButton {...actionProps} />;
 }
 
-MwAction.componentName = 'MwAction';
+GAction.componentName = 'GAction';
