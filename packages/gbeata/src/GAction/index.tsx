@@ -245,7 +245,6 @@ registerAction('editable-update', (props, record, searchTable) => {
 registerAction('editable-confirm', (props, record, searchTable, form) => {
   return {
     onClick: async () => {
-      debugger;
       if (record && form) {
         // 获取表单数据
         const values = await form.validateFields();
@@ -371,7 +370,6 @@ export const getActionProps = (
 };
 
 export default function GAction(props: GActionProps) {
-  debugger;
   const searchTable: any = useContext(GSearchTableContext);
   const form = useContext(EditableContext);
   const actionProps = getActionProps(props, searchTable, form);

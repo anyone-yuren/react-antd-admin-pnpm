@@ -17,6 +17,7 @@ import locale from '../locale';
 import { AnyKeyProps } from '../types/AnyKeyProps';
 import { clearEmpty, getKey } from '../utils';
 import { GListContext } from './context';
+import useStyles from './style';
 
 export default forwardRef(function MwList(props: GListProps, ref) {
   const {
@@ -40,6 +41,7 @@ export default forwardRef(function MwList(props: GListProps, ref) {
     btnBefore,
     onParamsChange,
   } = props;
+  const { styles } = useStyles();
   /** 是否已经初始化 */
   const initRef = useRef<boolean>(false);
   /** 表格查询的数据 */
@@ -250,19 +252,19 @@ export default forwardRef(function MwList(props: GListProps, ref) {
         setDisabledKeys,
       }}
     >
-      <Card className={`mw-list ${className || ''}`}>
+      <Card className={`${styles.gList} ${className || ''}`}>
         {hasHeader() ? (
-          <header className="mw-list-header">
-            <div className="mw-list-header-left">
+          <header className={styles.gListHeader}>
+            <div className="g-list-header-left">
               <Space>
                 {typeof title === 'string' ? (
-                  <h2 className="mw-list-title">{title}</h2>
+                  <h2 className={styles.gListTitle}>{title}</h2>
                 ) : (
                   title
                 )}
               </Space>
             </div>
-            <div className="mw-list-header-right">
+            <div className={styles.flex}>
               <Space>
                 {btnBefore}
                 {children}
