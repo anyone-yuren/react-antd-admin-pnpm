@@ -1,6 +1,7 @@
 ---
 nav: 组件
-group: 表单组件
+group: 表单form
+order: 4
 ---
 
 # GTagGroup 标签选择
