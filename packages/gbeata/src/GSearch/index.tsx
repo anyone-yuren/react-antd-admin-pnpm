@@ -15,13 +15,14 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import GButton from '../GButton';
 import GForm from '../GForm';
 import { GFormField } from '../GForm/g-form';
-import MwButton from '../MwButton';
 import { FORM_TYPE_DATE, FORM_TYPE_DATE_RANGE } from '../constant';
 import locale from '../locale';
 import { AnyKeyProps } from '../types/AnyKeyProps';
-import { MwSearchField, MwSearchProps } from './mw-search';
+import { GSearchProps } from './g-search';
+import useStyles from './style';
 
 type SearchSize = 'mini' | 'small' | 'middle' | 'large';
 
@@ -175,7 +176,7 @@ const funcs = [
   'validateFields',
 ];
 
-export default forwardRef(function MwSearch(props: MwSearchProps, ref) {
+export default forwardRef(function MwSearch(props: GSearchProps, ref) {
   const {
     fields,
     onConfirm,
@@ -188,6 +189,7 @@ export default forwardRef(function MwSearch(props: MwSearchProps, ref) {
     inline,
     ...otherProps
   } = props;
+  const { styles } = useStyles();
   const wrapRef = useRef<any>();
   const timerRef = useRef<number>(0);
   // 是否是 mini 状态
@@ -371,18 +373,18 @@ export default forwardRef(function MwSearch(props: MwSearchProps, ref) {
    * 展开缩小切换
    */
   const ToogleBtn = () => (
-    <MwButton type="link" onClick={toggleMini}>
+    <GButton type="link" onClick={toggleMini}>
       {getMiniLabel(mini)}
       {mini ? <DownOutlined /> : <UpOutlined />}
-    </MwButton>
+    </GButton>
   );
 
   return (
     <Card
       className={classNames(
-        'mw-search',
+        styles.gSearch,
         inline ? '' : 'full-width',
-        inline ? 'inline' : '',
+        inline ? styles.inline : '',
       )}
     >
       <div className="mw-search-content" ref={wrapRef}>
@@ -401,16 +403,16 @@ export default forwardRef(function MwSearch(props: MwSearchProps, ref) {
             <Col span={actionSpan} style={actionStyle}>
               <Form.Item>
                 <Space>
-                  <MwButton
+                  <GButton
                     htmlType="submit"
                     type="primary"
                     icon={<SearchOutlined />}
                   >
                     {locale.search.search}
-                  </MwButton>
-                  <MwButton icon={<ReloadOutlined />} onClick={handleReset}>
+                  </GButton>
+                  <GButton icon={<ReloadOutlined />} onClick={handleReset}>
                     {locale.search.reset}
-                  </MwButton>
+                  </GButton>
                   {toggleVisible !== false && !inline
                     ? visibleSpan > visibleRow * 24 - (actionSpan || 0) &&
                       searchFields.length > 1 && <ToogleBtn />

@@ -14,8 +14,8 @@ import React, {
   useState,
 } from 'react';
 import { convertChildrenToField } from '../GFields/convertFields';
+import { MwSearchField } from '../GSearch/g-search';
 import MwCard from '../MwCard';
-import { MwSearchField } from '../MwSearch/mw-search';
 import { MwSearchTableField } from '../MwSearchTable/mw-search-table';
 import { theme } from '../Theme';
 import {

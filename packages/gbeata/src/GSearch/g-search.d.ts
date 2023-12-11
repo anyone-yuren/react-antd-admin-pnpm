@@ -2,7 +2,7 @@ import { GFormField } from '../GForm/g-form';
 import { ExtendField } from '../MwSearchTable/mw-search-table';
 import { AnyKeyProps } from '../types/AnyKeyProps';
 
-export interface MwSearchProps {
+export interface GSearchProps {
   fields: Array<MwSearchField>;
   onConfirm?(values: AnyKeyProps): void;
   onReset?(): void;
@@ -22,7 +22,7 @@ export interface MwSearchProps {
   [key: string]: any;
 }
 
-export interface MwSearchField extends GFormField {
+export interface GSearchField extends GFormField {
   search?: ExtendField;
   span?: {
     large: number;
