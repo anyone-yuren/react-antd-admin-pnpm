@@ -1,10 +1,6 @@
 ---
-nav:
-  path: /components
-title: '按钮'
-group:
-  title: 组件
-  order: 1
+nav: 组件
+group: 表单组件
 ---
 
 # GButton <Badge>0.0.5</Badge>

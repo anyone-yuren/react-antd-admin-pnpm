@@ -1,0 +1,46 @@
+@import '../less/variable.less';
+
+.mw-table {
+  .ant-card-body {
+    padding: 0;
+  }
+
+  .editable-cell {
+    min-height: 32px;
+    position: relative;
+  }
+
+  .editable-cell {
+    padding: 5px 12px;
+    cursor: pointer;
+  }
+
+  .editable-row:hover .editable-cell {
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    padding: 4px 11px;
+  }
+
+  [data-theme='dark'] .editable-row:hover .editable-cell {
+    border: 1px solid #434343;
+  }
+}
+
+.mw-table-header {
+  margin: @space * 1.5 @space2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mw-table-title {
+  line-height: 1;
+  margin: 0;
+  font-size: 20px;
+  display: inline-block;
+}
+
+.table-analysis-item {
+  display: flex;
+  align-items: center;
+}

@@ -33,6 +33,7 @@
     "turbo": "^1.11.0"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
     "antd": "^5.12.1",
     "antd-style": "^3.6.1"
   }
