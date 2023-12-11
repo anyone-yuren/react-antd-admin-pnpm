@@ -12,9 +12,9 @@ import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import React, { ChangeEvent, Dispatch, useEffect, useState } from 'react';
 import GButton from '../../GButton';
 import MwDialog from '../../GDialog';
-import { MwTableField } from '../../GTable/g-table';
+import { GTableField } from '../../GTable/g-table';
 import locale from '../../locale';
-import { MwSearchTableProps, SearchTableInitConfig } from '../mw-search-table';
+import { GSearchTableProps, SearchTableInitConfig } from '../g-search-table';
 
 /** 表格扩展按钮-是否显示 */
 let defaultConfig: SearchTableInitConfig = {
@@ -53,8 +53,8 @@ export const setSearchTableExtraDefaultValue = (
 };
 
 const useFieldsEdit = (
-  tableFields: Array<MwTableField>,
-  setTableFields: Dispatch<React.SetStateAction<MwTableField[]>>,
+  tableFields: Array<GTableField>,
+  setTableFields: Dispatch<React.SetStateAction<GTableField[]>>,
   defaultExtra: string[],
 ) => {
   const [visible, setVisible] = useState<boolean>(false);
@@ -240,9 +240,9 @@ const useFieldsEdit = (
 export default function useExtraBtn(
   tableRef: any,
   searchRef: any,
-  tableFields: Array<MwTableField>,
-  setTableFields: Dispatch<React.SetStateAction<MwTableField[]>>,
-  props: MwSearchTableProps,
+  tableFields: Array<GTableField>,
+  setTableFields: Dispatch<React.SetStateAction<GTableField[]>>,
+  props: GSearchTableProps,
 ) {
   // 合并配置
   const config = Object.assign({}, defaultConfig, props);

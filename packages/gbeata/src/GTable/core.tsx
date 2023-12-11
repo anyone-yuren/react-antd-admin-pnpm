@@ -3,8 +3,8 @@ import { Tooltip } from 'antd';
 import React, { Dispatch, ReactNode, SetStateAction } from 'react';
 import { TABLE_CTRL_KEY } from '../constant';
 import { AnyKeyProps } from '../types/AnyKeyProps';
-import { MwTableField } from './g-table';
-import './mw-table.less';
+import { GTableField } from './g-table';
+import './g-table.less';
 
 export const install = (renderMap: AnyKeyProps) => {
   /**
@@ -145,9 +145,9 @@ export const install = (renderMap: AnyKeyProps) => {
     params: AnyKeyProps,
     tableData: Array<AnyKeyProps>,
     setTableData: Dispatch<SetStateAction<Array<AnyKeyProps>>>,
-    ctrl?: MwTableField,
+    ctrl?: GTableField,
     props?: AnyKeyProps,
-  ): Array<MwTableField> => {
+  ): Array<GTableField> => {
     let tableFields = fields
       .filter((field) => {
         if (field.__extraTouched) {
@@ -175,13 +175,13 @@ export const install = (renderMap: AnyKeyProps) => {
       tableFields.push(ctrl);
     }
     // 排序
-    tableFields = tableFields.sort((a: MwTableField, b: MwTableField) => {
+    tableFields = tableFields.sort((a: GTableField, b: GTableField) => {
       return a.order - b.order;
     });
 
     // 二次排序
     if (tableFields.some((field) => field.__extraTouched)) {
-      tableFields = tableFields.sort((a: MwTableField, b: MwTableField) => {
+      tableFields = tableFields.sort((a: GTableField, b: GTableField) => {
         return (a.__order || 0) - (b?.__order || 0);
       });
     }

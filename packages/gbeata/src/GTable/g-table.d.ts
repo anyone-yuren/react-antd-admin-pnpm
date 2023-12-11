@@ -4,18 +4,18 @@ import { ReactNode } from 'react';
 import { Option } from '../GForm/g-form';
 import { AnyKeyProps } from '../types/AnyKeyProps';
 
-export interface MwListProps {
+export interface GListProps {
   title?: string | ReactNode;
   children?: ReactNode;
   header?: ReactNode;
   size?: SizeType;
   api?(params: AnyKeyProps): Promise<AnyKeyProps>;
   /** 列表项 */
-  fields: Array<MwTableField>;
+  fields: Array<GTableField>;
   /** 列表数据 */
   data?: Array<any>;
   /** 操作列 */
-  ctrl?: MwTableField;
+  ctrl?: GTableField;
   /** 列表前面的 selection */
   rowSelection?: TableRowSelection<AnyKeyProps>;
   /** 列表查询完成监听 */
@@ -52,7 +52,7 @@ export interface MwListProps {
   /** 提示文本 */
   tooltip?: string;
 }
-export interface MwTableProps {
+export interface GTableProps {
   title?: string | ReactNode;
   children?: ReactNode;
   header?: ReactNode;
@@ -60,11 +60,11 @@ export interface MwTableProps {
   size?: SizeType;
   api?(params: AnyKeyProps): Promise<AnyKeyProps>;
   /** 列表项 */
-  fields: Array<MwTableField>;
+  fields: Array<GTableField>;
   /** 列表数据 */
   data?: Array<any>;
   /** 操作列 */
-  ctrl?: MwTableField;
+  ctrl?: GTableField;
   /** 表格前面的 selection */
   rowSelection?: TableRowSelection<AnyKeyProps>;
   /** 表格查询完成监听 */
@@ -115,7 +115,7 @@ export interface MwTableProps {
   resizableHeader?: boolean;
 }
 
-export interface MwTableField {
+export interface GTableField {
   /** 标题 */
   title?: ReactNode | string;
   /** 唯一 key，dataIndex 默认会跟此值一样 */
@@ -142,7 +142,7 @@ export interface MwTableField {
   [key: string]: any;
 }
 
-export interface MwTableCtrlField extends MwTableField {
+export interface GTableCtrlField extends GTableField {
   /** render 函数 */
   render(text: ReactNode, record: AnyKeyProps, index: number): ReactNode;
 }

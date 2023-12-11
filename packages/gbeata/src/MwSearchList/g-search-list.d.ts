@@ -1,10 +1,10 @@
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import { ReactNode } from 'react';
 import {
-  MwDialogFormField,
-  MwDialogFormProps,
-} from '../MwDialogForm/g-dialog-form';
-import { MwTableCtrlField } from '../MwTable/mw-table';
+  GDialogFormField,
+  GDialogFormProps,
+} from '../GDialogForm/g-dialog-form';
+import { GTableCtrlField } from '../GTable/g-table';
 import { AnyKeyProps } from '../types/AnyKeyProps';
 
 export interface SearchListInitConfig extends AnyKeyProps {
@@ -22,11 +22,11 @@ export interface SearchListInitConfig extends AnyKeyProps {
   extraFullscreenVisible?: boolean;
 }
 
-export interface MwSearchListProps extends SearchListInitConfig {
+export interface GSearchListProps extends SearchListInitConfig {
   /** 标题 */
   title?: string | ReactNode;
   /** 配置项 */
-  fields?: Array<MwSearchTableField>;
+  fields?: Array<GSearchTableField>;
   /** 子元素 */
   children?: Array<ReactNode> | ReactNode;
   /** 请求列表接口 */
@@ -36,7 +36,7 @@ export interface MwSearchListProps extends SearchListInitConfig {
   /** 表格数据（当不需要 api，由自己控制时使用） */
   data?: Array<AnyKeyProps>;
   /** 表格操作列（写法跟正常的 filed 一致） */
-  ctrl?: MwTableCtrlField;
+  ctrl?: GTableCtrlField;
   /** 为空时表示没有选框 */
   selectionType?: 'checkbox' | 'radio';
   /** 选项改变事件 */
@@ -46,9 +46,9 @@ export interface MwSearchListProps extends SearchListInitConfig {
   /** 选择时列表展示的 key */
   selectShowKey?: string;
   /** dialog form 的配置 */
-  dialogFormExtend?: MwDialogFormProps;
+  dialogFormExtend?: GDialogFormProps;
   /** 弹窗表单的配置项 */
-  formField?: Array<MwDialogFormField>;
+  formField?: Array<GDialogFormField>;
   /** 滚动的 X 轴数值 */
   scrollX?: number;
   /** 表格高度 */
@@ -85,7 +85,7 @@ export interface MwSearchListProps extends SearchListInitConfig {
   searchExtend?: AnyKeyProps;
 }
 
-export interface MwSelectionProps {
+export interface GSelectionProps {
   record: AnyKeyProps;
   disabled?: boolean;
 }

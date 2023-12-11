@@ -14,9 +14,9 @@ import React, {
   useState,
 } from 'react';
 import { convertChildrenToField } from '../GFields/convertFields';
-import { MwSearchField } from '../GSearch/g-search';
+import { GSearchField } from '../GSearch/g-search';
+import { GSearchTableField } from '../GSearchTable/g-search-table';
 import MwCard from '../MwCard';
-import { MwSearchTableField } from '../MwSearchTable/mw-search-table';
 import { theme } from '../Theme';
 import {
   FORM_TYPE_CARD,
@@ -73,8 +73,8 @@ install(registerField);
  * @param field 配置项
  */
 const getNoVisibleField = (
-  field: GFormField | MwSearchTableField,
-): GFormField | MwSearchTableField => {
+  field: GFormField | GSearchTableField,
+): GFormField | GSearchTableField => {
   return {
     ...field,
     title: '',
@@ -86,7 +86,7 @@ const getNoVisibleField = (
  * 生成 placeholder
  * @param field 配置项
  */
-const getPlaceholder = (field: GFormField | MwSearchTableField): string => {
+const getPlaceholder = (field: GFormField | GSearchTableField): string => {
   const defaultProps = field.props;
 
   if (defaultProps && defaultProps.placeholder) {
@@ -136,10 +136,10 @@ const getPlaceholder = (field: GFormField | MwSearchTableField): string => {
  * @param fields 配置列表
  */
 export const getDefaultValue = (
-  fields: Array<GFormField | MwSearchField | MwSearchTableField>,
+  fields: Array<GFormField | GSearchField | GSearchTableField>,
 ) => {
   let form: AnyKeyProps = {};
-  fields.forEach((field: GFormField | MwSearchField | MwSearchTableField) => {
+  fields.forEach((field: GFormField | GSearchField | GSearchTableField) => {
     if (
       [FORM_TYPE_CARD, FORM_TYPE_GROUP, FORM_TYPE_INPUT_GROUP].includes(
         field.type || '',
@@ -201,7 +201,7 @@ export const getDefaultValue = (
 
 export const getFieldDefaultValue = (
   key: string,
-  fields: Array<GFormField | MwSearchField | MwSearchTableField>,
+  fields: Array<GFormField | GSearchField | GSearchTableField>,
 ) => {
   if (!key) {
     return '';
@@ -274,8 +274,8 @@ const usedKeys = [
  * @param field 配置项
  */
 const getTag = (
-  field: GFormField | MwSearchTableField,
-  fields: Array<GFormField | MwSearchTableField>,
+  field: GFormField | GSearchTableField,
+  fields: Array<GFormField | GSearchTableField>,
   formInstans: AnyKeyProps,
   readonly?: boolean,
   childrenType?: string,
@@ -320,7 +320,7 @@ const getTag = (
  * @param childrenType 子类型
  */
 const getFormItem = (
-  fields: Array<GFormField | MwSearchTableField>,
+  fields: Array<GFormField | GSearchTableField>,
   formInstans: AnyKeyProps,
   props: GFormProps,
   childrenType?: 'group' | 'card' | 'input-group' | 'list',
@@ -328,7 +328,7 @@ const getFormItem = (
   const { span, readonly, formLayout, gutter } = props;
   const ayFormProps: GFormProps = props;
 
-  return fields.map((field: GFormField | MwSearchTableField, index: number) => {
+  return fields.map((field: GFormField | GSearchTableField, index: number) => {
     // 把其它属性 添加到 props 里面
     field = {
       ...field,
@@ -346,7 +346,7 @@ const getFormItem = (
         children = [children];
       }
       let content = getFormItem(
-        children as Array<GFormField | MwSearchTableField>,
+        children as Array<GFormField | GSearchTableField>,
         formInstans,
         ayFormProps,
         FORM_TYPE_CARD,
@@ -476,7 +476,7 @@ const getFormItem = (
         tag = (
           <Row className="g-form-group" {...field.props}>
             {getFormItem(
-              field.children as Array<GFormField | MwSearchTableField>,
+              field.children as Array<GFormField | GSearchTableField>,
               formInstans,
               ayFormProps,
               FORM_TYPE_GROUP,
@@ -489,7 +489,7 @@ const getFormItem = (
         tag = (
           <Input.Group compact {...field.props}>
             {getFormItem(
-              field.children as Array<GFormField | MwSearchTableField>,
+              field.children as Array<GFormField | GSearchTableField>,
               formInstans,
               ayFormProps,
               FORM_TYPE_INPUT_GROUP,
@@ -541,11 +541,11 @@ const getFormItem = (
 
 const getField = (
   key: string,
-  fields: Array<GFormField | MwSearchTableField>,
+  fields: Array<GFormField | GSearchTableField>,
 ) => {
-  let field: GFormField | MwSearchTableField | null = null;
+  let field: GFormField | GSearchTableField | null = null;
 
-  const loop = (fields: Array<GFormField | MwSearchTableField>) => {
+  const loop = (fields: Array<GFormField | GSearchTableField>) => {
     for (let i = 0; i < fields.length; i++) {
       let item = fields[i];
       if (item.key === key) {
@@ -569,7 +569,7 @@ const getField = (
  */
 const formatValues = (
   values: AnyKeyProps,
-  fields: Array<GFormField | MwSearchTableField>,
+  fields: Array<GFormField | GSearchTableField>,
 ): AnyKeyProps => {
   let result: AnyKeyProps = {};
   for (let key in values) {
@@ -635,7 +635,7 @@ const formatValues = (
  */
 const handleConfirm = (
   values: AnyKeyProps,
-  fields: Array<GFormField | MwSearchTableField>,
+  fields: Array<GFormField | GSearchTableField>,
   onConfirm?: (values: FormValues) => void,
   onFinish?: (values: FormValues) => void,
   onSubmit?: (values: FormValues) => void,
@@ -662,7 +662,7 @@ const handleConfirm = (
 const handleChange = (
   changedValues: AnyKeyProps,
   allValues: AnyKeyProps,
-  fields: Array<GFormField | MwSearchTableField>,
+  fields: Array<GFormField | GSearchTableField>,
   setFieldsValue: (params: AnyKeyProps) => void,
 ) => {
   for (let key in changedValues) {
@@ -841,11 +841,11 @@ export default forwardRef(function GForm(props: GFormProps, ref: Ref<any>) {
    * @returns object
    */
   const getValues = (
-    fields: GFormField | MwSearchTableField,
+    fields: GFormField | GSearchTableField,
     readonly?: boolean,
   ) => {
     let result: AnyKeyProps = {};
-    fields?.forEach((field: GFormField | MwSearchTableField) => {
+    fields?.forEach((field: GFormField | GSearchTableField) => {
       if (!field.key) {
         return;
       }

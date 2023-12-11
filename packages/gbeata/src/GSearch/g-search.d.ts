@@ -1,9 +1,9 @@
 import { GFormField } from '../GForm/g-form';
-import { ExtendField } from '../MwSearchTable/mw-search-table';
+import { ExtendField } from '../GSearchTable/g-search-table';
 import { AnyKeyProps } from '../types/AnyKeyProps';
 
 export interface GSearchProps {
-  fields: Array<MwSearchField>;
+  fields: Array<GSearchField>;
   onConfirm?(values: AnyKeyProps): void;
   onReset?(): void;
   formExtend?: AnyKeyProps;

@@ -10,8 +10,8 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { MwListContext } from '../GList/context';
-import { SortItem } from '../MwSearchTable/mw-search-table';
+import { GListContext } from '../GList/context';
+import { SortItem } from '../GSearchTable/g-search-table';
 import {
   TABLE_DEFAULT_ROW_KEY,
   TABLE_PAGESIZE,
@@ -23,8 +23,8 @@ import { clearEmpty, getKey } from '../utils';
 import { getComponents } from './EditableTable';
 import RenderMapInit from './RenderMapInit';
 import core from './core';
-import { LoadParams, MwTableField, MwTableProps, RenderProps } from './g-table';
-import './mw-table.less';
+import { GTableField, GTableProps, LoadParams, RenderProps } from './g-table';
+import './g-table.less';
 
 /** 默认请求前列表过滤 */
 export let defaultSearchFilter = (params: AnyKeyProps) => {
@@ -75,7 +75,7 @@ export const setTableDefaultProps = (props: AnyKeyProps) => {
   tableDefaultProps = props;
 };
 
-export default forwardRef(function MwTable(props: MwTableProps, ref) {
+export default forwardRef(function MwTable(props: GTableProps, ref) {
   const {
     className,
     rowClassName,
@@ -124,7 +124,7 @@ export default forwardRef(function MwTable(props: MwTableProps, ref) {
   /** 表格数据 */
   const [tableData, setTableData] = useState<Array<AnyKeyProps>>(data || []);
   /** 表格配置 */
-  const ayTableFields: Array<MwTableField> = useMemo(() => {
+  const ayTableFields: Array<GTableField> = useMemo(() => {
     return getAyTableFields(
       fields,
       loadParams,
@@ -499,7 +499,7 @@ export default forwardRef(function MwTable(props: MwTableProps, ref) {
   };
 
   return (
-    <MwListContext.Provider
+    <GListContext.Provider
       value={{
         data: tableData,
         disabledKeys,
@@ -562,6 +562,6 @@ export default forwardRef(function MwTable(props: MwTableProps, ref) {
           )}
         </div>
       </Card>
-    </MwListContext.Provider>
+    </GListContext.Provider>
   );
 });

@@ -1,12 +1,12 @@
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import { ReactNode } from 'react';
-import { Field, GFormField } from '../GForm/g-form';
-import { MwTableCtrlField, MwTableField } from '../GTable/mw-table';
 import {
+  GDialogFormField,
+  GDialogFormProps,
   ModeType,
-  MwDialogFormField,
-  MwDialogFormProps,
-} from '../MwDialogForm/g-dialog-form';
+} from '../GDialogForm/g-dialog-form';
+import { Field, GFormField } from '../GForm/g-form';
+import { GTableCtrlField, GTableField } from '../GTable/g-table';
 import { AnyKeyProps } from '../types/AnyKeyProps';
 import { FormValues } from '../types/FormValues';
 import { Record } from '../types/Record';
@@ -26,11 +26,11 @@ export interface SearchTableInitConfig extends AnyKeyProps {
   extraFullscreenVisible?: boolean;
 }
 
-export interface MwSearchTableProps extends SearchTableInitConfig {
+export interface GSearchTableProps extends SearchTableInitConfig {
   /** 标题 */
   title?: string | ReactNode;
   /** 配置项 */
-  fields?: Array<MwSearchTableField>;
+  fields?: Array<GSearchTableField>;
   /** 子元素 */
   children?: Array<ReactNode> | ReactNode;
   /** 请求列表接口 */
@@ -40,7 +40,7 @@ export interface MwSearchTableProps extends SearchTableInitConfig {
   /** 表格数据（当不需要 api，由自己控制时使用） */
   data?: Array<AnyKeyProps>;
   /** 表格操作列（写法跟正常的 filed 一致） */
-  ctrl?: MwTableCtrlField;
+  ctrl?: GTableCtrlField;
   /** 为空时表示没有选框 */
   selectionType?: 'checkbox' | 'radio';
   /** 选项改变事件 */
@@ -50,9 +50,9 @@ export interface MwSearchTableProps extends SearchTableInitConfig {
   /** 选择时列表展示的 key */
   selectShowKey?: string;
   /** dialog form 的配置 */
-  dialogFormExtend?: MwDialogFormProps;
+  dialogFormExtend?: GDialogFormProps;
   /** 弹窗表单的配置项 */
-  formField?: Array<MwDialogFormField>;
+  formField?: Array<GDialogFormField>;
   /** 滚动的 X 轴数值 */
   scrollX?: number;
   /** 表格高度 */
@@ -122,13 +122,13 @@ export interface ExtendField extends Omit<GFormField, 'key'> {
   hiddenMode?: Array<ModeType>;
 }
 
-export interface MwSearchTableField extends Field, MwTableField {
-  /** MwSearch 需要的扩展参数，里面的属性比外面的属性优先级更高 */
+export interface GSearchTableField extends Field, GTableField {
+  /** GSearch 需要的扩展参数，里面的属性比外面的属性优先级更高 */
   search?: ExtendField | boolean;
-  /** MwDialogForm 需要的扩展参数，里面的属性比外面的属性优先级更高 */
+  /** GDialogForm 需要的扩展参数，里面的属性比外面的属性优先级更高 */
   dialog?: ExtendField | boolean;
-  /** MwTable 需要的扩展参数，里面的属性比外面的属性优先级更高 */
-  table?: MwTableField | boolean;
+  /** GTable 需要的扩展参数，里面的属性比外面的属性优先级更高 */
+  table?: GTableField | boolean;
   [key: string]: any;
 }
 

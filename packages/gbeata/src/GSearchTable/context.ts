@@ -1,7 +1,7 @@
-import { AnyKeyProps } from '../types/AnyKeyProps'
-import { createContext } from 'react'
+import { createContext } from 'react';
+import { AnyKeyProps } from '../types/AnyKeyProps';
 
-export const MwSearchTableContext = createContext<AnyKeyProps>({
+export const GSearchTableContext = createContext<AnyKeyProps>({
   // 查询区域表单控制
   formRef: { current: undefined },
   // 表格控制
@@ -23,5 +23,5 @@ export const MwSearchTableContext = createContext<AnyKeyProps>({
   // 当前查询表格控制
   searchTableRef: { current: undefined },
   // 所有编辑表格的数据
-  setEditTableRow: (ary: any[]) => {}
-})
+  setEditTableRow: (ary: any[]) => {},
+});

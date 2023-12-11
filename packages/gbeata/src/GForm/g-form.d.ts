@@ -1,5 +1,5 @@
 import { CSSProperties, ReactNode } from 'react';
-import { MwSearchTableField } from '../MwSearchTable/mw-search-table';
+import { GSearchTableField } from '../GSearchTable/g-search-table';
 import { AnyKeyProps } from '../types/AnyKeyProps';
 import { FormValues } from '../types/FormValues';
 
@@ -14,7 +14,7 @@ export interface ColSize {
 
 export interface GFormProps {
   /** 配置项 */
-  fields?: Array<GFormField | MwSearchTableField>;
+  fields?: Array<GFormField | GSearchTableField>;
   /** form 名称 */
   name?: string;
   /** 子元素 */
@@ -220,5 +220,5 @@ export interface GFormField extends Field {
  */
 export type FieldListener = (
   value: any,
-  field: GFormField | MwSearchTableField,
+  field: GFormField | GSearchTableField,
 ) => void;

@@ -1,10 +1,7 @@
 import { ModalProps } from 'antd/lib/modal';
 import { ReactNode } from 'react';
 import { Field } from '../GForm/g-form';
-import {
-  ExtendField,
-  MwSearchTableField,
-} from '../MwSearchTable/mw-search-table';
+import { ExtendField, GSearchTableField } from '../GSearchTable/g-search-table';
 import { AnyKeyProps } from '../types/AnyKeyProps';
 
 declare type ModeType = 'add' | 'update' | 'view' | 'custom' | string;
@@ -15,7 +12,7 @@ export interface GDialogFormProps extends ModalProps {
   /** 用抽屉来展示 */
   drawer?: boolean;
   /** 表单项 */
-  fields?: Array<GDialogFormField | MwSearchTableField>;
+  fields?: Array<GDialogFormField | GSearchTableField>;
   /** form 的 span */
   span?: number;
   /** 新增 api */

@@ -7,8 +7,8 @@ import { Modal } from 'antd';
 import React, { useContext, useState } from 'react';
 import GButton from '../GButton';
 import { info, success } from '../GMessage';
+import { GSearchTableContext } from '../GSearchTable/context';
 import { EditableContext } from '../GTable/context';
-import { MwSearchTableContext } from '../MwSearchTable/context';
 import locale from '../locale';
 import { AnyKeyProps } from '../types/AnyKeyProps';
 import { getKey, getRowKey } from '../utils';
@@ -371,7 +371,7 @@ export const getActionProps = (
 };
 
 export default function MwAction(props: GActionProps) {
-  const searchTable: any = useContext(MwSearchTableContext);
+  const searchTable: any = useContext(GSearchTableContext);
   const form = useContext(EditableContext);
   const actionProps = getActionProps(props, searchTable, form);
   return <GButton {...actionProps} />;

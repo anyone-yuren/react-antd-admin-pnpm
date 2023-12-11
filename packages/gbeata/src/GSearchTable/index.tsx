@@ -11,27 +11,27 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { getActionProps } from '../GAction';
+import GButton from '../GButton';
+import GDialogForm from '../GDialogForm';
+import { GDialogFormRef } from '../GDialogForm/g-dialog-form';
 import { convertChildrenToField } from '../GFields/convertFields';
 import GForm, { getDefaultValue } from '../GForm';
-import MwTable from '../GTable';
-import { LoadParams, MwTableField } from '../GTable/mw-table';
-import { getActionProps } from '../MwAction';
-import MwButton from '../MwButton';
-import MwDialogForm from '../MwDialogForm';
-import { MwDialogFormRef } from '../MwDialogForm/g-dialog-form';
-import MwSearch from '../MwSearch';
-import { MwSearchField } from '../MwSearch/mw-search';
+import GSearch from '../GSearch';
+import { GSearchField } from '../GSearch/g-search';
+import GTable from '../GTable';
+import { GTableField, LoadParams } from '../GTable/g-table';
 import { AnyKeyProps } from '../types/AnyKeyProps';
 import { Record } from '../types/Record';
 import { isObj, omitObj, optionObj } from '../utils';
-import { MwSearchTableContext } from './context';
+import { GSearchTableContext } from './context';
 import {
-  MwSearchTableField,
-  MwSearchTableProps,
+  GSearchTableField,
+  GSearchTableProps,
   SearchTableInitConfig,
   SortItem,
   TableRefProps,
-} from './mw-search-table';
+} from './g-search-table';
 import './mw-search-table.less';
 import useExtraBtn, {
   setSearchTableExtraDefaultValue,
@@ -42,14 +42,14 @@ import useSelection from './use/useSelection';
  * 转化并过滤成 mw-search 能用的 fields
  * @param fields 查询表格的 fields
  */
-const getSearchFields = (fields: Array<MwSearchTableField>) => {
-  let searchFields: Array<MwSearchField> = [];
-  let moreSearchFields: Array<MwSearchField> = [];
+const getSearchFields = (fields: Array<GSearchTableField>) => {
+  let searchFields: Array<GSearchField> = [];
+  let moreSearchFields: Array<GSearchField> = [];
   fields
-    .filter((field: MwSearchTableField) => {
+    .filter((field: GSearchTableField) => {
       return isObj(field.search) || field.search === true;
     })
-    .forEach((field: MwSearchTableField) => {
+    .forEach((field: GSearchTableField) => {
       let search = typeof field.search === 'boolean' ? {} : field.search;
       if (!search) {
         return {
@@ -58,7 +58,7 @@ const getSearchFields = (fields: Array<MwSearchTableField>) => {
           type: 'input',
         };
       }
-      let searchField: MwSearchField = {
+      let searchField: GSearchField = {
         title: field.title,
         key: search.key || field.key || '',
         type: field.type || 'input',
@@ -93,9 +93,9 @@ const getSearchFields = (fields: Array<MwSearchTableField>) => {
  * @param fields 配置项
  */
 const getTableFields = (
-  fields: Array<MwSearchTableField>,
-): Array<MwTableField> => {
-  return fields.map((field: MwSearchTableField) => {
+  fields: Array<GSearchTableField>,
+): Array<GTableField> => {
+  return fields.map((field: GSearchTableField) => {
     let table = typeof field.table === 'boolean' ? {} : field.table;
 
     // false 表示表格隐藏
@@ -105,7 +105,7 @@ const getTableFields = (
       };
     }
 
-    let tableField: MwTableField = {
+    let tableField: GTableField = {
       ...omitObj(field, 'table'),
       title: field.title,
       key: field.key,
@@ -121,7 +121,7 @@ const getTableFields = (
  * @param fields 当前的表格配置项
  * @returns AnyKeyProps
  */
-const getFiltersDefaultValue = (fields: Array<MwTableField>) => {
+const getFiltersDefaultValue = (fields: Array<GTableField>) => {
   let filtersValue: AnyKeyProps = {};
   fields.forEach((field) => {
     if (
@@ -140,7 +140,7 @@ const getFiltersDefaultValue = (fields: Array<MwTableField>) => {
  * @param fields 当前的表格配置项
  * @returns Array<{ key: string, order: 'ascend' | 'descend' }>
  */
-const getSortsDefaultValue = (fields: Array<MwTableField>) => {
+const getSortsDefaultValue = (fields: Array<GTableField>) => {
   let sorts: Array<SortItem> = [];
   // 排序是否带了先后顺序
   let hasSortOrder = false;
@@ -176,7 +176,7 @@ const getSortsDefaultValue = (fields: Array<MwTableField>) => {
 
 /**
  * 判断该节点是否只出现在底部
- * @param node MwAction 按钮
+ * @param node GAction 按钮
  */
 const isFooterActionOnly = (node: any) => {
   if (!node || !node.props) {
@@ -187,8 +187,8 @@ const isFooterActionOnly = (node: any) => {
 };
 
 /**
- * 获取表格底部以及右侧 MwAction 按钮
- * @param node MwAction 按钮
+ * 获取表格底部以及右侧 GAction 按钮
+ * @param node GAction 按钮
  */
 const getTableActionBtns = (
   children: ReactNode,
@@ -224,8 +224,8 @@ export const setSearchTableDefaultValue = (config: SearchTableInitConfig) => {
   setSearchTableExtraDefaultValue(config);
 };
 
-export default forwardRef(function MwSearchTable(
-  props: MwSearchTableProps,
+export default forwardRef(function GSearchTable(
+  props: GSearchTableProps,
   ref: Ref<any>,
 ) {
   const {
@@ -273,8 +273,8 @@ export default forwardRef(function MwSearchTable(
   }, [originFields, children]);
 
   /** form 控制 */
-  const formRef: MutableRefObject<MwDialogFormRef> =
-    useRef() as MutableRefObject<MwDialogFormRef>;
+  const formRef: MutableRefObject<GDialogFormRef> =
+    useRef() as MutableRefObject<GDialogFormRef>;
   /** table 控制 */
   const tableRef: MutableRefObject<TableRefProps> =
     useRef() as MutableRefObject<TableRefProps>;
@@ -287,7 +287,7 @@ export default forwardRef(function MwSearchTable(
   /** 查询项 */
   const { searchFields, moreSearchFields } = getSearchFields(fields);
   /** 列表项 */
-  const [tableFields, setTableFields] = useState<Array<MwTableField>>(
+  const [tableFields, setTableFields] = useState<Array<GTableField>>(
     getTableFields(fields),
   );
   /** 使用勾选 */
@@ -517,10 +517,10 @@ export default forwardRef(function MwSearchTable(
           fields={moreSearchFields}
           onConfirm={onConfirm}
         >
-          <MwButton
+          <GButton
             className="mw-search-table-more-submit"
             htmlType="submit"
-          ></MwButton>
+          ></GButton>
         </GForm>,
       );
     }
@@ -547,7 +547,7 @@ export default forwardRef(function MwSearchTable(
         compact && 'compact',
       )}
     >
-      <MwSearchTableContext.Provider
+      <GSearchTableContext.Provider
         value={{
           formRef,
           tableRef,
@@ -567,7 +567,7 @@ export default forwardRef(function MwSearchTable(
       >
         {before}
         {searchVisible !== false && searchFields.length > 0 ? (
-          <MwSearch
+          <GSearch
             ref={searchRef}
             fields={searchFields}
             onConfirm={onConfirm}
@@ -576,13 +576,13 @@ export default forwardRef(function MwSearchTable(
         ) : null}
         {center}
         {dialogFormExtend ? (
-          <MwDialogForm ref={formRef} dialogOnly {...dialogFormExtend}>
+          <GDialogForm ref={formRef} dialogOnly {...dialogFormExtend}>
             {children}
-          </MwDialogForm>
+          </GDialogForm>
         ) : null}
-        <MwTable {...tableProps} fields={tableFields} header={header}>
+        <GTable {...tableProps} fields={tableFields} header={header}>
           {tableChildren}
-        </MwTable>
+        </GTable>
         {selection.length && footerActions.length ? (
           <div className="mw-search-table-footer-actions">
             {message}
@@ -590,7 +590,7 @@ export default forwardRef(function MwSearchTable(
           </div>
         ) : null}
         {after}
-      </MwSearchTableContext.Provider>
+      </GSearchTableContext.Provider>
     </div>
   );
 });

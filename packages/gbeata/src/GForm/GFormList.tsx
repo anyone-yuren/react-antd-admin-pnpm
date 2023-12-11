@@ -1,7 +1,7 @@
 import { CopyOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Form, Space, Tooltip } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { MwSearchTableField } from '../MwSearchTable/mw-search-table';
+import { GSearchTableField } from '../GSearchTable/g-search-table';
 import {
   FORM_TYPE_DATE,
   FORM_TYPE_DATE_RANGE,
@@ -17,7 +17,7 @@ interface AyFormListProps {
   formInstant: AnyKeyProps;
   ayFormProps: GFormProps;
   getFormItem: (
-    fields: Array<GFormField | MwSearchTableField>,
+    fields: Array<GFormField | GSearchTableField>,
     formInstans: AnyKeyProps,
     props: GFormProps,
     childrenType?: 'group' | 'card' | 'input-group' | 'list',
@@ -115,7 +115,7 @@ export default function GFormList(props: AyFormListProps) {
                     }
                   }
                   return newField;
-                }) as Array<GFormField | MwSearchTableField>,
+                }) as Array<GFormField | GSearchTableField>,
                 formInstant,
                 ayFormProps,
                 FORM_TYPE_LIST,

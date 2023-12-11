@@ -9,7 +9,7 @@ import {
 } from 'antd';
 import classnames from 'classnames';
 import React, { ReactNode, useContext, useEffect, useState } from 'react';
-import { MwSearchTableContext } from '../MwSearchTable/context';
+import { GSearchTableContext } from '../GSearchTable/context';
 import { AnyKeyProps } from '../types/AnyKeyProps';
 import { getKey } from '../utils';
 import { EditableContext } from './context';
@@ -18,7 +18,7 @@ const { Text } = Typography;
 
 export function EditableRow({ index, ...props }: AnyKeyProps) {
   const [form] = Form.useForm();
-  const searchTable: any = useContext(MwSearchTableContext);
+  const searchTable: any = useContext(GSearchTableContext);
   useEffect(() => {
     searchTable.setEditTableRow([{ index, form }]);
   }, []);

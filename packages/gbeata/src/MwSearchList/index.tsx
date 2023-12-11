@@ -9,29 +9,29 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { getActionProps } from '../GAction';
+import GButton from '../GButton';
+import GDialogForm from '../GDialogForm';
+import { GDialogFormRef } from '../GDialogForm/g-dialog-form';
 import { convertChildrenToField } from '../GFields/convertFields';
 import GForm, { getDefaultValue } from '../GForm';
-import { getActionProps } from '../MwAction';
-import MwButton from '../MwButton';
-import MwDialogForm from '../MwDialogForm';
-import { MwDialogFormRef } from '../MwDialogForm/g-dialog-form';
-import MwList from '../MwList';
-import MwSearch from '../MwSearch';
-import { MwSearchField } from '../MwSearch/mw-search';
-import { MwSearchTableContext } from '../MwSearchTable/context';
+import GList from '../GList';
+import GSearch from '../GSearch';
+import { GSearchField } from '../GSearch/g-search';
+import { GSearchTableContext } from '../GSearchTable/context';
 import {
-  MwSearchTableField,
+  GSearchTableField,
   SortItem,
   TableRefProps,
-} from '../MwSearchTable/mw-search-table';
-import useExtraBtn from '../MwSearchTable/use/useExtraBtn';
-import useSelection from '../MwSearchTable/use/useSelection';
-import { MwTableField } from '../MwTable/mw-table';
+} from '../GSearchTable/g-search-table';
+import useExtraBtn from '../GSearchTable/use/useExtraBtn';
+import useSelection from '../GSearchTable/use/useSelection';
+import { GTableField } from '../GTable/g-table';
 import { AnyKeyProps } from '../types/AnyKeyProps';
 import { isObj } from '../utils';
 import Selection from './Selection';
 import SelectionAll from './SelectionAll';
-import { MwSearchListProps } from './mw-search-list';
+import { GSearchListProps } from './g-search-list';
 
 import './mw-search-list.less';
 
@@ -41,14 +41,14 @@ export { Selection, SelectionAll };
  * 转化并过滤成 mw-search 能用的 fields
  * @param fields 查询表格的 fields
  */
-const getSearchFields = (fields: Array<MwSearchTableField>) => {
-  let searchFields: Array<MwSearchField> = [];
-  let moreSearchFields: Array<MwSearchField> = [];
+const getSearchFields = (fields: Array<GSearchTableField>) => {
+  let searchFields: Array<GSearchField> = [];
+  let moreSearchFields: Array<GSearchField> = [];
   fields
-    .filter((field: MwSearchTableField) => {
+    .filter((field: GSearchTableField) => {
       return isObj(field.search) || field.search === true;
     })
-    .forEach((field: MwSearchTableField) => {
+    .forEach((field: GSearchTableField) => {
       let search = typeof field.search === 'boolean' ? {} : field.search;
       if (!search) {
         return {
@@ -57,7 +57,7 @@ const getSearchFields = (fields: Array<MwSearchTableField>) => {
           type: 'input',
         };
       }
-      let searchField: MwSearchField = {
+      let searchField: GSearchField = {
         title: field.title,
         key: search.key || field.key || '',
         type: field.type || 'input',
@@ -81,7 +81,7 @@ const getSearchFields = (fields: Array<MwSearchTableField>) => {
 
 /**
  * 判断该节点是否只出现在底部
- * @param node MwAction 按钮
+ * @param node GAction 按钮
  */
 const isFooterActionOnly = (node: any) => {
   if (!node || !node.props) {
@@ -92,8 +92,8 @@ const isFooterActionOnly = (node: any) => {
 };
 
 /**
- * 获取表格底部以及右侧 MwAction 按钮
- * @param node MwAction 按钮
+ * 获取表格底部以及右侧 GAction 按钮
+ * @param node GAction 按钮
  */
 const getTableActionBtns = (
   children: ReactNode,
@@ -123,7 +123,7 @@ const getTableActionBtns = (
   };
 };
 
-function MwSearchList(props: MwSearchListProps, ref: Ref<any>) {
+function GSearchList(props: GSearchListProps, ref: Ref<any>) {
   const {
     fields: originFields,
     api,
@@ -165,8 +165,8 @@ function MwSearchList(props: MwSearchListProps, ref: Ref<any>) {
   }, [originFields, children]);
 
   /** form 控制 */
-  const formRef: MutableRefObject<MwDialogFormRef> =
-    useRef() as MutableRefObject<MwDialogFormRef>;
+  const formRef: MutableRefObject<GDialogFormRef> =
+    useRef() as MutableRefObject<GDialogFormRef>;
   /** table 控制 */
   const tableRef: MutableRefObject<TableRefProps> =
     useRef() as MutableRefObject<TableRefProps>;
@@ -179,7 +179,7 @@ function MwSearchList(props: MwSearchListProps, ref: Ref<any>) {
   /** 查询项 */
   const { searchFields, moreSearchFields } = getSearchFields(fields);
   /** 列表项 */
-  const [tableFields, setTableFields] = useState<Array<MwTableField>>([]);
+  const [tableFields, setTableFields] = useState<Array<GTableField>>([]);
   /** 使用勾选 */
   const {
     header,
@@ -349,10 +349,10 @@ function MwSearchList(props: MwSearchListProps, ref: Ref<any>) {
           fields={moreSearchFields}
           onConfirm={onConfirm}
         >
-          <MwButton
+          <GButton
             className="mw-search-list-more-submit"
             htmlType="submit"
-          ></MwButton>
+          ></GButton>
         </GForm>,
       );
     }
@@ -371,7 +371,7 @@ function MwSearchList(props: MwSearchListProps, ref: Ref<any>) {
 
   return (
     <div className={`mw-search-list ${isEnter ? 'full' : ''}`}>
-      <MwSearchTableContext.Provider
+      <GSearchTableContext.Provider
         value={{
           formRef,
           tableRef,
@@ -387,7 +387,7 @@ function MwSearchList(props: MwSearchListProps, ref: Ref<any>) {
       >
         {before}
         {searchVisible !== false && searchFields.length > 0 ? (
-          <MwSearch
+          <GSearch
             ref={searchRef}
             fields={searchFields}
             onConfirm={onConfirm}
@@ -396,18 +396,18 @@ function MwSearchList(props: MwSearchListProps, ref: Ref<any>) {
         ) : null}
         {center}
         {dialogFormExtend ? (
-          <MwDialogForm ref={formRef} dialogOnly {...dialogFormExtend}>
+          <GDialogForm ref={formRef} dialogOnly {...dialogFormExtend}>
             {children}
-          </MwDialogForm>
+          </GDialogForm>
         ) : null}
-        <MwList
+        <GList
           {...listProps}
           fields={tableFields}
           renderItem={renderItem}
           header={header}
         >
           {tableChildren}
-        </MwList>
+        </GList>
         {selection.length && footerActions.length ? (
           <div className="mw-search-list-footer-actions">
             {message}
@@ -415,12 +415,12 @@ function MwSearchList(props: MwSearchListProps, ref: Ref<any>) {
           </div>
         ) : null}
         {after}
-      </MwSearchTableContext.Provider>
+      </GSearchTableContext.Provider>
     </div>
   );
 }
 
-let component = forwardRef(MwSearchList);
+let component = forwardRef(GSearchList);
 
 // @ts-ignore
 component.Selection = Selection;
