@@ -78,7 +78,7 @@ return (
 
 ## 卡片布局 & tag 查询
 
-<!-- <code src="./AySearchListCardDemo"> -->
+<code src="./AySearchListCardDemo"></code>
 
 ## GSearchList.Selection
 
