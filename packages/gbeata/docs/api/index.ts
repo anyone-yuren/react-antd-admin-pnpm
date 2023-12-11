@@ -1,7 +1,7 @@
 /**
  * 此文件为模拟模拟接口的文件，不要复制，仅供参考
  */
-import { AnyKeyProps, Record } from 'multiway';
+import { AnyKeyProps, Record } from 'gbeata';
 
 export const professionOptions = [
   { label: '近卫干员', value: '近卫' },
