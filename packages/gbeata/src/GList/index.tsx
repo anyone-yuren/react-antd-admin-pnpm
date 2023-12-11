@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { defaultDataFilter, defaultSearchFilter } from '../GTable';
-import { LoadParams, MwListProps } from '../GTable/g-table';
+import { GListProps, LoadParams } from '../GTable/g-table';
 import {
   TABLE_DEFAULT_ROW_KEY,
   TABLE_PAGESIZE,
@@ -16,9 +16,9 @@ import {
 import locale from '../locale';
 import { AnyKeyProps } from '../types/AnyKeyProps';
 import { clearEmpty, getKey } from '../utils';
-import { MwListContext } from './context';
+import { GListContext } from './context';
 
-export default forwardRef(function MwList(props: MwListProps, ref) {
+export default forwardRef(function MwList(props: GListProps, ref) {
   const {
     className,
     header,
@@ -243,7 +243,7 @@ export default forwardRef(function MwList(props: MwListProps, ref) {
   };
 
   return (
-    <MwListContext.Provider
+    <GListContext.Provider
       value={{
         data: tableData,
         disabledKeys,
@@ -294,6 +294,6 @@ export default forwardRef(function MwList(props: MwListProps, ref) {
           {...listExtend}
         ></List>
       </Card>
-    </MwListContext.Provider>
+    </GListContext.Provider>
   );
 });

@@ -1119,16 +1119,16 @@ const fields: Array<GSearchTableField> = [
 ];
 ```
 
-## GTableField
+## MwTableField
 
-| 参数名         | 说明                                                                      | 参数类型                                                              | 默认值   |
+| 参数名         | 说明                                                                      | 参数类型                                                              | 默认值   | --- |
 | -------------- | ------------------------------------------------------------------------- | --------------------------------------------------------------------- | -------- | --- |
 | title          | 标题。                                                                    | string                                                                | -        |
 | key            | 唯一 key，dataIndex 默认会跟这个值一样。                                  | string                                                                | -        |
 | options        | 可选项，展示会根据这个值变化。                                            | Array<[Option][option]>                                               | -        |
 | hidden         | 是否隐藏这一列。                                                          | boolean \| () => boolean                                              | -        |
 | render         | 自定义展示列。                                                            | (text: ReactNode, record: AnyKeyProps, index: number) => ReactNode    | -        |
-| renderType     | 美化展示列，扩展方法看[这里][rendertype]。                                | string                                                                | 'string' | -   |
+| renderType     | 美化展示列，扩展方法看[这里][rendertype]。                                | string                                                                | 'string' |     |
 | filter         | 设置 true 会以 options 作为筛选项出现在表头。                             | boolean                                                               | -        |
 | filterMultiple | 筛选是否支持多选，需要先设置 `filter: true`。                             | boolean                                                               | false    |
 | sort           | 排序。                                                                    | boolean                                                               | -        |
@@ -1136,7 +1136,7 @@ const fields: Array<GSearchTableField> = [
 | editable       | 表格是否可以编辑，具体示例看[这里][可编辑表格]。                          | boolean                                                               | -        |
 | before         | (仅 `editable` 可用), 渲染前置元素，[使用案例][可编辑表格]                | ({ record: Record, field: Field, refreshRow: Function }) => ReactNode | -        |
 | after          | (仅 `editable` 可用), 渲染后置元素，[使用案例][可编辑表格]                | ({ record: Record, field: Field, refreshRow: Function }) => ReactNode | -        |
-| children       | 嵌套表格时使用。                                                          | Array<[GTableField][aytablefield]>                                    | -        |
+| children       | 嵌套表格时使用。                                                          | Array<[MwTableField][aytablefield]>                                   | -        |
 
 ## Option 参数
 
