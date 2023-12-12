@@ -226,7 +226,9 @@ export default forwardRef(function MwTable(props: GTableProps, ref) {
           setTableData(content);
           setTotal(data.totalCount);
           if (onLoad) {
-            onLoad(content, data);
+            setTimeout(() => {
+              onLoad(content, data);
+            }, 0);
           }
         })
         .finally(() => {

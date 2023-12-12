@@ -7,7 +7,7 @@ order: 4
 # 控制表格选中
 
 ```tsx
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { GSearchTable, GButton, GSearchTableField, Record } from 'gbeata';
 import { listApi } from '../api';
 
@@ -24,14 +24,6 @@ const fields: Array<GSearchTableField> = [
 
 export default function Demo() {
   const tableRef = useRef<any>();
-
-  /**
-   * 表格加载完成后默认选中第一条
-   */
-  const handleLoad = () => {
-    let secondRow = tableRef.current.getTableData()[0];
-    tableRef.current.setSelection([secondRow]);
-  };
 
   /**
    * 设置第二条选中
@@ -63,6 +55,14 @@ export default function Demo() {
    */
   const onSelectionChange = (selection: Array<Record>, keys: Array<string>) => {
     console.log('已经选中的行', selection, keys);
+  };
+
+  /**
+   * 表格加载完成后默认选中第一条
+   */
+  const handleLoad = (content, total) => {
+    let secondRow = tableRef.current.getTableData()[0];
+    tableRef.current.setSelection([secondRow]);
   };
 
   return (
