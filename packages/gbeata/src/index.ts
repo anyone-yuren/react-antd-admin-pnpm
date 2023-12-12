@@ -41,6 +41,7 @@ export {
   error,
   info,
   registerAction,
+  registerField,
   registerTableRender,
   setDefaultDataFilter,
   setDefaultSearchFilter,
