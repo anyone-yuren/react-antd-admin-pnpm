@@ -13,10 +13,10 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import GCard from '../GCard';
 import { convertChildrenToField } from '../GFields/convertFields';
 import { GSearchField } from '../GSearch/g-search';
 import { GSearchTableField } from '../GSearchTable/g-search-table';
-import MwCard from '../MwCard';
 import { theme } from '../Theme';
 import {
   FORM_TYPE_CARD,
@@ -353,9 +353,9 @@ const getFormItem = (
       );
       return (
         <Col key={field.key} span={field.span || 24}>
-          <MwCard title={field.title} {...field.props}>
+          <GCard title={field.title} {...field.props}>
             <Row gutter={gutter}>{content}</Row>
-          </MwCard>
+          </GCard>
         </Col>
       );
     }

@@ -910,7 +910,7 @@ const fields: Array<GFormField> = [
 
 ## 卡片表单
 
-`FormType` 为 `card` 时，子元素会被 [MwCard](./mw-card) 包裹起来。
+`FormType` 为 `card` 时，子元素会被 [GCard](./mw-card) 包裹起来。
 
 ```tsx
 import React, { useState } from 'react';
@@ -1422,7 +1422,7 @@ const fields: Array<Field> = [
 | date-range     | 日期区间                                                                | []              | -      |
 | empty          | 空白框                                                                  | -               | -      |
 | custom         | 自定义内容 `renderContent` 时使用，同时需要定义默认值 `defaultValue` 。 | -               | -      |
-| card           | 会用 MwCard 包裹住底下的 form，具体使用可以看 [卡片表单][cardform]。    | -               | -      |
+| card           | 会用 GCard 包裹住底下的 form，具体使用可以看 [卡片表单][cardform]。     | -               | -      |
 | group          | 组合表单，具体使用可以看 [组合表单][groupform]。                        | -               | -      |
 | input-group    | 带输入框的组合表单，具体使用可以看 [组合表单][groupform]。              | -               | -      |
 | tag-group      | [tag 选择][taggroup]，若设置 multiple 属性，可支持多选。                | undefined \| [] | 0.45.0 |

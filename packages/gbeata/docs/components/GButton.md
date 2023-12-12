@@ -1,9 +1,8 @@
 ---
-nav: 组件
-group: 表单组件
+group: 按钮组件
 ---
 
-# GButton <Badge>0.0.5</Badge>
+# GButton
 
 ```tsx
 import React, { useState } from 'react';
@@ -13,8 +12,6 @@ export default function Demo() {
   return <GButton onClick={() => alert('G')}>gbeata</GButton>;
 }
 ```
-
-# 次级按钮
 
 会去除按钮的颜色、边框、内边距、高度等属性。
 

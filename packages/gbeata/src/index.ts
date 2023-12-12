@@ -1,8 +1,9 @@
 import GAction, { registerAction } from './GAction';
 import GButton, { setPermissionList } from './GButton';
+import GCard from './GCard';
 import GCardGroup from './GCardGroup';
 import GCtrl from './GCtrl';
-import MwDialog, { setGlobalDialogField } from './GDialog';
+import GDialog, { setGlobalDialogField } from './GDialog';
 import GDialogForm from './GDialogForm';
 import GField from './GField';
 import GFields from './GFields';
@@ -23,8 +24,10 @@ import { default as GTagGroup } from './GTagGroup';
 export {
   GAction,
   GButton,
+  GCard,
   GCardGroup,
   GCtrl,
+  GDialog,
   GDialogForm,
   GField,
   GFields,
@@ -35,7 +38,6 @@ export {
   GSelect,
   GTable,
   GTagGroup,
-  MwDialog,
   error,
   info,
   registerAction,
@@ -54,6 +56,7 @@ export {
 export default {
   success,
   info,
+  GCard,
   GCtrl,
   error,
   warning,
@@ -64,7 +67,7 @@ export default {
   registerField,
   GFields,
   GField,
-  MwDialog,
+  GDialog,
   setGlobalDialogField,
   GDialogForm,
   GSearch,
