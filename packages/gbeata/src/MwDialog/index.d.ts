@@ -1,7 +1,9 @@
-export { default as MwDialog } from './mw-dialog'
+export { default as GDialog } from './mw-dialog';
 
-import { MwDialogProps } from './mw-dialog'
+import { GDialogProps } from './mw-dialog';
 
-declare const MwDialog: React.ForwardRefExoticComponent<MwDialogProps & React.RefAttributes<HTMLDivElement>>
+declare const GDialog: React.ForwardRefExoticComponent<
+  GDialogProps & React.RefAttributes<HTMLDivElement>
+>;
 
-export default MwDialog
+export default GDialog;

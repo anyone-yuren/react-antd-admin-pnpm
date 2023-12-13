@@ -24,8 +24,8 @@ export declare function registerTableRender(
   params: AnyKeyProps,
 ): void;
 
-declare const MwTable: React.ForwardRefExoticComponent<
+declare const GTable: React.ForwardRefExoticComponent<
   GTableProps & React.RefAttributes<HTMLDivElement>
 >;
 
-export default MwTable;
+export default GTable;

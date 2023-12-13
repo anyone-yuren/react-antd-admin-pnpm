@@ -74,7 +74,7 @@ export interface RegisterFieldProps {
 }
 
 /**
- * 所有 field 的 最小单元，会被这些类型扩展: GForm AySearch MwTable MwSearchTable MwDialogForm
+ * 所有 field 的 最小单元，会被这些类型扩展: GForm AySearch GTable GSearchTable GDialogForm
  */
 export interface Field {
   /** 标题 */

@@ -2,7 +2,7 @@ import { Select } from 'antd';
 import React, { forwardRef } from 'react';
 import { Option } from '../GForm/g-form';
 import { omitObj } from '../utils';
-import { MwSelectProps } from './mw-select';
+import { GSelectProps } from './g-select';
 
 const getOptions = (options: Array<Option> | undefined) => {
   if (!options) {
@@ -17,7 +17,7 @@ const getOptions = (options: Array<Option> | undefined) => {
   });
 };
 
-export default forwardRef(function MwSelect(props: MwSelectProps, ref: any) {
+export default forwardRef(function GSelect(props: GSelectProps, ref: any) {
   const { options } = props;
   return (
     <Select ref={ref} {...omitObj(props, 'options')}>

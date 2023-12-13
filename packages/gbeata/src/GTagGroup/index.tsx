@@ -23,7 +23,7 @@ interface AyTagGroupProps {
   cancelable?: boolean;
 }
 
-export default function MwTagGroup(props: AyTagGroupProps) {
+export default function GTagGroup(props: AyTagGroupProps) {
   let {
     value,
     multiple,

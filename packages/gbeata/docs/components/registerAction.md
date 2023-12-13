@@ -4,7 +4,7 @@ group: 全局配置
 
 # 注册 action 事件
 
-这个页面的代码是写在 `/src/multiway/index.tsx` 文件里的，如果你还没有，可点击 [这里](../) 查看如何创建。
+这个页面的代码是写在 `/src/gbeata/index.tsx` 文件里的，如果你还没有，可点击 [这里](../) 查看如何创建。
 
 ## registerAction
 
@@ -108,7 +108,7 @@ registerAction('actionName', (props, record, searchTable) => {
 
 ## 覆盖默认实现
 
-multiway 自带 action：
+gbeata 自带 action：
 
 1. view: 查看
 2. update: 修改
@@ -118,7 +118,7 @@ multiway 自带 action：
 
 你可以注册同名的 action 来覆盖原本的实现。
 
-自带的 action: https://github.com/viewweiwu/multiway/blob/master/src/gAction/index.tsx
+自带的 action: https://github.com/viewweiwu/gbeata/blob/master/src/gAction/index.tsx
 
 ```js
 /**

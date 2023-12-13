@@ -143,7 +143,7 @@ export interface TableRefProps {
   clearSorts(keys: Array<string>): void;
   getApiParams(): any;
   deleteRowByKey(key: string): void;
-  addRow(record: Record, type: 'before' | 'after' = 'after'): void;
+  addRow(record: Record, type?: 'before' | 'after'): void;
   setPaginitionValue(paginition: LoadParams['pagination']): void;
 }
 

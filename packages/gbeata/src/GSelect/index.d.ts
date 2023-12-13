@@ -1,5 +1,7 @@
-import { MwSelectProps } from './mw-select'
+import { GSelectProps } from './g-select';
 
-declare const MwSelect: React.ForwardRefExoticComponent<MwSelectProps & React.RefAttributes<HTMLDivElement>>
+declare const GSelect: React.ForwardRefExoticComponent<
+  GSelectProps & React.RefAttributes<HTMLDivElement>
+>;
 
-export default MwSelect
+export default GSelect;

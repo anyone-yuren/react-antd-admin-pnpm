@@ -27,7 +27,7 @@ group: 全局配置
  * @desc render 函数参数
  * @desc render 出来组件需要支持组件受控
  * @param field 当前表单项
- * @param setFieldsValue 设置表单值，MwForm 的 setFieldsValue
+ * @param setFieldsValue 设置表单值，GForm 的 setFieldsValue
  * @param getFieldValue 获取某个表单项的值
  * @param readonly 是否只读
  * @param formInstans 可以调用表单方法

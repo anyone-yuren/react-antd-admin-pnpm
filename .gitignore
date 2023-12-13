@@ -9,3 +9,5 @@ dist-ssr
 .cache
 server/dist
 public/dist
+es
+lib

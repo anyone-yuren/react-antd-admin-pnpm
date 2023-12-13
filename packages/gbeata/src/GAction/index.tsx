@@ -314,7 +314,7 @@ registerAction('editable-delete', (props, record, searchTable) => {
     onConfirm: () => {
       const key = getKey(record, searchTable?.rowKey);
       searchTable.tableRef.current.deleteRowByKey(key);
-      props.callback && props.callback(key);
+      props.callback?.(key);
     },
     ...props,
   };
@@ -334,7 +334,7 @@ registerAction('editable-add', (props, _record, searchTable) => {
     },
     onClick: () => {
       searchTable.tableRef.current.addRow({
-        [getRowKey({}, searchTable?.rowKey)]: Date.now(),
+        [getRowKey({}, searchTable?.rowKey) as any]: Date.now(),
         // 正在编辑
         editing: true,
         // 新增标识

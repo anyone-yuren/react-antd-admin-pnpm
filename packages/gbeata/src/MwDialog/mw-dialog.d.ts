@@ -1,61 +1,61 @@
-import { ReactNode, SetStateAction, Dispatch } from 'react'
-import { ModalFuncProps, ModalProps } from 'antd/lib/modal'
-import { MwButtonProps } from '../MwButton/mw-button'
+import { ModalFuncProps, ModalProps } from 'antd/lib/modal';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
+import { GButtonProps } from '../GButton/mw-button';
 
-export interface MwDialogProps extends ModalProps {
+export interface GDialogProps extends ModalProps {
   /** 子元素 */
-  children: ReactNode
+  children: ReactNode;
   /** 标题 */
-  title: ReactNode
+  title: ReactNode;
   /** 显示 */
-  visible: boolean
+  visible: boolean;
   /** 显示控制 */
-  setVisible?: Dispatch<SetStateAction<boolean>>
+  setVisible?: Dispatch<SetStateAction<boolean>>;
   /** 弹窗关闭 */
-  onClose?(): void
+  onClose?(): void;
   /** 弹窗关闭 */
-  onCancel?(): void
+  onCancel?(): void;
   /** 提交事件, 跟 onConfirm 事件效果一致 */
-  onOk?(): void
+  onOk?(): void;
   /** 提交事件 */
-  onConfirm?(): void
+  onConfirm?(): void;
   /** 是否 loading */
-  loading?: boolean
+  loading?: boolean;
   /** 底部 */
-  footer?: ReactNode
+  footer?: ReactNode;
   /** 宽度 */
-  width?: number | string
+  width?: number | string;
   /** 是否用抽屉展示 */
-  drawer?: boolean
+  drawer?: boolean;
   /** 标题前置元素 */
-  titleBefore?: ReactNode
+  titleBefore?: ReactNode;
   /** 标题后置元素 */
-  titleAfter?: ReactNode
+  titleAfter?: ReactNode;
   /** 确定按钮是否展示 */
-  confirmVisible?: boolean
+  confirmVisible?: boolean;
   /** 关闭按钮是否展示 */
-  cancelVisible?: boolean
+  cancelVisible?: boolean;
   /** 确定按钮文字 */
-  confirmText?: string
+  confirmText?: string;
   /** 关闭按钮文字 */
-  cancelText?: string
+  cancelText?: string;
   /** 确定按钮样式 */
-  confirmProps?: MwButtonProps
+  confirmProps?: GButtonProps;
   /** 关闭按钮样式 */
-  cancelProps?: MwButtonProps
+  cancelProps?: GButtonProps;
   /** 确定按钮前置元素 */
-  confirmBefore?: ReactNode
+  confirmBefore?: ReactNode;
   /** 确定按钮后置元素 */
-  confirmAfter?: ReactNode
+  confirmAfter?: ReactNode;
   /** 关闭按钮前置元素 */
-  cancelBefore?: ReactNode
+  cancelBefore?: ReactNode;
   /** 关闭按钮后置元素 */
-  cancelAfter?: ReactNode
-  [key: string]: any
+  cancelAfter?: ReactNode;
+  [key: string]: any;
 }
 
 export interface AyConfirmProps extends ModalFuncProps {
-  title: ReactNode
-  content: ReactNode
-  onConfirm(): void
+  title: ReactNode;
+  content: ReactNode;
+  onConfirm(): void;
 }

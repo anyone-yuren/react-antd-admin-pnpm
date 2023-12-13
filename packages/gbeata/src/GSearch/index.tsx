@@ -21,7 +21,7 @@ import { GFormField } from '../GForm/g-form';
 import { FORM_TYPE_DATE, FORM_TYPE_DATE_RANGE } from '../constant';
 import locale from '../locale';
 import { AnyKeyProps } from '../types/AnyKeyProps';
-import { GSearchProps } from './g-search';
+import { GSearchField, GSearchProps } from './g-search';
 import useStyles from './style';
 
 type SearchSize = 'mini' | 'small' | 'middle' | 'large';
@@ -62,7 +62,7 @@ const getOrder = (field: any, i: number): number => {
  */
 const getSearchFields = (
   /** 配置项 */
-  fields: Array<MwSearchField>,
+  fields: Array<GSearchField>,
   /** 是否收起 */
   mini: boolean,
   /** 当前尺寸 */
@@ -78,7 +78,7 @@ const getSearchFields = (
   let spanSum: number = 0;
   // 每一行占用的 span，超过 24 清 0
   let rowSpanSum: number = 0;
-  let newFields: Array<MwSearchField | GFormField> = fields
+  let newFields: Array<GSearchField | GFormField> = fields
     // 过滤掉隐藏的
     .filter((field) => field.hidden !== true)
     // 获取到排序值
@@ -176,7 +176,7 @@ const funcs = [
   'validateFields',
 ];
 
-export default forwardRef(function MwSearch(props: GSearchProps, ref) {
+export default forwardRef(function GSearch(props: GSearchProps, ref) {
   const {
     fields,
     onConfirm,

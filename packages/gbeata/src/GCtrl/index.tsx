@@ -3,7 +3,7 @@ import { Divider, Dropdown, Menu, Space } from 'antd';
 import classNames from 'classnames';
 import React, { ReactNode, useEffect, useState } from 'react';
 import GAction from '../GAction';
-import MwButton, { addRefresh, hasPermission } from '../GButton';
+import GButton, { addRefresh, hasPermission } from '../GButton';
 import { CTRL_DEFAULT_MAX, CTRL_DEFAULT_MORE_TEXT } from '../constant';
 import locale from '../locale';
 import { AnyKeyProps } from '../types/AnyKeyProps';
@@ -27,7 +27,7 @@ const getCtrlItem = (node: any, key?: any, defaultProps?: AnyKeyProps) => {
 };
 
 /**
- * 将子节点转化成 MwAction 按钮
+ * 将子节点转化成 GAction 按钮
  * @param children 子节点
  */
 const getCtrlList = (
@@ -99,9 +99,9 @@ const getCtrlList = (
 
     ctrlList.push(
       <Dropdown key={max} overlay={menu} placement="bottomRight">
-        <MwButton type="link" className={classNames('mw-button', sub && 'sub')}>
+        <GButton type="link" className={classNames('mw-button', sub && 'sub')}>
           {more}
-        </MwButton>
+        </GButton>
       </Dropdown>,
     );
   }

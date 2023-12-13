@@ -40,7 +40,7 @@ export default function parseFields(
     for (const key in rest) {
       if (Array.isArray(rest[key]) && key === 'children') {
         // 携带子元素
-        rest[key] = rest[key].map((field) => loop({ ...field }));
+        rest[key] = rest[key].map((field: GFormField) => loop({ ...field }));
       } else if (
         isObj(rest[key]) &&
         !(moment.isMoment(rest[key]) || isValidElement(rest[key]))

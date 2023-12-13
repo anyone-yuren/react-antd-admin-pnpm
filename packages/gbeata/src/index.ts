@@ -86,3 +86,4 @@ export default {
   registerAction,
   GSearchList,
 };
+export * from './index.d';

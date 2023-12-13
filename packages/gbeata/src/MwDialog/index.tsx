@@ -4,7 +4,7 @@ import GButton from '../GButton';
 import locale from '../locale';
 import { AnyKeyProps } from '../types/AnyKeyProps';
 import { omitObj } from '../utils';
-import { MwDialogProps } from './mw-dialog';
+import { GDialogProps } from './mw-dialog';
 
 const usedKeys = [
   'loading',
@@ -21,7 +21,7 @@ const usedKeys = [
 ];
 
 export function AyDialogFooter(
-  props: MwDialogProps,
+  props: GDialogProps,
   handleCancel: () => void,
   handleConfirm: () => void,
 ) {
@@ -69,7 +69,7 @@ export const setGlobalDialogField = (cb: () => ModalProps) => {
   defaultProps = { ...cb(), ...defaultProps };
 };
 
-export default function MwDialog(props: MwDialogProps) {
+export default function GDialog(props: GDialogProps) {
   const {
     title,
     titleBefore,

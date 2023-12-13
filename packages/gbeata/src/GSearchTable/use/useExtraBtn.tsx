@@ -11,7 +11,7 @@ import { Checkbox, Dropdown, Input, Menu, Space, Tooltip } from 'antd';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import React, { ChangeEvent, Dispatch, useEffect, useState } from 'react';
 import GButton from '../../GButton';
-import MwDialog from '../../GDialog';
+import GDialog from '../../GDialog';
 import { GTableField } from '../../GTable/g-table';
 import locale from '../../locale';
 import { GSearchTableProps, SearchTableInitConfig } from '../g-search-table';
@@ -177,7 +177,7 @@ const useFieldsEdit = (
   return {
     fieldsEdit: (
       <>
-        <MwDialog
+        <GDialog
           title={locale.extra.columnSetting}
           visible={visible}
           setVisible={setVisible}
@@ -227,7 +227,7 @@ const useFieldsEdit = (
               )
             );
           })}
-        </MwDialog>
+        </GDialog>
         <Tooltip title={locale.extra.columnSetting}>
           <SettingOutlined onClick={() => setVisible(true)} />
         </Tooltip>

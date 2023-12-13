@@ -66,7 +66,7 @@ const listApi = () => axios.get('/some/list')
 
 ```
 
-如果接口放回的格式是上面的格式，请把下面的配置文件复制到 `/src/multiway/index.tsx` 下。
+如果接口放回的格式是上面的格式，请把下面的配置文件复制到 `/src/gbeata/index.tsx` 下。
 
 ```js
 import { setDefaultDataFilter } from 'gbeata';

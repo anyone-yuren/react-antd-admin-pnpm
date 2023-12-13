@@ -69,7 +69,7 @@ export const setGlobalDialogField = (cb: () => ModalProps) => {
   defaultProps = { ...cb(), ...defaultProps };
 };
 
-export default function MwDialog(props: GDialogProps) {
+export default function GDialog(props: GDialogProps) {
   const {
     title,
     titleBefore,

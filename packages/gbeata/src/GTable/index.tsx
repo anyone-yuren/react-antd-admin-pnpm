@@ -75,7 +75,7 @@ export const setTableDefaultProps = (props: AnyKeyProps) => {
   tableDefaultProps = props;
 };
 
-export default forwardRef(function MwTable(props: GTableProps, ref) {
+export default forwardRef(function GTable(props: GTableProps, ref) {
   const {
     className,
     rowClassName,

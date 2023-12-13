@@ -1,4 +1,4 @@
-export { default as MwDialog } from './g-dialog';
+export { default as GDialog } from './g-dialog';
 
 import { GDialogProps } from './g-dialog';
 
