@@ -9,7 +9,8 @@
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky install",
-    "commit": "git add -A && git cz"
+    "commit": "git add -A && git cz",
+    "release": "turbo release"
   },
   "keywords": [],
   "author": "",

@@ -10,7 +10,7 @@ import GFields from './GFields';
 import GForm, { registerField } from './GForm';
 import { error, info, success, warning } from './GMessage';
 import GSearch, { setSearchDefaultVisibleRow } from './GSearch';
-import GSearchList from './GSearchList';
+import GSearchList, { Selection, SelectionAll } from './GSearchList';
 import GSearchTable, { setSearchTableDefaultValue } from './GSearchTable';
 import GSelect from './GSelect';
 import GTable, {
@@ -38,6 +38,8 @@ export {
   GSelect,
   GTable,
   GTagGroup,
+  Selection,
+  SelectionAll,
   error,
   info,
   registerAction,
@@ -75,6 +77,8 @@ export default {
   setSearchDefaultVisibleRow,
   GCardGroup,
   GSearchTable,
+  Selection,
+  SelectionAll,
   setSearchTableDefaultValue,
   GSelect,
   GTable,

@@ -1,62 +1,59 @@
-import { ReactElement, ReactNode } from 'react';
-import { Field } from '../GForm/g-form';
-import { isObj } from '../utils';
+import { Field } from '../GForm/g-form'
+import { ReactElement, ReactNode } from 'react'
+import { isObj } from '../utils'
 
 const getAyFieldsNode = (children: ReactNode) => {
   if (!Array.isArray(children)) {
-    children = [children];
+    children = [children]
   }
+  console.log(children)
+
   // @ts-ignore
-  return children.find(
-    (node: ReactElement) => node?.type?.componentName === 'GFields',
-  );
-};
+  return children.find((node: ReactElement) => node?.type?.componentName === 'MwFields')
+}
 
 export const convertChildrenToField = (children: ReactNode) => {
-  // 获得子元素名为 GFields 的节点
-  let ayFields = getAyFieldsNode(children);
+  // 获得子元素名为 MwFields 的节点
+  let ayFields = getAyFieldsNode(children)
 
   if (!ayFields) {
-    return [];
+    return []
   }
 
   // 获得到子元素
-  let ayFieldsChildren = ayFields?.props.children;
-  return loop(ayFieldsChildren);
-};
+  let ayFieldsChildren = ayFields?.props.children
+  return loop(ayFieldsChildren)
+}
 
 function loop(children: ReactNode) {
   if (!Array.isArray(children)) {
-    children = [children];
+    children = [children]
   }
 
-  let newChildren: Field[] = [];
+  let newChildren: Field[] = []
 
   // @ts-ignore
-  children.forEach((node) => {
+  children.forEach(node => {
     if (node) {
-      if (
-        node?.type?.toString() === 'Symbol(react.fragment)' &&
-        node?.props?.children
-      ) {
-        newChildren.push(...loop(node.props.children));
-        return;
+      if (node?.type?.toString() === 'Symbol(react.fragment)' && node?.props?.children) {
+        newChildren.push(...loop(node.props.children))
+        return
       }
       let newNode = {
         ...node?.props,
-        key: node.key,
-      };
+        key: node.key
+      }
 
       if (Array.isArray(newNode?.children) || isObj(newNode?.children)) {
         if (isObj(newNode?.children)) {
-          newNode.children = loop([newNode.children]);
+          newNode.children = loop([newNode.children])
         } else {
-          newNode.children = loop([...newNode.children]);
+          newNode.children = loop([...newNode.children])
         }
       }
 
-      newChildren.push(newNode);
+      newChildren.push(newNode)
     }
-  });
-  return newChildren;
+  })
+  return newChildren
 }

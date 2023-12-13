@@ -239,12 +239,15 @@ export const getRowKey = (
 ) => {
   try {
     if (typeof rowKey === 'function') {
-      return rowKey(record);
-    } else if (typeof rowKey === 'string') {
+      const key = rowKey(record);
+      if (typeof key === 'string' || typeof key === 'number') {
+        return key;
+      }
+    } else if (typeof rowKey === 'string' || typeof rowKey === 'number') {
       return rowKey;
-    } else {
-      return TABLE_DEFAULT_ROW_KEY;
     }
+
+    return TABLE_DEFAULT_ROW_KEY;
   } catch {
     return TABLE_DEFAULT_ROW_KEY;
   }

@@ -57,16 +57,14 @@ export default function AySearchDemo() {
             fontWeight: 500,
           }}
         >
-          <Col flex="20px">
-            <GSearchList.SelectionAll />
-          </Col>
+          <Col flex="20px">{/* <GSearchList.SelectionAll /> */}</Col>
           <Col flex="1" style={{ paddingLeft: 8 }}>
             干员信息
           </Col>
           <Col flex="130px">操作</Col>
         </Row>
       }
-      renderItem={(record: AnyKeyProps, index: number) => {
+      renderItem={(record: AnyKeyProps) => {
         let starMap: AnyKeyProps = {
           5: '⭐️⭐️⭐️⭐️⭐️⭐️',
           4: '⭐️⭐️⭐️⭐️⭐️',
@@ -79,7 +77,7 @@ export default function AySearchDemo() {
           <List.Item
             key={record.sort_id}
             actions={[
-              <GCtrl>
+              <GCtrl key="ctrl">
                 <GAction record={record} action="view">
                   详情
                 </GAction>
@@ -92,7 +90,7 @@ export default function AySearchDemo() {
               </GCtrl>,
             ]}
           >
-            <GSearchList.Selection record={record} style={{ marginRight: 8 }} />
+            {/* <GSearchList.Selection record={record} style={{ marginRight: 8 }} /> */}
             <List.Item.Meta
               avatar={<Avatar src={record.icon} size="large" />}
               title={

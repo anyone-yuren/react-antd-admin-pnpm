@@ -25,6 +25,7 @@ export * from './GDialogForm/g-dialog-form.d';
 export * from './GForm/g-form.d';
 export * from './GSearch/g-search.d';
 export * from './GSearchList/g-search-list.d';
+export * from './GSearchList/index.d';
 export * from './GSearchTable/g-search-table.d';
 export * from './GSelect/g-select.d';
 export * from './GTable/g-table.d';
