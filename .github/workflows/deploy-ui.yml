@@ -37,13 +37,12 @@ jobs:
           pnpm build
 
       - name: publish
-
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_PACKAGE }}
         run: |
           cd ./packages/gbeata
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_PACKAGE }}" > .npmrc
           npm publish --no-git-checks --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PACKAGE }}
 
       - name: publish 成功通知
         run: |
