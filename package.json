@@ -13,6 +13,8 @@
     "commit": "git add -A && git cz",
     "release": "turbo release",
     "init-changeset": "changeset init",
+    "change:ver": "changeset version",
+    "change:pub": "changeset publish",
     "clean": "pnpm clean:node-modules & pnpm clean:turbo-cache",
     "clean:node-modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
     "clean:turbo-cache": "rm -rf ./node_modules/.cache",
