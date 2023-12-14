@@ -32,7 +32,7 @@
     "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
     "prepublishOnly": "father doctor && npm run build",
-    "release": "npm run build && npm publish",
+    "release": "npm run build && npm publish --access public",
     "start": "npm run dev"
   },
   "commitlint": {
@@ -83,7 +83,8 @@
     "react-dom": ">=16.9.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "authors": [
     "G"
