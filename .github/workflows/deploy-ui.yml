@@ -39,10 +39,12 @@ jobs:
 
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PACKAGE }}
+        with:
+          registry-url: https://registry.npmjs.org/
         run: |
           cd ./packages/gbeata
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_PACKAGE }}" > .npmrc
-          pnpm publish --no-git-checks
+          pnpm publish --no-git-checks --access public
 
       - name: publish 成功通知
         run: |
