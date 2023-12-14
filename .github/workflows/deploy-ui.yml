@@ -33,7 +33,6 @@ jobs:
         run: |
           echo ${{ github.workspace }}
           cd ./packages/gbeata
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_PACKAGE }}" > .npmrc
           pnpm build
 
       - name: publish
@@ -42,6 +41,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PACKAGE }}
         run: |
           cd ./packages/gbeata
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_PACKAGE }}" > .npmrc
           pnpm publish --no-git-checks
 
       - name: publish 成功通知
