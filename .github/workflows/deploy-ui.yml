@@ -41,12 +41,7 @@ jobs:
 
         run: |
           cd ./packages/gbeata
-          expect -c '
-            spawn pnpm publish
-            expect "DO you want to continue?"
-            send "y\r"
-            interact
-          '
+          pnpm publish --no-git-checks
 
       - name: publish 成功通知
         run: |
