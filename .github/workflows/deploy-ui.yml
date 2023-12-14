@@ -40,14 +40,14 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PACKAGE }}
         run: |
           cd ./packages/gbeata
-          pnpm publish
+          pnpm publish --yes
 
       - name: publish 成功通知
         run: |
           echo "发布成功"
 
       - name: Read Package.json
-        uses: juliangruber/read-file-action@v1
+        uses: tyankatsu0105/read-package-version-actions@v1
         id: packagejson
         with:
           path: ./packages/gbeata/package.json
@@ -56,7 +56,7 @@ jobs:
         run: echo "Package version ${{ steps.packagejson.outputs.version }}"
 
       - name: Create Release for Tag
-        uses: ncipollo/release-action@v1
+        uses: actions/create-release@v1
         id: release-tag
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
