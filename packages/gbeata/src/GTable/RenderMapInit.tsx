@@ -1,5 +1,5 @@
 import { Image, Input, Tag, Tooltip } from 'antd';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import React, { ReactNode, useEffect, useRef } from 'react';
 import { Option } from '../GForm/g-form';
 import GSelect from '../GSelect';
@@ -39,7 +39,7 @@ export const install = (
     if (!text) {
       return '';
     }
-    return moment(text).format(field.format || 'YYYY-MM-DD HH:mm:ss');
+    return dayjs(text).format(field.format || 'YYYY-MM-DD HH:mm:ss');
   });
 
   registerTableRender(

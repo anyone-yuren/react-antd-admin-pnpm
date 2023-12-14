@@ -1,5 +1,5 @@
 import { Badge, Tag } from 'antd';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import React from 'react';
 import { Option } from './GForm/g-form';
 import { TABLE_DEFAULT_ROW_KEY } from './constant';
@@ -152,7 +152,7 @@ export const getValueByOptions = (value: any, options: Array<Option>) => {
  * @param value
  */
 export const getDate = (value: any) => {
-  return value ? moment(value).format('YYYY-MM-DD') : value;
+  return value ? dayjs(value).format('YYYY-MM-DD') : value;
 };
 
 /**

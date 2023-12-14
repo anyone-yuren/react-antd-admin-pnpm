@@ -13,7 +13,7 @@ importers:
         version: registry.npmmirror.com/@ant-design/icons@5.2.6(react-dom@18.2.0)(react@18.2.0)
       antd:
         specifier: ^5.12.1
-        version: registry.npmmirror.com/antd@5.12.2(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)
+        version: registry.npmmirror.com/antd@5.12.2(react-dom@18.2.0)(react@18.2.0)
       antd-style:
         specifier: ^3.6.1
         version: registry.npmmirror.com/antd-style@3.6.1(@types/react@18.2.45)(antd@5.12.2)(react-dom@18.2.0)(react@18.2.0)
@@ -73,16 +73,16 @@ importers:
         version: registry.npmmirror.com/@minko-fe/use-antd-resizable-header@2.9.0(react-dom@18.2.0)(react@18.2.0)
       antd:
         specifier: ^5.12.1
-        version: registry.npmmirror.com/antd@5.12.2(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)
+        version: registry.npmmirror.com/antd@5.12.2(react-dom@18.2.0)(react@18.2.0)
       antd-style:
         specifier: ^3.6.1
         version: registry.npmmirror.com/antd-style@3.6.1(@types/react@18.2.45)(antd@5.12.2)(react-dom@18.2.0)(react@18.2.0)
+      dayjs:
+        specifier: ^1.11.10
+        version: registry.npmmirror.com/dayjs@1.11.10
       dumi-theme-antd-style:
         specifier: ^0.29.7
-        version: registry.npmmirror.com/dumi-theme-antd-style@0.29.7(@types/react@18.2.45)(dumi@2.2.16)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)
-      moment:
-        specifier: ^2.29.4
-        version: registry.npmmirror.com/moment@2.29.4
+        version: registry.npmmirror.com/dumi-theme-antd-style@0.29.7(@types/react@18.2.45)(dumi@2.2.16)(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       '@commitlint/cli':
         specifier: ^17.1.2
@@ -784,6 +784,7 @@ packages:
     name: '@commitlint/config-validator'
     version: 18.4.3
     engines: {node: '>=v18'}
+    requiresBuild: true
     dependencies:
       '@commitlint/types': registry.npmmirror.com/@commitlint/types@18.4.3
       ajv: registry.npmmirror.com/ajv@8.12.0
@@ -829,6 +830,7 @@ packages:
     name: '@commitlint/execute-rule'
     version: 18.4.3
     engines: {node: '>=v18'}
+    requiresBuild: true
     dev: true
 
   registry.npmmirror.com/@commitlint/format@17.8.1:
@@ -1024,6 +1026,7 @@ packages:
     name: '@commitlint/resolve-extends'
     version: 18.4.3
     engines: {node: '>=v18'}
+    requiresBuild: true
     dependencies:
       '@commitlint/config-validator': registry.npmmirror.com/@commitlint/config-validator@18.4.3
       '@commitlint/types': registry.npmmirror.com/@commitlint/types@18.4.3
@@ -3095,6 +3098,7 @@ packages:
     resolution: {integrity: sha512-k5fggr14DwAytoA/t8rPrIz++lXK7/DqckthCmoZOKNsEbJkId4Z//BqgApXBUGrGddrigYa1oqheo/7YmW4rg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/node/-/node-18.19.3.tgz}
     name: '@types/node'
     version: 18.19.3
+    requiresBuild: true
     dependencies:
       undici-types: registry.npmmirror.com/undici-types@5.26.5
     dev: true
@@ -4416,7 +4420,7 @@ packages:
       '@emotion/serialize': registry.npmmirror.com/@emotion/serialize@1.1.2
       '@emotion/server': registry.npmmirror.com/@emotion/server@11.11.0(@emotion/css@11.11.2)
       '@emotion/utils': registry.npmmirror.com/@emotion/utils@1.2.1
-      antd: registry.npmmirror.com/antd@5.12.2(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)
+      antd: registry.npmmirror.com/antd@5.12.2(react-dom@18.2.0)(react@18.2.0)
       react: registry.npmmirror.com/react@18.2.0
       use-merge-value: registry.npmmirror.com/use-merge-value@1.2.0(react@18.2.0)
     transitivePeerDependencies:
@@ -4424,7 +4428,7 @@ packages:
       - react-dom
     dev: false
 
-  registry.npmmirror.com/antd@5.12.2(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0):
+  registry.npmmirror.com/antd@5.12.2(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-lJ4pdBRboN2Tl5hXTqgxUjGIercB2YIK7Z8fVDushgrJ55RhywJjvcQVnBmuxcSPuWEF2Yu8SNBVAnaV4EqzWA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/antd/-/antd-5.12.2.tgz}
     id: registry.npmmirror.com/antd/5.12.2
     name: antd
@@ -4462,7 +4466,7 @@ packages:
       rc-motion: registry.npmmirror.com/rc-motion@2.9.0(react-dom@18.2.0)(react@18.2.0)
       rc-notification: registry.npmmirror.com/rc-notification@5.3.0(react-dom@18.2.0)(react@18.2.0)
       rc-pagination: registry.npmmirror.com/rc-pagination@4.0.3(react-dom@18.2.0)(react@18.2.0)
-      rc-picker: registry.npmmirror.com/rc-picker@3.14.6(dayjs@1.11.10)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)
+      rc-picker: registry.npmmirror.com/rc-picker@3.14.6(dayjs@1.11.10)(react-dom@18.2.0)(react@18.2.0)
       rc-progress: registry.npmmirror.com/rc-progress@3.5.1(react-dom@18.2.0)(react@18.2.0)
       rc-rate: registry.npmmirror.com/rc-rate@2.12.0(react-dom@18.2.0)(react@18.2.0)
       rc-resize-observer: registry.npmmirror.com/rc-resize-observer@1.4.0(react-dom@18.2.0)(react@18.2.0)
@@ -5889,6 +5893,7 @@ packages:
     name: cosmiconfig-typescript-loader
     version: 5.0.0
     engines: {node: '>=v16'}
+    requiresBuild: true
     peerDependencies:
       '@types/node': '*'
       cosmiconfig: '>=8.2'
@@ -6630,7 +6635,7 @@ packages:
     name: dumi-assets-types
     version: 2.0.0-alpha.0
 
-  registry.npmmirror.com/dumi-theme-antd-style@0.29.7(@types/react@18.2.45)(dumi@2.2.16)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0):
+  registry.npmmirror.com/dumi-theme-antd-style@0.29.7(@types/react@18.2.45)(dumi@2.2.16)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-SQODA/EeveBKcDP6I0fUqUsNg2qRIpOR8t+Jt3GIAhycj6Ddu5WKaUuv5hKnSj75i5j9JdyBT+OneCZcQUxR6A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/dumi-theme-antd-style/-/dumi-theme-antd-style-0.29.7.tgz}
     id: registry.npmmirror.com/dumi-theme-antd-style/0.29.7
     name: dumi-theme-antd-style
@@ -6644,7 +6649,7 @@ packages:
       '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.6
       '@floating-ui/react': registry.npmmirror.com/@floating-ui/react@0.24.8(react-dom@18.2.0)(react@18.2.0)
       ahooks: registry.npmmirror.com/ahooks@3.7.8(react@18.2.0)
-      antd: registry.npmmirror.com/antd@5.12.2(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)
+      antd: registry.npmmirror.com/antd@5.12.2(react-dom@18.2.0)(react@18.2.0)
       antd-style: registry.npmmirror.com/antd-style@3.6.1(@types/react@18.2.45)(antd@5.12.2)(react-dom@18.2.0)(react@18.2.0)
       chalk: registry.npmmirror.com/chalk@4.1.2
       chroma-js: registry.npmmirror.com/chroma-js@2.4.2
@@ -9784,6 +9789,7 @@ packages:
     name: jiti
     version: 1.21.0
     hasBin: true
+    requiresBuild: true
     dev: true
 
   registry.npmmirror.com/jju@1.4.0:
@@ -11242,12 +11248,6 @@ packages:
     hasBin: true
     dependencies:
       minimist: registry.npmmirror.com/minimist@1.2.8
-
-  registry.npmmirror.com/moment@2.29.4:
-    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/moment/-/moment-2.29.4.tgz}
-    name: moment
-    version: 2.29.4
-    dev: false
 
   registry.npmmirror.com/move-concurrently@1.0.1:
     resolution: {integrity: sha512-hdrFxZOycD/g6A6SoI2bB5NA/5NEqD0569+S47WZhPvm46sD50ZHdYaFmnua5lndde9rCHGjmfK7Z8BuCt/PcQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/move-concurrently/-/move-concurrently-1.0.1.tgz}
@@ -13324,7 +13324,7 @@ packages:
       react-dom: registry.npmmirror.com/react-dom@18.2.0(react@18.2.0)
     dev: false
 
-  registry.npmmirror.com/rc-picker@3.14.6(dayjs@1.11.10)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0):
+  registry.npmmirror.com/rc-picker@3.14.6(dayjs@1.11.10)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-AdKKW0AqMwZsKvIpwUWDUnpuGKZVrbxVTZTNjcO+pViGkjC1EBcjMgxVe8tomOEaIHJL5Gd13vS8Rr3zzxWmag==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/rc-picker/-/rc-picker-3.14.6.tgz}
     id: registry.npmmirror.com/rc-picker/3.14.6
     name: rc-picker
@@ -13351,7 +13351,6 @@ packages:
       '@rc-component/trigger': registry.npmmirror.com/@rc-component/trigger@1.18.2(react-dom@18.2.0)(react@18.2.0)
       classnames: registry.npmmirror.com/classnames@2.3.2
       dayjs: registry.npmmirror.com/dayjs@1.11.10
-      moment: registry.npmmirror.com/moment@2.29.4
       rc-util: registry.npmmirror.com/rc-util@5.38.1(react-dom@18.2.0)(react@18.2.0)
       react: registry.npmmirror.com/react@18.2.0
       react-dom: registry.npmmirror.com/react-dom@18.2.0(react@18.2.0)

@@ -98,7 +98,7 @@ const fields: Array<GSearchTableField> = [
     title: '时间',
     key: 'date',
 +   renderType: 'datetime'
-+   // format: 'YYYY-MM-DD' // 可以自定义 format，可参考 moment format
++   // format: 'YYYY-MM-DD' // 可以自定义 format，可参考 dayjs format
   }
 ]
 ```

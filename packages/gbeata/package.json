@@ -49,11 +49,11 @@
     ]
   },
   "dependencies": {
-    "@minko-fe/use-antd-resizable-header": "^2.9.0",
-    "dumi-theme-antd-style": "^0.29.7",
-    "moment": "^2.29.4",
     "@ant-design/icons": "^5.2.6",
-    "antd": "^5.12.1"
+    "@minko-fe/use-antd-resizable-header": "^2.9.0",
+    "antd": "^5.12.1",
+    "dayjs": "^1.11.10",
+    "dumi-theme-antd-style": "^0.29.7"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",

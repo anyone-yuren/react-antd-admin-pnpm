@@ -63,21 +63,21 @@ export default function Demo() {
 import React from 'react';
 import { registerField, AnyKeyProps } from 'gbeata';
 import { DatePicker } from 'antd';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 // 区间日期快捷选项
-const ranges: any = {
-  今天: [moment().startOf('day'), moment().endOf('day')],
-  昨天: [moment().subtract(1, 'day'), moment().subtract(1, 'day').endOf('day')],
-  本周: [moment().startOf('week'), moment().endOf('day')],
+const presets: any = {
+  今天: [dayjs().startOf('day'), dayjs().endOf('day')],
+  昨天: [dayjs().subtract(1, 'day'), dayjs().subtract(1, 'day').endOf('day')],
+  本周: [dayjs().startOf('week'), dayjs().endOf('day')],
   上周: [
-    moment().startOf('week').subtract(7, 'day'),
-    moment().endOf('week').subtract(7, 'day'),
+    dayjs().startOf('week').subtract(7, 'day'),
+    dayjs().endOf('week').subtract(7, 'day'),
   ],
-  本月: [moment().startOf('month'), moment().endOf('day')],
+  本月: [dayjs().startOf('month'), dayjs().endOf('day')],
   上月: [
-    moment().subtract(1, 'month').startOf('month'),
-    moment().subtract(1, 'month').endOf('month'),
+    dayjs().subtract(1, 'month').startOf('month'),
+    dayjs().subtract(1, 'month').endOf('month'),
   ],
 };
 
@@ -94,7 +94,7 @@ registerField('date-range', {
       <span className="mw-form-text">{text || '-'}</span>
     ) : (
       <DatePicker.RangePicker
-        ranges={ranges}
+        presets={presets}
         placeholder={['开始日期', '结束日期']}
         className="max-width"
         {...field.props}
@@ -109,7 +109,7 @@ const renderExtraFooter = ({ setFieldsValue, field }: AnyKeyProps) => {
    * 填充日期
    * @param value 日期
    */
-  const setValue = (value: moment.Moment) => {
+  const setValue = (value: dayjs.dayjs) => {
     setFieldsValue({
       [field.key]: value,
     });
@@ -119,27 +119,27 @@ const renderExtraFooter = ({ setFieldsValue, field }: AnyKeyProps) => {
       <a
         className="ant-picker-now-btn"
         style={{ marginRight: 4 }}
-        onClick={() => setValue(moment().startOf('day'))}
+        onClick={() => setValue(dayjs().startOf('day'))}
       >
         今天早上
       </a>
       <a
         className="ant-picker-now-btn"
         style={{ marginRight: 4 }}
-        onClick={() => setValue(moment().endOf('day'))}
+        onClick={() => setValue(dayjs().endOf('day'))}
       >
         今天晚上
       </a>
       <a
         className="ant-picker-now-btn"
         style={{ marginRight: 4 }}
-        onClick={() => setValue(moment().subtract(1, 'day').startOf('day'))}
+        onClick={() => setValue(dayjs().subtract(1, 'day').startOf('day'))}
       >
         昨天早上
       </a>
       <a
         className="ant-picker-now-btn"
-        onClick={() => setValue(moment().subtract(1, 'day').endOf('day'))}
+        onClick={() => setValue(dayjs().subtract(1, 'day').endOf('day'))}
       >
         昨天晚上
       </a>
@@ -170,4 +170,4 @@ registerField('date', {
 });
 ```
 
-<embed src="../index.md"></embed>
+<embed src="./index.md"></embed>

@@ -320,13 +320,13 @@ export default function Demo() {
 
 ## 注意点
 
-当子元素存在 `date`, `date-range` 时，跟直接使用会有所不同，设置默认值时需要由 `moment` 包裹。
+当子元素存在 `date`, `date-range` 时，跟直接使用会有所不同，设置默认值时需要由 `dayjs` 包裹。
 
 ```tsx
 import React, { useState } from 'react';
 import { GForm, GButton, GFormField, FormValues } from 'gbeata';
 import { Card, Switch } from 'antd';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 export default function Demo() {
   const [readonly, setReadonly] = useState(false);
@@ -341,12 +341,12 @@ export default function Demo() {
       defaultValue: [
         {
           name: 'Multiway',
-          date: moment(),
-          eventDate: [moment(), moment()],
+          date: dayjs(),
+          eventDate: [dayjs(), dayjs()],
         },
         {
           name: '能天使',
-          date: moment(),
+          date: dayjs(),
           eventDate: [],
         },
       ],

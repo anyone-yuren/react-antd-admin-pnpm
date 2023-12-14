@@ -431,7 +431,7 @@ export default function Demo() {
 import React, { useState } from 'react';
 import { GForm, GButton, GFormField, AnyKeyProps } from 'gbeata';
 import { Switch, Col, Tag } from 'antd';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 const fields: Array<GFormField> = [
   {
@@ -625,47 +625,47 @@ const fields: Array<GFormField> = [
       },
     ],
   },
-  // {
-  //   title: '日期',
-  //   type: 'card',
-  //   key: '__date',
-  //   children: [
-  //     {
-  //       title: '日期',
-  //       type: 'date',
-  //       key: 'date',
-  //       defaultValue: moment(),
-  //       span: 12,
-  //     },
-  //     {
-  //       title: '日期区间',
-  //       type: 'date-range',
-  //       key: 'date-range',
-  //       span: 12,
-  //       defaultValue: [moment(), moment()],
-  //       startKey: 'date-range-start',
-  //       endKey: 'date-range-end',
-  //     },
-  //     {
-  //       title: '日期带时间',
-  //       type: 'date',
-  //       key: 'datetime',
-  //       defaultValue: moment(),
-  //       span: 12,
-  //       showTime: true,
-  //     },
-  //     {
-  //       title: '日期带时间区间',
-  //       type: 'date-range',
-  //       key: 'datetime-range',
-  //       span: 12,
-  //       defaultValue: [moment(), moment()],
-  //       startKey: 'date-range-time-start',
-  //       endKey: 'date-range-time-end',
-  //       showTime: true,
-  //     },
-  //   ],
-  // },
+  {
+    title: '日期',
+    type: 'card',
+    key: '__date',
+    children: [
+      {
+        title: '日期',
+        type: 'date',
+        key: 'date',
+        defaultValue: dayjs(),
+        span: 12,
+      },
+      // {
+      //   title: '日期区间',
+      //   type: 'date-range',
+      //   key: 'date-range',
+      //   span: 12,
+      //   defaultValue: [dayjs(), dayjs()],
+      //   startKey: 'date-range-start',
+      //   endKey: 'date-range-end',
+      // },
+      {
+        title: '日期带时间',
+        type: 'date',
+        key: 'datetime',
+        defaultValue: dayjs(),
+        span: 12,
+        showTime: true,
+      },
+      // {
+      //   title: '日期带时间区间',
+      //   type: 'date-range',
+      //   key: 'datetime-range',
+      //   span: 12,
+      //   defaultValue: [dayjs(), dayjs()],
+      //   startKey: 'date-range-time-start',
+      //   endKey: 'date-range-time-end',
+      //   showTime: true,
+      // },
+    ],
+  },
 ];
 
 export default function Demo() {
@@ -1108,7 +1108,7 @@ const fields: Array<GFormField> = [
 import React, { useState, useRef } from 'react';
 import { GForm, GButton, GFormField } from 'gbeata';
 import { Switch, Space, Card } from 'antd';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 const fields: Array<GFormField> = [
   {
@@ -1175,7 +1175,7 @@ const fields: Array<GFormField> = [
         key: 'd',
         required: true,
         type: 'date',
-        defaultValue: moment(),
+        defaultValue: dayjs(),
         style: {
           width: 180,
         },
