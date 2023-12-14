@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "rootDirs": ["src", "docs"],
     "strict": true,
     "declaration": true,
     "skipLibCheck": true,
@@ -11,7 +12,25 @@
       "@@/*": [".dumi/tmp/*"],
       "gbeata": ["src"],
       "gbeata/*": ["src/*", "*"]
-    }
+    },
+    "target": "es5",
+    "module": "esnext",
+    "outDir": "build/lib",
+    "moduleResolution": "node",
+    "importHelpers": false,
+    "sourceMap": true,
+    // "noEmit": true,
+
+    "allowSyntheticDefaultImports": true
   },
-  "include": [".dumirc.ts", "src/**/*"]
+  "include": [".dumirc.ts", "src/**/*", "src/**/*.d.ts"],
+  "exclude": [
+    "node_modules",
+    "lib",
+    "es",
+    "dist",
+    "typings",
+    "**/__test__",
+    "test"
+  ]
 }

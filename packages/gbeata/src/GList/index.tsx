@@ -19,7 +19,7 @@ import { clearEmpty, getKey } from '../utils';
 import { GListContext } from './context';
 import useStyles from './style';
 
-export default forwardRef(function MwList(props: GListProps, ref) {
+export default forwardRef(function GList(props: GListProps, ref) {
   const {
     className,
     header,

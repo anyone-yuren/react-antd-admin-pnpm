@@ -1,4 +1,4 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { isValidElement } from 'react';
 import { FORM_TYPE_DATE, FORM_TYPE_DATE_RANGE } from '../constant';
 import { FormValues } from '../types/FormValues';
@@ -36,16 +36,16 @@ export default function parseFields(
 ) {
   const loop = (field: GFormField): GFormField => {
     const { children, ...rest } = field;
-
+    // TODO 优化 判断时间上可能会有问题
     for (const key in rest) {
       if (Array.isArray(rest[key]) && key === 'children') {
         // 携带子元素
-        rest[key] = rest[key].map((field) => loop({ ...field }));
+        rest[key] = rest[key].map((field: GFormField) => loop({ ...field }));
       } else if (
         isObj(rest[key]) &&
-        !(moment.isMoment(rest[key]) || isValidElement(rest[key]))
+        !(dayjs(rest[key]).isValid() || isValidElement(rest[key]))
       ) {
-        // 过滤掉 moment 方法、ReactElement 节点
+        // 过滤掉 dayjs 方法、ReactElement 节点
         rest[key] = loop({ ...rest[key] });
       } else if (isExpression(rest[key])) {
         // 把表达式转化成值
@@ -85,13 +85,13 @@ export const getDateValue = (
   }
   if (field.type === FORM_TYPE_DATE) {
     // 日期格式化
-    value = value ? moment(value).format(formatRule) : null;
+    value = value ? dayjs(value).format(formatRule) : null;
   } else if (Array.isArray(value) && field.type === FORM_TYPE_DATE_RANGE) {
     let [value0, value1] = value;
     // 日期区间格式化
     value = [
-      value0 ? moment(value0).format(formatRule) : null,
-      value1 ? moment(value1).format(formatRule) : null,
+      value0 ? dayjs(value0).format(formatRule) : null,
+      value1 ? dayjs(value1).format(formatRule) : null,
     ];
   }
   return value;

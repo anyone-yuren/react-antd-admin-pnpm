@@ -1,8 +1,10 @@
 import { Space } from 'antd';
 import React, {
+  ForwardRefExoticComponent,
   MutableRefObject,
   ReactNode,
   Ref,
+  RefAttributes,
   forwardRef,
   useImperativeHandle,
   useMemo,
@@ -420,11 +422,7 @@ function GSearchList(props: GSearchListProps, ref: Ref<any>) {
   );
 }
 
-let component = forwardRef(GSearchList);
-
-// @ts-ignore
-component.Selection = Selection;
-// @ts-ignore
-component.SelectionAll = SelectionAll;
-
+let component: ForwardRefExoticComponent<
+  GSearchListProps & RefAttributes<any>
+> = forwardRef(GSearchList);
 export default component;

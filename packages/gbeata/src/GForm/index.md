@@ -431,7 +431,7 @@ export default function Demo() {
 import React, { useState } from 'react';
 import { GForm, GButton, GFormField, AnyKeyProps } from 'gbeata';
 import { Switch, Col, Tag } from 'antd';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 const fields: Array<GFormField> = [
   {
@@ -634,7 +634,7 @@ const fields: Array<GFormField> = [
         title: '日期',
         type: 'date',
         key: 'date',
-        defaultValue: moment(),
+        defaultValue: dayjs(),
         span: 12,
       },
       {
@@ -642,7 +642,7 @@ const fields: Array<GFormField> = [
         type: 'date-range',
         key: 'date-range',
         span: 12,
-        defaultValue: [moment(), moment()],
+        defaultValue: [dayjs(), dayjs()],
         startKey: 'date-range-start',
         endKey: 'date-range-end',
       },
@@ -650,7 +650,7 @@ const fields: Array<GFormField> = [
         title: '日期带时间',
         type: 'date',
         key: 'datetime',
-        defaultValue: moment(),
+        defaultValue: dayjs(),
         span: 12,
         showTime: true,
       },
@@ -659,7 +659,7 @@ const fields: Array<GFormField> = [
         type: 'date-range',
         key: 'datetime-range',
         span: 12,
-        defaultValue: [moment(), moment()],
+        defaultValue: [dayjs(), dayjs()],
         startKey: 'date-range-time-start',
         endKey: 'date-range-time-end',
         showTime: true,
@@ -910,7 +910,7 @@ const fields: Array<GFormField> = [
 
 ## 卡片表单
 
-`FormType` 为 `card` 时，子元素会被 [MwCard](./mw-card) 包裹起来。
+`FormType` 为 `card` 时，子元素会被 [GCard](./mw-card) 包裹起来。
 
 ```tsx
 import React, { useState } from 'react';
@@ -1108,7 +1108,7 @@ const fields: Array<GFormField> = [
 import React, { useState, useRef } from 'react';
 import { GForm, GButton, GFormField } from 'gbeata';
 import { Switch, Space, Card } from 'antd';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 const fields: Array<GFormField> = [
   {
@@ -1175,7 +1175,7 @@ const fields: Array<GFormField> = [
         key: 'd',
         required: true,
         type: 'date',
-        defaultValue: moment(),
+        defaultValue: dayjs(),
         style: {
           width: 180,
         },
@@ -1422,7 +1422,7 @@ const fields: Array<Field> = [
 | date-range     | 日期区间                                                                | []              | -      |
 | empty          | 空白框                                                                  | -               | -      |
 | custom         | 自定义内容 `renderContent` 时使用，同时需要定义默认值 `defaultValue` 。 | -               | -      |
-| card           | 会用 MwCard 包裹住底下的 form，具体使用可以看 [卡片表单][cardform]。    | -               | -      |
+| card           | 会用 GCard 包裹住底下的 form，具体使用可以看 [卡片表单][cardform]。     | -               | -      |
 | group          | 组合表单，具体使用可以看 [组合表单][groupform]。                        | -               | -      |
 | input-group    | 带输入框的组合表单，具体使用可以看 [组合表单][groupform]。              | -               | -      |
 | tag-group      | [tag 选择][taggroup]，若设置 multiple 属性，可支持多选。                | undefined \| [] | 0.45.0 |

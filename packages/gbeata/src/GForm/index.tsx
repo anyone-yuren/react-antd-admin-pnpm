@@ -1,7 +1,7 @@
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Col, ColProps, Form, Input, Row, Tooltip } from 'antd';
-import moment from 'moment';
-import 'moment/locale/zh-cn';
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
 import React, {
   MutableRefObject,
   ReactNode,
@@ -13,10 +13,10 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import GCard from '../GCard';
 import { convertChildrenToField } from '../GFields/convertFields';
 import { GSearchField } from '../GSearch/g-search';
 import { GSearchTableField } from '../GSearchTable/g-search-table';
-import MwCard from '../MwCard';
 import { theme } from '../Theme';
 import {
   FORM_TYPE_CARD,
@@ -47,7 +47,7 @@ import GFormList from './GFormList';
 import { GFormField, GFormProps, RegisterFieldProps } from './g-form';
 import parseFields, { getDateValue } from './parseFields';
 
-moment.locale('zh-cn');
+dayjs.locale('zh-cn');
 
 const defaultLayout = {
   labelCol: { flex: '120px' },
@@ -166,14 +166,14 @@ export const getDefaultValue = (
     const key = field?.key || '';
     // 如果配置项里存在默认值，直接返回默认值，否则从默认值表里获取
     if (field.hasOwnProperty('defaultValue')) {
-      // 日期类型的需要通过 moment 转一遍
+      // 日期类型的需要通过 dayjs 转一遍
       if (type === FORM_TYPE_DATE && field.defaultValue) {
-        form[key] = moment(field.defaultValue);
+        form[key] = dayjs(field.defaultValue);
       } else if (type === FORM_TYPE_DATE_RANGE && field.defaultValue) {
         let [value0, value1] = field.defaultValue;
         form[key] = [
-          value0 ? moment(value0) : null,
-          value1 ? moment(value1) : null,
+          value0 ? dayjs(value0) : null,
+          value1 ? dayjs(value1) : null,
         ];
       } else {
         form[key] = field.defaultValue;
@@ -353,9 +353,9 @@ const getFormItem = (
       );
       return (
         <Col key={field.key} span={field.span || 24}>
-          <MwCard title={field.title} {...field.props}>
+          <GCard title={field.title} {...field.props}>
             <Row gutter={gutter}>{content}</Row>
-          </MwCard>
+          </GCard>
         </Col>
       );
     }
@@ -784,7 +784,7 @@ export default forwardRef(function GForm(props: GFormProps, ref: Ref<any>) {
         let value = values[key];
         if (field.type === FORM_TYPE_DATE) {
           if (value) {
-            values[key] = moment(value);
+            values[key] = dayjs(value);
           }
         } else if (
           field.type === FORM_TYPE_DATE_RANGE &&
@@ -792,8 +792,8 @@ export default forwardRef(function GForm(props: GFormProps, ref: Ref<any>) {
         ) {
           let [value0, value1] = value as [string, string];
           values[key] = [
-            value0 ? moment(value0) : null,
-            value1 ? moment(value1) : null,
+            value0 ? dayjs(value0) : null,
+            value1 ? dayjs(value1) : null,
           ];
         }
       } catch {

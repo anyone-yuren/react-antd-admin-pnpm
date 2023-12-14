@@ -17,7 +17,7 @@ const getOptions = (options: Array<Option> | undefined) => {
   });
 };
 
-export default forwardRef(function MwSelect(props: GSelectProps, ref: any) {
+export default forwardRef(function GSelect(props: GSelectProps, ref: any) {
   const { options } = props;
   return (
     <Select ref={ref} {...omitObj(props, 'options')}>

@@ -1119,7 +1119,7 @@ const fields: Array<GSearchTableField> = [
 ];
 ```
 
-## MwTableField
+## GTableField
 
 | 参数名         | 说明                                                                      | 参数类型                                                              | 默认值   | --- |
 | -------------- | ------------------------------------------------------------------------- | --------------------------------------------------------------------- | -------- | --- |
@@ -1136,7 +1136,7 @@ const fields: Array<GSearchTableField> = [
 | editable       | 表格是否可以编辑，具体示例看[这里][可编辑表格]。                          | boolean                                                               | -        |
 | before         | (仅 `editable` 可用), 渲染前置元素，[使用案例][可编辑表格]                | ({ record: Record, field: Field, refreshRow: Function }) => ReactNode | -        |
 | after          | (仅 `editable` 可用), 渲染后置元素，[使用案例][可编辑表格]                | ({ record: Record, field: Field, refreshRow: Function }) => ReactNode | -        |
-| children       | 嵌套表格时使用。                                                          | Array<[MwTableField][aytablefield]>                                   | -        |
+| children       | 嵌套表格时使用。                                                          | Array<[GTableField][aytablefield]>                                    | -        |
 
 ## Option 参数
 

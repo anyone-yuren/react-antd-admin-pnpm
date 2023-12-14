@@ -88,4 +88,5 @@ export interface GSearchListProps extends SearchListInitConfig {
 export interface GSelectionProps {
   record: AnyKeyProps;
   disabled?: boolean;
+  style?: React.CSSProperties;
 }

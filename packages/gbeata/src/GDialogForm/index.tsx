@@ -10,10 +10,10 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import GDialog from '../GDialog';
 import { convertChildrenToField } from '../GFields/convertFields';
 import GForm from '../GForm';
 import { GFormField } from '../GForm/g-form';
-import MwDialog from '../MwDialog';
 import locale from '../locale';
 import { AnyKeyProps } from '../types/AnyKeyProps';
 import { omitObj } from '../utils';
@@ -434,7 +434,7 @@ export default forwardRef(function GDialogForm(
   };
 
   return (
-    <MwDialog
+    <GDialog
       width={width}
       title={getTitle(mode, dialogTitle)}
       visible={visible}
@@ -461,6 +461,6 @@ export default forwardRef(function GDialogForm(
           {...formExtend}
         />
       </Spin>
-    </MwDialog>
+    </GDialog>
   );
 });

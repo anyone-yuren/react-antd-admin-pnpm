@@ -1,7 +1,7 @@
 /**
  * 此文件为模拟模拟接口的文件，不要复制，仅供参考
  */
-import { AnyKeyProps, Record } from 'multiway';
+import { AnyKeyProps, Record } from 'gbeata';
 
 export const professionOptions = [
   { label: '近卫干员', value: '近卫' },
@@ -34,7 +34,7 @@ const loadData = () => {
       myHeaders.append('Host', 'mock.apifox.cn');
       myHeaders.append('Connection', 'keep-alive');
 
-      let requestOptions = {
+      let requestOptions: RequestInit = {
         method: 'GET',
         headers: myHeaders,
         redirect: 'follow',
@@ -77,20 +77,22 @@ export const listApi = (params: AnyKeyProps): Promise<any> => {
       let content = data.filter((item) => {
         let result = true;
         for (let key in searchParams) {
-          // 查询值
-          let value = searchParams[key];
-          if (
-            item.hasOwnProperty(key) &&
-            item[key] !== undefined &&
-            value !== null
-          ) {
+          if (searchParams.hasOwnProperty(key)) {
+            // 查询值
+            let value = searchParams[key];
             if (
-              (Array.isArray(value) && !value.includes(item[key])) ||
-              (typeof value === 'number' && Number(item[key]) === value) ||
-              (typeof value === 'string' &&
-                !(item[key] + '').includes(value + ''))
+              item.hasOwnProperty(key) &&
+              item[key] !== undefined &&
+              value !== null
             ) {
-              result = false;
+              if (
+                (Array.isArray(value) && !value.includes(item[key])) ||
+                (typeof value === 'number' && Number(item[key]) === value) ||
+                (typeof value === 'string' &&
+                  !(item[key] + '').includes(value + ''))
+              ) {
+                result = false;
+              }
             }
           }
         }

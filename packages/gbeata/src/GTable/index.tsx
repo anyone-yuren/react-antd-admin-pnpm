@@ -75,7 +75,7 @@ export const setTableDefaultProps = (props: AnyKeyProps) => {
   tableDefaultProps = props;
 };
 
-export default forwardRef(function MwTable(props: GTableProps, ref) {
+export default forwardRef(function GTable(props: GTableProps, ref) {
   const {
     className,
     rowClassName,
@@ -226,7 +226,9 @@ export default forwardRef(function MwTable(props: GTableProps, ref) {
           setTableData(content);
           setTotal(data.totalCount);
           if (onLoad) {
-            onLoad(content, data);
+            setTimeout(() => {
+              onLoad(content, data);
+            }, 0);
           }
         })
         .finally(() => {

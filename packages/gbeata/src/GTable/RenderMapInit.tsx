@@ -1,8 +1,8 @@
 import { Image, Input, Tag, Tooltip } from 'antd';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import React, { ReactNode, useEffect, useRef } from 'react';
 import { Option } from '../GForm/g-form';
-import MwSelect from '../GSelect';
+import GSelect from '../GSelect';
 import { FORM_READONLY_EMPTY } from '../constant';
 import { AnyKeyProps } from '../types/AnyKeyProps';
 import { getValueByOptions, renderStatus } from '../utils';
@@ -39,7 +39,7 @@ export const install = (
     if (!text) {
       return '';
     }
-    return moment(text).format(field.format || 'YYYY-MM-DD HH:mm:ss');
+    return dayjs(text).format(field.format || 'YYYY-MM-DD HH:mm:ss');
   });
 
   registerTableRender(
@@ -93,7 +93,7 @@ export const install = (
         return !editing ? (
           label
         ) : (
-          <MwSelect
+          <GSelect
             placeholder="请选择"
             style={{ width: '100%' }}
             {...field.contentProps}

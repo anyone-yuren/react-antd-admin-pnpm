@@ -1,7 +1,7 @@
 import { GButtonProps } from './g-button';
 
-declare const MwButton: React.ForwardRefExoticComponent<
+declare const GButton: React.ForwardRefExoticComponent<
   GButtonProps & React.RefAttributes<HTMLDivElement>
 >;
 
-export default MwButton;
+export default GButton;

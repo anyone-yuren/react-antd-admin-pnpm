@@ -8,7 +8,19 @@
   "types": "dist/index.d.ts",
   "typings": "lib/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "lib",
+    "es"
+  ],
+  "keywords": [
+    "ant",
+    "component",
+    "components",
+    "design",
+    "framework",
+    "frontend",
+    "react",
+    "react-component"
   ],
   "scripts": {
     "build": "father build",
@@ -20,7 +32,8 @@
     "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
     "prepublishOnly": "father doctor && npm run build",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "release": "npm run build && npm publish"
   },
   "commitlint": {
     "extends": [
@@ -36,9 +49,11 @@
     ]
   },
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
     "@minko-fe/use-antd-resizable-header": "^2.9.0",
-    "dumi-theme-antd-style": "^0.29.7",
-    "moment": "^2.29.4"
+    "antd": "^5.12.1",
+    "dayjs": "^1.11.10",
+    "dumi-theme-antd-style": "^0.29.7"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",

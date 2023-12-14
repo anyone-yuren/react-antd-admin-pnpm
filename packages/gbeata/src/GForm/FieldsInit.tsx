@@ -10,8 +10,8 @@ import {
 } from 'antd';
 import React from 'react';
 import GCardGroup from '../GCardGroup';
-import MwSelect from '../GSelect';
-import MwTagGroup from '../GTagGroup';
+import GSelect from '../GSelect';
+import GTagGroup from '../GTagGroup';
 import {
   FORM_DEFAULT_ALLOW_CLEAR,
   FORM_DEFAULT_VALUE_CARD_GROUP,
@@ -231,7 +231,7 @@ export const install = (
       }
 
       return (
-        <MwSelect
+        <GSelect
           placeholder={`${locale.form.pleaseSelect}${field.title || ''}${
             locale.form.pleaseSelectAfter
           }`}
@@ -378,11 +378,7 @@ export const install = (
     type: FORM_TYPE_TAG_GROUP,
     defaultValue: FORM_DEFAULT_VALUE_TAG_GROUP,
     render: ({ field, readonly }: AnyKeyProps) => (
-      <MwTagGroup
-        readonly={readonly}
-        options={field.options}
-        {...field.props}
-      />
+      <GTagGroup readonly={readonly} options={field.options} {...field.props} />
     ),
   });
 

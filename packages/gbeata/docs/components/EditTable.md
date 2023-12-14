@@ -12,7 +12,7 @@ order: 2
 
 ```js
 // 需要设置先设置表格的编辑模式
-<MwSearchTable editMode="col" />
+<GSearchTable editMode="col" />
 ```
 
 ## 可编辑行
@@ -21,7 +21,7 @@ order: 2
 
 ```js
 // 需要设置先设置表格的编辑模式
-<MwSearchTable editMode="row" />
+<GSearchTable editMode="row" />
 ```
 
 ## editable
@@ -41,10 +41,10 @@ order: 2
 扩展一个简易版的 number 类型编辑框。
 
 ```js
-import { registerTableRender, RenderProps } from 'multiway'
+import { registerTableRender, RenderProps } from 'gbeata'
 import { InputNumber } from 'antd'
 
-// 全局注册一次，放在全局 /multiway/index.tsx 里面
+// 全局注册一次，放在全局 /gbeata/index.tsx 里面
 registerTableRender('editable-cell-number', ({ text, field }: RenderProps) => {
   return ({ editing, mode, save }: AnyKeyProps) => {
     return !editing ? text : <InputNumber {...field.contentProps} onBlur={save} />
