@@ -55,7 +55,7 @@ jobs:
         uses: ncipollo/release-action@v1
         id: release-tag
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
         with:
           tag_name: ${{ steps.packagejson.outputs.version }}
           name: ${{ steps.packagejson.outputs.version }}
