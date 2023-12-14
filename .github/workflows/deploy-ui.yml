@@ -43,7 +43,7 @@ jobs:
         run: |
           cd ./packages/gbeata
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_PACKAGE }}" > .npmrc
-          pnpm publish --no-git-checks --access public
+          npm publish --no-git-checks --access public
 
       - name: publish 成功通知
         run: |
