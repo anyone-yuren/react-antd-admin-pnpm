@@ -24,11 +24,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
 
-      - name: Configure npm authentication
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
-          echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
-
       - name: Install dependencies
         run: |
           cd ./packages/gbeata
@@ -38,12 +33,13 @@ jobs:
         run: |
           echo ${{ github.workspace }}
           cd ./packages/gbeata
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_PACKAGE }}" > .npmrc
           pnpm build
 
       - name: publish
+
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PACKAGE }}
-
         run: |
           cd ./packages/gbeata
           pnpm publish --no-git-checks
