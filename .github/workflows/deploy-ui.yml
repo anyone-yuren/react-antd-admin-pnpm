@@ -52,6 +52,9 @@ jobs:
         with:
           path: ./packages/gbeata/package.json
 
+      - name: Debug Package Version
+        run: echo "Package version ${{ steps.packagejson.outputs.version }}"
+
       - name: Create Release for Tag
         uses: ncipollo/release-action@v1
         id: release-tag

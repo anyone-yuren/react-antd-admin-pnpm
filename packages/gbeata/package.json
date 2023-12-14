@@ -1,17 +1,7 @@
 {
   "name": "gbeata",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "基于最新antd5二次封装的组件库",
-  "license": "MIT",
-  "main": "lib/index.js",
-  "module": "es/index.js",
-  "types": "dist/index.d.ts",
-  "typings": "lib/index.d.ts",
-  "files": [
-    "dist",
-    "lib",
-    "es"
-  ],
   "keywords": [
     "ant",
     "component",
@@ -21,6 +11,16 @@
     "frontend",
     "react",
     "react-component"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "dist/index.d.ts",
+  "typings": "lib/index.d.ts",
+  "files": [
+    "dist",
+    "lib",
+    "es"
   ],
   "scripts": {
     "build": "father build",
@@ -32,8 +32,8 @@
     "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
     "prepublishOnly": "father doctor && npm run build",
-    "start": "npm run dev",
-    "release": "npm run build && npm publish"
+    "release": "npm run build && npm publish",
+    "start": "npm run dev"
   },
   "commitlint": {
     "extends": [
