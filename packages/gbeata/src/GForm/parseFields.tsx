@@ -36,14 +36,14 @@ export default function parseFields(
 ) {
   const loop = (field: GFormField): GFormField => {
     const { children, ...rest } = field;
-
+    // TODO 优化 判断时间上可能会有问题
     for (const key in rest) {
       if (Array.isArray(rest[key]) && key === 'children') {
         // 携带子元素
         rest[key] = rest[key].map((field: GFormField) => loop({ ...field }));
       } else if (
         isObj(rest[key]) &&
-        !(dayjs.isdayjs(rest[key]) || isValidElement(rest[key]))
+        !(dayjs(rest[key]).isValid() || isValidElement(rest[key]))
       ) {
         // 过滤掉 dayjs 方法、ReactElement 节点
         rest[key] = loop({ ...rest[key] });
