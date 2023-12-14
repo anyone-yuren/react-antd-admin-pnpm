@@ -38,9 +38,15 @@ jobs:
       - name: publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PACKAGE }}
+
         run: |
           cd ./packages/gbeata
-          pnpm publish --yes
+          expect -c '
+            spawn pnpm publish
+            expect "DO you want to continue?"
+            send "y\r"
+            interact
+          '
 
       - name: publish 成功通知
         run: |
