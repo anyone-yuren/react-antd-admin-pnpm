@@ -21,6 +21,7 @@ import GTable, {
 } from './GTable';
 
 import { default as GTagGroup } from './GTagGroup';
+export * from './index.d';
 export {
   GAction,
   GButton,
@@ -55,41 +56,3 @@ export {
   success,
   warning,
 };
-
-const init = {
-  success,
-  info,
-  GCard,
-  GCtrl,
-  error,
-  warning,
-  GTagGroup,
-  GButton,
-  setPermissionList,
-  GForm,
-  registerField,
-  GFields,
-  GField,
-  GDialog,
-  setGlobalDialogField,
-  GDialogForm,
-  GSearch,
-  setSearchDefaultVisibleRow,
-  GCardGroup,
-  GSearchTable,
-  Selection,
-  SelectionAll,
-  setSearchTableDefaultValue,
-  GSelect,
-  GTable,
-  setDefaultDataFilter,
-  setDefaultSearchFilter,
-  registerTableRender,
-  setTableDefaultProps,
-  GAction,
-  registerAction,
-  GSearchList,
-};
-
-export default init;
-// export * from './index.d';
