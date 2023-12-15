@@ -176,7 +176,7 @@ const funcs = [
   'validateFields',
 ];
 
-export default forwardRef(function GSearch(props: GSearchProps, ref) {
+const GSearch = forwardRef(function GSearch(props: GSearchProps, ref) {
   const {
     fields,
     onConfirm,
@@ -426,3 +426,5 @@ export default forwardRef(function GSearch(props: GSearchProps, ref) {
     </Card>
   );
 });
+
+export default GSearch;

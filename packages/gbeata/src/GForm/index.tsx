@@ -724,7 +724,7 @@ export const funcs = [
   'validateFields',
 ];
 
-export default forwardRef(function GForm(props: GFormProps, ref: Ref<any>) {
+const GForm = forwardRef(function GForm(props: GFormProps, ref: Ref<any>) {
   const {
     fields: originFields,
     formLayout = 'horizontal',
@@ -943,3 +943,5 @@ export default forwardRef(function GForm(props: GFormProps, ref: Ref<any>) {
     </div>
   );
 });
+
+export default GForm;
