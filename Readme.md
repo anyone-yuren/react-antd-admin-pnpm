@@ -15,5 +15,6 @@
 
 - [x] 完成组件库编写和测试
 - [x] 升级antd4 => antd5， 升级react与dumi、umi为最新版；
+- [x] 完成组件库自动发布npm
 - [ ] 发布组件库文档
 - [ ] 发布gitPage
