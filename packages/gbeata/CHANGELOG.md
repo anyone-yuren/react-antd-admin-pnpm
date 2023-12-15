@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/anyone-yuren/pnpm-monorepo-mui/compare/v1.2.2...v1.2.3) (2023-12-15)
+
+
+### Bug Fixes
+
+* :bug: 去除匿名导出方式 ([dd4db27](https://github.com/anyone-yuren/pnpm-monorepo-mui/commit/dd4db270d387bf41150c4fa944388a629a641500))
+
 ## [1.2.2](https://github.com/anyone-yuren/pnpm-monorepo-mui/compare/v1.2.1...v1.2.2) (2023-12-15)
 
 
