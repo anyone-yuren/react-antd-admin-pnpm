@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/anyone-yuren/pnpm-monorepo-mui/compare/v1.2.1...v1.2.2) (2023-12-15)
+
+
+### Bug Fixes
+
+* :bug: 更改打包方式 ([1ac4074](https://github.com/anyone-yuren/pnpm-monorepo-mui/commit/1ac4074408ab576b2c915075e5f4d2b9e4cc1370))
+
 ## [1.2.1](https://github.com/anyone-yuren/pnpm-monorepo-mui/compare/v1.2.0...v1.2.1) (2023-12-15)
 
 
