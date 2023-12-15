@@ -108,4 +108,7 @@ module.exports = {
     defaultScope: "",
     defaultSubject: "",
   },
+  rules: {
+    "body-max-line-length": [2, "always", 500],
+  },
 };
