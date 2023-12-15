@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/anyone-yuren/pnpm-monorepo-mui/compare/v1.0.0...v1.1.0) (2023-12-15)
+
+
+### Features
+
+* :sparkles: ceshi ([4d1e866](https://github.com/anyone-yuren/pnpm-monorepo-mui/commit/4d1e8661fecfe6fc2efdd118730f767104c160f0))
+* :sparkles: test ([625f373](https://github.com/anyone-yuren/pnpm-monorepo-mui/commit/625f3737e1834bc42b7d8388206843ffccabf1a1))
+* :sparkles: 开启husky ([41faf1c](https://github.com/anyone-yuren/pnpm-monorepo-mui/commit/41faf1c5ffcd8bf6bc863550242e7199b35c0268))
+
 # 1.0.0 (2023-12-15)
 
 
