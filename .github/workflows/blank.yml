@@ -1,0 +1,44 @@
+# 工作流名称
+name: Build and Deploy
+
+on:
+  # 指明要运行的分支，跟上面配置保持一致
+  push:
+    branches: [main]
+
+jobs:
+  publish:
+    name: 发布 ui 工作流
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    # 执行步骤
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: |
+          cd ./packages/gbeata
+          pnpm install --frozen-lockfile
+
+      - name: Build
+        run: |
+          echo ${{ github.workspace }}
+          cd ./packages/gbeata
+          pnpm build
+
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_PACKAGE }}
+        run: npx semantic-release

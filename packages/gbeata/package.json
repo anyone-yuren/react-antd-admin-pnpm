@@ -1,6 +1,6 @@
 {
   "name": "gbeata",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "基于最新antd5二次封装的组件库",
   "keywords": [
     "ant",
@@ -32,7 +32,7 @@
     "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
     "prepublishOnly": "father doctor && npm run build",
-    "release": "npm run build && npm publish --access public",
+    "release": "npm run build && npm publish --access public --force",
     "start": "npm run dev"
   },
   "commitlint": {
