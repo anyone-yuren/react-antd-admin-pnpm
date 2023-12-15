@@ -21,7 +21,42 @@ import GTable, {
 } from './GTable';
 
 import { default as GTagGroup } from './GTagGroup';
-export const init = {
+export {
+  GAction,
+  GButton,
+  GCard,
+  GCardGroup,
+  GCtrl,
+  GDialog,
+  GDialogForm,
+  GField,
+  GFields,
+  GForm,
+  GSearch,
+  GSearchList,
+  GSearchTable,
+  GSelect,
+  GTable,
+  GTagGroup,
+  Selection,
+  SelectionAll,
+  error,
+  info,
+  registerAction,
+  registerField,
+  registerTableRender,
+  setDefaultDataFilter,
+  setDefaultSearchFilter,
+  setGlobalDialogField,
+  setPermissionList,
+  setSearchDefaultVisibleRow,
+  setSearchTableDefaultValue,
+  setTableDefaultProps,
+  success,
+  warning,
+};
+
+const init = {
   success,
   info,
   GCard,

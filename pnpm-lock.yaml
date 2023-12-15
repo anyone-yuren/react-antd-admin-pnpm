@@ -129,6 +129,9 @@ importers:
       babel-plugin-import:
         specifier: ^1.13.8
         version: registry.npmmirror.com/babel-plugin-import@1.13.8
+      babel-plugin-transform-rename-import:
+        specifier: ^2.3.0
+        version: registry.npmmirror.com/babel-plugin-transform-rename-import@2.3.0
       classnames:
         specifier: ^2.3.2
         version: registry.npmmirror.com/classnames@2.3.2
@@ -6615,6 +6618,12 @@ packages:
     dependencies:
       lodash: registry.npmmirror.com/lodash@4.17.21
       traverse: registry.npmmirror.com/traverse@0.6.6
+    dev: true
+
+  registry.npmmirror.com/babel-plugin-transform-rename-import@2.3.0:
+    resolution: {integrity: sha512-dPgJoT57XC0PqSnLgl2FwNvxFrWlspatX2dkk7yjKQj5HHGw071vAcOf+hqW8ClqcBDMvEbm6mevn5yHAD8mlQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/babel-plugin-transform-rename-import/-/babel-plugin-transform-rename-import-2.3.0.tgz}
+    name: babel-plugin-transform-rename-import
+    version: 2.3.0
     dev: true
 
   registry.npmmirror.com/babel-preset-current-node-syntax@1.0.1(@babel/core@7.23.6):
