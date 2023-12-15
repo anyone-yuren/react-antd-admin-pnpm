@@ -87,7 +87,7 @@ module.exports = {
     upperCaseSubject: false,
     markBreakingChangeMode: false,
     allowBreakingChanges: ["feat", "fix"],
-    breaklineNumber: 100,
+    // breaklineNumber: 100,
     breaklineChar: "|",
     skipQuestions: [],
     issuePrefixes: [
