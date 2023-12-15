@@ -1,3 +1,11 @@
+## [1.2.5](https://github.com/anyone-yuren/pnpm-monorepo-mui/compare/v1.2.4...v1.2.5) (2023-12-15)
+
+
+### Bug Fixes
+
+* :bug: 修改组件库导出方式 ([49c8b0e](https://github.com/anyone-yuren/pnpm-monorepo-mui/commit/49c8b0e13c93393d1b3b8c065e6a8a14f6a4384a))
+* :bug: 去除全局暴露的d文件 ([1301467](https://github.com/anyone-yuren/pnpm-monorepo-mui/commit/130146759e6ed740fc9411dc8311593d38fc7230))
+
 ## [1.2.4](https://github.com/anyone-yuren/pnpm-monorepo-mui/compare/v1.2.3...v1.2.4) (2023-12-15)
 
 
