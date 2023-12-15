@@ -5,6 +5,6 @@ import { GSearchTableField } from '../GSearchTable/g-search-table';
 type CommonField = GFormField | GSearchTableField;
 
 // 优化后的函数接收 CommonField 类型的参数
-export default function GField() {
+export default function GField(field: CommonField) {
   return null;
 }
