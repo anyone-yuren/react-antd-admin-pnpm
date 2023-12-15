@@ -1,3 +1,11 @@
+## [1.2.4](https://github.com/anyone-yuren/pnpm-monorepo-mui/compare/v1.2.3...v1.2.4) (2023-12-15)
+
+
+### Bug Fixes
+
+* :bug: 修改全局组件导出方式 ([1338e45](https://github.com/anyone-yuren/pnpm-monorepo-mui/commit/1338e455823a4e965e43afe0fb4fd5b6f98a67a4))
+* :bug: 全局对外暴露函数修改 ([f11dd42](https://github.com/anyone-yuren/pnpm-monorepo-mui/commit/f11dd42c0d39ba91755f1c8c26eb4d0d18e40d9f))
+
 ## [1.2.3](https://github.com/anyone-yuren/pnpm-monorepo-mui/compare/v1.2.2...v1.2.3) (2023-12-15)
 
 
