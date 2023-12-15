@@ -17,7 +17,7 @@ const getOptions = (options: Array<Option> | undefined) => {
   });
 };
 
-export default forwardRef(function GSelect(props: GSelectProps, ref: any) {
+const GSelect = forwardRef(function GSelect(props: GSelectProps, ref: any) {
   const { options } = props;
   return (
     <Select ref={ref} {...omitObj(props, 'options')}>
@@ -25,3 +25,5 @@ export default forwardRef(function GSelect(props: GSelectProps, ref: any) {
     </Select>
   );
 });
+
+export default GSelect;

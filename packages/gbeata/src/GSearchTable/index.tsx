@@ -224,7 +224,7 @@ export const setSearchTableDefaultValue = (config: SearchTableInitConfig) => {
   setSearchTableExtraDefaultValue(config);
 };
 
-export default forwardRef(function GSearchTable(
+const GSearchTable = forwardRef(function GSearchTable(
   props: GSearchTableProps,
   ref: Ref<any>,
 ) {
@@ -594,3 +594,4 @@ export default forwardRef(function GSearchTable(
     </div>
   );
 });
+export default GSearchTable;

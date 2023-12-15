@@ -75,7 +75,7 @@ export const setTableDefaultProps = (props: AnyKeyProps) => {
   tableDefaultProps = props;
 };
 
-export default forwardRef(function GTable(props: GTableProps, ref) {
+const GTable = forwardRef(function GTable(props: GTableProps, ref) {
   const {
     className,
     rowClassName,
@@ -567,3 +567,5 @@ export default forwardRef(function GTable(props: GTableProps, ref) {
     </GListContext.Provider>
   );
 });
+
+export default GTable;

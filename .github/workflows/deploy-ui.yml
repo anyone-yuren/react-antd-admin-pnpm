@@ -1,0 +1,80 @@
+name: 发布gbeata组件库
+
+on:
+  push:
+    branches:
+      - deploy-gbeata
+
+jobs:
+  publish:
+    name: 发布 ui 工作流
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    # 执行步骤
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: |
+          cd ./packages/gbeata
+          pnpm install --frozen-lockfile
+
+      - name: Build
+        run: |
+          echo ${{ github.workspace }}
+          cd ./packages/gbeata
+          pnpm build
+
+      - name: Create Release Pull Request and Publish
+        uses: changesets/action@v1
+        with:
+          version: pnpm change:ver
+          publish: pnpm change:pub
+          commit: "ci: release"
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_PACKAGE }}
+
+      - name: publish
+        run: |
+          cd ./packages/gbeata
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_PACKAGE }}" > .npmrc
+          npm publish --no-git-checks --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PACKAGE }}
+
+      - name: publish 成功通知
+        run: |
+          echo "发布成功"
+
+      - name: Read Package.json
+        uses: tyankatsu0105/read-package-version-actions@v1
+        id: packagejson
+        with:
+          path: ./packages/gbeata/package.json
+
+      - name: Debug Package Version
+        run: echo "Package version ${{ steps.packagejson.outputs.version }}"
+
+      - name: Create Release for Tag
+        uses: actions/create-release@v1
+        id: release-tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+        with:
+          tag_name: ${{ steps.packagejson.outputs.version }}
+          name: ${{ steps.packagejson.outputs.version }}
+          body: ${{ steps.packagejson.outputs.content }}
+          draft: false
+          prerelease: false

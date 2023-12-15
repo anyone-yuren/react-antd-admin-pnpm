@@ -19,7 +19,7 @@ import { clearEmpty, getKey } from '../utils';
 import { GListContext } from './context';
 import useStyles from './style';
 
-export default forwardRef(function GList(props: GListProps, ref) {
+const GList = forwardRef(function GList(props: GListProps, ref) {
   const {
     className,
     header,
@@ -299,3 +299,4 @@ export default forwardRef(function GList(props: GListProps, ref) {
     </GListContext.Provider>
   );
 });
+export default GList;

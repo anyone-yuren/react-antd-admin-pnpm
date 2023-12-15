@@ -111,7 +111,7 @@ const funcs = [
   'validateFields',
 ];
 
-export default forwardRef(function GDialogForm(
+const GDialogForm = forwardRef(function GDialogForm(
   props: GDialogFormProps,
   ref?: Ref<GDialogFormRef>,
 ) {
@@ -464,3 +464,5 @@ export default forwardRef(function GDialogForm(
     </GDialog>
   );
 });
+
+export default GDialogForm;
