@@ -92,4 +92,4 @@ const init = {
 };
 
 export default init;
-export * from './index.d';
+// export * from './index.d';
