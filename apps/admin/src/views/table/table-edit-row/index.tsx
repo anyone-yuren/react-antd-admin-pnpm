@@ -1,12 +1,17 @@
-import React, { useState } from 'react'
-import { Form, Button, Table, Select, Switch, InputNumber, Input, DatePicker, Radio, Checkbox, Card, Popconfirm, Space } from 'antd'
-import { ColumnType } from 'antd/es/table'
-import { PageWrapper } from '@/components/Page'
-import dayjs from 'dayjs'
-import { TABLE_EDIT_COMPO } from '@/settings/websiteSetting'
-import { tableData, DataItem } from './data'
+import {
+  Button, Card, Checkbox, DatePicker, Form, Input, InputNumber, Popconfirm, Radio, Select, Space, Switch, Table,
+} from 'antd';
+import { ColumnType } from 'antd/es/table';
+import dayjs from 'dayjs';
+import React, { useState } from 'react';
 
-type CellType = 'number' | 'text' | 'radio' | 'date' | 'select' | 'checkbox' | 'switch'
+import { PageWrapper } from '@/components/Page';
+
+import { TABLE_EDIT_COMPO } from '@/settings/websiteSetting';
+
+import { DataItem, tableData } from './data';
+
+type CellType = 'number' | 'text' | 'radio' | 'date' | 'select' | 'checkbox' | 'switch';
 
 interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
   editing: boolean
@@ -18,7 +23,7 @@ interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode
 }
 
-type theadKey = Record<string, { title: string, type: string }>
+type theadKey = Record<string, { title: string, type: string }>;
 const theadMap: theadKey = {
   key: { title: '数字输入框', type: 'number' },
   name: { title: '输入框', type: 'text' },
@@ -27,27 +32,27 @@ const theadMap: theadKey = {
   education: { title: '选择器', type: 'select' },
   hobby: { title: '多选框', type: 'checkbox' },
   forbid: { title: '开关', type: 'switch' },
-  action: { title: '按钮', type: 'button' }
-}
+  action: { title: '按钮', type: 'button' },
+};
 
 const nodeType = (type: CellType, record: DataItem) => {
   switch (type) {
     case 'number':
-      return <InputNumber min={1000} max={2000} />
+      return <InputNumber min={1000} max={2000} />;
     case 'text':
-      return <Input />
+      return <Input />;
     case 'radio':
-      return <Radio.Group options={['男', '女'].map(item => ({value: item, label: item}))} />
+      return <Radio.Group options={['男', '女'].map((item) => ({ value: item, label: item }))} />;
     case 'date':
-      return <div><DatePicker defaultValue={dayjs(record.birth, 'YYYY-MM-DD')} format='YYYY-MM-DD' /></div>
+      return <div><DatePicker defaultValue={dayjs(record.birth, 'YYYY-MM-DD')} format='YYYY-MM-DD' /></div>;
     case 'select':
-      return <Select options={['初中', '高中', '大专', '本科'].map(item => ({ value: item }))} style={{width: '80px'}} />
+      return <Select options={['初中', '高中', '大专', '本科'].map((item) => ({ value: item }))} style={{ width: '80px' }} />;
     case 'checkbox':
-      return <Checkbox.Group options={record.hobby.split('、')} defaultValue={record.hobby.split('、')} />
+      return <Checkbox.Group options={record.hobby.split('、')} defaultValue={record.hobby.split('、')} />;
     case 'switch':
-      return <Switch defaultChecked={record.forbid} />
+      return <Switch defaultChecked={record.forbid} />;
   }
-}
+};
 
 const EditableCell: React.FC<EditableCellProps> = ({
   editing,
@@ -59,7 +64,7 @@ const EditableCell: React.FC<EditableCellProps> = ({
   children,
   ...restProps
 }) => {
-  const cellNode = nodeType(cellType, record)
+  const cellNode = nodeType(cellType, record);
 
   return (
     <td {...restProps}>
@@ -74,170 +79,151 @@ const EditableCell: React.FC<EditableCellProps> = ({
         children
       )}
     </td>
-  )
-}
+  );
+};
 
 const TableEditRow: React.FC = () => {
+  const [form] = Form.useForm();
+  const [data, setData] = useState(tableData);
+  const [editingKey, setEditingKey] = useState('');
 
-  const [form] = Form.useForm()
-  const [data, setData] = useState(tableData)
-  const [editingKey, setEditingKey] = useState('')
-
-  const isEditing = (record: DataItem) => record.key === editingKey
+  const isEditing = (record: DataItem) => record.key === editingKey;
 
   const edit = (record: Partial<DataItem>) => {
-    form.setFieldsValue({ ...record })
-    setEditingKey(record.key!)
-  }
+    form.setFieldsValue({ ...record });
+    setEditingKey(record.key!);
+  };
 
   const cancel = () => {
-    setEditingKey('')
-  }
+    setEditingKey('');
+  };
 
   const save = async (key: React.Key) => {
     try {
-      const row = (await form.validateFields()) as DataItem
+      const row = (await form.validateFields()) as DataItem;
 
-      const newData = [...data]
-      const index = newData.findIndex((item) => key === item.key)
+      const newData = [...data];
+      const index = newData.findIndex((item) => key === item.key);
 
       if (index > -1) {
-        const item = newData[index]
+        const item = newData[index];
         newData.splice(index, 1, {
           ...item,
-          ...row
-        })
-        setData(newData)
-        setEditingKey('')
+          ...row,
+        });
+        setData(newData);
+        setEditingKey('');
       } else {
-        newData.push(row)
-        setData(newData)
-        setEditingKey('')
+        newData.push(row);
+        setData(newData);
+        setEditingKey('');
       }
     } catch (errInfo) {
       console.log('Validate Failed:', errInfo);
     }
-  }
+  };
 
   // @ts-ignore
   const columns: ColumnType[] = [
     {
-      title: () => {
-        return (
+      title: () => (
           <>
             <span>编号</span>
             <p className='sub-title'>(数字输入框)</p>
           </>
-        )
-      },
+      ),
       dataIndex: 'key',
       width: 70,
       editable: true,
-      align: 'center'
+      align: 'center',
     },
     {
-      title: () => {
-        return (
+      title: () => (
           <>
             <span>姓名</span>
             <p className='sub-title'>(输入框)</p>
           </>
-        )
-      },
+      ),
       dataIndex: 'name',
       width: 110,
       editable: true,
-      align: 'center'
+      align: 'center',
     },
     {
-      title: () => {
-        return (
+      title: () => (
           <>
             <span>性别</span>
             <p className='sub-title'>(单选框)</p>
           </>
-        )
-      },
+      ),
       dataIndex: 'sex',
       width: 120,
       editable: true,
-      align: 'center'
+      align: 'center',
     },
     {
-      title: () => {
-        return (
+      title: () => (
           <>
             <span>生日</span>
             <p className='sub-title'>(日期选择器)</p>
           </>
-        )
-      },
+      ),
       dataIndex: 'birth',
       width: 140,
       editable: true,
-      align: 'center'
+      align: 'center',
     },
     {
-      title: () => {
-        return (
+      title: () => (
           <>
             <span>学历</span>
             <p className='sub-title'>(选择器)</p>
           </>
-        )
-      },
+      ),
       dataIndex: 'education',
       width: 80,
       editable: true,
-      align: 'center'
+      align: 'center',
     },
     {
-      title: () => {
-        return (
+      title: () => (
           <>
             <span>爱好</span>
             <p className='sub-title'>(多选框)</p>
           </>
-        )
-      },
+      ),
       dataIndex: 'hobby',
       width: 250,
       editable: true,
-      align: 'center'
+      align: 'center',
     },
     {
-      title: () => {
-        return (
+      title: () => (
           <>
             <span>禁止编辑</span>
             <p className='sub-title'>(开关)</p>
           </>
-        )
-      },
+      ),
       dataIndex: 'forbid',
       width: 70,
       editable: true,
       align: 'center',
-      render: (text: string, record: DataItem) => {
-        return (
+      render: (text: string, record: DataItem) => (
           <span>{record.forbid ? '是' : '否'}</span>
-        )
-      }
+      ),
     },
     {
-      title: () => {
-        return (
+      title: () => (
           <>
             <span>操作</span>
             <p className='sub-title'>(按钮)</p>
           </>
-        )
-      },
+      ),
       dataIndex: 'action',
       width: 70,
       align: 'center',
-      render:  (_: any, record: DataItem) => {
-        const editable = isEditing(record)
+      render: (_: any, record: DataItem) => {
+        const editable = isEditing(record);
         return editable ? (
           <Space>
             <Button
@@ -261,14 +247,14 @@ const TableEditRow: React.FC = () => {
             disabled={editingKey !== ''}
             onClick={() => edit(record)}
           >编辑</Button>
-        )
-      }
-    }
-  ]
+        );
+      },
+    },
+  ];
 
   const mergedColumns = columns.map((col) => {
     if (!col.editable) {
-      return col
+      return col;
     }
     return {
       ...col,
@@ -277,10 +263,10 @@ const TableEditRow: React.FC = () => {
         cellType: theadMap[col.dataIndex].type,
         dataIndex: col.dataIndex,
         title: col.title,
-        editing: isEditing(record)
-      })
-    }
-  })
+        editing: isEditing(record),
+      }),
+    };
+  });
 
   return (
     <PageWrapper plugin={TABLE_EDIT_COMPO}>
@@ -289,8 +275,8 @@ const TableEditRow: React.FC = () => {
           <Table
             components={{
               body: {
-                cell: EditableCell
-              }
+                cell: EditableCell,
+              },
             }}
             dataSource={data}
             columns={mergedColumns}
@@ -299,7 +285,7 @@ const TableEditRow: React.FC = () => {
         </Form>
       </Card>
     </PageWrapper>
-  )
-}
+  );
+};
 
-export default TableEditRow
+export default TableEditRow;

@@ -1,8 +1,13 @@
-import { useState } from 'react'
-import { Row, Col, Card, Tree } from 'antd'
-import { TREE_COMPO } from '@/settings/websiteSetting'
-import { PageWrapper } from '@/components/Page'
-import { treeData } from './data'
+import {
+  Card, Col, Row, Tree,
+} from 'antd';
+import { useState } from 'react';
+
+import { PageWrapper } from '@/components/Page';
+
+import { TREE_COMPO } from '@/settings/websiteSetting';
+
+import { treeData } from './data';
 
 interface DataNode {
   title: string;
@@ -14,27 +19,27 @@ interface DataNode {
 const initTreeData: DataNode[] = [
   { title: 'Expand to load', key: '0' },
   { title: 'Expand to load', key: '1' },
-  { title: 'Tree Node', key: '2', isLeaf: true }
-]
+  { title: 'Tree Node', key: '2', isLeaf: true },
+];
 
 const AntdTree = () => {
-  const [lazyTreeData, setLazyTreeData] = useState(initTreeData)
+  const [lazyTreeData, setLazyTreeData] = useState(initTreeData);
 
   function handleLoadData(treeNode: any) {
-    return new Promise<void>(resolve => {
+    return new Promise<void>((resolve) => {
       if (treeNode.dataRef.children) {
-        resolve()
-        return
+        resolve();
+        return;
       }
       setTimeout(() => {
         treeNode.dataRef.children = [
           { title: 'Child Node', key: `${treeNode.eventKey}-0` },
-          { title: 'Child Node', key: `${treeNode.eventKey}-1` }
-        ]
-        setLazyTreeData([...lazyTreeData])
-        resolve()
-      }, 1000)
-    })
+          { title: 'Child Node', key: `${treeNode.eventKey}-1` },
+        ];
+        setLazyTreeData([...lazyTreeData]);
+        resolve();
+      }, 1000);
+    });
   }
 
   function handleDrop() {}
@@ -43,7 +48,7 @@ const AntdTree = () => {
     <PageWrapper plugin={TREE_COMPO}>
       <Row gutter={12}>
         <Col span={8}>
-          <Card title='可选择节点' bordered={false} bodyStyle={{height: '420px'}}>
+          <Card title='可选择节点' bordered={false} bodyStyle={{ height: '420px' }}>
             <Tree
               treeData={treeData}
               checkable
@@ -52,7 +57,7 @@ const AntdTree = () => {
           </Card>
         </Col>
         <Col span={8}>
-          <Card title='懒加载节点' bordered={false} bodyStyle={{height: '420px'}}>
+          <Card title='懒加载节点' bordered={false} bodyStyle={{ height: '420px' }}>
             <Tree
               checkable
               treeData={lazyTreeData}
@@ -61,7 +66,7 @@ const AntdTree = () => {
           </Card>
         </Col>
         <Col span={8}>
-          <Card title='可拖拽节点' bordered={false} bodyStyle={{height: '420px'}}>
+          <Card title='可拖拽节点' bordered={false} bodyStyle={{ height: '420px' }}>
             <Tree
               treeData={treeData}
               draggable
@@ -73,7 +78,7 @@ const AntdTree = () => {
         </Col>
       </Row>
     </PageWrapper>
-  )
-}
+  );
+};
 
-export default AntdTree
+export default AntdTree;

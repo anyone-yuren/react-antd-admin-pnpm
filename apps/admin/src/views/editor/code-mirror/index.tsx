@@ -1,45 +1,48 @@
-import { FC, useState } from 'react'
-import { useImmer } from 'use-immer'
-import { Card } from 'antd'
-import { PageWrapper } from '@/components/Page'
-import { CODEMIRROR_PLUGIN } from '@/settings/websiteSetting'
-import { ConfigState, InfoState } from './types'
-import Codemirror from '@uiw/react-codemirror'
-import Toolbar from './components/Toolbar'
-import CodeInfo from './components/CodeInfo'
+import Codemirror from '@uiw/react-codemirror';
+import { Card } from 'antd';
+import { FC, useState } from 'react';
+import { useImmer } from 'use-immer';
+
+import { PageWrapper } from '@/components/Page';
+
+import { CODEMIRROR_PLUGIN } from '@/settings/websiteSetting';
+
+import CodeInfo from './components/CodeInfo';
+import Toolbar from './components/Toolbar';
+import { ConfigState, InfoState } from './types';
 
 const CodeMirror: FC = () => {
-  const [codeVal, setCodeVal] = useState(`console.log('Hello, world!')`)
+  const [codeVal, setCodeVal] = useState('console.log(\'Hello, world!\')');
   const [config, setConfig] = useState<ConfigState>({
     language: 'javascript',
     autoFocus: true,
     indentWithTab: true,
-    height: '350px'
-  })
+    height: '350px',
+  });
   const [codeInfo, setCodeInfo] = useImmer<InfoState>({
     lines: null as null | number,
     cursor: null as null | number,
     selected: null as null | number,
-    length: null as null | number
-  })
+    length: null as null | number,
+  });
 
   const handleValueChange = (values: any) => {
-    setConfig({...config, ...values})
-  }
+    setConfig({ ...config, ...values });
+  };
 
   const handleChange = (value: any) => {
-    setCodeVal(value)
-  }
+    setCodeVal(value);
+  };
 
   const handleStateUpdate = (viewUpdate: any) => {
-    const ranges = viewUpdate.state.selection.ranges
+    const { ranges } = viewUpdate.state.selection;
     setCodeInfo({
       lines: viewUpdate.state.doc.lines,
       cursor: ranges[0].anchor,
       selected: ranges.reduce((plus: any, range: any) => plus + range.to - range.from, 0),
-      length: viewUpdate.state.doc.length
-     })
-  }
+      length: viewUpdate.state.doc.length,
+    });
+  };
 
   return (
     <PageWrapper plugin={CODEMIRROR_PLUGIN}>
@@ -52,7 +55,7 @@ const CodeMirror: FC = () => {
           indentWithTab={config.indentWithTab}
           style={{
             borderLeft: 'solid 1px #ddd',
-            borderRight: 'solid 1px #ddd'
+            borderRight: 'solid 1px #ddd',
           }}
           extensions={[]}
           placeholder="Please enter the code..."
@@ -62,7 +65,7 @@ const CodeMirror: FC = () => {
         <CodeInfo info={codeInfo} />
       </Card>
     </PageWrapper>
-  )
-}
+  );
+};
 
-export default CodeMirror
+export default CodeMirror;

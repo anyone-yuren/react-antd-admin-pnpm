@@ -1,3 +1,3 @@
-import TagItem from './TagItem'
+import TagItem from './TagItem';
 
-export { TagItem }
+export { TagItem };

@@ -1,7 +1,10 @@
-import { Button } from 'antd'
-import { openWindow } from '@/utils'
-import SvgIcon from '@/components/SvgIcon'
-import compoStyle from './compo.module.less'
+import { Button } from 'antd';
+
+import SvgIcon from '@/components/SvgIcon';
+
+import { openWindow } from '@/utils';
+
+import compoStyle from './compo.module.less';
 
 interface PluginProp {
   name?: string
@@ -15,9 +18,8 @@ interface PageProp {
 }
 
 const PageWrapper = (props: PageProp) => {
-
   function openGithub() {
-    openWindow(props.plugin?.url!)
+    openWindow(props.plugin?.url!);
   }
 
   return (
@@ -37,7 +39,7 @@ const PageWrapper = (props: PageProp) => {
         {props.children}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PageWrapper
+export default PageWrapper;

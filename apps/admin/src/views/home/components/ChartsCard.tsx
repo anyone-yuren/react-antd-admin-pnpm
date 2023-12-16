@@ -1,7 +1,9 @@
-import type { EChartsOption } from 'echarts'
-import { FC } from 'react'
-import { Card } from 'antd'
-import { useECharts } from '@/hooks/web/useECharts'
+import { Card } from 'antd';
+import { FC } from 'react';
+
+import { useECharts } from '@/hooks/web/useECharts';
+
+import type { EChartsOption } from 'echarts';
 
 interface propState {
   loading: boolean
@@ -10,8 +12,7 @@ interface propState {
 }
 
 const ChartsCard: FC<propState> = ({ loading, options, height }) => {
-
-  const { chartRef } = useECharts(options, loading)
+  const { chartRef } = useECharts(options, loading);
 
   return (
     <Card
@@ -22,11 +23,11 @@ const ChartsCard: FC<propState> = ({ loading, options, height }) => {
         ref={chartRef}
         style={{
           width: '100%',
-          height: height + 'px'
+          height: `${height}px`,
         }}
       />
     </Card>
-  )
-}
+  );
+};
 
-export default ChartsCard
+export default ChartsCard;

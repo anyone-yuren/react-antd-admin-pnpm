@@ -1,13 +1,12 @@
-import { ReactNode, Suspense, LazyExoticComponent } from 'react'
-import { Spin } from 'antd'
+import { Spin } from 'antd';
+import { LazyExoticComponent, ReactNode, Suspense } from 'react';
 
 /**
  * @description 路由懒加载
  * @param {Element} Component 需要访问的组件
  * @returns element
  */
-const LazyLoad = (Component: LazyExoticComponent<any>): ReactNode => {
-  return (
+const LazyLoad = (Component: LazyExoticComponent<any>): ReactNode => (
     <Suspense
       fallback={
         <Spin
@@ -16,14 +15,13 @@ const LazyLoad = (Component: LazyExoticComponent<any>): ReactNode => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            height: '100%'
+            height: '100%',
           }}
         />
       }
     >
       <Component />
     </Suspense>
-  )
-}
+);
 
-export default LazyLoad
+export default LazyLoad;

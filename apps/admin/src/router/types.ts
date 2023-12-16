@@ -1,5 +1,5 @@
-import { ReactNode } from 'react'
-import { LoaderFunction } from 'react-router-dom'
+import { ReactNode } from 'react';
+import { LoaderFunction } from 'react-router-dom';
 
 export interface MetaProps {
   title: string

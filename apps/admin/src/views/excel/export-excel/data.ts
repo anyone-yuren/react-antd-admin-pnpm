@@ -20,7 +20,7 @@ export const tableData: DataItem[] = [
     education: '高中',
     hobby: '羽毛球、篮球、听歌、阅读',
     forbid: false,
-    editable: true
+    editable: true,
   },
   {
     key: 1002,
@@ -31,7 +31,7 @@ export const tableData: DataItem[] = [
     education: '初中',
     hobby: '乒乓球、排球、游泳',
     forbid: true,
-    editable: false
+    editable: false,
   },
   {
     key: 1003,
@@ -42,7 +42,7 @@ export const tableData: DataItem[] = [
     education: '本科',
     hobby: '旱冰、滑雪、跳高、打游戏',
     forbid: false,
-    editable: false
+    editable: false,
   },
   {
     key: 1004,
@@ -53,7 +53,7 @@ export const tableData: DataItem[] = [
     education: '大专',
     hobby: '网球、篮球、跳伞',
     forbid: true,
-    editable: false
+    editable: false,
   },
   {
     key: 1005,
@@ -64,7 +64,7 @@ export const tableData: DataItem[] = [
     education: '本科',
     hobby: '滑翔、游泳、篮球、看电影',
     forbid: true,
-    editable: false
+    editable: false,
   },
   {
     key: 1006,
@@ -75,7 +75,7 @@ export const tableData: DataItem[] = [
     education: '大专',
     hobby: '游泳、篮球、潜水',
     forbid: false,
-    editable: false
+    editable: false,
   },
   {
     key: 1007,
@@ -86,6 +86,6 @@ export const tableData: DataItem[] = [
     education: '高中',
     hobby: '冲浪、上网、看书、打游戏',
     forbid: false,
-    editable: false
-  }
-]
+    editable: false,
+  },
+];

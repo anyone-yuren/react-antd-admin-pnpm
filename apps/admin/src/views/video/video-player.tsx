@@ -1,23 +1,25 @@
-
 // @ts-nocheck
-import { Row, Col, Card } from 'antd'
-import { PageWrapper } from '@/components/Page'
-import { VIDEO_RES_SRC, VIDEO_PLUGIN } from '@/settings/websiteSetting'
-import { Player, ControlBar, BigPlayButton, CurrentTimeDisplay, TimeDivider,
-  PlaybackRateMenuButton, VolumeMenuButton } from 'video-react'
-import 'video-react/dist/video-react.css'
+import { Card, Col, Row } from 'antd';
+import {
+  BigPlayButton, ControlBar, CurrentTimeDisplay, PlaybackRateMenuButton, Player, TimeDivider,
+  VolumeMenuButton,
+} from 'video-react';
 
-const VideoPlayers = () => {
+import { PageWrapper } from '@/components/Page';
 
-  return (
+import { VIDEO_PLUGIN, VIDEO_RES_SRC } from '@/settings/websiteSetting';
+
+import 'video-react/dist/video-react.css';
+
+const VideoPlayers = () => (
     <PageWrapper plugin={VIDEO_PLUGIN}>
       <Row gutter={12}>
         <Col span={12}>
           <Card title='传统视频播放器' bordered={false}>
-            <video 
+            <video
               src={VIDEO_RES_SRC}
               controls
-              style={{width: '100%', outline: 'none'}}
+              style={{ width: '100%', outline: 'none' }}
             />
           </Card>
         </Col>
@@ -41,7 +43,6 @@ const VideoPlayers = () => {
         </Col>
       </Row>
     </PageWrapper>
-  )
-}
+);
 
-export default VideoPlayers
+export default VideoPlayers;

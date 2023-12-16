@@ -1,7 +1,8 @@
-import { FC } from 'react'
-import { Tag } from 'antd'
-import classNames from 'classnames'
-import styles from './index.module.less'
+import { Tag } from 'antd';
+import classNames from 'classnames';
+import { FC } from 'react';
+
+import styles from './index.module.less';
 
 interface PropState {
   name: string
@@ -11,10 +12,11 @@ interface PropState {
   onClick: () => void
 }
 
-const TagItem: FC<PropState> = ({ name, fixed, active, closeTag, onClick }) => {
-  return (
+const TagItem: FC<PropState> = ({
+  name, fixed, active, closeTag, onClick,
+}) => (
     <Tag
-      className={classNames(styles['compo_tag-item'], { [styles['active']]: active })}
+      className={classNames(styles['compo_tag-item'], { [styles.active]: active })}
       closable={!fixed}
       onClose={closeTag}
       onClick={onClick}
@@ -22,7 +24,6 @@ const TagItem: FC<PropState> = ({ name, fixed, active, closeTag, onClick }) => {
       <span className={styles['compo_tag-item__dot']} />
       <span className={styles['compo_tag-item__name']}>{name}</span>
     </Tag>
-  )
-}
+);
 
-export default TagItem
+export default TagItem;

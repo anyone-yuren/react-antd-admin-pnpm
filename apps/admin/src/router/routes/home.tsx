@@ -1,6 +1,7 @@
-import { RouteObject } from '../types'
-import { LayoutGuard } from '../guard'
-import Home from '@/views/home'
+import Home from '@/views/home';
+
+import { LayoutGuard } from '../guard';
+import { RouteObject } from '../types';
 
 // Home route
 const HomeRoute: RouteObject = {
@@ -11,7 +12,7 @@ const HomeRoute: RouteObject = {
     icon: 'home',
     affix: true,
     orderNo: 1,
-    hideChildrenInMenu: true
+    hideChildrenInMenu: true,
   },
   children: [
     {
@@ -22,10 +23,10 @@ const HomeRoute: RouteObject = {
         key: 'home',
         icon: 'home',
         orderNo: 1,
-        hideMenu: true
-      }
-    }
-  ]
-}
+        hideMenu: true,
+      },
+    },
+  ],
+};
 
-export default HomeRoute
+export default HomeRoute;

@@ -1,10 +1,9 @@
-import { BasicLayout } from '@/layout'
-import { GuardRoute } from './guardRoute'
+import { BasicLayout } from '@/layout';
 
-export const LayoutGuard = () => {
-  return (
+import { GuardRoute } from './guardRoute';
+
+export const LayoutGuard = () => (
     <GuardRoute>
       <BasicLayout />
     </GuardRoute>
-  )
-}
+);

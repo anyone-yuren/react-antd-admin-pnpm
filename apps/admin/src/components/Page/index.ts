@@ -1,3 +1,3 @@
-import PageWrapper from './src/PageWrapper'
+import PageWrapper from './src/PageWrapper';
 
-export { PageWrapper }
+export { PageWrapper };

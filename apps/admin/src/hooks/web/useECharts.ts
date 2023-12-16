@@ -1,75 +1,76 @@
-import type { EChartsOption } from 'echarts'
-import { useRef, useEffect } from 'react'
-import { useDebounceFn } from 'ahooks'
-import echarts from '@/utils/echarts'
+import { useDebounceFn } from 'ahooks';
+import { useEffect, useRef } from 'react';
+
+import echarts from '@/utils/echarts';
+
+import type { EChartsOption } from 'echarts';
 
 export function useECharts(
   options: EChartsOption,
   loading: boolean = true,
-  theme: 'light' | 'dark' | 'default' = 'default'
+  theme: 'light' | 'dark' | 'default' = 'default',
 ) {
-
-  const chartRef = useRef<HTMLDivElement>(null)
-  let chartInstance: echarts.ECharts | null = null
+  const chartRef = useRef<HTMLDivElement>(null);
+  let chartInstance: echarts.ECharts | null = null;
 
   const { run: resizeFn } = useDebounceFn(
     () => {
-      chartInstance?.resize()
+      chartInstance?.resize();
     },
-    { wait: 200 }
-  )
+    { wait: 200 },
+  );
 
   useEffect(() => {
-    initCharts()
+    initCharts();
 
     return () => {
-      disposeCharts()
-    }
-  }, [])
+      disposeCharts();
+    };
+  }, []);
 
   useEffect(() => {
-    if (loading) return
-    setOptions(options)
+    if (loading) return;
+    setOptions(options);
 
     return () => {
-      disposeCharts()
-    }
-  }, [loading, options])
+      disposeCharts();
+    };
+  }, [loading, options]);
 
   const initCharts = (t = theme) => {
-    const el = chartRef?.current
-    if (!el) return
+    const el = chartRef?.current;
+    if (!el) return;
 
-    chartInstance = echarts.init(el, t)
+    chartInstance = echarts.init(el, t);
 
-    window.addEventListener('resize', resizeFn)
-  }
+    window.addEventListener('resize', resizeFn);
+  };
 
   const setOptions = (options: EChartsOption) => {
     if (!chartInstance) {
-      initCharts()
+      initCharts();
 
-      if (!chartInstance) return
+      if (!chartInstance) return;
     }
 
-    chartInstance?.clear()
+    chartInstance?.clear();
 
-    chartInstance?.setOption(options)
-  }
+    chartInstance?.setOption(options);
+  };
 
   const disposeCharts = () => {
-    if (!chartInstance) return
-    window.removeEventListener('resize', resizeFn)
-    chartInstance.dispose()
-    chartInstance = null
-  }
+    if (!chartInstance) return;
+    window.removeEventListener('resize', resizeFn);
+    chartInstance.dispose();
+    chartInstance = null;
+  };
 
   const getInstance = (): echarts.ECharts | null => {
     if (!chartInstance) {
-      initCharts()
+      initCharts();
     }
-    return chartInstance
-  }
+    return chartInstance;
+  };
 
-  return { chartRef, getInstance }
+  return { chartRef, getInstance };
 }

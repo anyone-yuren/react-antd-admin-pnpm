@@ -1,22 +1,24 @@
-import { FC, useState } from 'react'
-import { Row, Col, Space } from 'antd'
-import CountUpCard from './components/CountUpCard'
-import ChartsCard from './components/ChartsCard'
-import { countUpData, pieOptions, ringOptions, radarOptions, barOptions, lineOptions } from './data'
+import { Col, Row, Space } from 'antd';
+import { FC, useState } from 'react';
+
+import ChartsCard from './components/ChartsCard';
+import CountUpCard from './components/CountUpCard';
+import {
+  barOptions, countUpData, lineOptions, pieOptions, radarOptions, ringOptions,
+} from './data';
 
 const HomePage: FC = () => {
-	const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
-	setTimeout(() => {
-		setIsLoading(false)
-	}, 1500)
+  setTimeout(() => {
+    setIsLoading(false);
+  }, 1500);
 
-	return (
+  return (
 		<Space direction='vertical' size={12} style={{ display: 'flex' }}>
 			<Row gutter={12}>
 				{
-					countUpData.map(item => {
-						return (
+					countUpData.map((item) => (
 							<Col flex={1} key={item.title}>
 								<CountUpCard
 									loading={isLoading}
@@ -26,8 +28,7 @@ const HomePage: FC = () => {
 									countNum={item.count}
 								/>
 							</Col>
-						)
-					})
+					))
 				}
 			</Row>
 			<Row gutter={12}>
@@ -50,7 +51,7 @@ const HomePage: FC = () => {
           </Col>
         </Row>
 		</Space>
-	)
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

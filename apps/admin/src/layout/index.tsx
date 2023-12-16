@@ -1,18 +1,22 @@
-import { Layout } from 'antd'
-import { Outlet } from 'react-router-dom'
-import LayoutMenu from './menu'
-import LayoutHeader from './header'
-import { AppLogo } from '@/components/AppLogo'
-import './index.less'
-import { useTitle } from '@/hooks/web/useTitle'
-import { useAppSelector } from '@/stores'
-import ErrorBoundary from 'antd/es/alert/ErrorBoundary'
+import { Layout } from 'antd';
+import ErrorBoundary from 'antd/es/alert/ErrorBoundary';
+import { Outlet } from 'react-router-dom';
+import './index.less';
+
+import { AppLogo } from '@/components/AppLogo';
+
+import { useTitle } from '@/hooks/web/useTitle';
+
+import { useAppSelector } from '@/stores';
+
+import LayoutHeader from './header';
+import LayoutMenu from './menu';
 
 export const BasicLayout = (props: any) => {
-  useTitle()
-  const { Sider, Content } = Layout
+  useTitle();
+  const { Sider, Content } = Layout;
 
-  const getMenuFold = useAppSelector(state => state.app.appConfig?.menuSetting?.menuFold)
+  const getMenuFold = useAppSelector((state) => state.app.appConfig?.menuSetting?.menuFold);
 
   return (
     <Layout className='layout_wrapper'>
@@ -29,5 +33,5 @@ export const BasicLayout = (props: any) => {
         </Content>
       </Layout>
     </Layout>
-  )
-}
+  );
+};

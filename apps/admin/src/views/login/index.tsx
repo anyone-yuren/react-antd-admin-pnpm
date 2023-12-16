@@ -1,95 +1,98 @@
-import type { FormInstance } from 'antd/es/form'
-import type { LoginParams, UserInfo } from '@/types'
-import { FC, useRef, useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
-import { Form, Input, Checkbox, Button, message } from 'antd'
-import { UserOutlined, LockOutlined } from '@ant-design/icons'
-import { useAppSelector, useAppDispatch } from '@/stores'
-import { setToken, setUserInfo, setSessionTimeout } from '@/stores/modules/user'
-import { getAuthCache } from '@/utils/auth'
-import { TOKEN_KEY } from '@/enums/cacheEnum'
-import { loginApi, getUserInfo } from '@/api'
-import logoIcon from '@/assets/images/logo_name.png'
-import classNames from 'classnames'
-import './index.less'
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import {
+  Button, Checkbox, Form, Input, message,
+} from 'antd';
+import classNames from 'classnames';
+import { FC, useRef, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import './index.less';
+
+import { getAuthCache } from '@/utils/auth';
+
+import { getUserInfo, loginApi } from '@/api';
+import logoIcon from '@/assets/images/logo_name.png';
+import { TOKEN_KEY } from '@/enums/cacheEnum';
+import { useAppDispatch, useAppSelector } from '@/stores';
+import { setSessionTimeout, setToken, setUserInfo } from '@/stores/modules/user';
+
+import type { LoginParams, UserInfo } from '@/types';
+import type { FormInstance } from 'antd/es/form';
 
 const LoginPage: FC = () => {
-  const [form] = Form.useForm()
-  const loginFormRef = useRef<FormInstance>(null)
-  const [loading, setLoading] = useState(false)
+  const [form] = Form.useForm();
+  const loginFormRef = useRef<FormInstance>(null);
+  const [loading, setLoading] = useState(false);
 
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
-  const { token, sessionTimeout } = useAppSelector(state => state.user)
-  const getToken = (): string => {
-    return token || getAuthCache<string>(TOKEN_KEY)
-  }
+  const { token, sessionTimeout } = useAppSelector((state) => state.user);
+  const getToken = (): string => token || getAuthCache<string>(TOKEN_KEY);
 
-  const navigate = useNavigate()
-  const [searchParams] = useSearchParams()
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   const handleLogin = async (values: any) => {
     try {
-      setLoading(true)
+      setLoading(true);
       const userInfo = await loginAction({
         username: values.username,
-        password: values.password
-      })
+        password: values.password,
+      });
       if (userInfo) {
-        message.success('登陆成功！')
+        message.success('登陆成功！');
       }
     } catch (error) {
-      message.error((error as unknown as Error).message)
+      message.error((error as unknown as Error).message);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const loginAction = async (
     params: LoginParams & {
       goHome?: boolean
-    }
+    },
   ): Promise<UserInfo | null> => {
     try {
-      const { goHome = true, ...loginParams } = params
-      const data = await loginApi(loginParams)
+      const { goHome = true, ...loginParams } = params;
+      const data = await loginApi(loginParams);
 
       // 保存 Token
-      dispatch(setToken(data?.token))
-      return afterLoginAction(goHome)
+      dispatch(setToken(data?.token));
+      return await afterLoginAction(goHome);
     } catch (error) {
-      return Promise.reject(error)
+      return Promise.reject(error);
     }
-  }
+  };
 
   const afterLoginAction = async (goHome?: boolean): Promise<UserInfo | null> => {
-    if (!getToken()) return null
+    if (!getToken()) return null;
 
-    const userInfo = await getUserInfoAction()
+    const userInfo = await getUserInfoAction();
 
     if (sessionTimeout) {
-      dispatch(setSessionTimeout(false))
+      dispatch(setSessionTimeout(false));
     } else {
-      const redirect = searchParams.get('redirect')
+      const redirect = searchParams.get('redirect');
       if (redirect) {
-        navigate(redirect)
+        navigate(redirect);
       } else {
-        goHome && navigate(userInfo?.homePath || '/home')
+        goHome && navigate(userInfo?.homePath || '/home');
       }
     }
 
-    return userInfo
-  }
+    return userInfo;
+  };
 
   const getUserInfoAction = async (): Promise<UserInfo | null> => {
-    if (!getToken()) return null
+    if (!getToken()) return null;
 
-    const userInfo = await getUserInfo()
+    const userInfo = await getUserInfo();
 
-    dispatch(setUserInfo(userInfo))
+    dispatch(setUserInfo(userInfo));
 
-    return userInfo
-  }
+    return userInfo;
+  };
 
   return (
     <div className='login-wrapper'>
@@ -104,7 +107,7 @@ const LoginPage: FC = () => {
           initialValues={{
             username: 'admin',
             password: '123456',
-            remember: true
+            remember: true,
           }}
           className='login-box-form'
           onFinish={handleLogin}
@@ -138,7 +141,7 @@ const LoginPage: FC = () => {
         </Form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;

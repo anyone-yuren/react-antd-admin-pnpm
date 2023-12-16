@@ -1,10 +1,12 @@
-import { Tooltip } from 'antd'
-import { openWindow } from '@/utils'
-import SvgIcon from '@/components/SvgIcon'
+import { Tooltip } from 'antd';
+
+import SvgIcon from '@/components/SvgIcon';
+
+import { openWindow } from '@/utils';
 
 export default function GithubLink() {
-  function openGithub () {
-    openWindow('https://github.com/baimingxuan/react-admin-design')
+  function openGithub() {
+    openWindow('https://github.com/baimingxuan/react-admin-design');
   }
 
   return (
@@ -23,5 +25,5 @@ export default function GithubLink() {
         />
       </span>
     </Tooltip>
-  )
+  );
 }

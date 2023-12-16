@@ -6,5 +6,5 @@ export enum ExceptionEnum {
   PAGE_NOT_FOUND = 404,
 
   // server error
-  SERVER_ERROR = 500
+  SERVER_ERROR = 500,
 }

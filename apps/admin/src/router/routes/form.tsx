@@ -1,7 +1,9 @@
-import { lazy } from 'react'
-import { RouteObject } from '../types'
-import { LayoutGuard } from '../guard'
-import { LazyLoad } from '@/components/LazyLoad'
+import { lazy } from 'react';
+
+import { LazyLoad } from '@/components/LazyLoad';
+
+import { LayoutGuard } from '../guard';
+import { RouteObject } from '../types';
 
 // form module page
 const FormRoute: RouteObject = {
@@ -10,7 +12,7 @@ const FormRoute: RouteObject = {
   meta: {
     title: '表单',
     icon: 'form',
-    orderNo: 2
+    orderNo: 2,
   },
   children: [
     {
@@ -18,26 +20,26 @@ const FormRoute: RouteObject = {
       element: LazyLoad(lazy(() => import('@/views/form/basic-form'))),
       meta: {
         title: '基础表单',
-        key: 'basicForm'
-      }
+        key: 'basicForm',
+      },
     },
     {
       path: 'form-designer',
       element: LazyLoad(lazy(() => import('@/views/blank'))),
       meta: {
         title: '表单设计器',
-        key: 'formDesigner'
-      }
+        key: 'formDesigner',
+      },
     },
     {
       path: 'gbeata-form',
       element: LazyLoad(lazy(() => import('@/views/form/gbeata-form'))),
       meta: {
         title: 'gbeata表单',
-        key: 'gbeataForm'
-      }
-    }
-  ]
-}
+        key: 'gbeataForm',
+      },
+    },
+  ],
+};
 
-export default FormRoute
+export default FormRoute;

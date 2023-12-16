@@ -1,7 +1,8 @@
-import type { AppConfig } from '@/types/config'
-import { MenuTypeEnum, MenuModeEnum, MenuFoldBtnEnum } from '@/enums/menuEnum'
-import { ThemeEnum, PageTransitionEnum, PermissionModeEnum } from '@/enums/appEnum'
-import { CacheTypeEnum } from '@/enums/cacheEnum'
+import { PageTransitionEnum, PermissionModeEnum, ThemeEnum } from '@/enums/appEnum';
+import { CacheTypeEnum } from '@/enums/cacheEnum';
+import { MenuFoldBtnEnum, MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum';
+
+import type { AppConfig } from '@/types/config';
 
 export const appSetting: AppConfig = {
   // Theme color
@@ -23,7 +24,7 @@ export const appSetting: AppConfig = {
     // Show document button
     showDoc: false,
     // Show github button
-    showGithub: true
+    showGithub: true,
   },
   // Menu configuration
   menuSetting: {
@@ -48,7 +49,7 @@ export const appSetting: AppConfig = {
     // Hydrid sider menu fixed
     menuFixed: false,
     // Hybrid mode sider menu hidden
-    menuHidden: false
+    menuHidden: false,
   },
   // Transition settings
   transitionSetting: {
@@ -59,7 +60,7 @@ export const appSetting: AppConfig = {
     // Whether to open the page switching animation
     openTransition: true,
     // Page basic switching animation
-    basicTransition: PageTransitionEnum.FADE
+    basicTransition: PageTransitionEnum.FADE,
   },
   // Permission mode
   permissionMode: PermissionModeEnum.MAPPING,
@@ -74,5 +75,5 @@ export const appSetting: AppConfig = {
   // Whether to turn on the color weak mode
   colorWeak: false,
   // Whether to turn on the gray mode
-  grayMode: false
-}
+  grayMode: false,
+};

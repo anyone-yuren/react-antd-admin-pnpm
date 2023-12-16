@@ -4,5 +4,5 @@ export enum TagActionEnum {
   CLOSE_LEFT,
   CLOSE_RIGHT,
   CLOSE_OTHER,
-  CLOSE_ALL
+  CLOSE_ALL,
 }

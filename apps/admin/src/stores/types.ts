@@ -1,6 +1,7 @@
-import { AppConfig } from '@/types/config'
-import { AppModeEnum, ThemeEnum } from '@/enums/appEnum'
-import { RouteObject } from '@/router/types'
+import { AppModeEnum, ThemeEnum } from '@/enums/appEnum';
+import { RouteObject } from '@/router/types';
+
+import { AppConfig } from '@/types/config';
 
 export interface UserInfo {
   userId: string | number

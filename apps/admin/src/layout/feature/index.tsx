@@ -1,9 +1,12 @@
-import { Divider } from 'antd'
-import { FullScreen, DocLink, GithubLink, UserDropdown } from './components'
-import moduleStyle from './index.module.less'
+import { Divider } from 'antd';
+
+import {
+  DocLink, FullScreen, GithubLink, UserDropdown,
+} from './components';
+import moduleStyle from './index.module.less';
 
 export default function LayoutFeature() {
-  const prefixCls = 'layout_feature'
+  const prefixCls = 'layout_feature';
 
   return (
     <div className={moduleStyle[prefixCls]}>
@@ -17,5 +20,5 @@ export default function LayoutFeature() {
       <Divider type='vertical' className={moduleStyle[`${prefixCls}-divider`]} />
       <UserDropdown />
     </div>
-  )
+  );
 }
