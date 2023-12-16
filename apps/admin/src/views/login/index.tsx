@@ -116,7 +116,13 @@ const LoginPage: FC = () => {
           <Text type='secondary'>
             {' '}
             新用户？
-            <Button type='link' color='primary'>
+            <Button
+              type='link'
+              style={{
+                padding: 0,
+              }}
+              color='primary'
+            >
               立即注册
             </Button>
           </Text>
