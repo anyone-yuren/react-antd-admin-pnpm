@@ -32,6 +32,20 @@ module.exports = {
         ],
       },
     ],
+    "object-curly-newline": "off",
+    // 限制单行的最大长度
+    "max-len": [
+      "error",
+      {
+        code: 150,
+        ignoreComments: true,
+        ignoreTrailingComments: true,
+        ignoreUrls: true,
+        ignoreStrings: true,
+        ignoreTemplateLiterals: true,
+        ignoreRegExpLiterals: true,
+      },
+    ],
     "no-var": "error",
     // 禁止在定义变量之前使用变量
     "no-use-before-define": "off",

@@ -8,12 +8,7 @@ import { searchRoute } from '@/utils';
 
 import { basicRoutes } from '@/router';
 import { useAppDispatch, useAppSelector } from '@/stores';
-import {
-  addVisitedTags,
-  closeAllTags,
-  closeTagByKey,
-  closeTagsByType,
-} from '@/stores/modules/tags';
+import { addVisitedTags, closeAllTags, closeTagByKey, closeTagsByType } from '@/stores/modules/tags';
 
 import { TagItem } from './components';
 import useStyles from './index.module.style';
@@ -106,10 +101,7 @@ const LayoutTags: FC = () => {
     } else if (tag?.offsetLeft! < -tagsBodyLeft) {
       // 标签在可视区域左侧 (The active tag on the left side of the layout_tags-main)
       leftOffset = -tag?.offsetLeft! + mainBodyPadding;
-    } else if (
-      tag?.offsetLeft! > -tagsBodyLeft &&
-      tag?.offsetLeft! + tag?.offsetWidth! < -tagsBodyLeft + mainWidth
-    ) {
+    } else if (tag?.offsetLeft! > -tagsBodyLeft && tag?.offsetLeft! + tag?.offsetWidth! < -tagsBodyLeft + mainWidth) {
       // 标签在可视区域 (The active tag on the layout_tags-main)
       leftOffset = Math.min(0, mainWidth - tag?.offsetWidth! - tag?.offsetLeft! - mainBodyPadding);
     } else {
@@ -174,18 +166,14 @@ const LayoutTags: FC = () => {
   return (
     <div className={styles.layout_tags}>
       <Button
-        className={styles.layout_tags+'__btn'}
+        className={`${styles.layout_tags}__btn`}
         icon={<LeftOutlined />}
-        size="small"
+        size='small'
         onClick={() => handleMove(200)}
       />
 
       <div ref={tagsMain} className={`${styles.layout_tags}__main`} onWheel={handleScroll}>
-        <div
-          ref={tagsMainBody}
-          className={styles['layout_tags'] + '__main-body'}
-          style={{ left: `${tagsBodyLeft}px` }}
-        >
+        <div ref={tagsMainBody} className={`${styles.layout_tags}__main-body`} style={{ left: `${tagsBodyLeft}px` }}>
           {visitedTags.map((item: RouteObject) => (
             <span key={item.fullPath} data-path={item.fullPath}>
               <TagItem
@@ -200,24 +188,24 @@ const LayoutTags: FC = () => {
         </div>
       </div>
       <Button
-        className={styles.layout_tags+'__btn'}
+        className={`${styles.layout_tags}__btn`}
         icon={<RightOutlined />}
-        size="small"
+        size='small'
         onClick={() => handleMove(-200)}
       />
 
       <Button
-        className={classNames(styles.layout_tags+'__btn', styles['layout_tags'] + '__btn-space')}
+        className={classNames(`${styles.layout_tags}__btn`, `${styles.layout_tags}__btn-space`)}
         icon={<RedoOutlined />}
-        size="small"
+        size='small'
         onClick={() => handleReload()}
       />
 
-      <Dropdown menu={{ items, onClick }} placement="bottomLeft">
+      <Dropdown menu={{ items, onClick }} placement='bottomLeft'>
         <Button
-          className={classNames(styles.layout_tags+'__btn', styles['layout_tags']+'__btn-space')}
+          className={classNames(`${styles.layout_tags}__btn`, `${styles.layout_tags}__btn-space`)}
           icon={<CloseOutlined />}
-          size="small"
+          size='small'
         />
       </Dropdown>
     </div>

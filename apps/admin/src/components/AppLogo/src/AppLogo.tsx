@@ -16,12 +16,8 @@ const AppLogo: FC = () => {
   return (
     <div className={classNames('anticon', styles['app-logo'])}>
       <Space>
-        <img className={styles['logo-img']} src={logoImg} alt="logo" />
-        <img
-          className={classNames(styles['logo-name'], { [styles.hidden]: getMenuFold })}
-          src={logoName}
-          alt="logo"
-        />
+        <img className={styles['logo-img']} src={logoImg} alt='logo' />
+        <img className={classNames(styles['logo-name'], { [styles.hidden]: getMenuFold })} src={logoName} alt='logo' />
       </Space>
     </div>
   );

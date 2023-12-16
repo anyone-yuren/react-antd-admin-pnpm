@@ -6,7 +6,7 @@ import { openWindow } from '@/utils';
 
 export default function GithubLink() {
   function openGithub() {
-    openWindow('https://github.com/baimingxuan/react-admin-design');
+    openWindow('https://github.com/anyone-yuren/gbeata-react-admin');
   }
 
   return (

@@ -9,8 +9,8 @@ import { useTitle } from '@/hooks/web/useTitle';
 import { useAppSelector } from '@/stores';
 
 import LayoutHeader from './header';
+import useStyles from './index.style';
 import LayoutMenu from './menu';
-import useStyles  from './index.style';
 
 export const BasicLayout = (props: any) => {
   useTitle();
