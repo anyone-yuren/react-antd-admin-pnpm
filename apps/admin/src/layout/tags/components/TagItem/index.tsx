@@ -13,8 +13,8 @@ interface PropState {
   onClick: () => void;
 }
 
-const TagItem: FC<PropState> = ({ name, fixed, active, closeTag, onClick }) => {
-  const { styles } = useStyles();
+const TagItem: FC<PropState> = ({ name, fixed, active=false, closeTag, onClick }) => {
+  const { styles } = useStyles({active:active});
   return (
     <Tag
       className={classNames(styles['compo_tag-item'], { [styles.active]: active })}
@@ -22,8 +22,8 @@ const TagItem: FC<PropState> = ({ name, fixed, active, closeTag, onClick }) => {
       onClose={closeTag}
       onClick={onClick}
     >
-      <span className={styles['compo_tag-item__dot']} />
-      <span className={styles['compo_tag-item__name']}>{name}</span>
+      <span className={styles['compo_tag-item']+'__dot'} />
+      <span className={styles['compo_tag-item']+'__name'}>{name}</span>
     </Tag>
   );
 };

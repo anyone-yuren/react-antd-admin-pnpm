@@ -1,6 +1,7 @@
 import { createStyles } from 'antd-style';
 
-const useStyles = createStyles(() => {
+const useStyles = createStyles((_, props: {active:boolean}) => {
+  const {active}= props
   return {
     'compo_tag-item': {
       display: 'inline-block',
@@ -10,7 +11,7 @@ const useStyles = createStyles(() => {
       padding: '0 8px',
       borderRadius: '3px',
       lineHeight: '24px',
-      color: '#fff',
+      color: '#555',
       background: '#fff',
       overflow: 'hidden',
       cursor: 'pointer',
@@ -21,7 +22,7 @@ const useStyles = createStyles(() => {
         height: '8px',
         marginRight: '6px',
         borderRadius: '50%',
-        background: '#dcdee0',
+        background: active?'#fff':'#dcdee0',
       },
       '&__name': { fontSize: '12px' },
     },
@@ -34,7 +35,9 @@ const useStyles = createStyles(() => {
       border: 'none',
       color: '#fff',
       background: '#1890ff',
-      '& .compo_tag-item__dot': { background: '#fff' },
+      '.anticon-close' :{
+        color: '#fff'
+      }
     },
   };
 });

@@ -174,16 +174,16 @@ const LayoutTags: FC = () => {
   return (
     <div className={styles.layout_tags}>
       <Button
-        className={styles.layout_tags__btn}
+        className={styles.layout_tags+'__btn'}
         icon={<LeftOutlined />}
         size="small"
         onClick={() => handleMove(200)}
       />
 
-      <div ref={tagsMain} className={styles.layout_tags__main} onWheel={handleScroll}>
+      <div ref={tagsMain} className={`${styles.layout_tags}__main`} onWheel={handleScroll}>
         <div
           ref={tagsMainBody}
-          className={styles['layout_tags__main-body']}
+          className={styles['layout_tags'] + '__main-body'}
           style={{ left: `${tagsBodyLeft}px` }}
         >
           {visitedTags.map((item: RouteObject) => (
@@ -200,14 +200,14 @@ const LayoutTags: FC = () => {
         </div>
       </div>
       <Button
-        className={styles.layout_tags__btn}
+        className={styles.layout_tags+'__btn'}
         icon={<RightOutlined />}
         size="small"
         onClick={() => handleMove(-200)}
       />
 
       <Button
-        className={classNames(styles.layout_tags__btn, styles['layout_tags__btn-space'])}
+        className={classNames(styles.layout_tags+'__btn', styles['layout_tags'] + '__btn-space')}
         icon={<RedoOutlined />}
         size="small"
         onClick={() => handleReload()}
@@ -215,7 +215,7 @@ const LayoutTags: FC = () => {
 
       <Dropdown menu={{ items, onClick }} placement="bottomLeft">
         <Button
-          className={classNames(styles.layout_tags__btn, styles['layout_tags__btn-space'])}
+          className={classNames(styles.layout_tags+'__btn', styles['layout_tags']+'__btn-space')}
           icon={<CloseOutlined />}
           size="small"
         />
