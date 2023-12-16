@@ -7,14 +7,14 @@ import { openWindow } from '@/utils';
 import compoStyle from './compo.module.less';
 
 interface PluginProp {
-  name?: string
-  desc?: string
-  url?: string
+  name?: string;
+  desc?: string;
+  url?: string;
 }
 
 interface PageProp {
-  plugin: PluginProp
-  children: JSX.Element
+  plugin: PluginProp;
+  children: JSX.Element;
 }
 
 const PageWrapper = (props: PageProp) => {
@@ -26,18 +26,18 @@ const PageWrapper = (props: PageProp) => {
     <div className={compoStyle['compo_page-wrapper']}>
       <div className={compoStyle['page-header']}>
         <div className={compoStyle['page-header-name']}>
-          <SvgIcon name='hints' size={18} />
+          <SvgIcon name="hints" size={18} />
           <span>{props.plugin?.name}</span>
         </div>
         <p>{props.plugin?.desc}</p>
         <p>
           <span>github源码:</span>
-          <Button type='link' size='small' onClick={openGithub}>立即访问</Button>
+          <Button type="link" size="small" onClick={openGithub}>
+            立即访问
+          </Button>
         </p>
       </div>
-      <div className={compoStyle['page-content']}>
-        {props.children}
-      </div>
+      <div className={compoStyle['page-content']}>{props.children}</div>
     </div>
   );
 };

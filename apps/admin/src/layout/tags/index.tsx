@@ -1,12 +1,7 @@
-import {
-  CloseOutlined, LeftOutlined, RedoOutlined, RightOutlined,
-} from '@ant-design/icons';
+import { CloseOutlined, LeftOutlined, RedoOutlined, RightOutlined } from '@ant-design/icons';
 import { Button, Dropdown } from 'antd';
 import classNames from 'classnames';
-import {
-  type FC, type WheelEvent,
-  useEffect, useRef, useState,
-} from 'react';
+import { type FC, type WheelEvent, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { searchRoute } from '@/utils';
@@ -14,16 +9,20 @@ import { searchRoute } from '@/utils';
 import { basicRoutes } from '@/router';
 import { useAppDispatch, useAppSelector } from '@/stores';
 import {
-  addVisitedTags, closeAllTags, closeTagByKey, closeTagsByType,
+  addVisitedTags,
+  closeAllTags,
+  closeTagByKey,
+  closeTagsByType,
 } from '@/stores/modules/tags';
 
 import { TagItem } from './components';
-import styles from './index.module.less';
+import useStyles from './index.module.style';
 
 import type { RouteObject } from '@/router/types';
 import type { MenuProps } from 'antd';
 
 const LayoutTags: FC = () => {
+  const { styles } = useStyles();
   const items: MenuProps['items'] = [
     { key: 'left', label: '关闭左侧' },
     { key: 'right', label: '关闭右侧' },
@@ -107,7 +106,10 @@ const LayoutTags: FC = () => {
     } else if (tag?.offsetLeft! < -tagsBodyLeft) {
       // 标签在可视区域左侧 (The active tag on the left side of the layout_tags-main)
       leftOffset = -tag?.offsetLeft! + mainBodyPadding;
-    } else if (tag?.offsetLeft! > -tagsBodyLeft && tag?.offsetLeft! + tag?.offsetWidth! < -tagsBodyLeft + mainWidth) {
+    } else if (
+      tag?.offsetLeft! > -tagsBodyLeft &&
+      tag?.offsetLeft! + tag?.offsetWidth! < -tagsBodyLeft + mainWidth
+    ) {
       // 标签在可视区域 (The active tag on the layout_tags-main)
       leftOffset = Math.min(0, mainWidth - tag?.offsetWidth! - tag?.offsetLeft! - mainBodyPadding);
     } else {
@@ -174,11 +176,16 @@ const LayoutTags: FC = () => {
       <Button
         className={styles.layout_tags__btn}
         icon={<LeftOutlined />}
-        size='small'
+        size="small"
         onClick={() => handleMove(200)}
       />
+
       <div ref={tagsMain} className={styles.layout_tags__main} onWheel={handleScroll}>
-        <div ref={tagsMainBody} className={styles['layout_tags__main-body']} style={{ left: `${tagsBodyLeft}px` }}>
+        <div
+          ref={tagsMainBody}
+          className={styles['layout_tags__main-body']}
+          style={{ left: `${tagsBodyLeft}px` }}
+        >
           {visitedTags.map((item: RouteObject) => (
             <span key={item.fullPath} data-path={item.fullPath}>
               <TagItem
@@ -195,20 +202,22 @@ const LayoutTags: FC = () => {
       <Button
         className={styles.layout_tags__btn}
         icon={<RightOutlined />}
-        size='small'
+        size="small"
         onClick={() => handleMove(-200)}
       />
+
       <Button
         className={classNames(styles.layout_tags__btn, styles['layout_tags__btn-space'])}
         icon={<RedoOutlined />}
-        size='small'
+        size="small"
         onClick={() => handleReload()}
       />
-      <Dropdown menu={{ items, onClick }} placement='bottomLeft'>
+
+      <Dropdown menu={{ items, onClick }} placement="bottomLeft">
         <Button
           className={classNames(styles.layout_tags__btn, styles['layout_tags__btn-space'])}
           icon={<CloseOutlined />}
-          size='small'
+          size="small"
         />
       </Dropdown>
     </div>

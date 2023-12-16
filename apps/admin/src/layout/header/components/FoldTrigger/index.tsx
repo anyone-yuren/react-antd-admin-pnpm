@@ -20,7 +20,7 @@ export default function FoldTrigger() {
       className={classNames(style['compo_fold-trigger'], { [style.unfold]: !getMenuFold })}
       onClick={toggledMenuFold}
     >
-      <SvgIcon name='unfold' size={20} />
+      <SvgIcon name="unfold" size={20} />
     </span>
   );
 }

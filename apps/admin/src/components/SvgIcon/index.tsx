@@ -1,13 +1,9 @@
-import styles from './index.module.less';
+import useStyles from './index.module.style';
 
 import type { SvgIconProp } from './types';
 
-export default function SvgIcon({
-  name,
-  prefix = 'icon',
-  size = 16,
-  style,
-} : SvgIconProp) {
+export default function SvgIcon({ name, prefix = 'icon', size = 16, style }: SvgIconProp) {
+  const { styles } = useStyles();
   const symbolId = `#${prefix}-${name}`;
   const iconStyle = {
     width: `${size}px`,

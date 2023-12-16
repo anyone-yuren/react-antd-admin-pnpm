@@ -96,6 +96,9 @@ importers:
       antd:
         specifier: ^5.11.2
         version: registry.npmmirror.com/antd@5.12.2(react-dom@18.2.0)(react@18.2.0)
+      antd-style:
+        specifier: ^3.6.1
+        version: registry.npmmirror.com/antd-style@3.6.1(@types/react@18.2.45)(antd@5.12.2)(react-dom@18.2.0)(react@18.2.0)
       axios:
         specifier: ^1.6.2
         version: registry.npmmirror.com/axios@1.6.2
@@ -3916,7 +3919,7 @@ packages:
     peerDependencies:
       react: '>=16.3.0'
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.2
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.6
       hoist-non-react-statics: registry.npmmirror.com/hoist-non-react-statics@3.3.2
       react: registry.npmmirror.com/react@18.1.0
       react-is: registry.npmmirror.com/react-is@16.13.1
@@ -3930,7 +3933,7 @@ packages:
     peerDependencies:
       react: '>=16.3.0'
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.2
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.6
       hoist-non-react-statics: registry.npmmirror.com/hoist-non-react-statics@3.3.2
       react: registry.npmmirror.com/react@18.2.0
       react-is: registry.npmmirror.com/react-is@16.13.1
@@ -6027,7 +6030,7 @@ packages:
     name: '@umijs/history'
     version: 5.3.1
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.2
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.6
       query-string: registry.npmmirror.com/query-string@6.14.1
 
   registry.npmmirror.com/@umijs/lint@4.0.89(eslint@8.56.0)(stylelint@14.16.1)(typescript@5.3.3):
@@ -12863,7 +12866,7 @@ packages:
     name: history
     version: 5.3.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.2
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.6
 
   registry.npmmirror.com/hmac-drbg@1.0.1:
     resolution: {integrity: sha512-Tti3gMqLdZfhOQY1Mzf/AanLiqh1WTiJgEj26ZuYQ9fbkLomzGchCws4FyrSd4VkpBfiNhaE1On+lOz894jvXg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/hmac-drbg/-/hmac-drbg-1.0.1.tgz}
@@ -19533,7 +19536,7 @@ packages:
       react: ^16.6.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.6.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.2
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.6
       invariant: registry.npmmirror.com/invariant@2.2.4
       prop-types: registry.npmmirror.com/prop-types@15.8.1
       react: registry.npmmirror.com/react@18.1.0
@@ -19550,7 +19553,7 @@ packages:
       react: ^16.6.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.6.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.2
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.6
       invariant: registry.npmmirror.com/invariant@2.2.4
       prop-types: registry.npmmirror.com/prop-types@15.8.1
       react: registry.npmmirror.com/react@18.2.0

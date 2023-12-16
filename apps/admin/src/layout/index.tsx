@@ -19,7 +19,7 @@ export const BasicLayout = (props: any) => {
   const getMenuFold = useAppSelector((state) => state.app.appConfig?.menuSetting?.menuFold);
 
   return (
-    <Layout className='layout_wrapper'>
+    <Layout className="layout_wrapper">
       <Sider width={210} trigger={null} collapsed={getMenuFold} style={{ height: '100vh' }}>
         <AppLogo />
         <LayoutMenu />

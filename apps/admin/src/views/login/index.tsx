@@ -1,7 +1,5 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import {
-  Button, Checkbox, Form, Input, message,
-} from 'antd';
+import { Button, Checkbox, Form, Input, message } from 'antd';
 import classNames from 'classnames';
 import { type FC, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -50,7 +48,7 @@ const LoginPage: FC = () => {
 
   const loginAction = async (
     params: LoginParams & {
-      goHome?: boolean
+      goHome?: boolean;
     },
   ): Promise<UserInfo | null> => {
     try {
@@ -95,10 +93,10 @@ const LoginPage: FC = () => {
   };
 
   return (
-    <div className='login-wrapper'>
-      <div className='login-box'>
-        <div className='login-box-title'>
-          <img src={logoIcon} alt='icon' />
+    <div className="login-wrapper">
+      <div className="login-box">
+        <div className="login-box-title">
+          <img src={logoIcon} alt="icon" />
           <p>账 号 登 录</p>
         </div>
         <Form
@@ -109,32 +107,36 @@ const LoginPage: FC = () => {
             password: '123456',
             remember: true,
           }}
-          className='login-box-form'
+          className="login-box-form"
           onFinish={handleLogin}
         >
-          <Form.Item name='username' rules={[{ required: true, message: '请输入账号' }]}>
+          <Form.Item name="username" rules={[{ required: true, message: '请输入账号' }]}>
             <Input
-              placeholder='请输入账号'
+              placeholder="请输入账号"
               prefix={<UserOutlined style={{ color: 'rgba(0, 0, 0, 0.25)' }} rev={undefined} />}
             />
           </Form.Item>
-          <Form.Item name='password' rules={[{ required: true, message: '请输入密码' }]}>
+          <Form.Item name="password" rules={[{ required: true, message: '请输入密码' }]}>
             <Input
-              type='password'
-              placeholder='请输入密码'
+              type="password"
+              placeholder="请输入密码"
               prefix={<LockOutlined style={{ color: 'rgba(0, 0, 0, 0.25)' }} rev={undefined} />}
             />
           </Form.Item>
           <Form.Item>
-            <Form.Item name='remember' className={classNames('fl', 'no-margin')} valuePropName='checked'>
+            <Form.Item
+              name="remember"
+              className={classNames('fl', 'no-margin')}
+              valuePropName="checked"
+            >
               <Checkbox>记住我</Checkbox>
             </Form.Item>
             <Form.Item className={classNames('fr', 'no-margin')}>
-              <a href=''>忘记密码？</a>
+              <a href="">忘记密码？</a>
             </Form.Item>
           </Form.Item>
           <Form.Item>
-            <Button type='primary' htmlType='submit' className='login-btn' loading={loading}>
+            <Button type="primary" htmlType="submit" className="login-btn" loading={loading}>
               登 录
             </Button>
           </Form.Item>
