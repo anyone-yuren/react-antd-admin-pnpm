@@ -5,7 +5,7 @@ import { Persistent } from '@/utils/cache/persistent';
 
 import { APP_CONFIG_KEY } from '@/enums/cacheEnum';
 
-import { AppState } from '../types';
+import type { AppState } from '../types';
 
 const initialState: AppState = {
   appMode: undefined,

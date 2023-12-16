@@ -1,6 +1,6 @@
-import { PageTransitionEnum, PermissionModeEnum, ThemeEnum } from '../enums/appEnum';
-import { CacheTypeEnum } from '../enums/cacheEnum';
-import { MenuFoldBtnEnum, MenuModeEnum, MenuTypeEnum } from '../enums/menuEnum';
+import type { PageTransitionEnum, PermissionModeEnum, ThemeEnum } from '../enums/appEnum';
+import type { CacheTypeEnum } from '../enums/cacheEnum';
+import type { MenuFoldBtnEnum, MenuModeEnum, MenuTypeEnum } from '../enums/menuEnum';
 
 export interface AppConfig {
   // Theme color

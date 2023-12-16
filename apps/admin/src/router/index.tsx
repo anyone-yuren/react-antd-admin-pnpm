@@ -8,7 +8,8 @@ import PageException from '@/views/exception';
 import LoginPage from '@/views/login';
 
 import { genFullPath } from './helpers';
-import { RouteObject } from './types';
+
+import type { RouteObject } from './types';
 
 const metaRoutes = import.meta.glob('./routes/*.tsx', { eager: true }) as Recordable;
 

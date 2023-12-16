@@ -1,7 +1,7 @@
 import { Checkbox, Form, Select } from 'antd';
-import { FC } from 'react';
 
-import { ConfigState } from '../types';
+import type { ConfigState } from '../types';
+import type { FC } from 'react';
 
 interface PropState {
   config: ConfigState

@@ -1,6 +1,6 @@
 import { DEFAULT_CACHE_TIME, enableStorageEncryption } from '@/settings/encryptionSetting';
 
-import { createStorage as create, CreateStorageParams } from './storageCache';
+import { type CreateStorageParams, createStorage as create } from './storageCache';
 
 type Options = Partial<CreateStorageParams>;
 

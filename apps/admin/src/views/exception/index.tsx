@@ -1,6 +1,7 @@
 import { Button, Card, Result } from 'antd';
-import { FC, ReactNode } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
+
+import type { FC, ReactNode } from 'react';
 
 const subTitleMap = new Map([
   [403, '对不起，您没有权限访问此页面。'],

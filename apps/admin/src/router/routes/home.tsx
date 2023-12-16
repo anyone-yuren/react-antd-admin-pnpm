@@ -1,7 +1,8 @@
 import Home from '@/views/home';
 
 import { LayoutGuard } from '../guard';
-import { RouteObject } from '../types';
+
+import type { RouteObject } from '../types';
 
 // Home route
 const HomeRoute: RouteObject = {

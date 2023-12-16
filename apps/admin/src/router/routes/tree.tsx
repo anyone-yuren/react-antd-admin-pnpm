@@ -3,7 +3,8 @@ import { lazy } from 'react';
 import { LazyLoad } from '@/components/LazyLoad';
 
 import { LayoutGuard } from '../guard';
-import { RouteObject } from '../types';
+
+import type { RouteObject } from '../types';
 
 // tree module page
 const TreeRoute: RouteObject = {

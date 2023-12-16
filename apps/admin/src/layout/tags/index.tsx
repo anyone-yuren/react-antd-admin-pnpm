@@ -4,7 +4,8 @@ import {
 import { Button, Dropdown } from 'antd';
 import classNames from 'classnames';
 import {
-  FC, useEffect, useRef, useState, WheelEvent,
+  type FC, type WheelEvent,
+  useEffect, useRef, useState,
 } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 

@@ -1,7 +1,7 @@
 import { Form } from 'antd';
-import { FC } from 'react';
 
-import { InfoState } from '../types';
+import type { InfoState } from '../types';
+import type { FC } from 'react';
 
 interface PropState {
   info: InfoState

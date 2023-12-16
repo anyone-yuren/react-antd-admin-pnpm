@@ -1,7 +1,7 @@
 import { Button, message, Upload } from 'antd';
-import { FC } from 'react';
 
 import type { UploadChangeParam } from 'antd/es/upload';
+import type { FC } from 'react';
 
 interface propState {
   onSuccess: (data: any) => void

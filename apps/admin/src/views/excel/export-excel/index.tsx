@@ -1,16 +1,17 @@
 import {
   Button, Card, Form, Input, message, Radio, Select, Space, Table,
 } from 'antd';
-import { ColumnType } from 'antd/es/table';
 import { useState } from 'react';
 
 import { PageWrapper } from '@/components/Page';
 
 import { XLSX_PLUGIN } from '@/settings/websiteSetting';
 
-import { DataToSheet } from '../types';
 import { useExcel } from '../useExcel';
 import { tableData } from './data';
+
+import type { DataToSheet } from '../types';
+import type { ColumnType } from 'antd/es/table';
 
 type FileType = 'xlsx' | 'csv' | 'txt';
 
@@ -48,11 +49,7 @@ const ExportExcel = (props: any) => {
     setTableSelectedKeys(selectedKeys);
   }
 
-  function handleTableSelect(
-    _record: object,
-    _selected: boolean,
-    selectedRows: object[],
-  ) {
+  function handleTableSelect(_record: object, _selected: boolean, selectedRows: object[]) {
     setTableSelectedRows(selectedRows);
   }
 
@@ -85,7 +82,7 @@ const ExportExcel = (props: any) => {
     <PageWrapper plugin={XLSX_PLUGIN}>
       <Card bordered={false}>
         <Space direction='vertical' size={16} style={{ width: '100%' }}>
-          <Form layout='inline' autoComplete="off" initialValues={formParam} onFinish={handleExport}>
+          <Form layout='inline' autoComplete='off' initialValues={formParam} onFinish={handleExport}>
             <Item label='文件名:' name='fileName'>
               <Input placeholder='文件名' />
             </Item>
@@ -108,7 +105,9 @@ const ExportExcel = (props: any) => {
               />
             </Item>
             <Item>
-              <Button type='primary' htmlType='submit'>导出Excel</Button>
+              <Button type='primary' htmlType='submit'>
+                导出Excel
+              </Button>
             </Item>
           </Form>
           <Table

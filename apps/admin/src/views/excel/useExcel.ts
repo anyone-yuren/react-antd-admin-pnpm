@@ -1,8 +1,7 @@
 import { saveAs } from 'file-saver';
 import { read, utils, write } from 'xlsx';
 
-import { DataToSheet, ImportType } from './types';
-
+import type { DataToSheet, ImportType } from './types';
 import type { WorkSheet } from 'xlsx';
 
 export function useExcel() {

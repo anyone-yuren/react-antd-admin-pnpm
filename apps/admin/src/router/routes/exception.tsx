@@ -5,7 +5,8 @@ import { LazyLoad } from '@/components/LazyLoad';
 import { ExceptionEnum } from '@/enums/exceptionEnum';
 
 import { LayoutGuard } from '../guard';
-import { RouteObject } from '../types';
+
+import type { RouteObject } from '../types';
 
 // exception module page
 const ExceptionRoute: RouteObject = {

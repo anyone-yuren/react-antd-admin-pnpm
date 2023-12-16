@@ -1,15 +1,16 @@
-import { Space } from 'antd'
-import classNames from 'classnames'
-import { FC } from 'react'
+import { Space } from 'antd';
+import classNames from 'classnames';
 
-import logoImg from '@/assets/images/logo.png'
-import logoName from '@/assets/images/name_white.png'
-import { useAppSelector } from '@/stores'
+import logoImg from '@/assets/images/logo.png';
+import logoName from '@/assets/images/name_white.png';
+import { useAppSelector } from '@/stores';
 
-import styles from './app-logo.module.less'
+import styles from './app-logo.module.less';
+
+import type { FC } from 'react';
 
 const AppLogo: FC = () => {
-  const getMenuFold = useAppSelector(state => state.app.appConfig?.menuSetting?.menuFold)
+  const getMenuFold = useAppSelector((state) => state.app.appConfig?.menuSetting?.menuFold);
 
   return (
     <div className={classNames('anticon', styles['app-logo'])}>
@@ -18,7 +19,7 @@ const AppLogo: FC = () => {
         <img className={classNames(styles['logo-name'], { [styles.hidden]: getMenuFold })} src={logoName} alt='logo' />
       </Space>
     </div>
-  )
-}
+  );
+};
 
-export default AppLogo
+export default AppLogo;

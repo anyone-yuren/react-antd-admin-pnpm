@@ -1,7 +1,7 @@
 import {
   Card, Form, Radio, Switch,
 } from 'antd';
-import { FC, useState } from 'react';
+import { type FC, useState } from 'react';
 import OrgTree from 'react-org-tree';
 
 import { PageWrapper } from '@/components/Page';

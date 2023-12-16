@@ -2,7 +2,7 @@ import {
   Button, Card, Cascader, Checkbox, Col, DatePicker, Form, Input, InputNumber, Radio, Row, Select, Slider, Switch, TimePicker,
   TreeSelect,
 } from 'antd';
-import { FC, useState } from 'react';
+import { type FC, useState } from 'react';
 
 import { PageWrapper } from '@/components/Page';
 

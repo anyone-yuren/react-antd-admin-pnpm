@@ -1,5 +1,5 @@
 import MDEditor from '@uiw/react-md-editor';
-import { FC, useState } from 'react';
+import { type FC, useState } from 'react';
 
 import { PageWrapper } from '@/components/Page';
 

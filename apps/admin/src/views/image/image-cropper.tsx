@@ -2,7 +2,7 @@ import {
   Button, Card, Col, Row, Space,
 } from 'antd';
 import React, { useRef, useState } from 'react';
-import Cropper, { ReactCropperElement } from 'react-cropper';
+import Cropper, { type ReactCropperElement } from 'react-cropper';
 
 import { PageWrapper } from '@/components/Page';
 import { UploadImage } from '@/components/Upload';

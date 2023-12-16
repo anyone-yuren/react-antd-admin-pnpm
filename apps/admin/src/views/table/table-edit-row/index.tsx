@@ -1,7 +1,6 @@
 import {
   Button, Card, Checkbox, DatePicker, Form, Input, InputNumber, Popconfirm, Radio, Select, Space, Switch, Table,
 } from 'antd';
-import { ColumnType } from 'antd/es/table';
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
@@ -9,7 +8,9 @@ import { PageWrapper } from '@/components/Page';
 
 import { TABLE_EDIT_COMPO } from '@/settings/websiteSetting';
 
-import { DataItem, tableData } from './data';
+import { type DataItem, tableData } from './data';
+
+import type { ColumnType } from 'antd/es/table';
 
 type CellType = 'number' | 'text' | 'radio' | 'date' | 'select' | 'checkbox' | 'switch';
 

@@ -1,5 +1,5 @@
 import {
-  createEditor, IDomEditor, IEditorConfig, SlateDescendant, SlateEditor, SlateTransforms,
+  type IDomEditor, type IEditorConfig, type SlateDescendant, createEditor, SlateEditor, SlateTransforms,
 } from '@wangeditor/editor';
 import React, { useEffect, useRef, useState } from 'react';
 

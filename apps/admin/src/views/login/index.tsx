@@ -3,7 +3,7 @@ import {
   Button, Checkbox, Form, Input, message,
 } from 'antd';
 import classNames from 'classnames';
-import { FC, useRef, useState } from 'react';
+import { type FC, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import './index.less';
 

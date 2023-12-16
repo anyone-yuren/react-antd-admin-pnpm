@@ -1,5 +1,6 @@
 import styles from './index.module.less';
-import { SvgIconProp } from './types';
+
+import type { SvgIconProp } from './types';
 
 export default function SvgIcon({
   name,

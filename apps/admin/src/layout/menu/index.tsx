@@ -8,9 +8,9 @@ import SvgIcon from '@/components/SvgIcon';
 import { getOpenKeys } from '@/utils/helper/menuHelper';
 
 import { getAsyncMenus } from '@/router/menus';
-import { AppMenu } from '@/router/types';
 import { setMenuList } from '@/stores/modules/menu';
 
+import type { AppMenu } from '@/router/types';
 import type { MenuProps } from 'antd';
 
 type MenuItem = Required<MenuProps>['items'][number];

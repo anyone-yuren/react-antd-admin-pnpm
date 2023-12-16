@@ -1,10 +1,11 @@
-import { ReactNode } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
 import { getAuthCache } from '@/utils/auth';
 
 import { TOKEN_KEY } from '@/enums/cacheEnum';
 import { useAppSelector } from '@/stores';
+
+import type { ReactNode } from 'react';
 
 export const GuardRoute = ({ children }: { children: ReactNode }) => {
   const whiteList: string[] = ['/', '/home', '/login'];

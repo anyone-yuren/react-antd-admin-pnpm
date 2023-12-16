@@ -1,5 +1,4 @@
-import { IDomEditor, IEditorConfig, IToolbarConfig } from '@wangeditor/editor';
-import { FC, useEffect, useState } from 'react';
+import { type FC, useEffect, useState } from 'react';
 
 import { PageWrapper } from '@/components/Page';
 
@@ -7,6 +6,8 @@ import { WANG_EDITOR_PLUGIN } from '@/settings/websiteSetting';
 
 import Editor from './components/Editor';
 import Toolbar from './components/Toolbar';
+
+import type { IDomEditor, IEditorConfig, IToolbarConfig } from '@wangeditor/editor';
 
 import '@wangeditor/editor/dist/css/style.css';
 

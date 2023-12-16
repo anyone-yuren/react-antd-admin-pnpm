@@ -1,5 +1,5 @@
 import { Spin } from 'antd';
-import { LazyExoticComponent, ReactNode, Suspense } from 'react';
+import { type LazyExoticComponent, type ReactNode, Suspense } from 'react';
 
 /**
  * @description 路由懒加载
@@ -7,21 +7,21 @@ import { LazyExoticComponent, ReactNode, Suspense } from 'react';
  * @returns element
  */
 const LazyLoad = (Component: LazyExoticComponent<any>): ReactNode => (
-    <Suspense
-      fallback={
-        <Spin
-          size='large'
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100%',
-          }}
-        />
-      }
-    >
-      <Component />
-    </Suspense>
+  <Suspense
+    fallback={
+      <Spin
+        size='large'
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '100%',
+        }}
+      />
+    }
+  >
+    <Component />
+  </Suspense>
 );
 
 export default LazyLoad;

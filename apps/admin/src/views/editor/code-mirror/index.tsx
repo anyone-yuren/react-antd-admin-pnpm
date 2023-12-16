@@ -1,6 +1,6 @@
 import Codemirror from '@uiw/react-codemirror';
 import { Card } from 'antd';
-import { FC, useState } from 'react';
+import { type FC, useState } from 'react';
 import { useImmer } from 'use-immer';
 
 import { PageWrapper } from '@/components/Page';
@@ -9,7 +9,8 @@ import { CODEMIRROR_PLUGIN } from '@/settings/websiteSetting';
 
 import CodeInfo from './components/CodeInfo';
 import Toolbar from './components/Toolbar';
-import { ConfigState, InfoState } from './types';
+
+import type { ConfigState, InfoState } from './types';
 
 const CodeMirror: FC = () => {
   const [codeVal, setCodeVal] = useState('console.log(\'Hello, world!\')');

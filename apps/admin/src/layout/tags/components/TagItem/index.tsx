@@ -1,8 +1,9 @@
 import { Tag } from 'antd';
 import classNames from 'classnames';
-import { FC } from 'react';
 
 import styles from './index.module.less';
+
+import type { FC } from 'react';
 
 interface PropState {
   name: string

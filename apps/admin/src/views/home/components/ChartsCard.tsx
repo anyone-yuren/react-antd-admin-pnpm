@@ -1,9 +1,9 @@
 import { Card } from 'antd';
-import { FC } from 'react';
 
 import { useECharts } from '@/hooks/web/useECharts';
 
 import type { EChartsOption } from 'echarts';
+import type { FC } from 'react';
 
 interface propState {
   loading: boolean

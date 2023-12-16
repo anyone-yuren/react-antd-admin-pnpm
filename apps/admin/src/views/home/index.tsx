@@ -1,5 +1,5 @@
 import { Col, Row, Space } from 'antd';
-import { FC, useState } from 'react';
+import { type FC, useState } from 'react';
 
 import ChartsCard from './components/ChartsCard';
 import CountUpCard from './components/CountUpCard';

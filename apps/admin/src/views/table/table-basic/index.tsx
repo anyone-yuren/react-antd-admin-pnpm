@@ -1,16 +1,15 @@
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import {
-  Button, Card, Modal, Popover, Select, Space, Switch, Table, TableProps, Tag,
+  type TableProps, Button, Card, Modal, Popover, Select, Space, Switch, Table, Tag,
 } from 'antd';
-import { FC, useEffect, useState } from 'react';
+import { type FC, useEffect, useState } from 'react';
 
 import { PageWrapper } from '@/components/Page';
 
 import { getTableList } from '@/api';
 import { TABLE_COMPO } from '@/settings/websiteSetting';
 
-import { APIResult, PageState, TableDataType } from './types';
-
+import type { APIResult, PageState, TableDataType } from './types';
 import type { ColumnsType } from 'antd/es/table';
 
 const marriedOptions = [
