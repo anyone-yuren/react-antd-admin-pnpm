@@ -12,7 +12,18 @@ import { persistor, store } from './stores';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <ThemeProvider defaultThemeMode='light'>
+    <ThemeProvider
+      defaultThemeMode='light'
+      theme={{
+        token: {
+          colorPrimary: '#00A76F',
+          colorInfo: '#00B8D9',
+          colorSuccess: '#22C55E',
+          colorWarning: '#FFAB00',
+          colorError: '#FF5630',
+        },
+      }}
+    >
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <App />

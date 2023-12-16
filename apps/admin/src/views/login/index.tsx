@@ -1,5 +1,5 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input, message } from 'antd';
+import { Button, Checkbox, Form, Input, message, Typography } from 'antd';
 import classNames from 'classnames';
 import { type FC, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -10,18 +10,24 @@ import SvgIcon from '@/components/SvgIcon';
 import { getAuthCache } from '@/utils/auth';
 
 import { getUserInfo, loginApi } from '@/api';
-import logoIcon from '@/assets/images/logo_name.png';
+import illustrationDashboard from '@/assets/images/illustration_dashboard.png';
 import { TOKEN_KEY } from '@/enums/cacheEnum';
 import { useAppDispatch, useAppSelector } from '@/stores';
 import { setSessionTimeout, setToken, setUserInfo } from '@/stores/modules/user';
 
+import useStyles from './index.style';
+
 import type { LoginParams, UserInfo } from '@/types';
 import type { FormInstance } from 'antd/es/form';
+
+const { Title } = Typography;
 
 const LoginPage: FC = () => {
   const [form] = Form.useForm();
   const loginFormRef = useRef<FormInstance>(null);
   const [loading, setLoading] = useState(false);
+
+  const { styles } = useStyles();
 
   const dispatch = useAppDispatch();
 
@@ -95,13 +101,14 @@ const LoginPage: FC = () => {
   };
 
   return (
-    <div className='login-wrapper'>
-      <div className='login-box'>
-        <div className='login-box-title'>
-          <img src={logoIcon} alt='icon' />
-          <p>账 号 登 录</p>
-          <SvgIcon name='logo' size={20} />
-        </div>
+    <div className={styles['login-container']}>
+      <div className={styles['login-left']}>
+        <Title className='logo' level={3}>
+          <SvgIcon name='logo' size={30} />
+        </Title>
+        <img src={illustrationDashboard} alt='' className={styles['login-img']} />
+      </div>
+      <div className={styles['login-form']}>
         <Form
           ref={loginFormRef}
           form={form}

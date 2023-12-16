@@ -1,41 +1,35 @@
 import { createStyles } from 'antd-style';
 
-const useStyles = createStyles(() => {
-  return {
-    'login-wrapper': {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: '100vw',
-      height: '100vh',
-      backgroundImage: "`url('@/assets/images/login-background.jpg')`",
-      backgroundSize: 'cover',
-    },
-    'login-box': {
-      padding: '16px 30px 10px',
-      background: '#fff',
-      borderRadius: '4px',
-      boxShadow: '0 15px 30px 0 rgba(0, 0, 1, .1)',
-      '&-title': {
-        margin: '0 auto 35px',
-        textAlign: 'center',
-        color: '#707070',
-        fontSize: '18px',
-        letterSpacing: '2px',
-        img: {
-          width: '200px',
-          height: '82px',
-          margin: '12px auto 0',
-        },
-      },
-      '&-form': { width: '320px' },
-    },
-    'login-btn': {
+import overlay from '@/assets/images/overlay_2.jpg';
+
+const useStyles = createStyles(({ token }) => ({
+  'login-container': {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    height: '100vh',
+  },
+  'login-img': {
+    maxWidth: '560px',
+    height: 'auto',
+  },
+  'login-form': {
+    padding: `${token.paddingLG * 7}px ${token.paddingLG * 5}px`,
+  },
+  'login-left': {
+    gap: '80px',
+    flexGrow: 1,
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    // eslint-disable-next-line global-require
+    background: `linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)) center center / cover no-repeat, url(${overlay})`,
+    '.logo': {
       width: '100%',
+      padding: token.paddingSM,
     },
-    'no-margin': {
-      marginBottom: '0',
-    },
-  };
-});
+  },
+}));
 export default useStyles;
