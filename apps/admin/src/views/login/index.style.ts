@@ -16,6 +16,15 @@ const useStyles = createStyles(({ token }) => ({
   },
   'login-form': {
     padding: `${token.paddingLG * 7}px ${token.paddingLG * 5}px`,
+    '.title': {
+      margin: 0,
+    },
+    '.login-info': {
+      margin: `${token.marginLG}px 0`,
+    },
+    '.login-btn': {
+      backgroundColor: token.colorDefault,
+    },
   },
   'login-left': {
     gap: '80px',

@@ -1,5 +1,5 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input, message, Typography } from 'antd';
+import { Alert, Button, Checkbox, Form, Input, message, Typography } from 'antd';
 import classNames from 'classnames';
 import { type FC, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -20,7 +20,7 @@ import useStyles from './index.style';
 import type { LoginParams, UserInfo } from '@/types';
 import type { FormInstance } from 'antd/es/form';
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 const LoginPage: FC = () => {
   const [form] = Form.useForm();
@@ -109,6 +109,19 @@ const LoginPage: FC = () => {
         <img src={illustrationDashboard} alt='' className={styles['login-img']} />
       </div>
       <div className={styles['login-form']}>
+        <div className='login-info'>
+          <Title className='title' level={3}>
+            登录 Gbeata Admin
+          </Title>
+          <Text type='secondary'>
+            {' '}
+            新用户？
+            <Button type='link' color='primary'>
+              立即注册
+            </Button>
+          </Text>
+          <Alert message='登录信息： 用户名：admin 密码：123456' type='info' showIcon />
+        </div>
         <Form
           ref={loginFormRef}
           form={form}
@@ -123,6 +136,7 @@ const LoginPage: FC = () => {
           <Form.Item name='username' rules={[{ required: true, message: '请输入账号' }]}>
             <Input
               placeholder='请输入账号'
+              size='large'
               prefix={<UserOutlined style={{ color: 'rgba(0, 0, 0, 0.25)' }} rev={undefined} />}
             />
           </Form.Item>
@@ -130,6 +144,7 @@ const LoginPage: FC = () => {
             <Input
               type='password'
               placeholder='请输入密码'
+              size='large'
               prefix={<LockOutlined style={{ color: 'rgba(0, 0, 0, 0.25)' }} rev={undefined} />}
             />
           </Form.Item>
@@ -142,7 +157,7 @@ const LoginPage: FC = () => {
             </Form.Item>
           </Form.Item>
           <Form.Item>
-            <Button type='primary' htmlType='submit' className='login-btn' loading={loading}>
+            <Button type='primary' block htmlType='submit' size='large' className='login-btn' loading={loading}>
               登 录
             </Button>
           </Form.Item>
