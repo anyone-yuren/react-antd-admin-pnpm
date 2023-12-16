@@ -41,15 +41,16 @@
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "cz-git": "^1.8.0",
+    "eslint": "^8.54.0",
     "husky": "^8.0.3",
     "prettier": "^3.1.0",
     "semantic-release": "^22.0.12",
-    "turbo": "^1.11.0",
-    "eslint": "^8.54.0"
+    "turbo": "^1.11.0"
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
     "antd": "^5.12.1",
-    "antd-style": "^3.6.1"
+    "antd-style": "^3.6.1",
+    "esbuild": "0.18.20"
   }
 }
