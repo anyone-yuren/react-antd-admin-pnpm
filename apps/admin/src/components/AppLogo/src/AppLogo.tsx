@@ -1,7 +1,8 @@
 import { Space } from 'antd';
 import classNames from 'classnames';
 
-import logoImg from '@/assets/images/logo.png';
+import SvgIcon from '@/components/SvgIcon';
+
 import logoName from '@/assets/images/name_white.png';
 import { useAppSelector } from '@/stores';
 
@@ -16,7 +17,7 @@ const AppLogo: FC = () => {
   return (
     <div className={classNames('anticon', styles['app-logo'])}>
       <Space>
-        <img className={styles['logo-img']} src={logoImg} alt='logo' />
+        <SvgIcon name='logo' size={30} />
         <img className={classNames(styles['logo-name'], { [styles.hidden]: getMenuFold })} src={logoName} alt='logo' />
       </Space>
     </div>

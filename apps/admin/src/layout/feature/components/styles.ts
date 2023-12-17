@@ -5,7 +5,7 @@ const useStyles = createStyles(({ token, isDarkMode }) => {
 
   return {
     driwer: {
-      backdropFilter: 'blur(6px) !important',
+      backdropFilter: 'blur(2px) !important',
       backgroundColor: !isDarkMode ? 'rgba(255, 255, 255, 0.9) !important' : 'rgba(0, 0, 0, 0.9) !important',
       backgroundSize: '50% 50% !important',
       backgroundRepeat: 'no-repeat !important',
