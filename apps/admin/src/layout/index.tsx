@@ -21,7 +21,7 @@ export const BasicLayout = (props: any) => {
 
   return (
     <Layout className={styles.layout_wrapper}>
-      <Sider width={210} trigger={null} collapsed={getMenuFold} style={{ height: '100vh' }}>
+      <Sider width={240} trigger={null} theme='light' collapsed={getMenuFold} style={{ height: '100vh' }}>
         <AppLogo />
         <LayoutMenu />
       </Sider>

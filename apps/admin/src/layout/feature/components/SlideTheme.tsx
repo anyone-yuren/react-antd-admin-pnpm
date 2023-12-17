@@ -1,23 +1,40 @@
 import { Segmented, Tooltip } from 'antd';
-import { type ThemeMode, useThemeMode } from 'antd-style';
+import { type ThemeMode, useTheme, useThemeMode } from 'antd-style';
+
+import SvgIcon from '@/components/SvgIcon';
 
 import type { SegmentedLabeledOption } from 'antd/lib/segmented';
 
-const options: SegmentedLabeledOption[] = [
-  { label: '自动', value: 'auto' },
-  { label: '亮色', value: 'light' },
-  { label: '暗色', value: 'dark' },
-];
 export default function SlideTheme() {
   const { themeMode, setThemeMode } = useThemeMode();
+  const token = useTheme();
+  const options: SegmentedLabeledOption[] = [
+    {
+      label: (
+        <div style={{ padding: '16px', color: token.colorPrimary }}>
+          <SvgIcon style={{ color: token.colorPrimary }} name='sun' size={18} />
+        </div>
+      ),
+      value: 'light',
+    },
+    {
+      label: (
+        <div style={{ padding: '16px', color: token.colorPrimary }}>
+          <SvgIcon name='moon' size={18} />
+        </div>
+      ),
+      value: 'dark',
+    },
+  ];
   return (
-    <Tooltip title='切换主题' placement='bottom' mouseEnterDelay={0.5}>
-      <Segmented
-        style={{ margin: '0 8px' }}
-        value={themeMode}
-        onChange={(v) => setThemeMode(v as ThemeMode)}
-        options={options}
-      />
-    </Tooltip>
+    <Segmented
+      style={{
+        backgroundColor: token.colorBgContainerDisabled,
+      }}
+      block
+      value={themeMode}
+      onChange={(v) => setThemeMode(v as ThemeMode)}
+      options={options}
+    />
   );
 }

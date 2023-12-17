@@ -21,13 +21,14 @@ const getItem = (
   icon?: React.ReactNode,
   children?: MenuItem[],
   type?: 'group',
-): MenuItem => ({
-  label,
-  key,
-  icon,
-  children,
-  type,
-} as MenuItem);
+): MenuItem =>
+  ({
+    label,
+    key,
+    icon,
+    children,
+    type,
+  }) as MenuItem;
 
 const LayoutMenu = (props: any) => {
   const { pathname } = useLocation();
@@ -95,7 +96,7 @@ const LayoutMenu = (props: any) => {
     <div className='layout_menu'>
       <Spin spinning={loading} tip='Loading...'>
         <Menu
-          theme='dark'
+          // theme='dark'
           mode='inline'
           triggerSubMenuAction='click'
           inlineIndent={20}

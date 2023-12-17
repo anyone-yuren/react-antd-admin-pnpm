@@ -8,6 +8,7 @@ const useStyles = createStyles(({ token }) => {
       flexDirection: 'column',
       height: 'auto',
       background: token.colorBgBase,
+      padding: 0,
     },
   };
 });
