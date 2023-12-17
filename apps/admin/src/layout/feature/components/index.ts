@@ -1,9 +1,8 @@
 import DocLink from './DocLink';
 import FullScreen from './FullScreen';
 import GithubLink from './GithubLink';
-import UserDropdown from './UserDropdown';
+import Settings from './Settings';
 import SlideTheme from './SlideTheme';
+import UserDropdown from './UserDropdown';
 
-export {
-  DocLink, FullScreen, GithubLink, UserDropdown,SlideTheme
-};
+export { DocLink, FullScreen, GithubLink, Settings, SlideTheme, UserDropdown };

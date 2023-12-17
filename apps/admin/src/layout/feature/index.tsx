@@ -1,23 +1,15 @@
-import { Divider } from 'antd';
+import { Space } from 'antd';
 
-import { DocLink, FullScreen, GithubLink, SlideTheme, UserDropdown } from './components';
-import moduleStyle from './index.module.less';
+import { DocLink, FullScreen, GithubLink, Settings, SlideTheme, UserDropdown } from './components';
 
 export default function LayoutFeature() {
-  const prefixCls = 'layout_feature';
-
   return (
-    <div className={moduleStyle[prefixCls]}>
-      <div className={moduleStyle[`${prefixCls}-main`]}>
-        {/* <AppSearch /> */}
-        <FullScreen />
-        {/* <AppLocalePicker /> */}
-        <DocLink />
-        <GithubLink />
-        <SlideTheme />
-      </div>
-      {/* <Divider type="vertical" className={moduleStyle[`${prefixCls}-divider`]} /> */}
+    <Space size={'middle'}>
+      <FullScreen />
+      <DocLink />
+      <GithubLink />
+      <Settings />
       <UserDropdown />
-    </div>
+    </Space>
   );
 }

@@ -1,6 +1,5 @@
-import { Tooltip } from 'antd';
-
-import SvgIcon from '@/components/SvgIcon';
+import { GithubOutlined } from '@ant-design/icons';
+import { Button, Tooltip } from 'antd';
 
 import { openWindow } from '@/utils';
 
@@ -10,20 +9,8 @@ export default function GithubLink() {
   }
 
   return (
-    <Tooltip
-      title='github'
-      placement='bottom'
-      mouseEnterDelay={0.5}
-    >
-      <span
-        className='icon-btn'
-        onClick={openGithub}
-      >
-        <SvgIcon
-          name='github'
-          size={20}
-        />
-      </span>
+    <Tooltip title='github' placement='bottom' mouseEnterDelay={0.5}>
+      <Button shape='circle' onClick={openGithub} size='small' icon={<GithubOutlined />} />
     </Tooltip>
   );
 }

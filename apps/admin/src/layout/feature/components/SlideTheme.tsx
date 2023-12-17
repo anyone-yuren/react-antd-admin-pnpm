@@ -1,7 +1,9 @@
 import { Segmented, Tooltip } from 'antd';
 import { type ThemeMode, useThemeMode } from 'antd-style';
 
-const options = [
+import type { SegmentedLabeledOption } from 'antd/lib/segmented';
+
+const options: SegmentedLabeledOption[] = [
   { label: '自动', value: 'auto' },
   { label: '亮色', value: 'light' },
   { label: '暗色', value: 'dark' },
