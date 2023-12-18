@@ -33,11 +33,16 @@ const useStyles = createStyles(({ token }) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
     // eslint-disable-next-line global-require
     background: `linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)) center center / cover no-repeat, url(${overlay})`,
     '.logo': {
       width: '100%',
       padding: token.paddingSM,
+      position: 'absolute',
+      top: 0,
+      left: 0,
     },
   },
 }));

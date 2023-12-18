@@ -18,7 +18,7 @@ function App() {
           colorSuccess: '#22C55E',
           colorWarning: '#FFAB00',
           colorError: '#FF5630',
-          colorLink: '#00A76F',
+          colorLink: preset,
         },
       }}
       customToken={{
