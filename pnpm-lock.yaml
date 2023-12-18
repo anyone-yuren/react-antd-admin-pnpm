@@ -168,6 +168,9 @@ importers:
       sortablejs:
         specifier: ^1.15.0
         version: registry.npmmirror.com/sortablejs@1.15.1
+      store:
+        specifier: workspace:^
+        version: link:../../packages/store
       use-immer:
         specifier: ^0.9.0
         version: registry.npmmirror.com/use-immer@0.9.0(immer@10.0.3)(react@18.2.0)
@@ -376,6 +379,12 @@ importers:
       stylelint:
         specifier: ^14.9.1
         version: registry.npmmirror.com/stylelint@14.16.1
+
+  packages/store:
+    dependencies:
+      zustand:
+        specifier: ^4.4.7
+        version: registry.npmmirror.com/zustand@4.4.7(@types/react@18.2.45)(react@18.2.0)
 
 packages:
 
