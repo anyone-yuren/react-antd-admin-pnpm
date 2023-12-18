@@ -4,6 +4,7 @@ import ErrorBoundary from 'antd/es/alert/ErrorBoundary';
 import { useState } from 'react';
 
 import LayoutSettings from './Layout';
+import Presets from './Presets';
 import SlideTheme from './SlideTheme';
 import useStyles from './styles';
 
@@ -36,6 +37,9 @@ export default function Settings() {
           </List.Item>
           <List.Item>
             <List.Item.Meta title={<Text type='secondary'>布局</Text>} description={<LayoutSettings />} />
+          </List.Item>
+          <List.Item>
+            <List.Item.Meta title={<Text type='secondary'>预设</Text>} description={<Presets />} />
           </List.Item>
         </List>
       </Drawer>

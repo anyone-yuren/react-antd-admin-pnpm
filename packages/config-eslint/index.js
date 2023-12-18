@@ -51,6 +51,7 @@ module.exports = {
     "no-use-before-define": "off",
     // 声明后永远不会重新分配的变量需要 const 声明
     "prefer-const": "error",
+    "implicit-arrow-linebreak": ["error", "beside"],
     // 禁止不规则空格
     "no-irregular-whitespace": "off",
     // 禁止使用 debugger
