@@ -6,7 +6,13 @@ import SvgIcon from '@/components/SvgIcon';
 
 import { useAppSelector } from '@/stores';
 
-export default function LayoutBreadcrumb() {
+type BreadcrumbProps = {
+  show?: boolean;
+};
+
+export default function LayoutBreadcrumb(props: BreadcrumbProps) {
+  const { show = true } = props;
+  if (!show) return null;
   const [breadcrumbs, setBreadcrumbs] = useState<any[]>([]);
   const { pathname } = useLocation();
   const getMenuList = useAppSelector((state) => state.menu.menuList);

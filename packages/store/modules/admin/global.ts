@@ -6,6 +6,10 @@ interface State {
   setTheme: (theme: string) => void;
   preset: string;
   setPreset: (preset: string) => void;
+  hasTabs: boolean;
+  setHasTabs: (hasTabs: boolean) => void;
+  hasCrumbs: boolean;
+  setHasCrumbs: (hasCrumbs: boolean) => void;
 }
 
 export const useGlobalStore = create<State>()(
@@ -19,6 +23,14 @@ export const useGlobalStore = create<State>()(
         preset: "#00A76F",
         setPreset: (preset: string) => {
           set({ preset });
+        },
+        hasTabs: true,
+        setHasTabs: (hasTabs: boolean) => {
+          set({ hasTabs });
+        },
+        hasCrumbs: true,
+        setHasCrumbs: (hasCrumbs: boolean) => {
+          set({ hasCrumbs });
         },
       };
     },
