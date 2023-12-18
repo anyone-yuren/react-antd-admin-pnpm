@@ -3,6 +3,7 @@ import { Button, Drawer, List, Tooltip, Typography } from 'antd';
 import ErrorBoundary from 'antd/es/alert/ErrorBoundary';
 import { useState } from 'react';
 
+import FullScreen from './FullScreen';
 import LayoutSettings from './Layout';
 import Presets from './Presets';
 import SlideTheme from './SlideTheme';
@@ -29,6 +30,7 @@ export default function Settings() {
         placement='right'
         onClose={onClose}
         open={open}
+        extra={<FullScreen />}
         // mask={false}
       >
         <List split={false}>
