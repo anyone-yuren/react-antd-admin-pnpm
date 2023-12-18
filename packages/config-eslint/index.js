@@ -100,6 +100,8 @@ module.exports = {
         varsIgnorePattern: "^_",
       },
     ],
+    // 限制缩进
+    "@typescript-eslint/indent": "off",
     // 允许在导入上指定 type 关键字
     "@typescript-eslint/consistent-type-imports": [
       "error",
