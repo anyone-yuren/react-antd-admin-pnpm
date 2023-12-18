@@ -97,6 +97,9 @@ const LayoutMenu = (props: any) => {
       <Spin spinning={loading} tip='Loading...'>
         <Menu
           // theme='dark'
+          style={{
+            border: 'none',
+          }}
           mode='inline'
           triggerSubMenuAction='click'
           inlineIndent={20}

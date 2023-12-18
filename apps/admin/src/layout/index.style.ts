@@ -13,6 +13,11 @@ const useStyles = createStyles(() => ({
       padding: '12px',
       overflowX: 'hidden',
     },
+    '.ant-layout-sider': {
+      height: 'calc(100vh)',
+      borderInlineEnd: '1px solid rgba(5, 5, 5, 0.06)',
+      marginInlineEnd: '-1px',
+    },
   },
 }));
 export default useStyles;
