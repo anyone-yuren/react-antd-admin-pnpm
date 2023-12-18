@@ -31,7 +31,7 @@ const useStyles = createStyles(({ token, css }) => ({
     fontSize: '20px',
     fontWeight: 'bold',
     lineHeight: '32px',
-    animation: 'showup 2s linear forwards',
+    animation: 'showup 0.6s linear forwards',
     '@keyframes showup': {
       '0%': {
         filter: 'blur(10px)',
