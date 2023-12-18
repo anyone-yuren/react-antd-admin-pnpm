@@ -1,18 +1,9 @@
-import { createStyles } from 'antd-style';
+import { createGlobalStyle } from 'antd-style';
+// 定义全局类名样式
+const CustomGlobal = createGlobalStyle`
+  .g-paper {
+    border-radius: ${(p) => p.theme.borderRadius * 2}px;
+  }
+`;
 
-const useStyles = createStyles(({ token, css, prefixCls }) => {
-  console.log(token);
-
-  return {
-    override: css`
-      &.${prefixCls}-drawer {
-        backdrop-filter: blur(20px);
-        background-color: rgba(255, 255, 255, 0.9);
-        background-size: 50% 50%;
-        background-repeat: no-repeat;
-      }
-    `,
-  };
-});
-
-export default useStyles;
+export default CustomGlobal;

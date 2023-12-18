@@ -5,6 +5,7 @@ import { useGlobalStore } from 'store';
 import cyanImg from '@/assets/images/cyan-blur.png';
 import redImg from '@/assets/images/red-blur.png';
 import router from '@/router';
+import CustomGlobal from '@/styles/GlobalPager';
 
 function App() {
   const preset = useGlobalStore((state) => state.preset);
@@ -27,6 +28,7 @@ function App() {
         paperCyanImg: cyanImg as string,
       }}
     >
+      <CustomGlobal />
       <RouterProvider router={router} />
     </ThemeProvider>
   );

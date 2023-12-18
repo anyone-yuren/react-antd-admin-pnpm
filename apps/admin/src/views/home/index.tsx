@@ -13,7 +13,7 @@ const HomePage: FC = () => {
     <div className={styles['home-container']}>
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
         <Col className='gutter-row' span={16}>
-          <div className='user-info'>
+          <div className='user-info g-paper'>
             <Row
               style={{
                 padding: '40px',
