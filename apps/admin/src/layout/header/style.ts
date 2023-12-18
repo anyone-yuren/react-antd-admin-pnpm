@@ -9,6 +9,7 @@ const useStyles = createStyles(({ token }) => {
       height: 'auto',
       background: token.colorBgBase,
       padding: 0,
+      boxShadow: token.boxShadowTertiary,
     },
   };
 });
