@@ -3,9 +3,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // 晚点处理吧，类型导出有问题i
 import { type GSearchTableField, GSearchTable } from 'gbeata';
-import { useMemo, useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 
-export default function Demo() {
+function Demo() {
   const [data, setData] = useState([]);
 
   const fields: Array<GSearchTableField> = [
@@ -22,8 +22,8 @@ export default function Demo() {
       key: 'time',
     },
   ];
-  const apiUrl = 'https://api.github.com/repos/anyone-yuren/react-antd-admin-pnpm/commits?per_page=10';
-  const accessToken = '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';
+  const apiUrl = 'https://api.github.com/repos/anyone-yuren/react-antd-admin-pnpm/commits?sha=admin&per_page=10';
+  const accessToken = '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';
 
   fetch(apiUrl, {
     method: 'GET',
@@ -59,3 +59,5 @@ export default function Demo() {
 
   return <>{renderTable()}</>;
 }
+
+export default memo(Demo);

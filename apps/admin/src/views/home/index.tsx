@@ -16,7 +16,6 @@ import useStyles from './index.style';
 
 const { Title, Text } = Typography;
 const HomePage: FC = () => {
-  debugger;
   const { styles } = useStyles();
   const token = useTheme();
   const [current, setCurrent] = useState(1);
