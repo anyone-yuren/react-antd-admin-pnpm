@@ -1,7 +1,12 @@
-import { animated, useSpring } from '@react-spring/web';
+import { type AnimationConfig, animated, useSpring } from '@react-spring/web';
 import { useRef } from 'react';
 
-export default function Card(props: { title?: string; children: React.ReactNode; right?: React.ReactNode }) {
+export default function Card(props: {
+  title?: string;
+  children: React.ReactNode;
+  right?: React.ReactNode;
+  panelConfig?: Partial<AnimationConfig>;
+}) {
   const cardRef = useRef<HTMLDivElement>(null);
   const config = {
     mass: 1,
@@ -10,6 +15,7 @@ export default function Card(props: { title?: string; children: React.ReactNode;
     clamp: false,
     precision: 0.01,
     velocity: 0,
+    ...props.panelConfig,
   };
 
   const [{ xys }, api] = useSpring(() => ({ xys: [0, 0, 1], config }), [config]);
@@ -46,9 +52,9 @@ export default function Card(props: { title?: string; children: React.ReactNode;
 }
 
 const calc = (x: number, y: number, rect: DOMRect | undefined) => [
-  -(y - rect!.top - rect!.height / 2) / 50,
-  (x - rect!.left - rect!.width / 2) / 50,
-  1.01,
+  -(y - rect!.top - rect!.height / 2) / 150,
+  (x - rect!.left - rect!.width / 2) / 150,
+  1,
 ];
 
 const trans = (x: number, y: number, s: number) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;

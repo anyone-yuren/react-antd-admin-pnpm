@@ -410,6 +410,9 @@ importers:
       '@types/react':
         specifier: ^18.2.45
         version: registry.npmmirror.com/@types/react@18.2.45
+      '@types/react-slick':
+        specifier: ^0.23.13
+        version: registry.npmmirror.com/@types/react-slick@0.23.13
       eslint-config-gbeata-eslint:
         specifier: workspace:^
         version: link:../config-eslint
@@ -5509,6 +5512,14 @@ packages:
     version: 18.2.18
     dependencies:
       '@types/react': registry.npmmirror.com/@types/react@18.2.45
+
+  registry.npmmirror.com/@types/react-slick@0.23.13:
+    resolution: {integrity: sha512-bNZfDhe/L8t5OQzIyhrRhBr/61pfBcWaYJoq6UDqFtv5LMwfg4NsVDD2J8N01JqdAdxLjOt66OZEp6PX+dGs/A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/react-slick/-/react-slick-0.23.13.tgz}
+    name: '@types/react-slick'
+    version: 0.23.13
+    dependencies:
+      '@types/react': registry.npmmirror.com/@types/react@18.2.45
+    dev: true
 
   registry.npmmirror.com/@types/react@18.2.45:
     resolution: {integrity: sha512-TtAxCNrlrBp8GoeEp1npd5g+d/OejJHFxS3OWmrPBMFaVQMSN0OFySozJio5BHxTuTeug00AVXVAjfDSfk+lUg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/react/-/react-18.2.45.tgz}
