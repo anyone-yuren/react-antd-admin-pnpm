@@ -1,7 +1,7 @@
 import { createStyles } from 'antd-style';
 
-const useStyles = createStyles((_, props: {active:boolean}) => {
-  const {active}= props
+const useStyles = createStyles(({ token }, props: { active: boolean }) => {
+  const { active } = props;
   return {
     'compo_tag-item': {
       display: 'inline-block',
@@ -22,7 +22,7 @@ const useStyles = createStyles((_, props: {active:boolean}) => {
         height: '8px',
         marginRight: '6px',
         borderRadius: '50%',
-        background: active?'#fff':'#dcdee0',
+        background: active ? '#fff' : '#dcdee0',
       },
       '&__name': { fontSize: '12px' },
     },
@@ -34,10 +34,10 @@ const useStyles = createStyles((_, props: {active:boolean}) => {
     active: {
       border: 'none',
       color: '#fff',
-      background: '#1890ff',
-      '.anticon-close' :{
-        color: '#fff'
-      }
+      background: token.colorPrimary,
+      '.anticon-close': {
+        color: '#fff',
+      },
     },
   };
 });
