@@ -26,6 +26,14 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       // Listening on all local ips
       host: true,
       port: VITE_PORT,
+      proxy: {
+        '/repos': {
+          target: 'https://api.github.com',
+          changeOrigin: true,
+          secure: true,
+          rewrite: (path) => path.replace(/^\/repos/, ''),
+        },
+      },
     },
     plugins: [
       react(),

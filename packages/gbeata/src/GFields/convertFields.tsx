@@ -6,7 +6,6 @@ const getAyFieldsNode = (children: ReactNode) => {
   if (!Array.isArray(children)) {
     children = [children]
   }
-  console.log(children)
 
   // @ts-ignore
   return children.find((node: ReactElement) => node?.type?.componentName === 'MwFields')

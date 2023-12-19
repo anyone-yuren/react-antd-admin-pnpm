@@ -11,16 +11,18 @@ import cover_3 from '@/assets/images/cover_3.jpg';
 import cover_4 from '@/assets/images/cover_4.jpg';
 import cover_5 from '@/assets/images/cover_5.jpg';
 
+import CommitTable from './components/CommitTable';
 import useStyles from './index.style';
 
 const { Title, Text } = Typography;
 const HomePage: FC = () => {
+  debugger;
   const { styles } = useStyles();
   const token = useTheme();
   const [current, setCurrent] = useState(1);
   return (
     <div className={styles['home-container']}>
-      <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+      <Row gutter={[16, 16]}>
         <Col className='gutter-row' span={16}>
           <div className='user-info g-paper'>
             <AnimatePanel
@@ -66,7 +68,7 @@ const HomePage: FC = () => {
                 slidesToShow: 1,
                 slidesToScroll: 1,
                 autoplay: true,
-                autoplaySpeed: 2000,
+                autoplaySpeed: 4000,
                 afterChange: (index) => {
                   setCurrent(index + 1);
                 },
@@ -174,6 +176,9 @@ const HomePage: FC = () => {
               </div>
             </BaseSlick>
           </div>
+        </Col>
+        <Col span={24}>
+          <CommitTable />
         </Col>
       </Row>
     </div>
