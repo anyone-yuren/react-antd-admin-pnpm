@@ -21,7 +21,7 @@ import { professionOptions } from '../api';
 export default function AyDialogFormDemo() {
   const formRef = useRef<any>();
   // 弹窗是否可见
-  const [visible, setVisible] = useState(false);
+  const [open, setVisible] = useState(false);
 
   const fields: Array<GDialogFormField> = [
     {
@@ -53,7 +53,7 @@ export default function AyDialogFormDemo() {
       </Space>
       <GDialogForm
         ref={formRef}
-        visible={visible}
+        open={open}
         fields={fields}
         addApi={() => new Promise((resolve) => resolve({}))}
         onClose={() => setVisible(false)}
@@ -77,7 +77,7 @@ import { professionOptions } from '../api';
 export default function AyDialogFormDemo() {
   const formRef = useRef<any>();
   // 弹窗是否可见
-  const [visible, setVisible] = useState(false);
+  const [open, setVisible] = useState(false);
 
   const fields: Array<GDialogFormField> = [
     {
@@ -109,7 +109,7 @@ export default function AyDialogFormDemo() {
       </Space>
       <GDialogForm
         ref={formRef}
-        visible={visible}
+        open={open}
         fields={fields}
         initialValues={{
           cn: 'gbeata',
@@ -129,7 +129,7 @@ export default function AyDialogFormDemo() {
 
 如下面这个例子，分开来存储会更加直观。
 
-visible 控制显示，initialValues 控制默认值，mode 控制弹窗模式（会影响标题、是否只读），spinning 控制弹窗数据是否正在加载中。
+open 控制显示，initialValues 控制默认值，mode 控制弹窗模式（会影响标题、是否只读），spinning 控制弹窗数据是否正在加载中。
 
 ```tsx
 import React, { useState } from 'react';
@@ -138,7 +138,7 @@ import { Space, message } from 'antd';
 import { detailApi, professionOptions } from '../api';
 
 interface IProps {
-  visible: boolean;
+  open: boolean;
   initialValues: any;
   mode: 'add' | 'update' | 'view';
   spinning: boolean;
@@ -146,7 +146,7 @@ interface IProps {
 
 const defaultProps: IProps = {
   // 是否可见
-  visible: false,
+  open: false,
   // 弹窗默认值
   initialValues: {},
   // 模式， view 模式下表格会只读
@@ -182,7 +182,7 @@ export default function AyDialogFormDemo() {
     setDialogProps({
       mode: 'add',
       initialValues: {},
-      visible: true,
+      open: true,
       spinning: false,
     });
   };
@@ -192,7 +192,7 @@ export default function AyDialogFormDemo() {
     setDialogProps({
       mode: 'update',
       initialValues: {},
-      visible: true,
+      open: true,
       spinning: true,
     });
     // 获取详情
@@ -200,7 +200,7 @@ export default function AyDialogFormDemo() {
       setDialogProps({
         mode: 'update',
         initialValues: res.data,
-        visible: true,
+        open: true,
         spinning: false,
       });
     });
@@ -211,7 +211,7 @@ export default function AyDialogFormDemo() {
     setDialogProps({
       mode: 'view',
       initialValues: {},
-      visible: true,
+      open: true,
       spinning: true,
     });
     // 获取详情
@@ -219,7 +219,7 @@ export default function AyDialogFormDemo() {
       setDialogProps({
         mode: 'view',
         initialValues: res.data,
-        visible: true,
+        open: true,
         spinning: false,
       });
     });
@@ -254,7 +254,7 @@ import { Space, message } from 'antd';
 import { detailApi, professionOptions } from '../api';
 
 interface IProps {
-  visible: boolean;
+  open: boolean;
   initialValues: any;
   mode: 'add' | 'update' | 'view';
   spinning: boolean;
@@ -262,7 +262,7 @@ interface IProps {
 
 const defaultProps: IProps = {
   // 是否可见
-  visible: false,
+  open: false,
   // 弹窗默认值
   initialValues: {},
   // 模式， view 模式下表格会只读
@@ -280,7 +280,7 @@ export default function AyDialogFormDemo() {
     setDialogProps({
       mode: 'add',
       initialValues: {},
-      visible: true,
+      open: true,
       spinning: false,
     });
   };
@@ -290,7 +290,7 @@ export default function AyDialogFormDemo() {
     setDialogProps({
       mode: 'update',
       initialValues: {},
-      visible: true,
+      open: true,
       spinning: true,
     });
     // 获取详情
@@ -298,7 +298,7 @@ export default function AyDialogFormDemo() {
       setDialogProps({
         mode: 'update',
         initialValues: res.data,
-        visible: true,
+        open: true,
         spinning: false,
       });
     });
@@ -309,7 +309,7 @@ export default function AyDialogFormDemo() {
     setDialogProps({
       mode: 'view',
       initialValues: {},
-      visible: true,
+      open: true,
       spinning: true,
     });
     // 获取详情
@@ -317,7 +317,7 @@ export default function AyDialogFormDemo() {
       setDialogProps({
         mode: 'view',
         initialValues: res.data,
-        visible: true,
+        open: true,
         spinning: false,
       });
     });
@@ -396,7 +396,7 @@ import { professionOptions } from '../api';
 
 export default function AyDialogFormDemo() {
   // 弹窗是否可见
-  const [visible, setVisible] = useState(false);
+  const [open, setVisible] = useState(false);
 
   const fields: Array<GDialogFormField> = [
     {
@@ -427,7 +427,7 @@ export default function AyDialogFormDemo() {
         <GButton onClick={handleAdd}>新增</GButton>
       </Space>
       <GDialogForm
-        visible={visible}
+        open={open}
         fields={fields}
         drawer
         formExtend={{
@@ -451,7 +451,7 @@ import { Space, message } from 'antd';
 
 export default function AyDialogFormDemo() {
   // 弹窗是否可见
-  const [visible, setVisible] = useState(false);
+  const [open, setVisible] = useState(false);
 
   const fields: Array<GDialogFormField> = [
     {
@@ -480,7 +480,7 @@ export default function AyDialogFormDemo() {
       </Space>
       <GDialogForm
         title="审批通过"
-        visible={visible}
+        open={open}
         fields={fields}
         span={24}
         addApi={() =>
@@ -593,7 +593,7 @@ export default function AyDialogFormDemo() {
 | formExtend   | [GForm](../form#props-参数) 的扩展值。                | object                                                     | -      | -     |
 | autoClose    | 成功后是否自动关闭弹窗。                              | boolean                                                    | true   | -     |
 | drawer       | 是否用 Drawer 替换 Modal。                            | boolean                                                    | false  | -     |
-| visible      | 弹窗是否可见。                                        | boolean                                                    | false  | 0.1.0 |
+| open         | 弹窗是否可见。                                        | boolean                                                    | false  | 0.1.0 |
 | defaultValue | 弹窗打开后，表单的默认值                              | object                                                     | {}     | 0.1.0 |
 | mode         | 打开的模式，会影响标题和只读，设置 'view'后表单只读。 | 'add'\| 'update' \| 'view'                                 | 'add'  | 0.1.0 |
 | spinning     | 打开弹窗后，表单是否处于正在加载数据的阶段。          | boolean                                                    | false  | 0.1.0 |

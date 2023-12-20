@@ -45,7 +45,7 @@ const RuleFormItem = ({
   extra,
   popoverProps,
 }: RuleFormItemProps) => {
-  const [visible, setVisible] = useState<boolean | undefined>(false);
+  const [open, setVisible] = useState<boolean | undefined>(false);
   const [errorStringList, setErrorList] = useState<string[]>([]);
 
   useEffect(() => {
@@ -59,9 +59,9 @@ const RuleFormItem = ({
       key="popover"
       trigger="focus"
       placement="topRight"
-      visible={errorStringList.length < 1 ? false : visible}
+      open={errorStringList.length < 1 ? false : open}
       onVisibleChange={(value) => {
-        if (value !== visible) {
+        if (value !== open) {
           setVisible(value);
         }
       }}

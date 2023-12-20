@@ -238,7 +238,7 @@ const fieldKeys = [
   'order',
   'required',
   'rules',
-  'visible',
+  'open',
   'hidden',
   'formItemProps',
   'renderContent',
@@ -360,12 +360,11 @@ const getFormItem = (
       );
     }
 
-    let visible = true;
+    let open = true;
 
     // 隐藏该项目，保留占位，但是保留值
-    if (field.visible !== undefined) {
-      visible =
-        typeof field.visible === 'function' ? field.visible() : field.visible;
+    if (field.open !== undefined) {
+      open = typeof field.open === 'function' ? field.open() : field.open;
     }
 
     let hidden = false;
@@ -377,7 +376,7 @@ const getFormItem = (
     }
 
     // 隐藏该项，只显示占位，保留 form 值
-    if (!visible || hidden) {
+    if (!open || hidden) {
       field = getNoVisibleField(field);
     }
 
@@ -452,7 +451,7 @@ const getFormItem = (
     }
 
     // 不显示状态下 rule 无效
-    if (hidden || !visible) {
+    if (hidden || !open) {
       formItemProps.rules = [];
     }
 

@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // 晚点处理吧，类型导出有问题i
 import dayjs from 'dayjs';
-import { type GSearchTableField, GSearchTable } from 'gbeata/src/index';
+import { type GSearchTableField, GSearchTable } from 'gbeata';
 import { memo, useEffect, useMemo, useState } from 'react';
 
 function CommitTable() {
