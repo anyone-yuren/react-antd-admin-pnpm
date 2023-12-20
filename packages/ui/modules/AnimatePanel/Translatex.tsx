@@ -1,15 +1,15 @@
 import { type AnimationConfig, animated, useSpring } from '@react-spring/web';
 import React from 'react';
 
-type Props = {
-  children: React.ReactNode | string;
+export type TranslateProps = {
+  children?: React.ReactNode;
   direction?: string;
   delay?: number;
   run?: boolean;
   config?: Partial<AnimationConfig>;
   className?: string;
 };
-export default function Translatex(props: Props) {
+export default function Translatex(props: TranslateProps) {
   const {
     children,
     direction = 'left',
@@ -31,7 +31,7 @@ export default function Translatex(props: Props) {
       : `${
           direction === 'left'
             ? 'translateX(80px) scale(0.9) rotateY(10deg)'
-            : 'translateY(200px) scale(0.9) rotateY(10deg)'
+            : 'translateY(80px) scale(0.9) rotateY(10deg)'
         }`,
     delay,
     config: { ...config },

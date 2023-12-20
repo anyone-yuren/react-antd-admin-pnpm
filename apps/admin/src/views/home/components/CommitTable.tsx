@@ -3,8 +3,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // 晚点处理吧，类型导出有问题i
 import dayjs from 'dayjs';
-import { type GSearchTableField, GSearchTable } from 'gbeata';
+import { GSearchTable } from 'gbeata';
 import { memo, useEffect, useMemo, useState } from 'react';
+
+import type { GSearchTableField } from 'gbeata/lib/GSearchTable/g-search-table';
 
 function CommitTable() {
   const [data, setData] = useState([]);

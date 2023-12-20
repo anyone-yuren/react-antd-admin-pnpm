@@ -1,4 +1,3 @@
-import { Spin } from 'antd';
 import { type LazyExoticComponent, type ReactNode, Suspense } from 'react';
 
 import Loading from './Loading';
@@ -8,7 +7,7 @@ import Loading from './Loading';
  * @param {Element} Component 需要访问的组件
  * @returns element
  */
-const LazyLoad = (Component: LazyExoticComponent<any>): ReactNode => (
+const LazyLoad = (Component: LazyExoticComponent<React.FC<{}>>): ReactNode => (
   <Suspense fallback={<Loading />}>
     <Component />
   </Suspense>
