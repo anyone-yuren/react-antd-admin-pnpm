@@ -7,7 +7,9 @@ const useStyles = createStyles(({ token }) => {
     'home-container': {
       height: '100vh',
       '.gutter-row': {
-        display: 'flex',
+        '&:first-child': {
+          display: 'flex',
+        },
       },
       '.user-info': {
         backgroundColor: token.colorPrimaryBg,

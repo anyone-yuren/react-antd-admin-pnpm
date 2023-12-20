@@ -2,10 +2,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // 晚点处理吧，类型导出有问题i
-import { type GSearchTableField, GSearchTable } from 'gbeata';
-import { memo, useMemo, useState } from 'react';
+import dayjs from 'dayjs';
+import { type GSearchTableField, GSearchTable } from 'gbeata/src/index';
+import { memo, useEffect, useMemo, useState } from 'react';
 
-function Demo() {
+function CommitTable() {
   const [data, setData] = useState([]);
 
   const fields: Array<GSearchTableField> = [
@@ -23,41 +24,47 @@ function Demo() {
     },
   ];
   const apiUrl = 'https://api.github.com/repos/anyone-yuren/react-antd-admin-pnpm/commits?sha=admin&per_page=10';
-  const accessToken = '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';
+  const accessToken = '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';
 
-  fetch(apiUrl, {
-    method: 'GET',
-    headers: {
-      Authorization: `token ${accessToken}`,
-    },
-  })
-    .then((response) => {
-      // 如果响应状态码不是 200 OK，则可能有错误
-      if (!response.ok) {
-        throw new Error(`GitHub API请求失败：${response.statusText}`);
-      }
-
-      // 将响应的JSON数据解析为 JavaScript 对象
-      return response.json();
+  useEffect(() => {
+    fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        Authorization: `token ${accessToken}`,
+      },
     })
-    .then((data) => {
-      setData(
-        data.map((item) => ({
-          author: item.commit.author.name,
-          message: item.commit.message,
-          time: item.commit.author.date,
-        })),
-      );
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`GitHub API请求失败：${response.statusText}`);
+        }
+        return response.json();
+      })
+      .then((source) => {
+        setData(
+          source.map(
+            (item: {
+              commit: {
+                author: { name: any; date: string | number | Date | dayjs.Dayjs | null | undefined };
+                message: any;
+              };
+            }) => ({
+              author: item.commit.author.name,
+              message: item.commit.message,
+              time: dayjs(item.commit.author.date).format('YYYY-MM-DD HH:mm:ss'),
+            }),
+          ),
+        );
+      })
+      .catch((error) => {
+        console.error('发生错误：', error.message);
+      });
+  }, []); // 空数组表示仅在组件挂载时执行一次
 
-      // 在这里对数据进行进一步处理
-    })
-    .catch((error) => {
-      // 捕获和处理错误
-      console.error('发生错误：', error.message);
-    });
-  const renderTable = useMemo(() => () => <GSearchTable title='Github 提交记录' data={data} fields={fields} />, [data]);
-
-  return <>{renderTable()}</>;
+  return (
+    <>
+      <GSearchTable title='Github 提交记录' data={data} fields={fields} />
+    </>
+  );
 }
 
-export default memo(Demo);
+export default memo(CommitTable);

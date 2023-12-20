@@ -21,7 +21,7 @@ import GTable, {
 } from './GTable';
 
 import { default as GTagGroup } from './GTagGroup';
-export * from './index.d';
+export type * from './index.d';
 export {
   GAction,
   GButton,
