@@ -2,6 +2,7 @@ import { Button, Col, Divider, Row, Typography } from 'antd';
 import { AnimatePanel } from 'ui';
 
 import SvgIcon from '@/components/SvgIcon';
+import UserCard from '@/components/UserCard';
 
 import { AnalyzeCard } from './components/AnalyzeCard';
 import CommitTable from './components/CommitTable';
@@ -59,6 +60,9 @@ const HomePage: FC = () => {
         <AnalyzeCard />
         <Col span={12}>
           <CommitTable />
+        </Col>
+        <Col span={12}>
+          <UserCard>1212</UserCard>
         </Col>
         <Col span={24}>
           <Text>

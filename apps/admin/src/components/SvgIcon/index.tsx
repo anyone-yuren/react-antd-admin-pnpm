@@ -1,8 +1,12 @@
+import classNames from 'classnames';
+
 import useStyles from './index.module.style';
 
 import type { SvgIconProp } from './types';
 
-export default function SvgIcon({ name, prefix = 'icon', size = 16, style }: SvgIconProp) {
+export default function SvgIcon({ name, prefix = 'icon', size = 16, style, className }: SvgIconProp) {
+  console.log(className);
+
   const { styles } = useStyles();
   const symbolId = `#${prefix}-${name}`;
   const iconStyle = {
@@ -12,7 +16,7 @@ export default function SvgIcon({ name, prefix = 'icon', size = 16, style }: Svg
   };
 
   return (
-    <svg className={styles['svg-icon']} style={iconStyle} aria-hidden="true">
+    <svg className={classNames(styles['svg-icon'], className)} style={iconStyle} aria-hidden='true'>
       <use href={symbolId} />
     </svg>
   );
