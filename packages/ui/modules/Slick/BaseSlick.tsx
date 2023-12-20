@@ -5,6 +5,10 @@ type Props = {
   children: React.ReactNode;
 };
 export default function BaseSlick(props: Props) {
-  const { sliderConfig, children } = props;
-  return <Slider {...sliderConfig}>{children}</Slider>;
+  const { sliderConfig, children, ...rest } = props;
+  return (
+    <Slider {...rest} {...sliderConfig}>
+      {children}
+    </Slider>
+  );
 }

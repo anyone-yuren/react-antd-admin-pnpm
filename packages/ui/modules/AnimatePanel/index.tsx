@@ -33,20 +33,18 @@ export default function Card(props: {
   };
 
   return (
-    <div className='w-full mt-2' ref={cardRef}>
-      <div>
-        <animated.div
-          className={'border  border-solid '}
-          style={{ transform: xys.to(trans) }}
-          onMouseLeave={handleMouseLeave}
-          onMouseMove={handleMouseMove}
-        >
-          <p className={'text-sm  flex justify-between border-solid'}>
-            {props.title} {props.right}
-          </p>
-          {props.children}
-        </animated.div>
-      </div>
+    <div ref={cardRef}>
+      <animated.div
+        className={'border  border-solid '}
+        style={{ transform: xys.to(trans) }}
+        onMouseLeave={handleMouseLeave}
+        onMouseMove={handleMouseMove}
+      >
+        <p className={'text-sm  flex justify-between border-solid'}>
+          {props.title} {props.right}
+        </p>
+        {props.children}
+      </animated.div>
     </div>
   );
 }

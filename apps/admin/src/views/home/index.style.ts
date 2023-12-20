@@ -6,8 +6,13 @@ const useStyles = createStyles(({ token }) => {
   return {
     'home-container': {
       height: '100vh',
+      '.gutter-row': {
+        display: 'flex',
+      },
       '.user-info': {
         backgroundColor: token.colorPrimaryBg,
+        display: 'flex',
+        alignItems: 'center',
       },
       '.slick': {
         height: '100%',

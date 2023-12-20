@@ -23,7 +23,7 @@ function Demo() {
     },
   ];
   const apiUrl = 'https://api.github.com/repos/anyone-yuren/react-antd-admin-pnpm/commits?sha=admin&per_page=10';
-  const accessToken = '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';
+  const accessToken = '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';
 
   fetch(apiUrl, {
     method: 'GET',
