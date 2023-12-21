@@ -1,4 +1,5 @@
 import { ThemeProvider } from 'antd-style';
+import { useEffect, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { useGlobalStore } from 'store';
 
@@ -7,8 +8,25 @@ import redImg from '@/assets/images/red-blur.png';
 import router from '@/router';
 import CustomGlobal from '@/styles/GlobalPager';
 
+import LoadingPage from './components/LoadingPage';
+
 function App() {
   const preset = useGlobalStore((state) => state.preset);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // 异步操作模拟（例如数据加载、初始化等）
+    const asyncOperation = async () => {
+      // 模拟异步操作
+      await new Promise((resolve) => {
+        setTimeout(resolve, 2000);
+      });
+      // 完成异步操作后，切换到主应用
+      setLoading(false);
+    };
+
+    asyncOperation();
+  }, []); // 仅在组件挂载时执行
   return (
     <ThemeProvider
       defaultThemeMode='light'
@@ -29,7 +47,7 @@ function App() {
       }}
     >
       <CustomGlobal />
-      <RouterProvider router={router} />
+      {loading ? <LoadingPage /> : <RouterProvider router={router} />}
     </ThemeProvider>
   );
 }
