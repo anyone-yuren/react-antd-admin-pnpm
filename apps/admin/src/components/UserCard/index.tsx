@@ -15,6 +15,16 @@ const { Text, Title } = Typography;
 export interface UserCardProp extends CardProps {
   children?: React.ReactNode;
 }
+
+const UserFooter: React.FC<{ name: string; count: number }> = ({ name, count }) => (
+  <div className='footer'>
+    <Text type='secondary'>{name}</Text>
+    <Title style={{ margin: 0 }} level={5}>
+      {count}K
+    </Title>
+  </div>
+);
+
 const UserCard: React.FC<UserCardProp> = (prop) => {
   const { children, ...rest } = prop;
   const [loading, setLoading] = React.useState(true);
@@ -47,7 +57,11 @@ const UserCard: React.FC<UserCardProp> = (prop) => {
               <img alt='example' src={cover_5} />
             </span>
           }
-          actions={[]}
+          actions={[
+            <UserFooter name='Foloower' count={1.02} />,
+            <UserFooter name='Folowing' count={2.58} />,
+            <UserFooter name='Total Post' count={1.13} />,
+          ]}
         >
           <div className='user_info'>
             <SvgIcon className='avatar-svg' name='wave'></SvgIcon>
@@ -55,9 +69,11 @@ const UserCard: React.FC<UserCardProp> = (prop) => {
               <img src={avatar} />
             </div>
             <div className='info'>
-              <Title level={5}>Gbeata</Title>
+              <Title style={{ margin: 0 }} level={5}>
+                Gbeata
+              </Title>
               <Text type='secondary'>来历不明</Text>
-              <Flex align='flex-start' gap={8}>
+              <Flex style={{ marginTop: 8 }} gap={8}>
                 <Button shape='circle' icon={<SvgIcon style={{ color: '#1890ff' }} name='github' />} />
                 <Button shape='circle' icon={<SvgIcon name='message' />} />
                 <Button shape='circle' icon={<SvgIcon name='like' />} />

@@ -59,10 +59,10 @@ const HomePage: FC = () => {
         </Col>
         <AnalyzeCard />
         <Col span={12}>
-          <CommitTable />
+          <UserCard>1212</UserCard>
         </Col>
         <Col span={12}>
-          <UserCard>1212</UserCard>
+          <CommitTable />
         </Col>
         <Col span={24}>
           <Text>

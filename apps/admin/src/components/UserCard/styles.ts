@@ -22,6 +22,7 @@ const useStyles = createStyles(({ token }) => ({
         zIndex: 1,
         position: 'absolute',
         background: 'rgba(22, 28, 36, 0.48)',
+        borderRadius: `${token.borderRadiusLG}px ${token.borderRadiusLG}px 0 0`,
       },
     },
     '.user_info': {
