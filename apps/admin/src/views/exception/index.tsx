@@ -1,6 +1,8 @@
 import { Button, Card, Result } from 'antd';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 
+import SvgIcon from '@/components/SvgIcon';
+
 import type { FC, ReactNode } from 'react';
 
 const subTitleMap = new Map([
@@ -23,17 +25,18 @@ const PageException: FC = () => {
       return <Card bordered={false}>{children}</Card>;
     }
     return (
-        <div className='flex-center' style={{ height: '100vh' }}>
-          {children}
-        </div>
+      <div className='flex-center' style={{ height: '100vh' }}>
+        {children}
+      </div>
     );
   };
 
   return (
     <WithCard>
       <Result
-        status={status}
+        // status={status}
         title={status}
+        icon={<SvgIcon size={380} name={status} />}
         subTitle={subTitleMap.get(status)}
         extra={
           <Button type='primary' onClick={goHome}>

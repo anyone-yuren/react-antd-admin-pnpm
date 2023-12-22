@@ -106,6 +106,7 @@ const LoginPage: FC = () => {
         <Title className='logo' level={3}>
           <SvgIcon name='logo' size={30} />
         </Title>
+        <Title level={2}>Hi, 欢迎回来！</Title>
         <img src={illustrationDashboard} alt='' className={styles['login-img']} />
       </div>
       <div className={styles['login-form']}>

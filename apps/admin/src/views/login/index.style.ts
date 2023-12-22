@@ -43,6 +43,9 @@ const useStyles = createStyles(({ token }) => ({
       position: 'absolute',
       top: 0,
       left: 0,
+      svg: {
+        color: token.colorPrimary,
+      },
     },
   },
 }));
