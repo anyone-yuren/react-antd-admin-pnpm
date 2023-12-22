@@ -3,7 +3,7 @@ import { createStyles } from 'antd-style';
 const useStyles = createStyles(({ token }) => ({
   'user-card': {
     width: '100%',
-    '.ant-skeleton-image': {
+    '.ant-skeleton, .ant-skeleton-image': {
       width: '100% !important',
     },
     '.ant-card-cover': {
