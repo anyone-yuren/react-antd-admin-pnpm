@@ -19,7 +19,7 @@ function App() {
     const asyncOperation = async () => {
       // 模拟异步操作
       await new Promise((resolve) => {
-        setTimeout(resolve, 2000);
+        setTimeout(resolve, 3000);
       });
       // 完成异步操作后，切换到主应用
       setLoading(false);
