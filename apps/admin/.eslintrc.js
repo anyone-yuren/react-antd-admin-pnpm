@@ -4,6 +4,9 @@ module.exports = {
   extends: ['gbeata-eslint'],
   parserOptions: {
     tsconfigRootDir: __dirname,
-    project: ['./tsconfig.json']
-  }
-}
+    project: ['./tsconfig.json'],
+  },
+  rules: {
+    '@typescript-eslint/no-unused-expressions': 'off',
+  },
+};
