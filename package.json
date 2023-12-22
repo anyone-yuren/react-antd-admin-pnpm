@@ -6,7 +6,7 @@
   "scripts": {
     "bootstrap": "pnpm install",
     "build": "turbo build",
-    "build:admin": "turbo build --filter admin",
+    "build:admin": "pnpm run build --filter react-admin-design",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",

@@ -22,9 +22,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
 
   return {
     base: isBuild ? '/react-antd-admin-pnpm/' : './',
-    build: {
-      outDir: '../../gbeata-dist',
-    },
     server: {
       // Listening on all local ips
       host: true,
@@ -54,6 +51,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       target: 'es2015',
       cssTarget: 'chrome86',
       minify: 'terser',
+      outDir: '../../gbeata-dist',
       terserOptions: {
         compress: {
           keep_infinity: true,
