@@ -6,6 +6,7 @@
   "scripts": {
     "bootstrap": "pnpm install",
     "build": "turbo build",
+    "build:admin": "turbo build --filter admin",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
