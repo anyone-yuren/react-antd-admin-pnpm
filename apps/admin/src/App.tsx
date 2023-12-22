@@ -13,7 +13,6 @@ import LoadingPage from './components/LoadingPage';
 function App() {
   const preset = useGlobalStore((state) => state.preset);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     // 异步操作模拟（例如数据加载、初始化等）
     const asyncOperation = async () => {

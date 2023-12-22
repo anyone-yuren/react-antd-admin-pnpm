@@ -15,6 +15,7 @@ import { resetState } from '@/stores/modules/user';
 import type { MenuProps } from 'antd';
 
 export default function UserDropdown() {
+  const { createConfirm, contextHolder } = useMessage();
   const items: MenuProps['items'] = [
     {
       key: 'lock',
@@ -44,6 +45,8 @@ export default function UserDropdown() {
       case 'logout':
         handleLogout();
         break;
+      default:
+        break;
     }
   };
 
@@ -56,10 +59,7 @@ export default function UserDropdown() {
   const handleLock = () => {};
 
   const handleLogout = () => {
-    const { createConfirm } = useMessage();
-
     createConfirm({
-      iconType: 'warning',
       title: <span>温馨提醒</span>,
       content: <span>是否确认退出系统?</span>,
       onOk: async () => {
@@ -83,18 +83,21 @@ export default function UserDropdown() {
   };
 
   return (
-    <Dropdown menu={{ items, onClick }} placement='bottomRight' arrow>
-      <span className='flex-center' style={{ cursor: 'pointer' }}>
-        <img
-          src={headerImg}
-          style={{
-            width: '24px',
-            height: '24px',
-            borderRadius: '50%',
-          }}
-          alt=''
-        />
-      </span>
-    </Dropdown>
+    <>
+      {contextHolder}
+      <Dropdown menu={{ items, onClick }} placement='bottomRight' arrow>
+        <span className='flex-center' style={{ cursor: 'pointer' }}>
+          <img
+            src={headerImg}
+            style={{
+              width: '24px',
+              height: '24px',
+              borderRadius: '50%',
+            }}
+            alt=''
+          />
+        </span>
+      </Dropdown>
+    </>
   );
 }
