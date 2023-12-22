@@ -21,7 +21,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
   const { VITE_PORT, VITE_DROP_CONSOLE } = viteEnv;
 
   return {
-    base: isBuild ? '/react-admin-design/' : './',
+    base: isBuild ? '/react-antd-admin-pnpm/' : './',
+    build: {
+      outDir: '../../gbeata-dist',
+    },
     server: {
       // Listening on all local ips
       host: true,
