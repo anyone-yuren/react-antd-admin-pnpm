@@ -11,8 +11,8 @@ const useStyles = createStyles(({ token }, props: { active: boolean }) => {
       padding: '0 8px',
       borderRadius: '3px',
       lineHeight: '24px',
-      color: '#555',
-      background: '#fff',
+      color: active ? '#fff' : '#555',
+      background: active ? token.colorPrimary : '#fff',
       overflow: 'hidden',
       cursor: 'pointer',
       '&__dot': {
