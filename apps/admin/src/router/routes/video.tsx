@@ -1,7 +1,10 @@
-import { lazy } from 'react'
-import { RouteObject } from '../types'
-import { LayoutGuard } from '../guard'
-import { LazyLoad } from '@/components/LazyLoad'
+import { lazy } from 'react';
+
+import { LazyLoad } from '@/components/LazyLoad';
+
+import { LayoutGuard } from '../guard';
+
+import type { RouteObject } from '../types';
 
 // video module page
 const VideoRoute: RouteObject = {
@@ -10,7 +13,7 @@ const VideoRoute: RouteObject = {
   meta: {
     title: '视频处理',
     icon: 'video',
-    orderNo: 5
+    orderNo: 5,
   },
   children: [
     {
@@ -18,18 +21,18 @@ const VideoRoute: RouteObject = {
       element: LazyLoad(lazy(() => import('@/views/video/video-player'))),
       meta: {
         title: '视频播放器',
-        key: 'videoPlayer'
-      }
+        key: 'videoPlayer',
+      },
     },
     {
       path: 'video-mark',
       element: LazyLoad(lazy(() => import('@/views/blank'))),
       meta: {
         title: '视频水印',
-        key: 'videoMark'
-      }
-    }
-  ]
-}
+        key: 'videoMark',
+      },
+    },
+  ],
+};
 
-export default VideoRoute
+export default VideoRoute;

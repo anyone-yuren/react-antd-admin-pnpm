@@ -1,3 +1,3 @@
-import AppLogo from './src/AppLogo'
+import AppLogo from './src/AppLogo';
 
-export { AppLogo }
+export { AppLogo };

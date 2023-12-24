@@ -1,7 +1,10 @@
-import { lazy } from 'react'
-import { RouteObject } from '../types'
-import { LayoutGuard } from '../guard'
-import { LazyLoad } from '@/components/LazyLoad'
+import { lazy } from 'react';
+
+import { LazyLoad } from '@/components/LazyLoad';
+
+import { LayoutGuard } from '../guard';
+
+import type { RouteObject } from '../types';
 
 // graph-editor module page
 const GraphEditorRoute: RouteObject = {
@@ -10,7 +13,7 @@ const GraphEditorRoute: RouteObject = {
   meta: {
     title: '图形编辑器',
     icon: 'flow',
-    orderNo: 8
+    orderNo: 8,
   },
   children: [
     {
@@ -18,18 +21,18 @@ const GraphEditorRoute: RouteObject = {
       element: LazyLoad(lazy(() => import('@/views/blank'))),
       meta: {
         title: '流程图',
-        key: 'flowChart'
-      }
+        key: 'flowChart',
+      },
     },
     {
       path: 'mind-chart',
       element: LazyLoad(lazy(() => import('@/views/blank'))),
       meta: {
         title: '思维导图',
-        key: 'mindChart'
-      }
-    }
-  ]
-}
+        key: 'mindChart',
+      },
+    },
+  ],
+};
 
-export default GraphEditorRoute
+export default GraphEditorRoute;

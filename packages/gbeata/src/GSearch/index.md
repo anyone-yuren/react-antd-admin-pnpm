@@ -119,7 +119,7 @@ export default function Demo() {
         <Slider defaultValue={width} min={30} onChange={(e) => setWidth(e)} />
       </div>
       <div style={{ width: width + '%' }}>
-        <GSearch visibleRow={1} fields={fields} />
+        <GSearch openRow={1} fields={fields} />
       </div>
     </div>
   );
@@ -127,11 +127,11 @@ export default function Demo() {
 ```
 
 ```js
-// visibleRow 可以设置折叠行数
-<GSearch visibleRow={1} />
+// openRow 可以设置折叠行数
+<GSearch openRow={1} />
 ```
 
-全局默认折叠行数设置，看 [这里](../global/set-search-default-visible-row)
+全局默认折叠行数设置，看 [这里](../global/set-search-default-open-row)
 
 ## 不同的个数
 

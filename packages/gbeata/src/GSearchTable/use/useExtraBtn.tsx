@@ -57,7 +57,7 @@ const useFieldsEdit = (
   setTableFields: Dispatch<React.SetStateAction<GTableField[]>>,
   defaultExtra: string[],
 ) => {
-  const [visible, setVisible] = useState<boolean>(false);
+  const [open, setVisible] = useState<boolean>(false);
   let [normalFields, setNormalFields] = useState<Array<FieldEdit>>(
     // @ts-ignore
     tableFields
@@ -179,7 +179,7 @@ const useFieldsEdit = (
       <>
         <GDialog
           title={locale.extra.columnSetting}
-          visible={visible}
+          open={open}
           setVisible={setVisible}
           onConfirm={handleConfirm}
         >

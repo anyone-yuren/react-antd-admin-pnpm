@@ -1,6 +1,6 @@
-import { AnyKeyProps } from 'gbeata';
 import { useEffect, useState } from 'react';
 import { Option } from '../GForm/g-form';
+import { AnyKeyProps } from '../index.d';
 import { listToTree } from '../utils';
 import { IConfig, Transform } from './use-options';
 

@@ -75,7 +75,7 @@ export default function GDialog(props: GDialogProps) {
     titleBefore,
     titleAfter,
     children,
-    visible,
+    open,
     setVisible,
     onConfirm,
     onOk,
@@ -123,7 +123,7 @@ export default function GDialog(props: GDialogProps) {
             {titleAfter}
           </Space>
         ),
-        visible,
+        open,
         closable: true,
         onClose: handleCancel,
         footer: getDialogFooter(),
@@ -138,7 +138,7 @@ export default function GDialog(props: GDialogProps) {
             {titleAfter}
           </Space>
         ),
-        visible,
+        open,
         onCancel: handleCancel,
         footer: getDialogFooter(),
         ...omitObj(extraPropsExtend, usedKeys),

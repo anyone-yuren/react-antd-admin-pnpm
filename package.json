@@ -6,6 +6,7 @@
   "scripts": {
     "bootstrap": "pnpm install",
     "build": "turbo build",
+    "build:admin": "pnpm run build --filter react-admin-design",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
@@ -33,7 +34,6 @@
     "@changesets/cli": "^2.27.1",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
-    "@gbeata/config-eslint": "workspace:^",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^9.2.5",
@@ -42,7 +42,7 @@
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "cz-git": "^1.8.0",
-    "eslint": "^8.55.0",
+    "eslint": "^8.54.0",
     "husky": "^8.0.3",
     "prettier": "^3.1.0",
     "semantic-release": "^22.0.12",
@@ -51,6 +51,7 @@
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
     "antd": "^5.12.1",
-    "antd-style": "^3.6.1"
+    "antd-style": "^3.6.1",
+    "esbuild": "0.18.20"
   }
 }

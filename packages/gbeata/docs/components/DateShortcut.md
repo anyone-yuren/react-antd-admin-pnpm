@@ -45,7 +45,6 @@ const fields: Array<GFormField> = [
 
 export default function Demo() {
   const handleConfirm = (form: any) => {
-    console.log(form);
     alert(JSON.stringify(form));
   };
   return (

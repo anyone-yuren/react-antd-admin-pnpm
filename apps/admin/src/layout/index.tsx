@@ -1,22 +1,27 @@
-import { Layout } from 'antd'
-import { Outlet } from 'react-router-dom'
-import LayoutMenu from './menu'
-import LayoutHeader from './header'
-import { AppLogo } from '@/components/AppLogo'
-import './index.less'
-import { useTitle } from '@/hooks/web/useTitle'
-import { useAppSelector } from '@/stores'
-import ErrorBoundary from 'antd/es/alert/ErrorBoundary'
+import { Layout } from 'antd';
+import ErrorBoundary from 'antd/es/alert/ErrorBoundary';
+import { Outlet } from 'react-router-dom';
+
+import { AppLogo } from '@/components/AppLogo';
+
+import { useTitle } from '@/hooks/web/useTitle';
+
+import { useAppSelector } from '@/stores';
+
+import LayoutHeader from './header';
+import useStyles from './index.style';
+import LayoutMenu from './menu';
 
 export const BasicLayout = (props: any) => {
-  useTitle()
-  const { Sider, Content } = Layout
+  useTitle();
+  const { Sider, Content } = Layout;
+  const { styles } = useStyles();
 
-  const getMenuFold = useAppSelector(state => state.app.appConfig?.menuSetting?.menuFold)
+  const getMenuFold = useAppSelector((state) => state.app.appConfig?.menuSetting?.menuFold);
 
   return (
-    <Layout className='layout_wrapper'>
-      <Sider width={210} trigger={null} collapsed={getMenuFold} style={{ height: '100vh' }}>
+    <Layout className={styles.layout_wrapper}>
+      <Sider width={240} trigger={null} theme='light' collapsed={getMenuFold} className='ant-layout-sider'>
         <AppLogo />
         <LayoutMenu />
       </Sider>
@@ -29,5 +34,5 @@ export const BasicLayout = (props: any) => {
         </Content>
       </Layout>
     </Layout>
-  )
-}
+  );
+};

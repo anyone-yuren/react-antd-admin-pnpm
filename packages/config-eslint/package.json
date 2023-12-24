@@ -1,5 +1,5 @@
 {
-  "name": "@gbeata/config-eslint",
+  "name": "eslint-config-gbeata-eslint",
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
@@ -8,9 +8,12 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.13.2",
-    "@typescript-eslint/parser": "^6.13.2",
-    "eslint-config-prettier": "^9.1.0"
+    "@typescript-eslint/eslint-plugin": "^5.47.1",
+    "@typescript-eslint/parser": "^5.47.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
+    "prettier": "^3.1.1"
   },
   "publishConfig": {
     "access": "public"

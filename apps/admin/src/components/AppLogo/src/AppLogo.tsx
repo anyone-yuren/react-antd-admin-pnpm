@@ -1,26 +1,39 @@
-import { FC } from 'react'
-import { Space } from 'antd'
-import { useAppSelector } from '@/stores'
-import classNames from 'classnames'
-import styles from './app-logo.module.less'
-import logoImg from '@/assets/images/logo.png'
-import logoName from '@/assets/images/name_white.png'
+import { Space } from 'antd';
+import { useTheme } from 'antd-style';
+import classNames from 'classnames';
+
+import SvgIcon from '@/components/SvgIcon';
+
+import logoName from '@/assets/images/name_white.png';
+import { useAppSelector } from '@/stores';
+
+import useStyles from './app-logo.module.style';
+
+import type { FC } from 'react';
 
 const AppLogo: FC = () => {
-  const getMenuFold = useAppSelector(state => state.app.appConfig?.menuSetting?.menuFold)
+  const token = useTheme();
+  const { styles } = useStyles();
+  const getMenuFold = useAppSelector((state) => state.app.appConfig?.menuSetting?.menuFold);
 
   return (
     <div className={classNames('anticon', styles['app-logo'])}>
       <Space>
-        <img className={styles['logo-img']} src={logoImg} alt='logo' />
-        <img
-          className={classNames(styles['logo-name'], { [styles['hidden']]: getMenuFold })}
-          src={logoName}
-          alt='logo'
+        <SvgIcon
+          style={{
+            color: token.colorPrimary,
+          }}
+          name='logo'
+          size={30}
         />
+        <div className={styles.container}>
+          {!getMenuFold ? <span className={styles.text}>{'Beata Admin'}</span> : ''}
+        </div>
+
+        {/* <img className={classNames(styles['logo-name'], { [styles.hidden]: getMenuFold })} src={logoName} alt='logo' /> */}
       </Space>
     </div>
-  )
-}
+  );
+};
 
-export default AppLogo
+export default AppLogo;

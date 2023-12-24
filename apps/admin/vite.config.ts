@@ -1,60 +1,71 @@
-import type { ConfigEnv, UserConfig } from 'vite'
-import { loadEnv } from 'vite'
-import react from '@vitejs/plugin-react'
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-import { viteMockServe } from 'vite-plugin-mock'
-import { wrapperEnv } from './build/utils'
+import react from '@vitejs/plugin-react';
 // 需要安装 @typings/node 插件
-import { resolve } from 'path'
+import { resolve } from 'path';
+import { loadEnv } from 'vite';
+import { viteMockServe } from 'vite-plugin-mock';
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
+
+import { wrapperEnv } from './build/utils';
+
+import type { ConfigEnv, UserConfig } from 'vite';
 
 /** @type {import('vite').UserConfig} */
 export default ({ command, mode }: ConfigEnv): UserConfig => {
-  const root = process.cwd()
-  const isBuild = command === 'build'
+  const root = process.cwd();
+  const isBuild = command === 'build';
 
-  const env = loadEnv(mode, root)
+  const env = loadEnv(mode, root);
 
   // this function can be converted to different typings
-  const viteEnv: any = wrapperEnv(env)
-  const { VITE_PORT, VITE_DROP_CONSOLE } = viteEnv
+  const viteEnv: any = wrapperEnv(env);
+  const { VITE_PORT, VITE_DROP_CONSOLE } = viteEnv;
 
   return {
-    base: isBuild ? '/react-admin-design/' : './',
+    base: isBuild ? '/react-antd-admin-pnpm/' : './',
     server: {
       // Listening on all local ips
       host: true,
-      port: VITE_PORT
+      port: VITE_PORT,
+      proxy: {
+        '/repos': {
+          target: 'https://api.github.com',
+          changeOrigin: true,
+          secure: true,
+          rewrite: (path) => path.replace(/^\/repos/, ''),
+        },
+      },
     },
     plugins: [
       react(),
       createSvgIconsPlugin({
         iconDirs: [resolve(process.cwd(), 'src/assets/icons')],
-        symbolId: 'icon-[dir]-[name]'
+        symbolId: 'icon-[dir]-[name]',
       }),
       viteMockServe({
         mockPath: 'mock',
-        ignore: /^_/
-      })
+        ignore: /^_/,
+      }),
     ],
 
     build: {
       target: 'es2015',
       cssTarget: 'chrome86',
       minify: 'terser',
+      outDir: '../../gbeata-dist',
       terserOptions: {
         compress: {
           keep_infinity: true,
           // used to delete console and debugger in production environment
-          drop_console: VITE_DROP_CONSOLE
-        }
+          drop_console: VITE_DROP_CONSOLE,
+        },
       },
-      chunkSizeWarningLimit: 2000
+      chunkSizeWarningLimit: 2000,
     },
 
     resolve: {
       alias: {
-        '@': resolve(__dirname, './src')
-      }
-    }
-  }
-}
+        '@': resolve(__dirname, './src'),
+      },
+    },
+  };
+};

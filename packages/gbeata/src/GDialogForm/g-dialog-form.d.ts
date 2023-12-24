@@ -32,7 +32,7 @@ export interface GDialogFormProps extends ModalProps {
   /** 是否只使用申明了 dialog 的 Field */
   dialogOnly?: boolean;
   /** 是否可见 */
-  visible?: boolean;
+  open?: boolean;
   /** 打开弹窗后的默认值 */
   initialValues?: AnyKeyProps;
   /** 关闭弹窗监听 */

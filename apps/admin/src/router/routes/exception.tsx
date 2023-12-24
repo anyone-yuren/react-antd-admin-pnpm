@@ -1,8 +1,12 @@
-import { lazy } from 'react'
-import { RouteObject } from '../types'
-import { LayoutGuard } from '../guard'
-import { ExceptionEnum } from '@/enums/exceptionEnum'
-import { LazyLoad } from '@/components/LazyLoad'
+import { lazy } from 'react';
+
+import { LazyLoad } from '@/components/LazyLoad';
+
+import { ExceptionEnum } from '@/enums/exceptionEnum';
+
+import { LayoutGuard } from '../guard';
+
+import type { RouteObject } from '../types';
 
 // exception module page
 const ExceptionRoute: RouteObject = {
@@ -11,7 +15,7 @@ const ExceptionRoute: RouteObject = {
   meta: {
     title: '异常页面',
     icon: 'bug',
-    orderNo: 11
+    orderNo: 11,
   },
   children: [
     {
@@ -19,29 +23,29 @@ const ExceptionRoute: RouteObject = {
       element: LazyLoad(lazy(() => import('@/views/exception'))),
       meta: {
         title: '403页面',
-        key: 'page403'
+        key: 'page403',
       },
-      loader: () => ({ status: ExceptionEnum.PAGE_NOT_ACCESS, withCard: true })
+      loader: () => ({ status: ExceptionEnum.PAGE_NOT_ACCESS, withCard: true }),
     },
     {
       path: 'page-404',
       element: LazyLoad(lazy(() => import('@/views/exception'))),
       meta: {
         title: '404页面',
-        key: 'page404'
+        key: 'page404',
       },
-      loader: () => ({ status: ExceptionEnum.PAGE_NOT_FOUND, withCard: true })
+      loader: () => ({ status: ExceptionEnum.PAGE_NOT_FOUND, withCard: true }),
     },
     {
       path: 'page-500',
       element: LazyLoad(lazy(() => import('@/views/exception'))),
       meta: {
         title: '500页面',
-        key: 'page500'
+        key: 'page500',
       },
-      loader: () => ({ status: ExceptionEnum.SERVER_ERROR, withCard: true })
-    }
-  ]
-}
+      loader: () => ({ status: ExceptionEnum.SERVER_ERROR, withCard: true }),
+    },
+  ],
+};
 
-export default ExceptionRoute
+export default ExceptionRoute;

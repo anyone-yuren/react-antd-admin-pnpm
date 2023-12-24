@@ -1,0 +1,26 @@
+{
+  "name": "ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@react-spring/web": "^9.7.3",
+    "antd": "^5.12.1",
+    "antd-style": "^3.6.1",
+    "react": "^18.2.0",
+    "react-slick": "^0.29.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.45",
+    "@types/react-slick": "^0.23.13",
+    "eslint-config-gbeata-eslint": "workspace:^",
+    "prettier": "^3.1.0",
+    "typescript": "^5.2.2"
+  }
+}

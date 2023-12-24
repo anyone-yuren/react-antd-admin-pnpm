@@ -1,32 +1,36 @@
-import type { ColumnsType } from 'antd/es/table'
-import { FC, useState, useEffect } from 'react'
-import { Card, Button, Table, Tag, Select, Switch, Popover, Space, Modal, TableProps } from 'antd'
-import { ExclamationCircleOutlined } from '@ant-design/icons'
-import { TABLE_COMPO } from '@/settings/websiteSetting'
-import { getTableList } from '@/api'
-import { PageWrapper } from '@/components/Page'
-import { APIResult, PageState, TableDataType } from './types'
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+import {
+  type TableProps, Button, Card, Modal, Popover, Select, Space, Switch, Table, Tag,
+} from 'antd';
+import { type FC, useEffect, useState } from 'react';
+
+import { PageWrapper } from '@/components/Page';
+
+import { getTableList } from '@/api';
+import { TABLE_COMPO } from '@/settings/websiteSetting';
+
+import type { APIResult, PageState, TableDataType } from './types';
+import type { ColumnsType } from 'antd/es/table';
 
 const marriedOptions = [
   { label: '单身', value: 0 },
   { label: '未婚', value: 1 },
   { label: '已婚', value: 2 },
-  { label: '离异', value: 3 }
-]
+  { label: '离异', value: 3 },
+];
 
 const TableBasic: FC = () => {
-
-  const [tableLoading, setTableLoading] = useState(false)
-  const [tableData, setTableData] = useState<TableDataType[]>([])
-  const [tableTotal, setTableTotal] = useState<number>(0)
-  const [tableQuery, setTableQuery] = useState<PageState>({ current: 1, pageSize: 10 })
+  const [tableLoading, setTableLoading] = useState(false);
+  const [tableData, setTableData] = useState<TableDataType[]>([]);
+  const [tableTotal, setTableTotal] = useState<number>(0);
+  const [tableQuery, setTableQuery] = useState<PageState>({ current: 1, pageSize: 10 });
 
   const columns: ColumnsType<TableDataType> = [
     {
       title: '编号',
       dataIndex: 'id',
       align: 'center',
-      sorter: true
+      sorter: true,
     },
     {
       title: '姓名',
@@ -39,28 +43,28 @@ const TableBasic: FC = () => {
             <p>手机: {record.phone}</p>
             <p>爱好: {record.hobby.join('、')}</p>
           </div>
-        )
+        );
         return (
           <Popover content={content}>
             <Tag color='blue'>{record.name}</Tag>
           </Popover>
-        )
-      }
+        );
+      },
     },
     {
       title: '性别',
       dataIndex: 'sex',
-      align: 'center'
+      align: 'center',
     },
     {
       title: '手机',
       dataIndex: 'phone',
-      align: 'center'
+      align: 'center',
     },
     {
       title: '学历',
       dataIndex: 'education',
-      align: 'center'
+      align: 'center',
     },
     {
       title: '婚姻状况',
@@ -72,7 +76,7 @@ const TableBasic: FC = () => {
           defaultValue={record.married}
           onChange={(value) => record.married = value}
         />
-      )
+      ),
     },
     {
       title: '禁止编辑',
@@ -83,7 +87,7 @@ const TableBasic: FC = () => {
           defaultChecked={record.forbid}
           onChange={(checked) => record.forbid = checked}
         />
-      )
+      ),
     },
     {
       title: '爱好',
@@ -91,7 +95,7 @@ const TableBasic: FC = () => {
       align: 'center',
       render: (_, record: any) => (
         <span>{record.hobby.join('、')}</span>
-      )
+      ),
     },
     {
       title: '操作',
@@ -102,31 +106,31 @@ const TableBasic: FC = () => {
           <Button disabled={record.forbid}>编辑</Button>
           <Button danger onClick={handleDelete}>删除</Button>
         </Space>
-      )
-    }
-  ]
+      ),
+    },
+  ];
 
   const tableSelection: TableProps<any>['rowSelection'] = {
     onChange: (selectedRowKeys: any[]) => {
-      console.log(selectedRowKeys)
-    }
-  }
+      console.log(selectedRowKeys);
+    },
+  };
 
   useEffect(() => {
-    fetchData()
-  }, [tableQuery])
+    fetchData();
+  }, [tableQuery]);
 
   async function fetchData() {
-    setTableLoading(true)
-    const data = await getTableList(tableQuery)
-    const { list, total } = data as unknown as APIResult
-    setTableData(list)
-    setTableTotal(total)
-    setTableLoading(false)
+    setTableLoading(true);
+    const data = await getTableList(tableQuery);
+    const { list, total } = data as unknown as APIResult;
+    setTableData(list);
+    setTableTotal(total);
+    setTableLoading(false);
   }
 
   function handlePageChange(page: number, pageSize: number) {
-    setTableQuery({ ...tableQuery, current: page, pageSize })
+    setTableQuery({ ...tableQuery, current: page, pageSize });
   }
 
   function handleDelete() {
@@ -137,12 +141,12 @@ const TableBasic: FC = () => {
       okText: '确定',
       cancelText: '取消',
       onOk() {
-        console.log('OK')
+        console.log('OK');
       },
       onCancel() {
-        console.log('Cancel')
-      }
-    })
+        console.log('Cancel');
+      },
+    });
   }
 
   return (
@@ -161,12 +165,12 @@ const TableBasic: FC = () => {
             showTotal: () => `Total ${tableTotal} items`,
             showSizeChanger: true,
             showQuickJumper: true,
-            onChange: handlePageChange
+            onChange: handlePageChange,
           }}
         />
       </Card>
     </PageWrapper>
-  )
-}
+  );
+};
 
-export default TableBasic
+export default TableBasic;

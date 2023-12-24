@@ -1,14 +1,4 @@
 import { Avatar, Col, List, Row, Space } from 'antd';
-import {
-  AnyKeyProps,
-  GAction,
-  GCtrl,
-  GSearchList,
-  GSearchTableField,
-  GTableCtrlField,
-  Selection,
-  SelectionAll,
-} from 'gbeata';
 import React from 'react';
 import {
   addApi,
@@ -17,6 +7,13 @@ import {
   professionOptions,
   updateApi,
 } from '../api';
+import { GCtrl, GSearchList, Selection, SelectionAll } from '../index';
+import {
+  AnyKeyProps,
+  GAction,
+  GSearchTableField,
+  GTableCtrlField,
+} from '../index.d';
 
 const ctrl: GTableCtrlField = {
   width: 200,

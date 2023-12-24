@@ -1,16 +1,13 @@
 {
   "name": "react-admin-design",
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
-    "serve": "vite",
-    "build": "rimraf dist && tsc && vite build",
+    "dev": "vite",
+    "build": "rimraf dist && vite build",
     "preview": "vite preview",
     "clean:cache": "rimraf .eslintcache && rimraf node_modules && pnpm install",
-    "lint:eslint": "eslint --cache --fix  \"{src,mock,build}/**/*.{js,ts,tsx}\"",
-    "lint:prettier": "prettier --write \"src/**/*.{js,json,ts,tsx,css,less,html,md}\"",
-    "lint:lint-staged": "lint-staged",
-    "prepare": "husky install"
+    "lint": "eslint --cache --fix  \"{src,mock,build}/**/*.{js,ts,tsx}\"",
+    "lint:prettier": "prettier --write \"src/**/*.{js,json,ts,tsx,css,less,html,md}\""
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
@@ -21,14 +18,17 @@
     "@wangeditor/editor": "^5.1.23",
     "ahooks": "^3.7.8",
     "antd": "^5.11.2",
+    "antd-style": "^3.6.1",
+    "apis": "workspace:*",
     "axios": "^1.6.2",
     "classnames": "^2.3.2",
     "cropperjs": "^1.6.1",
     "crypto-js": "^4.2.0",
     "dayjs": "^1.11.10",
     "echarts": "^5.4.3",
+    "echarts-for-react": "^3.0.2",
     "file-saver": "^2.0.5",
-    "gbeata": "^1.2.5",
+    "gbeata": "workspace:*",
     "immer": "^10.0.3",
     "lodash-es": "^4.17.21",
     "mockjs": "^1.1.0",
@@ -44,6 +44,8 @@
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
     "sortablejs": "^1.15.0",
+    "store": "workspace:^",
+    "ui": "workspace:^",
     "use-immer": "^0.9.0",
     "video-react": "^0.16.0",
     "xlsx": "^0.18.5"
@@ -60,21 +62,13 @@
     "@types/react-dom": "^18.2.15",
     "@types/sortablejs": "^1.15.5",
     "@types/video-react": "^0.15.4",
-    "@typescript-eslint/eslint-plugin": "^6.11.0",
-    "@typescript-eslint/parser": "^6.11.0",
     "@vitejs/plugin-react": "^4.2.0",
     "autoprefixer": "^10.4.16",
     "commitizen": "^4.3.0",
     "cssnano": "^6.0.1",
     "cz-git": "^1.7.1",
-    "esbuild": "^0.19.6",
-    "eslint": "^8.54.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.1",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-config-gbeata-eslint": "workspace:^",
     "fast-glob": "^3.3.2",
-    "husky": "^8.0.3",
     "less": "^4.2.0",
     "lint-staged": "^15.1.0",
     "postcss": "^8.4.31",
@@ -92,10 +86,5 @@
     "{src,mock,build}/**/*.{js,ts,tsx}": [
       "eslint --fix"
     ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-git"
-    }
   }
 }

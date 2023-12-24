@@ -70,7 +70,7 @@ const getSearchFields = (
   /** 每个项所占用的 span */
   calcSpan: number,
   /** 默认展开 n 行 */
-  visibleRow: number,
+  openRow: number,
   /** 是否平铺展示 */
   inline: boolean,
 ): { searchFields: Array<GFormField>; span: number } => {
@@ -137,7 +137,7 @@ const getSearchFields = (
 
     if (mini) {
       // 如果超过多行，直接隐藏
-      if (spanSum > visibleRow * 24 - calcSpan && index !== 0) {
+      if (spanSum > openRow * 24 - calcSpan && index !== 0) {
         newField.hidden = true;
       }
     }
@@ -184,7 +184,7 @@ const GSearch = forwardRef(function GSearch(props: GSearchProps, ref) {
     formExtend,
     defaultOpen,
     toggleVisible,
-    visibleRow = defaultVisibleRow,
+    openRow = defaultVisibleRow,
     actionVisible,
     inline,
     ...otherProps
@@ -201,12 +201,12 @@ const GSearch = forwardRef(function GSearch(props: GSearchProps, ref) {
     return SizeMap[size];
   }, [size]);
   // 显示的 fields
-  const { searchFields, span: visibleSpan } = getSearchFields(
+  const { searchFields, span: openSpan } = getSearchFields(
     fields,
     mini,
     size,
     calcSpan,
-    visibleRow,
+    openRow,
     inline || false,
   );
 
@@ -215,7 +215,7 @@ const GSearch = forwardRef(function GSearch(props: GSearchProps, ref) {
     if (inline) {
       return undefined;
     }
-    if (visibleSpan <= 18) {
+    if (openSpan <= 18) {
       return 6;
     }
     // 累计的 span
@@ -245,7 +245,7 @@ const GSearch = forwardRef(function GSearch(props: GSearchProps, ref) {
 
       // 如果超过指定行数，直接隐藏
       if (
-        spanSum + newSpan + calcSpan > visibleRow * 24 &&
+        spanSum + newSpan + calcSpan > openRow * 24 &&
         !miniSpanSum &&
         index !== 0
       ) {
@@ -262,12 +262,12 @@ const GSearch = forwardRef(function GSearch(props: GSearchProps, ref) {
     let span: number = 24 - ((mini ? miniSpanSum : spanSum) % 24);
 
     return span;
-  }, [searchFields, calcSpan, mini, visibleSpan, inline]);
+  }, [searchFields, calcSpan, mini, openSpan, inline]);
 
   // 是否应该右侧
   const actionRight: boolean = useMemo(() => {
-    return visibleSpan >= 24 - calcSpan;
-  }, [visibleSpan]);
+    return openSpan >= 24 - calcSpan;
+  }, [openSpan]);
 
   // 查询区域样式
   const actionStyle = useMemo(() => {
@@ -414,7 +414,7 @@ const GSearch = forwardRef(function GSearch(props: GSearchProps, ref) {
                     {locale.search.reset}
                   </GButton>
                   {toggleVisible !== false && !inline
-                    ? visibleSpan > visibleRow * 24 - (actionSpan || 0) &&
+                    ? openSpan > openRow * 24 - (actionSpan || 0) &&
                       searchFields.length > 1 && <ToogleBtn />
                     : null}
                 </Space>

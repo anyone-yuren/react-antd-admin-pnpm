@@ -1,29 +1,34 @@
-import { FC, useState } from 'react'
-import { Card, Form, Radio, Switch } from 'antd'
-import { PageWrapper } from '@/components/Page'
-import { React_TREE_ORG_PLUGIN } from '@/settings/websiteSetting'
-import OrgTree from 'react-org-tree'
-import { data } from './data'
+import {
+  Card, Form, Radio, Switch,
+} from 'antd';
+import { type FC, useState } from 'react';
+import OrgTree from 'react-org-tree';
+
+import { PageWrapper } from '@/components/Page';
+
+import { React_TREE_ORG_PLUGIN } from '@/settings/websiteSetting';
+
+import { data } from './data';
 
 const OrgTreePage: FC = () => {
-  const [form] = Form.useForm()
+  const [form] = Form.useForm();
 
   const [config, setConfig] = useState({
     horizontal: false,
-    expandAll: true
-  })
+    expandAll: true,
+  });
 
   const onValuesChange = (values: any) => {
-    console.log('values', values)
-    setConfig({...config, ...values})
-  }
+    console.log('values', values);
+    setConfig({ ...config, ...values });
+  };
 
   return (
     <PageWrapper plugin={React_TREE_ORG_PLUGIN}>
-      <Card bordered={false} bodyStyle={{minHeight: '400px'}}>
+      <Card bordered={false} bodyStyle={{ minHeight: '400px' }}>
         <Form
           form={form}
-          initialValues={{...config}}
+          initialValues={{ ...config }}
           layout='inline'
           labelAlign='left'
           onValuesChange={onValuesChange}
@@ -38,7 +43,7 @@ const OrgTreePage: FC = () => {
             <Switch />
           </Form.Item>
         </Form>
-        <div style={{textAlign: 'center'}}>
+        <div style={{ textAlign: 'center' }}>
           <OrgTree
             data={data}
             collapsable={true}
@@ -48,7 +53,7 @@ const OrgTreePage: FC = () => {
         </div>
       </Card>
     </PageWrapper>
-  )
-}
+  );
+};
 
-export default OrgTreePage
+export default OrgTreePage;

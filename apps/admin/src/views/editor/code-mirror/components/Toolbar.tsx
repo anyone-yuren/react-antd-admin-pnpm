@@ -1,6 +1,7 @@
-import { FC } from 'react'
-import { Form, Select, Checkbox } from 'antd'
-import { ConfigState } from '../types'
+import { Checkbox, Form, Select } from 'antd';
+
+import type { ConfigState } from '../types';
+import type { FC } from 'react';
 
 interface PropState {
   config: ConfigState
@@ -8,22 +9,22 @@ interface PropState {
 }
 
 const CodeToolbar: FC<PropState> = ({ config, valueChange }) => {
-  const [form] = Form.useForm()
+  const [form] = Form.useForm();
 
   const onValuesChange = (values: any) => {
-    valueChange(values)
-  }
+    valueChange(values);
+  };
 
   return (
     <div
       className='flex-between-h'
       style={{
-        padding: '8px', border: 'solid 1px #ddd'
+        padding: '8px', border: 'solid 1px #ddd',
       }}
     >
       <Form
         form={form}
-        initialValues={{...config}}
+        initialValues={{ ...config }}
         layout='inline'
         labelAlign='left'
         onValuesChange={onValuesChange}
@@ -34,9 +35,9 @@ const CodeToolbar: FC<PropState> = ({ config, valueChange }) => {
             options={[
               { label: 'html', value: 'html' },
               { label: 'javascript', value: 'javascript' },
-              { label: 'typescript', value: 'typescript' }
+              { label: 'typescript', value: 'typescript' },
             ]}
-            style={{width: '100px'}}
+            style={{ width: '100px' }}
           />
         </Form.Item>
         <Form.Item label='autoFocus' name='autoFocus' valuePropName='checked'>
@@ -51,14 +52,14 @@ const CodeToolbar: FC<PropState> = ({ config, valueChange }) => {
             options={[
               { label: 'auto', value: 'auto' },
               { label: '350px', value: '350px' },
-              { label: '500px', value: '500px' }
+              { label: '500px', value: '500px' },
             ]}
-            style={{width: '100px'}}
+            style={{ width: '100px' }}
           />
         </Form.Item>
       </Form>
     </div>
-  )
-}
+  );
+};
 
-export default CodeToolbar
+export default CodeToolbar;

@@ -1,3 +1,3 @@
-import UploadImage from './src/UploadImage'
+import UploadImage from './src/UploadImage';
 
-export { UploadImage }
+export { UploadImage };

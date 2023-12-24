@@ -1,176 +1,179 @@
-import type { MenuProps } from 'antd'
-import type { RouteObject } from '@/router/types'
-import { FC, WheelEvent, useState, useEffect, useRef } from 'react'
-import { Button, Dropdown } from 'antd'
-import { LeftOutlined, RightOutlined, RedoOutlined, CloseOutlined } from '@ant-design/icons'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { TagItem } from './components'
-import { basicRoutes } from '@/router'
-import { useAppSelector, useAppDispatch } from '@/stores'
-import { addVisitedTags } from '@/stores/modules/tags'
-import { searchRoute } from '@/utils'
-import { closeAllTags, closeTagByKey, closeTagsByType } from '@/stores/modules/tags'
-import classNames from 'classnames'
-import styles from './index.module.less'
+import { CloseOutlined, LeftOutlined, RedoOutlined, RightOutlined } from '@ant-design/icons';
+import { Button, Dropdown } from 'antd';
+import classNames from 'classnames';
+import { type FC, type WheelEvent, useEffect, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+import { searchRoute } from '@/utils';
+
+import { basicRoutes } from '@/router';
+import { useAppDispatch, useAppSelector } from '@/stores';
+import { addVisitedTags, closeAllTags, closeTagByKey, closeTagsByType } from '@/stores/modules/tags';
+
+import { TagItem } from './components';
+import useStyles from './index.module.style';
+
+import type { RouteObject } from '@/router/types';
+import type { MenuProps } from 'antd';
 
 const LayoutTags: FC = () => {
+  const { styles } = useStyles();
   const items: MenuProps['items'] = [
     { key: 'left', label: '关闭左侧' },
     { key: 'right', label: '关闭右侧' },
     { key: 'other', label: '关闭其它' },
-    { key: 'all', label: '关闭所有' }
-  ]
+    { key: 'all', label: '关闭所有' },
+  ];
 
   const onClick: MenuProps['onClick'] = ({ key }) => {
     if (key === 'all') {
       // @ts-ignore
       dispatch(closeAllTags()).then(({ payload }) => {
-        const lastTag = payload.slice(-1)[0]
+        const lastTag = payload.slice(-1)[0];
         if (activeTag !== lastTag?.fullPath) {
-          navigate(lastTag?.fullPath)
+          navigate(lastTag?.fullPath);
         }
-      })
+      });
     } else {
-      dispatch(closeTagsByType({ type: key, path: activeTag }))
+      dispatch(closeTagsByType({ type: key, path: activeTag }));
     }
-  }
+  };
 
-  const tagsMain = useRef<ElRef>(null)
-  const tagsMainBody = useRef<ElRef>(null)
+  const tagsMain = useRef<ElRef>(null);
+  const tagsMainBody = useRef<ElRef>(null);
 
-  const [tagsBodyLeft, setTagsBodyLeft] = useState(0)
+  const [tagsBodyLeft, setTagsBodyLeft] = useState(0);
 
-  const { pathname } = useLocation()
-  const navigate = useNavigate()
-  const visitedTags = useAppSelector(state => state.tags.visitedTags)
-  const dispatch = useAppDispatch()
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const visitedTags = useAppSelector((state) => state.tags.visitedTags);
+  const dispatch = useAppDispatch();
 
-  const [activeTag, setActiveTag] = useState(pathname)
+  const [activeTag, setActiveTag] = useState(pathname);
 
   useEffect(() => {
-    const affixTags = initAffixTags(basicRoutes)
+    const affixTags = initAffixTags(basicRoutes);
     for (const tag of affixTags) {
-      dispatch(addVisitedTags(tag))
+      dispatch(addVisitedTags(tag));
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
-    const currRoute = searchRoute(pathname, basicRoutes)
+    const currRoute = searchRoute(pathname, basicRoutes);
     if (currRoute) {
-      dispatch(addVisitedTags(currRoute))
+      dispatch(addVisitedTags(currRoute));
     }
-    setActiveTag(pathname)
-  }, [pathname])
+    setActiveTag(pathname);
+  }, [pathname]);
 
   useEffect(() => {
-    const tagNodeList = tagsMainBody.current?.childNodes as unknown as Array<HTMLElement>
-    const activeTagNode = Array.from(tagNodeList).find(item => item.dataset.path === activeTag)!
-    moveToActiveTag(activeTagNode)
-  }, [activeTag])
+    const tagNodeList = tagsMainBody.current?.childNodes as unknown as Array<HTMLElement>;
+    const activeTagNode = Array.from(tagNodeList).find((item) => item.dataset.path === activeTag)!;
+    moveToActiveTag(activeTagNode);
+  }, [activeTag]);
 
   const initAffixTags = (routes: RouteObject[], basePath: string = '/') => {
-    let affixTags: RouteObject[] = []
+    let affixTags: RouteObject[] = [];
 
     for (const route of routes) {
       if (route.meta?.affix) {
-        const fullPath = route.path!.startsWith('/') ? route.path : basePath + route.path
+        const fullPath = route.path!.startsWith('/') ? route.path : basePath + route.path;
         affixTags.push({
           ...route,
-          path: fullPath
-        })
+          path: fullPath,
+        });
       }
       if (route.children && route.children.length) {
-        affixTags = affixTags.concat(initAffixTags(route.children, route.path))
+        affixTags = affixTags.concat(initAffixTags(route.children, route.path));
       }
     }
 
-    return affixTags
-  }
+    return affixTags;
+  };
 
   const moveToActiveTag = (tag: any) => {
-    let leftOffset: number = 0
-    const mainBodyPadding = 4
-    const mainWidth = tagsMain.current?.offsetWidth!
-    const mainBodyWidth = tagsMainBody.current?.offsetWidth!
+    let leftOffset: number = 0;
+    const mainBodyPadding = 4;
+    const mainWidth = tagsMain.current?.offsetWidth!;
+    const mainBodyWidth = tagsMainBody.current?.offsetWidth!;
     if (mainBodyWidth < mainWidth) {
-      leftOffset = 0
+      leftOffset = 0;
     } else if (tag?.offsetLeft! < -tagsBodyLeft) {
       // 标签在可视区域左侧 (The active tag on the left side of the layout_tags-main)
-      leftOffset = -tag?.offsetLeft! + mainBodyPadding
+      leftOffset = -tag?.offsetLeft! + mainBodyPadding;
     } else if (tag?.offsetLeft! > -tagsBodyLeft && tag?.offsetLeft! + tag?.offsetWidth! < -tagsBodyLeft + mainWidth) {
       // 标签在可视区域 (The active tag on the layout_tags-main)
-      leftOffset = Math.min(0, mainWidth - tag?.offsetWidth! - tag?.offsetLeft! - mainBodyPadding)
+      leftOffset = Math.min(0, mainWidth - tag?.offsetWidth! - tag?.offsetLeft! - mainBodyPadding);
     } else {
       // 标签在可视区域右侧 (The active tag on the right side of the layout_tags-main)
-      leftOffset = -(tag?.offsetLeft! - (mainWidth - mainBodyPadding - tag?.offsetWidth!))
+      leftOffset = -(tag?.offsetLeft! - (mainWidth - mainBodyPadding - tag?.offsetWidth!));
     }
-    setTagsBodyLeft(leftOffset)
-  }
+    setTagsBodyLeft(leftOffset);
+  };
 
   const handleMove = (offset: number) => {
-    let leftOffset: number = 0
-    const mainWidth = tagsMain.current?.offsetWidth!
-    const mainBodyWidth = tagsMainBody.current?.offsetWidth!
+    let leftOffset: number = 0;
+    const mainWidth = tagsMain.current?.offsetWidth!;
+    const mainBodyWidth = tagsMainBody.current?.offsetWidth!;
 
     if (offset > 0) {
-      leftOffset = Math.min(0, tagsBodyLeft + offset)
-    } else {
-      if (mainWidth < mainBodyWidth) {
-        if (tagsBodyLeft >= -(mainBodyWidth - mainWidth)) {
-          leftOffset = Math.max(tagsBodyLeft + offset, mainWidth - mainBodyWidth)
-        }
-      } else {
-        leftOffset = 0
+      leftOffset = Math.min(0, tagsBodyLeft + offset);
+    } else if (mainWidth < mainBodyWidth) {
+      if (tagsBodyLeft >= -(mainBodyWidth - mainWidth)) {
+        leftOffset = Math.max(tagsBodyLeft + offset, mainWidth - mainBodyWidth);
       }
+    } else {
+      leftOffset = 0;
     }
-    setTagsBodyLeft(leftOffset)
-  }
+    setTagsBodyLeft(leftOffset);
+  };
 
   const handleScroll = (e: WheelEvent) => {
-    const type = e.type
-    let distance: number = 0
+    const { type } = e;
+    let distance: number = 0;
 
     if (type === 'wheel') {
-      distance = e.deltaY ? e.deltaY * 2 : -(e.detail || 0) * 2
+      distance = e.deltaY ? e.deltaY * 2 : -(e.detail || 0) * 2;
     }
 
-    handleMove(distance)
-  }
+    handleMove(distance);
+  };
 
   const handleCloseTag = (path: string) => {
     // @ts-ignore
     dispatch(closeTagByKey(path)).then(({ payload }) => {
-      let currTag: RouteObject = {}
-      const { tagIndex, tagsList } = payload
-      const tagLen = tagsList.length
+      let currTag: RouteObject = {};
+      const { tagIndex, tagsList } = payload;
+      const tagLen = tagsList.length;
       if (path === activeTag) {
         if (tagIndex <= tagLen - 1) {
-          currTag = tagsList[tagIndex]
+          currTag = tagsList[tagIndex];
         } else {
-          currTag = tagsList[tagLen - 1]
+          currTag = tagsList[tagLen - 1];
         }
-        navigate(currTag?.fullPath!)
+        navigate(currTag?.fullPath!);
       }
-    })
-  }
+    });
+  };
 
   const handleClickTag = (path: string) => {
-    setActiveTag(path)
-    navigate(path)
-  }
+    setActiveTag(path);
+    navigate(path);
+  };
 
-  const handleReload = () => {}
+  const handleReload = () => {};
 
   return (
-    <div className={styles['layout_tags']}>
+    <div className={styles.layout_tags}>
       <Button
-        className={styles['layout_tags__btn']}
+        className={`${styles.layout_tags}__btn`}
         icon={<LeftOutlined />}
         size='small'
         onClick={() => handleMove(200)}
       />
-      <div ref={tagsMain} className={styles['layout_tags__main']} onWheel={handleScroll}>
-        <div ref={tagsMainBody} className={styles['layout_tags__main-body']} style={{ left: tagsBodyLeft + 'px' }}>
+
+      <div ref={tagsMain} className={`${styles.layout_tags}__main`} onWheel={handleScroll}>
+        <div ref={tagsMainBody} className={`${styles.layout_tags}__main-body`} style={{ left: `${tagsBodyLeft}px` }}>
           {visitedTags.map((item: RouteObject) => (
             <span key={item.fullPath} data-path={item.fullPath}>
               <TagItem
@@ -185,26 +188,28 @@ const LayoutTags: FC = () => {
         </div>
       </div>
       <Button
-        className={styles['layout_tags__btn']}
+        className={`${styles.layout_tags}__btn`}
         icon={<RightOutlined />}
         size='small'
         onClick={() => handleMove(-200)}
       />
+
       <Button
-        className={classNames(styles['layout_tags__btn'], styles['layout_tags__btn-space'])}
+        className={classNames(`${styles.layout_tags}__btn`, `${styles.layout_tags}__btn-space`)}
         icon={<RedoOutlined />}
         size='small'
         onClick={() => handleReload()}
       />
+
       <Dropdown menu={{ items, onClick }} placement='bottomLeft'>
         <Button
-          className={classNames(styles['layout_tags__btn'], styles['layout_tags__btn-space'])}
+          className={classNames(`${styles.layout_tags}__btn`, `${styles.layout_tags}__btn-space`)}
           icon={<CloseOutlined />}
           size='small'
         />
       </Dropdown>
     </div>
-  )
-}
+  );
+};
 
-export default LayoutTags
+export default LayoutTags;

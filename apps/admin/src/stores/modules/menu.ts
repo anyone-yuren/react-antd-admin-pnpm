@@ -1,24 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { MenuState } from '@/stores/types'
+import { createSlice } from '@reduxjs/toolkit';
+
+import type { MenuState } from '@/stores/types';
 
 const initialState: MenuState = {
   menuList: [],
-  isCollapse: false
-}
+  isCollapse: false,
+};
 
 const menu = createSlice({
   name: 'menu',
   initialState,
   reducers: {
     setMenuList: (state, action) => {
-      state.menuList = action.payload
+      state.menuList = action.payload;
     },
     updateCollapse: (state, action) => {
-      state.isCollapse = action.payload
-    }
-  }
-})
+      state.isCollapse = action.payload;
+    },
+  },
+});
 
-export const { setMenuList, updateCollapse } = menu.actions
+export const { setMenuList, updateCollapse } = menu.actions;
 
-export default menu.reducer
+export default menu.reducer;

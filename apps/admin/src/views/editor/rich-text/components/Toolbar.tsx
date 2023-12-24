@@ -1,5 +1,5 @@
-import { useRef, useEffect } from 'react'
-import * as wangEditor from '@wangeditor/editor'
+import * as wangEditor from '@wangeditor/editor';
+import { useEffect, useRef } from 'react';
 
 interface IProps {
   editor: wangEditor.IDomEditor | null
@@ -10,22 +10,24 @@ interface IProps {
 }
 
 function ToolbarComponent(props: IProps) {
-  const { editor, defaultConfig = {}, mode = 'default', style = {}, className } = props
-  const ref = useRef<HTMLDivElement>(null)
+  const {
+    editor, defaultConfig = {}, mode = 'default', style = {}, className,
+  } = props;
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (ref.current == null) return
-    if (editor == null) return
+    if (ref.current == null) return;
+    if (editor == null) return;
 
     wangEditor.createToolbar({
       editor,
       selector: ref.current,
       config: defaultConfig,
       mode,
-    })
-  }, [editor])
+    });
+  }, [editor]);
 
-  return <div style={style} ref={ref} className={className}></div>
+  return <div style={style} ref={ref} className={className}></div>;
 }
 
-export default ToolbarComponent
+export default ToolbarComponent;

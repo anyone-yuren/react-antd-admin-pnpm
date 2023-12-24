@@ -1,16 +1,21 @@
-import type { MenuProps } from 'antd'
-import { Space, Dropdown } from 'antd'
-import { LockOutlined, PoweroffOutlined } from '@ant-design/icons'
-import { useNavigate } from 'react-router-dom'
-import { getAuthCache, clearAuthCache } from '@/utils/auth'
-import { TOKEN_KEY } from '@/enums/cacheEnum'
-import { useAppDispatch, useAppSelector } from '@/stores'
-import { useMessage } from '@/hooks/web/useMessage'
-import { logoutApi } from '@/api'
-import { resetState } from '@/stores/modules/user'
-import headerImg from '@/assets/images/avatar.jpeg'
+import { LockOutlined, PoweroffOutlined } from '@ant-design/icons';
+import { Dropdown, Space } from 'antd';
+import { useNavigate } from 'react-router-dom';
+
+import { useMessage } from '@/hooks/web/useMessage';
+
+import { clearAuthCache, getAuthCache } from '@/utils/auth';
+
+import { logoutApi } from '@/api';
+import headerImg from '@/assets/images/avatar.jpeg';
+import { TOKEN_KEY } from '@/enums/cacheEnum';
+import { useAppDispatch, useAppSelector } from '@/stores';
+import { resetState } from '@/stores/modules/user';
+
+import type { MenuProps } from 'antd';
 
 export default function UserDropdown() {
+  const { createConfirm, contextHolder } = useMessage();
   const items: MenuProps['items'] = [
     {
       key: 'lock',
@@ -19,7 +24,7 @@ export default function UserDropdown() {
           <LockOutlined rev={undefined} />
           <span>锁定屏幕</span>
         </Space>
-      )
+      ),
     },
     {
       key: 'logout',
@@ -28,71 +33,71 @@ export default function UserDropdown() {
           <PoweroffOutlined rev={undefined} />
           <span>退出登录</span>
         </Space>
-      )
-    }
-  ]
+      ),
+    },
+  ];
 
   const onClick: MenuProps['onClick'] = ({ key }) => {
     switch (key) {
       case 'lock':
-        handleLock()
-        break
+        handleLock();
+        break;
       case 'logout':
-        handleLogout()
-        break
+        handleLogout();
+        break;
+      default:
+        break;
     }
-  }
+  };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const dispatch = useAppDispatch()
-  const { token } = useAppSelector(state => state.user)
-  const getToken = (): string => {
-    return token || getAuthCache<string>(TOKEN_KEY)
-  }
+  const dispatch = useAppDispatch();
+  const { token } = useAppSelector((state) => state.user);
+  const getToken = (): string => token || getAuthCache<string>(TOKEN_KEY);
 
-  const handleLock = () => {}
+  const handleLock = () => {};
 
   const handleLogout = () => {
-    const { createConfirm } = useMessage()
-
     createConfirm({
-      iconType: 'warning',
       title: <span>温馨提醒</span>,
       content: <span>是否确认退出系统?</span>,
       onOk: async () => {
-        await logoutAction(true)
-      }
-    })
-  }
+        await logoutAction(true);
+      },
+    });
+  };
 
   const logoutAction = async (goLogin = false) => {
     if (getToken()) {
       try {
-        await logoutApi()
+        await logoutApi();
       } catch (error) {
-        const { createMessage } = useMessage()
-        createMessage.error('注销失败!')
+        const { createMessage } = useMessage();
+        createMessage.error('注销失败!');
       }
     }
-    dispatch(resetState())
-    clearAuthCache()
-    goLogin && navigate('/login')
-  }
+    dispatch(resetState());
+    clearAuthCache();
+    goLogin && navigate('/login');
+  };
 
   return (
-    <Dropdown menu={{ items, onClick }} placement='bottomRight' arrow>
-      <span className='flex-center' style={{ cursor: 'pointer' }}>
-        <img
-          src={headerImg}
-          style={{
-            width: '24px',
-            height: '24px',
-            borderRadius: '50%'
-          }}
-          alt=''
-        />
-      </span>
-    </Dropdown>
-  )
+    <>
+      {contextHolder}
+      <Dropdown menu={{ items, onClick }} placement='bottomRight' arrow>
+        <span className='flex-center' style={{ cursor: 'pointer' }}>
+          <img
+            src={headerImg}
+            style={{
+              width: '24px',
+              height: '24px',
+              borderRadius: '50%',
+            }}
+            alt=''
+          />
+        </span>
+      </Dropdown>
+    </>
+  );
 }
