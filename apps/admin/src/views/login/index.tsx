@@ -3,7 +3,6 @@ import { Alert, Button, Checkbox, Form, Input, message, Typography } from 'antd'
 import classNames from 'classnames';
 import { type FC, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import './index.less';
 
 import SvgIcon from '@/components/SvgIcon';
 
