@@ -44,11 +44,11 @@ const LayoutMenu = (props: any) => {
     setOpenKeys(getOpenKeys(pathname));
   }, [pathname]);
 
-  const addIcon = (icon?: string) => {
+  const addIcon = (icon?: string, iconSize?: number) => {
     if (!icon) return null;
     return (
       <span className='anticon'>
-        <SvgIcon name={icon} size={16} />
+        <SvgIcon name={icon} size={iconSize || 16} />
       </span>
     );
   };
@@ -56,9 +56,9 @@ const LayoutMenu = (props: any) => {
   const getMenuItem = (data: AppMenu[], list: MenuItem[] = []) => {
     data.forEach((item: AppMenu) => {
       if (!item?.children?.length) {
-        return list.push(getItem(item.name, item.path, addIcon(item.icon)));
+        return list.push(getItem(item.name, item.path, addIcon(item.icon, item.iconSize)));
       }
-      list.push(getItem(item.name, item.path, addIcon(item.icon), getMenuItem(item.children)));
+      list.push(getItem(item.name, item.path, addIcon(item.icon, item.iconSize), getMenuItem(item.children)));
     });
     return list;
   };
