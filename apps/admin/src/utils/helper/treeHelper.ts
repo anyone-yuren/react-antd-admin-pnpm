@@ -1,7 +1,11 @@
+/* eslint-disable no-continue */
+/* eslint-disable no-plusplus */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-restricted-syntax */
 interface TreeHelperConfig {
-  id: string
-  children: string
-  pid: string
+  id: string;
+  children: string;
+  pid: string;
 }
 
 const DEFAULT_CONFIG: TreeHelperConfig = {
@@ -152,10 +156,12 @@ export function treeMapEach(data: any, { children = 'children', conversion }: { 
   if (haveChildren) {
     return {
       ...conversionData,
-      [children]: data[children].map((i: number) => treeMapEach(i, {
-        children,
-        conversion,
-      })),
+      [children]: data[children].map((i: number) =>
+        treeMapEach(i, {
+          children,
+          conversion,
+        }),
+      ),
     };
   }
   return {

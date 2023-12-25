@@ -1,9 +1,19 @@
+/* eslint-disable consistent-return */
 import { SearchOutlined } from '@ant-design/icons';
 import { Badge, Input, List, Modal } from 'antd';
 import { useTheme } from 'antd-style';
-import React, { forwardRef, useImperativeHandle, useState } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Fuse from 'fuse.js';
+import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import { treeToList } from '@/utils/helper/treeHelper';
+
+import { getAsyncMenus } from '@/router/menus';
 
 import useStyle from './style';
+
+import type { AppMenu } from '@/router/types';
 
 interface SearchModalProps {
   open?: boolean;
@@ -16,14 +26,9 @@ export interface SearchModalMethods {
 
 const SearchModal = forwardRef<SearchModalMethods, SearchModalProps>((props, ref) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [routes, setRoutes] = useState<AppMenu[]>([]);
   const { styles } = useStyle();
   const token = useTheme();
-
-  useImperativeHandle(ref, () => ({
-    open: () => setIsModalOpen(() => true),
-    close: () => setIsModalOpen(() => false),
-  }));
 
   const classNames = {
     body: styles['my-modal-body'],
@@ -51,30 +56,41 @@ const SearchModal = forwardRef<SearchModalMethods, SearchModalProps>((props, ref
       borderTop: '1px solid #333',
     },
     content: {
-      boxShadow: '0 0 30px #999',
+      boxShadow: '0 0 30px #99999994',
     },
   };
+  const getMenusData = async () => {
+    try {
+      const routesData = await getAsyncMenus();
+      setRoutes(routesData);
+    } catch (error) {
+      return [];
+    }
+  };
+  useEffect(() => {
+    getMenusData();
+  }, []);
+  const menus = useCallback(() => treeToList(routes, { children: 'children' }), [routes]);
+  useImperativeHandle(ref, () => ({
+    open: () => setIsModalOpen(() => true),
+    close: () => setIsModalOpen(() => false),
+  }));
 
-  const data = [
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-  ];
+  const fuse = new Fuse(menus(), {
+    keys: ['name', 'path'],
+    threshold: 0.2,
+  });
+
+  const [value, setValue] = useState('');
+
+  // Function to highlight matching characters
+  const highlightText = (text: string, searchValue: string) => {
+    const regex = new RegExp(`(${searchValue})`, 'gi');
+    return text.replace(
+      regex,
+      (match, p1) => `<span style="background-color: ${token.colorPrimaryBorderHover};">${p1}</span>`,
+    );
+  };
 
   return (
     <>
@@ -82,6 +98,8 @@ const SearchModal = forwardRef<SearchModalMethods, SearchModalProps>((props, ref
         title={
           <Input
             size='large'
+            onChange={(e) => setValue(e.target.value)}
+            value={value}
             placeholder='请输入搜索...'
             prefix={<SearchOutlined />}
             suffix={<Badge count={'Esc'} color={token.colorPrimaryHover} />}
@@ -97,12 +115,18 @@ const SearchModal = forwardRef<SearchModalMethods, SearchModalProps>((props, ref
       >
         <List
           itemLayout='horizontal'
-          dataSource={data}
-          renderItem={(item, index) => (
+          dataSource={value ? fuse.search(value).map((item) => item.item) : menus()}
+          renderItem={(item: AppMenu) => (
             <List.Item>
               <List.Item.Meta
-                title={<a href='https://ant.design'>{item.title}</a>}
-                description='Ant Design, a design language for background applications, '
+                title={
+                  <Link
+                    to={item.path}
+                    onClick={() => setIsModalOpen(() => false)}
+                    dangerouslySetInnerHTML={{ __html: highlightText(item.name, value) }}
+                  />
+                }
+                description={<span dangerouslySetInnerHTML={{ __html: highlightText(item.path, value) }} />}
               />
             </List.Item>
           )}

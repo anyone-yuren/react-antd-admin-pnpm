@@ -27,7 +27,6 @@ export function transformRouteToMenu(routes: RouteObject[]) {
     if (item.meta!.hideChildrenInMenu) {
       item.children = [];
     }
-
     routeList.push(item);
   });
 
