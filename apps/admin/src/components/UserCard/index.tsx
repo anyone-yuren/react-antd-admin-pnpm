@@ -16,7 +16,7 @@ export interface UserCardProp extends CardProps {
   children?: React.ReactNode;
 }
 
-const UserFooter: React.FC<{ name: string; count: number }> = ({ name, count }) => (
+export const UserFooter: React.FC<{ name: string; count: number }> = ({ name, count }) => (
   <div className='footer'>
     <Text type='secondary'>{name}</Text>
     <Title style={{ margin: 0 }} level={5}>

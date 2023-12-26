@@ -5,6 +5,7 @@ import cover_5 from '@/assets/images/cover_5.jpg';
 const useStyles = createStyles(({ token }) => ({
   'user-card': {
     width: '100%',
+    position: 'relative',
     '.ant-skeleton, .ant-skeleton-image': {
       width: '100% !important',
     },
@@ -63,6 +64,15 @@ const useStyles = createStyles(({ token }) => ({
         // left: '50%',
       },
     },
+  },
+  translatex: {
+    margin: `${token.marginSM}px 0`,
+    position: 'absolute',
+    width: '100%',
+    left: 0,
+  },
+  content: {
+    position: 'relative',
   },
 }));
 

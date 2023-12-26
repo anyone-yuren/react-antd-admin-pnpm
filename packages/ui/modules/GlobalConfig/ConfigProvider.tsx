@@ -39,9 +39,9 @@ const createHolder = (node: HTMLElement) => {
   return div;
 };
 const showInsetEffect: WaveConfig['showEffect'] = (node, { event, component }) => {
-  if (component !== 'Button') {
-    return;
-  }
+  //   if (component !== 'Button') {
+  //     return;
+  //   }
 
   const holder = createHolder(node);
 
