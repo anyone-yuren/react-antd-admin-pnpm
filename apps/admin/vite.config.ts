@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import react from '@vitejs/plugin-react';
 // 需要安装 @typings/node 插件
 import { resolve } from 'path';

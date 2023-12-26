@@ -2,6 +2,7 @@ import { ThemeProvider } from 'antd-style';
 import { useEffect, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { useGlobalStore } from 'store';
+import { GlobalConfig } from 'ui';
 
 import cyanImg from '@/assets/images/cyan-blur.png';
 import redImg from '@/assets/images/red-blur.png';
@@ -27,27 +28,29 @@ function App() {
     asyncOperation();
   }, []); // 仅在组件挂载时执行
   return (
-    <ThemeProvider
-      defaultThemeMode='light'
-      theme={{
-        token: {
-          colorPrimary: preset,
-          colorInfo: '#00B8D9',
-          colorSuccess: '#22C55E',
-          colorWarning: '#FFAB00',
-          colorError: '#FF5630',
-          colorLink: preset,
-        },
-      }}
-      customToken={{
-        colorDefault: '#212b36',
-        paperRedImg: redImg as string,
-        paperCyanImg: cyanImg as string,
-      }}
-    >
-      <CustomGlobal />
-      {loading ? <LoadingPage /> : <RouterProvider router={router} />}
-    </ThemeProvider>
+    <GlobalConfig>
+      <ThemeProvider
+        defaultThemeMode='light'
+        theme={{
+          token: {
+            colorPrimary: preset,
+            colorInfo: '#00B8D9',
+            colorSuccess: '#22C55E',
+            colorWarning: '#FFAB00',
+            colorError: '#FF5630',
+            colorLink: preset,
+          },
+        }}
+        customToken={{
+          colorDefault: '#212b36',
+          paperRedImg: redImg as string,
+          paperCyanImg: cyanImg as string,
+        }}
+      >
+        <CustomGlobal />
+        {loading ? <LoadingPage /> : <RouterProvider router={router} />}
+      </ThemeProvider>
+    </GlobalConfig>
   );
 }
 
