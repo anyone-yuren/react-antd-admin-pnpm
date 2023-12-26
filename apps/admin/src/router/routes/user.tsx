@@ -18,6 +18,14 @@ const UserRoute: RouteObject = {
   },
   children: [
     {
+      path: 'profile',
+      element: LazyLoad(lazy(() => import('@/views/user/profile'))),
+      meta: {
+        title: '个人中心',
+        key: 'profile',
+      },
+    },
+    {
       path: 'user-list',
       element: LazyLoad(lazy(() => import('@/views/user/list'))),
       meta: {
