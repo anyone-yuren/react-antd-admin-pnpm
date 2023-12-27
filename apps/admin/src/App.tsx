@@ -20,7 +20,7 @@ function App() {
   const isBuild = import.meta.env.MODE === 'production';
   console.log(isBuild, import.meta.env);
 
-  if (!isBuild) {
+  if (isBuild) {
     setupProdMockServer();
   }
   useEffect(() => {
