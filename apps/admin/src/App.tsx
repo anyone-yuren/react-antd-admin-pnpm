@@ -9,14 +9,9 @@ import redImg from '@/assets/images/red-blur.png';
 import router from '@/router';
 import CustomGlobal from '@/styles/GlobalPager';
 
-import { setupProdMockServer } from '../mock/_createProductionServer';
 import LoadingPage from './components/LoadingPage';
 
 function App() {
-  const isBuild = process.env.NODE_ENV === 'production';
-  if (isBuild) {
-    setupProdMockServer();
-  }
   const preset = useGlobalStore((state) => state.preset);
   const [loading, setLoading] = useState(true);
 
