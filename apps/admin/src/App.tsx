@@ -1,5 +1,4 @@
 import { ThemeProvider } from 'antd-style';
-import { setupProdMockServer } from 'mock/_createProductionServer';
 import { useEffect, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { useGlobalStore } from 'store';
@@ -10,6 +9,7 @@ import redImg from '@/assets/images/red-blur.png';
 import router from '@/router';
 import CustomGlobal from '@/styles/GlobalPager';
 
+import { setupProdMockServer } from '../mock/_createProductionServer';
 import LoadingPage from './components/LoadingPage';
 
 function App() {
