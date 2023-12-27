@@ -45,14 +45,14 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       }),
       viteMockServe({
         mockPath: 'mock',
+        ignore: /^_/,
         localEnabled: !isBuild,
         prodEnabled: isBuild,
         injectCode: `
-      import { setupProdMockServer } from './mock/_createProductionServer'
+          import { setupProdMockServer } from 'mock/_createProductionServer';
 
-      setupProdMockServer()
-      `,
-        injectFile: resolve(__dirname, 'src/main.tsx'),
+          setupProdMockServer()
+          `,
       }),
     ],
 
