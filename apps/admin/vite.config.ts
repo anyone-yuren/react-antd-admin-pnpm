@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable import/no-extraneous-dependencies */
 import react from '@vitejs/plugin-react';
 // 需要安装 @typings/node 插件
@@ -48,7 +49,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         localEnabled: !isBuild,
         prodEnabled: isBuild,
         injectCode: `
-      import { setupProdMockServer } from '../mock/_createProductionServer'
+      import { setupProdMockServer } from 'mock/_createProductionServer'
 
       setupProdMockServer()
       `,
