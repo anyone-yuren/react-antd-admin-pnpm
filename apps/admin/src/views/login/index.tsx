@@ -48,7 +48,8 @@ const LoginPage: FC = () => {
         message.success('登陆成功！');
       }
     } catch (error) {
-      debugger;
+      console.log(error);
+
       message.error((error as unknown as Error).message);
     } finally {
       setLoading(false);

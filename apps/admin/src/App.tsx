@@ -13,16 +13,13 @@ import { setupProdMockServer } from '../mock/_createProductionServer';
 import LoadingPage from './components/LoadingPage';
 
 function App() {
+  const isBuild = process.env.NODE_ENV === 'production';
+  if (isBuild) {
+    setupProdMockServer();
+  }
   const preset = useGlobalStore((state) => state.preset);
   const [loading, setLoading] = useState(true);
 
-  // 模拟环境
-  const isBuild = import.meta.env.MODE === 'production';
-  if (isBuild) {
-    console.log('mock server is running');
-
-    setupProdMockServer();
-  }
   useEffect(() => {
     // 异步操作模拟（例如数据加载、初始化等）
     const asyncOperation = async () => {
