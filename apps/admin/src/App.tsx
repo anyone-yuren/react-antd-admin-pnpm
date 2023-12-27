@@ -1,4 +1,5 @@
 import { ThemeProvider } from 'antd-style';
+import { setupProdMockServer } from 'mock/_createProductionServer';
 import { useEffect, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { useGlobalStore } from 'store';
@@ -17,7 +18,11 @@ function App() {
 
   // 模拟环境
   const isBuild = import.meta.env.MODE === 'production';
-  console.log(isBuild, import.meta.env);
+  if (isBuild) {
+    console.log('mock server is running');
+
+    setupProdMockServer();
+  }
   useEffect(() => {
     // 异步操作模拟（例如数据加载、初始化等）
     const asyncOperation = async () => {
