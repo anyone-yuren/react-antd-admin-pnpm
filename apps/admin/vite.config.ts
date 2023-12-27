@@ -53,6 +53,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
 
           setupProdMockServer()
           `,
+        // 当前文件夹下的src/main.ts
+        injectFile: './src/main.ts',
       }),
     ],
 
