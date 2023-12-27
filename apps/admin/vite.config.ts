@@ -6,6 +6,7 @@ import { resolve } from 'path';
 import { loadEnv } from 'vite';
 import { viteMockServe } from 'vite-plugin-mock';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
+import path from 'path';
 
 import { wrapperEnv } from './build/utils';
 
@@ -53,7 +54,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           console.log(10086);
           setupProdMockServer()
           `,
-        // 当前文件夹下的src/main.tsx
+        // 当前文件夹下的src/main.ts
+        injectFile: './src/main.tsx',
       }),
     ],
 
