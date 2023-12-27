@@ -7,7 +7,8 @@ import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axio
 
 // Create axios instance
 const service = axios.create({
-  baseURL: '/api',
+  // 获取环境变量
+  baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: 10 * 1000,
 });
 
