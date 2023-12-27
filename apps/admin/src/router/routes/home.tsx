@@ -6,9 +6,6 @@ import { LayoutGuard } from '../guard';
 
 import type { RouteObject } from '../types';
 
-import HomePage from '@/views/home/index';
-import { delayForComponent } from '../utils/delayPromise';
-
 // Home route
 const HomeRoute: RouteObject = {
   path: '/home',
@@ -23,7 +20,7 @@ const HomeRoute: RouteObject = {
   children: [
     {
       path: '',
-      element: LazyLoad(lazy(() => delayForComponent(import('@/views/home/index')))),
+      element: LazyLoad(lazy(() => import('@/views/home/index'))),
       meta: {
         title: '首页',
         key: 'home',
