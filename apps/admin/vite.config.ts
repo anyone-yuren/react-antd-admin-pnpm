@@ -43,8 +43,15 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         symbolId: 'icon-[dir]-[name]',
       }),
       viteMockServe({
+        ignore: /^\_/,
         mockPath: 'mock',
-        ignore: /^_/,
+        localEnabled: !isBuild,
+        prodEnabled: isBuild,
+        injectCode: `
+      import { setupProdMockServer } from '../mock/_createProductionServer'
+
+      setupProdMockServer()
+      `,
       }),
     ],
 

@@ -1,20 +1,19 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createProdMockServer } from 'vite-plugin-mock/es/createProdMockServer';
 
-const modules = import.meta.glob('./**/*.ts', { eager: true }) as Recordable;
-
-const mockModules: any[] = [];
-Object.keys(modules).forEach((key) => {
-  if (key.includes('/_')) return;
-
-  const module = modules[key].default || {};
-  const moduleList = Array.isArray(module) ? [...module] : [module];
-  mockModules.push(...moduleList);
+const modules = import.meta.glob('./**/*.ts', {
+  import: 'default',
+  eager: true,
 });
 
-/**
- * Used in a production environment, need to manually import all modules.
- */
+const mockModules: any[] = [];
+Object.keys(modules).forEach(async (key) => {
+  if (key.includes('_')) {
+    return;
+  }
+  mockModules.push(...(modules[key] as any));
+});
+
 export function setupProdMockServer() {
   createProdMockServer(mockModules);
 }
