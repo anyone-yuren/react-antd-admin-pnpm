@@ -1,1 +1,0 @@
-import{j as i}from"./index-6a07853e.js";const a=({data:a={id:0,name:"",email:"",avatar:""}})=>i.jsxs("div",{children:[i.jsx("div",{children:a.id}),i.jsx("div",{children:a.name}),i.jsx("div",{children:a.email}),i.jsx("div",{children:a.avatar})]});export{a as default};
