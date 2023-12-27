@@ -98,8 +98,8 @@ const ProFile: FC<PProFiles> = () => {
               <List
                 itemLayout='horizontal'
                 dataSource={aboutData}
-                renderItem={(item) => (
-                  <List.Item>
+                renderItem={(item, index) => (
+                  <List.Item key={index}>
                     <List.Item.Meta avatar={item.icon} description={item.title} />
                   </List.Item>
                 )}
@@ -109,8 +109,8 @@ const ProFile: FC<PProFiles> = () => {
               <List
                 itemLayout='horizontal'
                 dataSource={SocialData}
-                renderItem={(item) => (
-                  <List.Item>
+                renderItem={(item, index) => (
+                  <List.Item key={index}>
                     <List.Item.Meta avatar={item.icon} description={item.title} />
                   </List.Item>
                 )}
@@ -132,7 +132,7 @@ const ProFile: FC<PProFiles> = () => {
               title={
                 <Flex justify={'space-between'} align='center' gap={16}>
                   <List>
-                    <List.Item>
+                    <List.Item key='1'>
                       <List.Item.Meta
                         avatar={<Avatar src={avatar_8} size={48} />}
                         title='Gbeata'
