@@ -9,7 +9,6 @@ import redImg from '@/assets/images/red-blur.png';
 import router from '@/router';
 import CustomGlobal from '@/styles/GlobalPager';
 
-import { setupProdMockServer } from '../mock/_createProductionServer';
 import LoadingPage from './components/LoadingPage';
 
 function App() {
@@ -19,10 +18,6 @@ function App() {
   // 模拟环境
   const isBuild = import.meta.env.MODE === 'production';
   console.log(isBuild, import.meta.env);
-
-  if (isBuild) {
-    setupProdMockServer();
-  }
   useEffect(() => {
     // 异步操作模拟（例如数据加载、初始化等）
     const asyncOperation = async () => {
