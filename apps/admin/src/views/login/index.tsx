@@ -47,6 +47,7 @@ const LoginPage: FC = () => {
         message.success('登陆成功！');
       }
     } catch (error) {
+      debugger;
       message.error((error as unknown as Error).message);
     } finally {
       setLoading(false);
