@@ -62,7 +62,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     build: {
       target: 'es2015',
       cssTarget: 'chrome86',
-      minify: 'terser',
+      minify: 'esbuild',
       outDir: '../../gbeata-dist',
       terserOptions: {
         compress: {
