@@ -7,10 +7,14 @@ import Loading from './Loading';
  * @param {Element} Component 需要访问的组件
  * @returns element
  */
-const LazyLoad = (Component: LazyExoticComponent<React.FC<{}>>): ReactNode => (
-  <Suspense fallback={<Loading />}>
-    <Component />
-  </Suspense>
-);
+const LazyLoad = (Component: LazyExoticComponent<React.FC<{}>>): ReactNode => {
+  console.log(Component);
+
+  return (
+    <Suspense fallback={<Loading />}>
+      <Component />
+    </Suspense>
+  );
+};
 
 export default LazyLoad;
