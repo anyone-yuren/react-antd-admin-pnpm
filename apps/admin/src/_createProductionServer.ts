@@ -1,7 +1,9 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createProdMockServer } from 'vite-plugin-mock/es/createProdMockServer';
 
-const modules = import.meta.glob('./**/*.ts', { eager: true }) as Recordable;
+// 获取mock目录data的数据
+
+const modules = import.meta.glob('../mock/data/*.ts', { eager: true }) as Recordable;
 
 const mockModules: any[] = [];
 Object.keys(modules).forEach((key) => {
