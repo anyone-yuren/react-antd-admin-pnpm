@@ -67,12 +67,10 @@ const useStyles = createStyles(({ token }) => ({
   },
   translatex: {
     margin: `${token.marginSM}px 0`,
-    position: 'absolute',
-    width: '100%',
-    left: 0,
   },
   content: {
     position: 'relative',
+    // marginBottom: token.margin,
   },
 }));
 

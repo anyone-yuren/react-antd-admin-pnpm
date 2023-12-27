@@ -5,7 +5,8 @@ import type { FC } from 'react';
 interface PProFile {}
 
 const User: FC<PProFile> = () => {
-  debugger;
+  console.log('');
+
   return <UserCard></UserCard>;
 };
 
