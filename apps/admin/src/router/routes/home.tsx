@@ -20,7 +20,7 @@ const HomeRoute: RouteObject = {
   children: [
     {
       path: '',
-      element: LazyLoad(lazy(() => import('@/views/home'))),
+      element: LazyLoad(lazy(async () => await import('@/views/home'))),
       meta: {
         title: '首页',
         key: 'home',
