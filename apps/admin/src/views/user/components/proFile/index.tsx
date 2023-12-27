@@ -1,7 +1,6 @@
 import {
   AntDesignOutlined,
   GithubOutlined,
-  HeartOutlined,
   MessageOutlined,
   MoreOutlined,
   ShareAltOutlined,
@@ -15,11 +14,17 @@ import { SvgIcon } from 'ui';
 
 import { UserFooter } from '@/components/UserCard';
 
+import avatar_1 from '@/assets/images/avatar_1.jpg';
+import avatar_4 from '@/assets/images/avatar_4.jpg';
+import avatar_6 from '@/assets/images/avatar_6.jpg';
 import avatar_8 from '@/assets/images/avatar_8.jpg';
 import travel_3 from '@/assets/images/travel_3.jpg';
 
+import Message from '../message';
+import SendBox from '../sendBox';
 import useStyles from './styles';
 
+import type { PMessage } from '../message';
 import type { FC } from 'react';
 
 const { Text } = Typography;
@@ -57,6 +62,20 @@ const ProFile: FC<PProFiles> = () => {
     {
       title: 'https://juejin.cn/user/2682464101469480/posts',
       icon: <ZhihuOutlined style={{ fontSize: 24 }} />,
+    },
+  ];
+  const messageList: PMessage[] = [
+    {
+      avatar: <Avatar src={avatar_4} />,
+      time: '2小时前',
+      content: '做普通人，干正经事，可以爱小钱，但必有大胸怀。      ',
+      user: 'anyone',
+    },
+    {
+      avatar: <Avatar src={avatar_1} />,
+      time: '27 Dec 2023',
+      content: '多年后，一个埋我的人被指定，这些年，我偶尔想一想死亡的事情，把活着，当成了一种习惯',
+      user: '倾盆大雨',
     },
   ];
   return (
@@ -135,7 +154,9 @@ const ProFile: FC<PProFiles> = () => {
                     </Button>
                     <Avatar.Group maxCount={2} maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
                       <Avatar src='https://xsgames.co/randomusers/avatar.php?g=pixel&key=2' />
-                      <Avatar style={{ backgroundColor: '#f56a00' }}>K</Avatar>
+                      <Avatar src={avatar_6} style={{ backgroundColor: '#f56a00' }}>
+                        K
+                      </Avatar>
 
                       <Avatar style={{ backgroundColor: '#1677ff' }} icon={<AntDesignOutlined />} />
                     </Avatar.Group>
@@ -145,6 +166,11 @@ const ProFile: FC<PProFiles> = () => {
                     <Button shape='circle' type='text' icon={<ShareAltOutlined />}></Button>
                   </div>
                 </Flex>
+                {messageList.map((item) => (
+                  <Message avatar={item.avatar} time={item.time} content={item.content} user={item.user} />
+                ))}
+                {/* 发送消息 */}
+                <SendBox></SendBox>
               </Flex>
             </Card>
           </Flex>

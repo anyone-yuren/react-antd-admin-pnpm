@@ -1,11 +1,8 @@
-import { AppstoreOutlined, BarsOutlined } from '@ant-design/icons';
-import { Button, Card, Flex, Segmented, Skeleton, Typography } from 'antd';
-import { useTheme } from 'antd-style';
+import { Card, Segmented, Typography } from 'antd';
 import React from 'react';
 import { SvgIcon, Translatex } from 'ui';
 
 import avatar from '@/assets/images/avatar_2.jpg';
-import cover_5 from '@/assets/images/cover_5.jpg';
 
 import Followers from '../followers';
 import Friends from '../friends';
@@ -23,7 +20,6 @@ export interface UserCardProp extends CardProps {
 
 const UserCard: React.FC<UserCardProp> = (prop) => {
   const { children, ...rest } = prop;
-  const token = useTheme();
   const [tabActive, setTabActive] = React.useState('Profile');
   const [loading, setLoading] = React.useState(true);
   const { styles } = useStyles();
@@ -34,20 +30,6 @@ const UserCard: React.FC<UserCardProp> = (prop) => {
   }, []);
   return (
     <div className={styles.content}>
-      {/* {loading && (
-        <Card
-          hoverable
-          className={styles['user-card']}
-          actions={[
-            <Skeleton.Button active shape='round' />,
-            <Skeleton.Button active shape='round' />,
-            <Skeleton.Button active shape='round' />,
-          ]}
-          cover={<Skeleton.Image active />}
-        >
-          <Skeleton loading avatar active />
-        </Card>
-      )} */}
       <Card
         hoverable
         className={styles['user-card']}
@@ -64,9 +46,6 @@ const UserCard: React.FC<UserCardProp> = (prop) => {
                 <Text style={{ color: 'inherit', opacity: 0.7 }}>来历不明</Text>
               </div>
             </div>
-            {/* <span className='cover'>
-                <img alt='example' src={cover_5} />
-              </span> */}
           </>
         }
       >
