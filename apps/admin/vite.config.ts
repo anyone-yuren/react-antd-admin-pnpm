@@ -50,11 +50,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         prodEnabled: isBuild,
         injectCode: `
           import { setupProdMockServer } from './_createProductionServer';
-
+          console.log(10086);
           setupProdMockServer()
           `,
-        // 当前文件夹下的src/main.ts
-        injectFile: './src/main.tsx',
+        // 当前文件夹下的src/main.tsx
       }),
     ],
 
