@@ -9,9 +9,9 @@ import Loading from './Loading';
  */
 const LazyLoad = (Component: LazyExoticComponent<React.FC<{}>>): ReactNode => {
   return (
-    // <Suspense fallback={<Loading />}>
-    <Component />
-    // </Suspense>
+    <Suspense fallback={<Loading />}>
+      <Component />
+    </Suspense>
   );
 };
 
