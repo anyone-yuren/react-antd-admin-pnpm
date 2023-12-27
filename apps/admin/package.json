@@ -49,6 +49,7 @@
     "ui": "workspace:^",
     "use-immer": "^0.9.0",
     "video-react": "^0.16.0",
+    "vite-plugin-mock": "2.9.6",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
@@ -80,7 +81,6 @@
     "typescript": "^5.2.2",
     "vite": "4.5.0",
     "vite-plugin-eslint": "^1.8.1",
-    "vite-plugin-mock": "2.9.8",
     "vite-plugin-svg-icons": "^2.0.1"
   },
   "lint-staged": {

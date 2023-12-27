@@ -17,10 +17,12 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   // 模拟环境
-  // const isBuild = import.meta.env.MODE === 'production';
-  // if (!isBuild) {
-  //   setupProdMockServer();
-  // }
+  const isBuild = import.meta.env.MODE === 'production';
+  console.log(isBuild, import.meta.env);
+
+  if (!isBuild) {
+    setupProdMockServer();
+  }
   useEffect(() => {
     // 异步操作模拟（例如数据加载、初始化等）
     const asyncOperation = async () => {

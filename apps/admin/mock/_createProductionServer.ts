@@ -11,6 +11,7 @@ Object.keys(modules).forEach((key) => {
   const moduleList = Array.isArray(module) ? [...module] : [module];
   mockModules.push(...moduleList);
 });
+console.log('mockModules', mockModules);
 
 /**
  * Used in a production environment, need to manually import all modules.
