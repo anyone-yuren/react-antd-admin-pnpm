@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 
-import { LazyLoad } from '@/components/LazyLoad';
+import LazyLoad from '@/components/LazyLoad';
 
 import { LayoutGuard } from '../guard';
 
