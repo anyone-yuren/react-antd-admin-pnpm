@@ -8,8 +8,6 @@ import Loading from './Loading';
  * @returns element
  */
 const LazyLoad = (Component: LazyExoticComponent<React.FC<{}>>): ReactNode => {
-  console.log(Component);
-
   return (
     <>
       <Suspense fallback={<Loading />}>
