@@ -5,7 +5,7 @@ import { LazyLoad } from '@/components/LazyLoad';
 import { LayoutGuard } from '../guard';
 
 import type { RouteObject } from '../types';
-
+import HomePage from '@/views/home/index';
 // Home route
 const HomeRoute: RouteObject = {
   path: '/home',
@@ -20,11 +20,7 @@ const HomeRoute: RouteObject = {
   children: [
     {
       path: '',
-      element: LazyLoad(
-        lazy(() => {
-          return import('@/views/home/index');
-        }),
-      ),
+      element: <LazyLoad Component={lazy(() => import('@/views/home/index'))} />,
       meta: {
         title: '首页',
         key: 'home',

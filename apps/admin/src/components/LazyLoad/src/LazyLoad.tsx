@@ -1,4 +1,4 @@
-import { type LazyExoticComponent, type ReactNode, Suspense } from 'react';
+import { type LazyExoticComponent, type ReactNode, Suspense, FC } from 'react';
 
 import Loading from './Loading';
 
@@ -7,7 +7,9 @@ import Loading from './Loading';
  * @param {Element} Component 需要访问的组件
  * @returns element
  */
-const LazyLoad = (Component: LazyExoticComponent<React.FC<{}>>): ReactNode => {
+const LazyLoad: FC<{ Component: LazyExoticComponent<React.FC<{}>> }> = ({ Component }) => {
+  console.log(Component);
+
   return (
     <>
       123123
