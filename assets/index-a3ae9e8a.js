@@ -1,0 +1,1 @@
+import{j as t}from"./index-d25bd671.js";import{G as r}from"./mw-search-table-37d36731.js";import"./iconUtil-2e876e1b.js";import"./index-e6841ab1.js";const p=()=>t.jsx(r,{style:{marginLeft:120},type:"primary",htmlType:"submit",children:"提交"});export{p as default};
