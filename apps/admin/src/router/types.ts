@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { LoaderFunction } from 'react-router-dom';
+import type { NonIndexRouteObject, LoaderFunction } from 'react-router-dom';
 
 export interface MetaProps {
   title: string;
@@ -13,7 +13,7 @@ export interface MetaProps {
   hideChildrenInMenu?: boolean;
 }
 
-export interface RouteObject {
+export interface RouteObject extends NonIndexRouteObject {
   id?: string;
   loader?: LoaderFunction;
   element?: ReactNode;

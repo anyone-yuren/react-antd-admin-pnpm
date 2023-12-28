@@ -1,16 +1,17 @@
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 
 import { LazyLoad } from '@/components/LazyLoad';
 
 import { LayoutGuard } from '../guard';
 
 import type { RouteObject } from '../types';
-import Loading from '@/components/LazyLoad/src/Loading';
+import ErrorBoundary from '@/components/ErrorBoundary';
 const HomePage = lazy(() => import('@/views/home/index'));
 // Home route
 const HomeRoute: RouteObject = {
   path: '/home',
   element: <LayoutGuard />,
+  errorElement: <ErrorBoundary />,
   meta: {
     title: '首页',
     icon: 'home',
@@ -21,11 +22,8 @@ const HomeRoute: RouteObject = {
   children: [
     {
       path: '',
-      element: (
-        <Suspense fallback={<Loading />}>
-          <HomePage />
-        </Suspense>
-      ),
+      element: LazyLoad(HomePage),
+      errorElement: <ErrorBoundary />,
       meta: {
         title: '首页',
         key: 'home',
