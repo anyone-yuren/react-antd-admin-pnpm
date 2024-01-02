@@ -22,7 +22,7 @@ import travel_3 from '@/assets/images/travel_3.jpg';
 
 import Message from '../message';
 import SendBox from '../sendBox';
-import useStyles from './styles';
+import useStyles from '../styles';
 
 import type { PMessage } from '../message';
 import type { FC } from 'react';
