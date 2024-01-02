@@ -3,10 +3,10 @@
 import react from '@vitejs/plugin-react';
 // 需要安装 @typings/node 插件
 import { resolve } from 'path';
+import path from 'path';
 import { loadEnv } from 'vite';
 import { viteMockServe } from 'vite-plugin-mock';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
-import path from 'path';
 
 import { wrapperEnv } from './build/utils';
 

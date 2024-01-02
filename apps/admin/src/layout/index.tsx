@@ -1,5 +1,6 @@
 import { Layout } from 'antd';
 import ErrorBoundary from 'antd/es/alert/ErrorBoundary';
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { AppLogo } from '@/components/AppLogo';
@@ -29,7 +30,9 @@ export const BasicLayout = (props: any) => {
         <LayoutHeader />
         <Content>
           <ErrorBoundary>
-            <Outlet />
+            <Suspense fallback={' loading'}>
+              <Outlet />
+            </Suspense>
           </ErrorBoundary>
         </Content>
       </Layout>

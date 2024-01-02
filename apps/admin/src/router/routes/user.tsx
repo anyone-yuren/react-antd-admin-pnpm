@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy } from '@loadable/component';
 
 import LazyLoad from '@/components/LazyLoad';
 

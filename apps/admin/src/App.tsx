@@ -1,12 +1,12 @@
 import { ThemeProvider } from 'antd-style';
 import { useEffect, useState } from 'react';
-import { RouterProvider } from 'react-router-dom';
+import { HashRouter, RouterProvider } from 'react-router-dom';
 import { useGlobalStore } from 'store';
 import { GlobalConfig } from 'ui';
 
 import cyanImg from '@/assets/images/cyan-blur.png';
 import redImg from '@/assets/images/red-blur.png';
-import router from '@/router';
+import router, { Router } from '@/router';
 import CustomGlobal from '@/styles/GlobalPager';
 
 import LoadingPage from './components/LoadingPage';
@@ -49,7 +49,14 @@ function App() {
         }}
       >
         <CustomGlobal />
-        {loading ? <LoadingPage /> : <RouterProvider router={router} />}
+        {/* {loading ? <LoadingPage /> : <RouterProvider router={router} />} */}
+        {loading ? (
+          <LoadingPage />
+        ) : (
+          <HashRouter>
+            <Router />
+          </HashRouter>
+        )}
       </ThemeProvider>
     </GlobalConfig>
   );

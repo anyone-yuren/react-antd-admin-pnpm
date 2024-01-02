@@ -1,4 +1,5 @@
-import { createHashRouter, Navigate, redirect } from 'react-router-dom';
+import React from 'react';
+import { createHashRouter, Navigate, redirect, useRoutes } from 'react-router-dom';
 
 import { getAuthCache } from '@/utils/auth';
 
@@ -10,22 +11,17 @@ import LoginPage from '@/views/login';
 import { genFullPath } from './helpers';
 
 import type { RouteObject } from './types';
-import LazyLoad from '@/components/LazyLoad';
-import { LayoutGuard } from './guard';
-import React from 'react';
-
-const HomePage = React.lazy(() => import('@/views/home'));
 
 const metaRoutes = import.meta.glob('./routes/*.tsx', { eager: true }) as Recordable;
 
 const routeList: RouteObject[] = [];
 
-// Object.keys(metaRoutes).forEach((key) => {
-//   const module = metaRoutes[key].default || {};
-//   const moduleList = Array.isArray(module) ? [...module] : [module];
-//   genFullPath(moduleList);
-//   routeList.push(...moduleList);
-// });
+Object.keys(metaRoutes).forEach((key) => {
+  const module = metaRoutes[key].default || {};
+  const moduleList = Array.isArray(module) ? [...module] : [module];
+  genFullPath(moduleList);
+  routeList.push(...moduleList);
+});
 
 const rootRoutes: RouteObject[] = [
   {
@@ -46,32 +42,7 @@ const rootRoutes: RouteObject[] = [
       return null;
     },
   },
-  {
-    path: '/home',
-    element: <LayoutGuard />,
-    meta: {
-      title: '首页',
-      icon: 'home',
-      affix: true,
-      orderNo: 1,
-      hideChildrenInMenu: true,
-    },
-    children: [
-      {
-        path: '',
-        element: LazyLoad(HomePage),
-        // errorElement: <ErrorBoundary />,
-        meta: {
-          title: '首页',
-          key: 'home',
-          icon: 'home',
-          orderNo: 1,
-          hideMenu: true,
-        },
-      },
-    ],
-  },
-  // ...routeList,
+  ...routeList,
   {
     path: '*',
     element: <Navigate to='/404' />,
@@ -89,5 +60,10 @@ const rootRoutes: RouteObject[] = [
 ];
 
 export { routeList as basicRoutes };
+
+export const Router = () => {
+  const routes = useRoutes(routeList);
+  return routes;
+};
 
 export default createHashRouter(rootRoutes);
