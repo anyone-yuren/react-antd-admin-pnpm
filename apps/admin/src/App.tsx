@@ -49,14 +49,14 @@ function App() {
         }}
       >
         <CustomGlobal />
-        {/* {loading ? <LoadingPage /> : <RouterProvider router={router} />} */}
-        {loading ? (
+        {loading ? <LoadingPage /> : <RouterProvider router={router} />}
+        {/* {loading ? (
           <LoadingPage />
         ) : (
           <HashRouter>
             <Router />
           </HashRouter>
-        )}
+        )} */}
       </ThemeProvider>
     </GlobalConfig>
   );

@@ -21,10 +21,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
 
   // this function can be converted to different typings
   const viteEnv: any = wrapperEnv(env);
-  const { VITE_PORT, VITE_DROP_CONSOLE } = viteEnv;
+  const { VITE_PORT, VITE_DROP_CONSOLE, VITE_APP_BASE_URL } = viteEnv;
 
   return {
-    base: isBuild ? '/react-antd-admin-pnpm/' : './',
+    base: VITE_APP_BASE_URL,
     server: {
       // Listening on all local ips
       host: true,
