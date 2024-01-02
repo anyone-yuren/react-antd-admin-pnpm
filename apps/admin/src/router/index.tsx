@@ -1,4 +1,5 @@
-import { createHashRouter, Navigate, redirect } from 'react-router-dom';
+import React from 'react';
+import { createHashRouter, Navigate, redirect, useRoutes } from 'react-router-dom';
 
 import { getAuthCache } from '@/utils/auth';
 
@@ -59,5 +60,10 @@ const rootRoutes: RouteObject[] = [
 ];
 
 export { routeList as basicRoutes };
+
+export const Router = () => {
+  const routes = useRoutes(rootRoutes);
+  return routes;
+};
 
 export default createHashRouter(rootRoutes);

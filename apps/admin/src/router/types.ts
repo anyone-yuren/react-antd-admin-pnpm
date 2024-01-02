@@ -1,37 +1,39 @@
 import type { ReactNode } from 'react';
-import type { LoaderFunction } from 'react-router-dom';
+import type { NonIndexRouteObject, LoaderFunction } from 'react-router-dom';
 
 export interface MetaProps {
-  title: string
-  key?: string
-  icon?: string
-  affix?: boolean
-  keepAlive?: boolean
-  orderNo?: number
-  hideMenu?: boolean
-  hideChildrenInMenu?: boolean
+  title: string;
+  key?: string;
+  icon?: string;
+  iconSize?: number;
+  affix?: boolean;
+  keepAlive?: boolean;
+  orderNo?: number;
+  hideMenu?: boolean;
+  hideChildrenInMenu?: boolean;
 }
 
-export interface RouteObject {
-  id?: string
-  loader?: LoaderFunction
-  element?: ReactNode
-  path?: string
-  fullPath?: string
-  children?: RouteObject[]
-  index?: false
-  meta?: MetaProps
+export interface RouteObject extends NonIndexRouteObject {
+  id?: string;
+  loader?: LoaderFunction;
+  element?: ReactNode;
+  path?: string;
+  fullPath?: string;
+  children?: RouteObject[];
+  index?: false;
+  meta?: MetaProps;
 }
 
 export interface AppMenu {
-  name: string
-  path: string
-  children?: AppMenu[]
-  disabled?: boolean
-  icon?: string
-  affix?: boolean
-  orderNo?: number
-  hideMenu?: boolean
-  hideChildrenInMenu?: boolean
-  hideBreadcrumb?: boolean
+  name: string;
+  path: string;
+  children?: AppMenu[];
+  disabled?: boolean;
+  icon?: string;
+  iconSize?: number;
+  affix?: boolean;
+  orderNo?: number;
+  hideMenu?: boolean;
+  hideChildrenInMenu?: boolean;
+  hideBreadcrumb?: boolean;
 }

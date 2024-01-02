@@ -1,15 +1,21 @@
-import { lazy } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { lazy } from '@loadable/component';
 
-import { LazyLoad } from '@/components/LazyLoad';
+import LazyLoad from '@/components/LazyLoad';
 
 import { LayoutGuard } from '../guard';
 
 import type { RouteObject } from '../types';
 
+const HomePage = lazy(() => import('@/views/home/index'));
+
+// import ErrorBoundary from '@/components/ErrorBoundary';
 // Home route
 const HomeRoute: RouteObject = {
   path: '/home',
   element: <LayoutGuard />,
+  // errorElement: <ErrorBoundary />,
+  loader: () => null,
   meta: {
     title: '首页',
     icon: 'home',
@@ -20,7 +26,7 @@ const HomeRoute: RouteObject = {
   children: [
     {
       path: '',
-      element: LazyLoad(lazy(() => import('@/views/home'))),
+      element: LazyLoad(HomePage),
       meta: {
         title: '首页',
         key: 'home',
@@ -28,6 +34,19 @@ const HomeRoute: RouteObject = {
         orderNo: 1,
         hideMenu: true,
       },
+      // async lazy() {
+      //   const Home = lazy(() => import('@/views/home/index'));
+      //   return {
+      //     Component: Home,
+      //     meta: {
+      //       title: '首页',
+      //       key: 'home',
+      //       icon: 'home',
+      //       orderNo: 1,
+      //       hideMenu: true,
+      //     },
+      //   };
+      // },
     },
   ],
 };

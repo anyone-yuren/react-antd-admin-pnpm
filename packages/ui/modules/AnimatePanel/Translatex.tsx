@@ -30,15 +30,16 @@ export default function Translatex(props: TranslateProps) {
       ? `${direction === 'left' ? 'translateX(0px) scale(1) rotateY(0deg)' : 'translateY(0px) scale(1) rotateY(0deg)'}`
       : `${
           direction === 'left'
-            ? 'translateX(80px) scale(0.9) rotateY(10deg)'
+            ? 'translateX(80px) scale(1) rotateY(10deg)'
             : 'translateY(80px) scale(0.9) rotateY(10deg)'
         }`,
     delay,
     config: { ...config },
+    onRest: () => {},
   });
   return (
     <animated.div className={props.className} style={{ ...animateStyles }}>
-      {children}
+      {run && children}
     </animated.div>
   );
 }

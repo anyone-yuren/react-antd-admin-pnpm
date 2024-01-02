@@ -25,8 +25,8 @@ function CommitTable() {
       key: 'time',
     },
   ];
-  const apiUrl = 'https://api.github.com/repos/anyone-yuren/react-antd-admin-pnpm/commits?sha=admin&per_page=10';
-  const accessToken = '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';
+  const apiUrl = 'https://api.github.com/repos/anyone-yuren/react-antd-admin-pnpm/commits?sha=admin&per_page=5';
+  const accessToken = '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';
 
   useEffect(() => {
     fetch(apiUrl, {

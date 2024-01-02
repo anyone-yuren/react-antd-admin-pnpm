@@ -20,5 +20,5 @@ export const GuardRoute = ({ children }: { children: ReactNode }) => {
     return <Navigate to={`/login?redirect=${pathname}`} replace />;
   }
 
-  return children;
+  return <>{children}</>;
 };

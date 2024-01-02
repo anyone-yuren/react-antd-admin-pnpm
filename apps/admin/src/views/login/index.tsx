@@ -3,7 +3,6 @@ import { Alert, Button, Checkbox, Form, Input, message, Typography } from 'antd'
 import classNames from 'classnames';
 import { type FC, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import './index.less';
 
 import SvgIcon from '@/components/SvgIcon';
 
@@ -38,6 +37,7 @@ const LoginPage: FC = () => {
   const [searchParams] = useSearchParams();
 
   const handleLogin = async (values: any) => {
+    debugger;
     try {
       setLoading(true);
       const userInfo = await loginAction({
@@ -48,6 +48,8 @@ const LoginPage: FC = () => {
         message.success('登陆成功！');
       }
     } catch (error) {
+      console.log(error);
+
       message.error((error as unknown as Error).message);
     } finally {
       setLoading(false);
