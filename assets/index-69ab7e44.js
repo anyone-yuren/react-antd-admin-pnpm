@@ -1,0 +1,1 @@
+import{b7 as i}from"./index-5faadba2.js";const r=({data:e={id:0,name:"",email:"",avatar:""}})=>i.jsxs("div",{children:[i.jsx("div",{children:e.id}),i.jsx("div",{children:e.name}),i.jsx("div",{children:e.email}),i.jsx("div",{children:e.avatar})]});export{r as default};
