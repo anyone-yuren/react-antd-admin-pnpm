@@ -62,7 +62,7 @@ const rootRoutes: RouteObject[] = [
 export { routeList as basicRoutes };
 
 export const Router = () => {
-  const routes = useRoutes(routeList);
+  const routes = useRoutes(rootRoutes);
   return routes;
 };
 

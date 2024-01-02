@@ -2,8 +2,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import react from '@vitejs/plugin-react';
 // 需要安装 @typings/node 插件
-import { resolve } from 'path';
-import path from 'path';
+// import { resolve } from 'path';
+import path, { resolve } from 'path';
 import { loadEnv } from 'vite';
 import { viteMockServe } from 'vite-plugin-mock';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
@@ -34,7 +34,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           target: 'https://api.github.com',
           changeOrigin: true,
           secure: true,
-          rewrite: (path) => path.replace(/^\/repos/, ''),
+          rewrite: (pt) => pt.replace(/^\/repos/, ''),
         },
       },
     },
