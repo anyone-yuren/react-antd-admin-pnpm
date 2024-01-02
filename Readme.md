@@ -51,6 +51,7 @@ antd5已经发布很久了，之前一直在维护的一套基于antd4版本的�
 - [x] 主题设计
 - [x] 登录页设计
 - [x] 状态管理（zustand）
+- [x] 路由设计，使用loadable-compoment替代React.lazy
 - [x] 主题控制面板
 - [ ] 模块高亮搜索
 
@@ -70,7 +71,7 @@ antd5已经发布很久了，之前一直在维护的一套基于antd4版本的�
 npx @chenshuai2144/less2cssinjs less2js -i src
 ```
 
-##
+## 贡献
 
 <a href="https://github.com/anyone-yuren/react-antd-admin-pnpm/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=anyone-yuren/react-antd-admin-pnpm" />
