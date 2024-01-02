@@ -51,6 +51,7 @@ antd5已经发布很久了，之前一直在维护的一套基于antd4版本的�
 - [x] 主题设计
 - [x] 登录页设计
 - [x] 状态管理（zustand）
+- [x] 路由设计，使用loadable-compoment替代React.lazy
 - [x] 主题控制面板
 - [ ] 模块高亮搜索
 
