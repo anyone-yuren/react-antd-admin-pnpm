@@ -20,5 +20,5 @@ jobs:
         run: |
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d '{"msgtype": "text", "text": {"content": "New tag created: ${{ github.ref }}\nRelease Note: ${{ steps.extract_note.outputs.note }}"}}' \
-               <https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=9875c111-57b0-42c4-a301-cdaed5e215cc>
+               -d "{\"msgtype\": \"text\", \"text\": {\"content\": \"New tag created: ${{ github.ref }}\\nRelease Note: ${{ steps.extract_note.outputs.note }}\"}}" \
+               "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=9875c111-57b0-42c4-a301-cdaed5e215cc"
