@@ -60,6 +60,10 @@ jobs:
       - name: Debug Package Version
         run: echo "Package version ${{ steps.packagejson.outputs.version }}"
 
+      - name: Write Updated Version to Package.json
+        run: |
+          echo '{"version": "${{ steps.packagejson.outputs.version }}"}' > package.json
+
       - name: Create Release for Tag
         uses: actions/create-release@v1
         id: release-tag
