@@ -47,8 +47,6 @@ jobs:
       - name: Read Package.json
         uses: tyankatsu0105/read-package-version-actions@v1
         id: packagejson
-        with:
-          path: ./package.json
 
       - name: Debug Package Version
         run: echo "Package version ${{ steps.packagejson.outputs.version }}"
