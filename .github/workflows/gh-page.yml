@@ -44,16 +44,6 @@ jobs:
           BRANCH: gh-pages # 部署分支
           FOLDER: gbeata-dist # 打包, 静态资源输出的目录
 
-      - name: Create admin Release
-        uses: changesets/action@v1
-        with:
-          version: pnpm change:ver
-          publish: pnpm change:pub
-          commit: "ci: release"
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_PACKAGE }}
-
       - name: Read Package.json
         uses: tyankatsu0105/read-package-version-actions@v1
         id: packagejson
