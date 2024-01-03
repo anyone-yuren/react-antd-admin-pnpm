@@ -1,0 +1,24 @@
+name: Notify WeChat on Tag
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Extract Release Note
+        id: extract_note
+        run: echo ::set-output name=note::$(git show -s --format=%b ${{ github.sha }})
+
+      - name: Send notification to WeChat
+        run: |
+          curl -H "Content-Type: application/json" \
+               -X POST \
+               -d '{"msgtype": "text", "text": {"content": "New tag created: ${{ github.ref }}\nRelease Note: ${{ steps.extract_note.outputs.note }}"}}' \
+               <https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=9875c111-57b0-42c4-a301-cdaed5e215cc>

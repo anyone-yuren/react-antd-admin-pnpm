@@ -43,3 +43,34 @@ jobs:
         with:
           BRANCH: gh-pages # 部署分支
           FOLDER: gbeata-dist # 打包, 静态资源输出的目录
+
+      - name: Create admin Release
+        uses: changesets/action@v1
+        with:
+          version: pnpm change:ver
+          publish: pnpm change:pub
+          commit: "ci: release"
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_PACKAGE }}
+
+      - name: Read Package.json
+        uses: tyankatsu0105/read-package-version-actions@v1
+        id: packagejson
+        with:
+          path: ./package.json
+
+      - name: Debug Package Version
+        run: echo "Package version ${{ steps.packagejson.outputs.version }}"
+
+      - name: Create Release for Tag
+        uses: actions/create-release@v1
+        id: release-tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+        with:
+          tag_name: ${{ steps.packagejson.outputs.version }}
+          name: ${{ steps.packagejson.outputs.version }}
+          body: ${{ steps.packagejson.outputs.content }}
+          draft: false
+          prerelease: false
