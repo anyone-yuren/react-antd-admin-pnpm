@@ -32,14 +32,14 @@ import {
   SortItem,
   TableRefProps,
 } from './g-search-table';
-import './mw-search-table.less';
+import './g-search-table.less';
 import useExtraBtn, {
   setSearchTableExtraDefaultValue,
 } from './use/useExtraBtn';
 import useSelection from './use/useSelection';
 
 /**
- * 转化并过滤成 mw-search 能用的 fields
+ * 转化并过滤成 g-search 能用的 fields
  * @param fields 查询表格的 fields
  */
 const getSearchFields = (fields: Array<GSearchTableField>) => {
@@ -511,14 +511,14 @@ const GSearchTable = forwardRef(function GSearchTable(
     if (moreSearchFields && moreSearchFields.length) {
       children.push(
         <GForm
-          className="mw-search-table-more"
-          key="mw-search-table-more"
+          className="g-search-table-more"
+          key="g-search-table-more"
           ref={moreSearchRef}
           fields={moreSearchFields}
           onConfirm={onConfirm}
         >
           <GButton
-            className="mw-search-table-more-submit"
+            className="g-search-table-more-submit"
             htmlType="submit"
           ></GButton>
         </GForm>,
@@ -542,7 +542,7 @@ const GSearchTable = forwardRef(function GSearchTable(
   return (
     <div
       className={classNames(
-        'mw-search-table',
+        'g-search-table',
         isEnter && 'full',
         compact && 'compact',
       )}
@@ -584,7 +584,7 @@ const GSearchTable = forwardRef(function GSearchTable(
           {tableChildren}
         </GTable>
         {selection.length && footerActions.length ? (
-          <div className="mw-search-table-footer-actions">
+          <div className="g-search-table-footer-actions">
             {message}
             <Space>{footerActions}</Space>
           </div>

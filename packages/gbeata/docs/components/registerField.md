@@ -39,7 +39,7 @@ registerField(FormType, {
   render: ({ field, readonly, getFieldValue }: AnyKeyProps) => {
     // 可以在 readonly 模式下，渲染成不同的样子
     return readonly ? (
-      <span className="mw-form-text">{getFieldValue(field.key) || '-'}</span>
+      <span className="g-form-text">{getFieldValue(field.key) || '-'}</span>
     ) : (
       <Component
         placeholder={`请输入${field.title || ''}`}

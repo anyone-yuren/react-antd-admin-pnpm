@@ -8,7 +8,7 @@ import { CTRL_DEFAULT_MAX, CTRL_DEFAULT_MORE_TEXT } from '../constant';
 import locale from '../locale';
 import { AnyKeyProps } from '../types/AnyKeyProps';
 import { GCtrlProps } from './g-ctrl';
-import './mw-ctrl.less';
+import './g-ctrl.less';
 
 /**
  * 返回一个控制项
@@ -99,7 +99,7 @@ const getCtrlList = (
 
     ctrlList.push(
       <Dropdown key={max} overlay={menu} placement="bottomRight">
-        <GButton type="link" className={classNames('mw-button', sub && 'sub')}>
+        <GButton type="link" className={classNames('g-button', sub && 'sub')}>
           {more}
         </GButton>
       </Dropdown>,
@@ -124,7 +124,7 @@ export default function GCtrl(props: GCtrlProps) {
   return (
     <Space
       size={size}
-      className={classNames('mw-ctrl', className)}
+      className={classNames('g-ctrl', className)}
       style={style}
       split={split ?? <Divider type="vertical" />}
     >

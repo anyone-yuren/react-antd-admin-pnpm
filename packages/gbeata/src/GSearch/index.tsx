@@ -387,7 +387,7 @@ const GSearch = forwardRef(function GSearch(props: GSearchProps, ref) {
         inline ? styles.inline : '',
       )}
     >
-      <div className="mw-search-content" ref={wrapRef}>
+      <div className="g-search-content" ref={wrapRef}>
         <GForm
           layout={{ labelCol: { flex: '100px' } }}
           ref={formRef}

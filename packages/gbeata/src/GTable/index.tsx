@@ -508,19 +508,19 @@ const GTable = forwardRef(function GTable(props: GTableProps, ref) {
         setDisabledKeys,
       }}
     >
-      <Card className={`mw-table ${className || ''}`}>
+      <Card className={`g-table ${className || ''}`}>
         {hasHeader() ? (
-          <header className="mw-table-header">
-            <div className="mw-table-header-left">
+          <header className="g-table-header">
+            <div className="g-table-header-left">
               <Space>
                 {typeof title === 'string' ? (
-                  <h2 className="mw-table-title">{title}</h2>
+                  <h2 className="g-table-title">{title}</h2>
                 ) : (
                   title
                 )}
               </Space>
             </div>
-            <div className="mw-table-header-right">
+            <div className="g-table-header-right">
               <Space>
                 {btnBefore}
                 {children}
@@ -530,7 +530,7 @@ const GTable = forwardRef(function GTable(props: GTableProps, ref) {
         ) : null}
         {header}
         {tableHeader}
-        <div className="mw-table-content">
+        <div className="g-table-content">
           <Table
             bordered
             rowClassName={rowClassName}

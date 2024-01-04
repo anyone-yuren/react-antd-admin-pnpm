@@ -467,4 +467,4 @@ export default function Demo() {
 }
 ```
 
-更详细的弹窗表单使用，请看[这里](../../components/form/mw-dialog-form)
+更详细的弹窗表单使用，请看[这里](../../components/form/g-dialog-form)

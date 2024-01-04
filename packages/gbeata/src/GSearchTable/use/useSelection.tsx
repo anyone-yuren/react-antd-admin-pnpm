@@ -206,7 +206,7 @@ export default function useSelection(
 
   /** Popover 弹窗的提示 */
   const popContent = (
-    <div className="mw-search-poper">
+    <div className="g-search-poper">
       {selection.map((row, i) => {
         return (
           <Tag
@@ -239,7 +239,7 @@ export default function useSelection(
 
   /** 头部已选中的提示 */
   const header = selectionKeys.length ? (
-    <Alert className="mw-search-table-alert" message={message} showIcon />
+    <Alert className="g-search-table-alert" message={message} showIcon />
   ) : (
     ''
   );

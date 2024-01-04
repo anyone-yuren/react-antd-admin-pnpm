@@ -737,4 +737,4 @@ export const deleteApi = (params: AnyKeyProps): Promise<any> => {
 };
 ```
 
-更详细的指令按钮介绍，请看[这里](../../components/button/mw-action)
+更详细的指令按钮介绍，请看[这里](../../components/button/g-action)

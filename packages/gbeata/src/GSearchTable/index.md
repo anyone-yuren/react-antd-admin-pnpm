@@ -7,7 +7,7 @@ group: 表格table
 
 <!-- ![gbeata GSearchTable](https://misc.hzzcckj.cn/upload/image/202011/ac6556223800000.png) -->
 
-表格顶部使用了 `GSearch`，可以点击[这里](./form/mw-search)看详细介绍。
+表格顶部使用了 `GSearch`，可以点击[这里](./form/g-search)看详细介绍。
 
 ## 基础表格
 
@@ -304,7 +304,7 @@ export default function Demo() {
 
 ## 紧凑型查询区域
 
-设置 `searchExtend={{ inline: true }}`，`searchExtend` 是 [GSearch](./form/mw-search)的[属性](./form/mw-search#props-参数)，会让表格的查询区域变成平铺模式，此时查询区域的 label 将会消失，且作为 placeholder 出现。
+设置 `searchExtend={{ inline: true }}`，`searchExtend` 是 [GSearch](./form/g-search)的[属性](./form/g-search#props-参数)，会让表格的查询区域变成平铺模式，此时查询区域的 label 将会消失，且作为 placeholder 出现。
 
 ```tsx
 import React from 'react';
@@ -1032,7 +1032,7 @@ export const deleteApi = (params: AnyKeyProps) => {
 };
 ```
 
-更详细的指令按钮介绍，请看[这里](../button/mw-action)
+更详细的指令按钮介绍，请看[这里](../button/g-action)
 
 ## 增删改查
 
@@ -1173,7 +1173,7 @@ const fields: Array<GSearchTableField> = [
 [rendertype]: ./table/custom-render#已全局注册
 [mwformfield]: ./form#GFormField-参数
 [aytablefield]: ./table#aytablefield
-[aydialogform]: ./form/mw-dialog-form
+[aydialogform]: ./form/g-dialog-form
 [禁用表格选项]: ./table/disabled-row
 [单选表格]: ./table/radio-table
 [可编辑表格]: ./table/edit-table
