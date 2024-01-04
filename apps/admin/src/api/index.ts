@@ -1,8 +1,8 @@
 import { service } from '@/utils/axios';
 
 interface LoginParams {
-  username: string
-  password: string
+  username: string;
+  password: string;
 }
 
 // User login api
@@ -36,5 +36,13 @@ export function getTableList(params: any) {
     url: '/table/getTableList',
     method: 'get',
     params,
+  });
+}
+
+// juejin api
+export function getJueJinList() {
+  return service({
+    url: 'article/queryList',
+    method: 'post',
   });
 }
