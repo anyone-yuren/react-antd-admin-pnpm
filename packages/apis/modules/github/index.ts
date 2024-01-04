@@ -1,4 +1,4 @@
-import { request } from '../../request';
+import { GRequest } from '../../request';
 
 import type { IResponse } from '../../type';
 
@@ -7,7 +7,7 @@ const repoOwner = 'anyone-yuren';
 const repoName = 'react-antd-admin-pnpm';
 const apiUrl = `/${repoOwner}/${repoName}/commits?per_page=10`;
 export const GetGithubCommits = () =>
-  request<IResponse<any>>(apiUrl, {
+  GRequest<IResponse<any>>(apiUrl, {
     method: 'GET',
     headers: {
       Authorization: `token ${accessToken}`,

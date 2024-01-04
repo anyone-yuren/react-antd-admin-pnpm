@@ -6,6 +6,7 @@ import UserCard from '@/components/UserCard';
 
 import { AnalyzeCard } from './components/AnalyzeCard';
 import CommitTable from './components/CommitTable';
+import JuejinTable from './components/juejinTable';
 import SlickBox from './components/SlickBox';
 import useStyles from './index.style';
 
@@ -65,10 +66,11 @@ const HomePage: FC = () => {
           <CommitTable />
         </Col>
         <Col span={24}>
-          <Text>
+          <JuejinTable />
+          {/* <Text>
             其实呢，大部分普通人的生活，就是在做那些零零碎碎的小事，工作也好，生活也好，哪有那么多惊天动地的大事呢，只不过我们很多时候并没有用心，又或者我们太忙碌，大焦虑，无法从这些小事中品出温情，获得满足。
             借此记录自己每天的点点滴滴，充实自己。
-          </Text>
+          </Text> */}
         </Col>
       </Row>
     </div>
