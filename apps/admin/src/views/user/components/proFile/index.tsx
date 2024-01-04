@@ -166,11 +166,11 @@ const ProFile: FC<PProFiles> = () => {
                     <Button shape='circle' type='text' icon={<ShareAltOutlined />}></Button>
                   </div>
                 </Flex>
-                {messageList.map((item) => (
-                  <Message avatar={item.avatar} time={item.time} content={item.content} user={item.user} />
+                {messageList.map((item, index) => (
+                  <Message key={index} avatar={item.avatar} time={item.time} content={item.content} user={item.user} />
                 ))}
                 {/* 发送消息 */}
-                <SendBox></SendBox>
+                <SendBox />
               </Flex>
             </Card>
           </Flex>

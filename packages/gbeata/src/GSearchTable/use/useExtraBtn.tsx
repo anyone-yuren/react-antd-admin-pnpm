@@ -7,7 +7,7 @@ import {
   ReloadOutlined,
   SettingOutlined,
 } from '@ant-design/icons';
-import { Checkbox, Dropdown, Input, Menu, Space, Tooltip } from 'antd';
+import { Checkbox, Dropdown, Input, MenuProps, Space, Tooltip } from 'antd';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import React, { ChangeEvent, Dispatch, useEffect, useState } from 'react';
 import GButton from '../../GButton';
@@ -80,14 +80,6 @@ const useFieldsEdit = (
         };
       }),
   );
-  useEffect(() => {
-    if (defaultExtra && defaultExtra.length) {
-      setTimeout(() => {
-        handleConfirm();
-      }, 800);
-    }
-    // setTableFields(normalFields)
-  }, [defaultExtra]);
 
   const handleCheckedChange = (i: number, value: boolean) => {
     // @ts-ignore
@@ -169,10 +161,21 @@ const useFieldsEdit = (
     setVisible(false);
   };
 
+  useEffect(() => {
+    if (defaultExtra && defaultExtra.length) {
+      setTimeout(() => {
+        handleConfirm();
+      }, 800);
+    }
+    // setTableFields(normalFields)
+  }, [defaultExtra]);
+
   /**
    *  设置初始选中
    */
-  const setDefaultField = (defaultArray: string[] = ['receiptName']) => {};
+  const setDefaultField = (defaultArray: string[] = ['receiptName']) => {
+    console.log('defaultArray___', defaultArray)
+  };
 
   return {
     fieldsEdit: (
@@ -279,8 +282,29 @@ export default function useExtraBtn(
     } else {
       document.body.style.overflow = '';
     }
-    searchRef.current && searchRef.current.resize();
+    searchRef.current?.resize();
   }, [isEnter]);
+
+
+  // 选中table规格
+  const menu: MenuProps['items'] = [
+    {
+      label: <Space>{ locale.extra.densityLarger }</Space>,
+      key: 'large',
+    },
+    {
+      label: <Space>{ locale.extra.densityMiddle }</Space>,
+      key: 'middle',
+    },
+    {
+      label: <Space>{ locale.extra.densitySmall }</Space>,
+      key: 'small',
+    },
+  ]
+
+  const handleMenuClick = (e: any) => {
+    handleSizeChange(e)
+  }
 
   const extraBtns = extraVisible ? (
     <div
@@ -297,21 +321,10 @@ export default function useExtraBtn(
         {extraSizeVisible ? (
           <Tooltip title={locale.extra.density}>
             <Dropdown
-              overlay={
-                <Menu
-                  style={{ width: 100 }}
-                  selectedKeys={[size + '']}
-                  onClick={handleSizeChange}
-                >
-                  <Menu.Item key="large">
-                    {locale.extra.densityLarger}
-                  </Menu.Item>
-                  <Menu.Item key="middle">
-                    {locale.extra.densityMiddle}
-                  </Menu.Item>
-                  <Menu.Item key="small">{locale.extra.densitySmall}</Menu.Item>
-                </Menu>
-              }
+              menu={{
+                items: menu,
+                onClick: (e) => handleMenuClick(e)
+              }}
             >
               <ColumnHeightOutlined />
             </Dropdown>

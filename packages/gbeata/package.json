@@ -25,6 +25,7 @@
   "scripts": {
     "build": "father build",
     "build:watch": "father dev",
+    "build:admin": "rm -rf es && rm -rf lib && pnpm run build --filter react-admin-design",
     "dev": "dumi dev",
     "docs:build": "dumi build",
     "doctor": "father doctor",
