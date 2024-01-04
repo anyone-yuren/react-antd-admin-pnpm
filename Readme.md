@@ -72,6 +72,8 @@ antd5已经发布很久了，之前一直在维护的一套基于antd4版本的�
 npx @chenshuai2144/less2cssinjs less2js -i src
 ```
 
+3. 关于本地运行项目，出现gbeata未定义的问题，起初在设计组件库阶段，并没有打算直接在项目包中直接应用workspace中的源码，所以，你可以在执行 ` pnpm dev --filter gbeata-admin` 之前，请先将gbeata组件包打包生成lib目录， 执行` pnpm build --filter gbeata`
+
 ## 贡献
 
 <a href="https://github.com/anyone-yuren/react-antd-admin-pnpm/graphs/contributors">
@@ -79,4 +81,5 @@ npx @chenshuai2144/less2cssinjs less2js -i src
 </a>
 
 欢迎 PR，当然您也可以扫码进群讨论，或者直接联系我，QQ: 1003473088，如果这是一个很大的变化！欢迎您的加入！
-<img src="https://i.imgs.ovh/2024/01/03/0ybmA.jpeg"/>
+
+<img src="https://raw.githubusercontent.com/anyone-yuren/multiway/master/WechatIMG8679.jpeg"/>

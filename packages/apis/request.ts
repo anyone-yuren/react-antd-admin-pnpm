@@ -1,10 +1,10 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { notification } from 'antd';
-import { type RequestOptionsInit, extend } from 'umi-request';
+import request, { type RequestOptionsInit, extend } from 'umi-request';
 
 // 全局请求参数设置
 const PREFIX = '';
-export const request = extend({
+export const GRequest = extend({
   timeout: 60000,
   // 记得区分开发环境与生产环境
   prefix: PREFIX,
@@ -17,7 +17,7 @@ const requestQueue: {
   resolve: (value: Response | PromiseLike<Response>) => any;
   reject: (reason?: any) => void;
 }[] = []; // 请求队列
-request.interceptors.request.use((url, options) => {
+GRequest.interceptors.request.use((url, options) => {
   const { headers } = options;
 
   return {
@@ -29,7 +29,7 @@ request.interceptors.request.use((url, options) => {
   };
 });
 
-request.interceptors.response.use(async (response, options) => {
+GRequest.interceptors.response.use(async (response, options) => {
   const { status } = response;
   if (status === 200) {
     const data = await response.clone().json();
@@ -48,16 +48,16 @@ request.interceptors.response.use(async (response, options) => {
       const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
       isRefreshingToken = true;
       // 刷新token
-      const res = await request('/User/ReLogin', {
+      const res = await GRequest('/User/ReLogin', {
         method: 'POST',
         data: userInfo,
       });
       localStorage.setItem('userInfo', JSON.stringify(res.data));
       isRefreshingToken = false;
-      const response = request(options.url, options);
+      const response = GRequest(options.url, options);
 
       // 重新登录后，将队列中的请求重新发出
-      requestQueue.forEach((cb) => cb.resolve(request(cb.url, cb.options)));
+      requestQueue.forEach((cb) => cb.resolve(GRequest(cb.url, cb.options)));
 
       return response;
     }
@@ -72,3 +72,5 @@ request.interceptors.response.use(async (response, options) => {
   });
   return Promise.reject(response.statusText);
 });
+
+export default request;
