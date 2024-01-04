@@ -910,7 +910,7 @@ const fields: Array<GFormField> = [
 
 ## 卡片表单
 
-`FormType` 为 `card` 时，子元素会被 [GCard](./mw-card) 包裹起来。
+`FormType` 为 `card` 时，子元素会被 [GCard](./g-card) 包裹起来。
 
 ```tsx
 import React, { useState } from 'react';
@@ -1462,6 +1462,6 @@ const fields: Array<Field> = [
 [cardform]: ./form/card-form
 [groupform]: ./form/group-form
 [listform]: ./form/g-form-list
-[cardgroup]: ./form/mw-card-group#在表单中使用
-[taggroup]: ./form/mw-tag-group#在表单中使用
+[cardgroup]: ./form/g-card-group#在表单中使用
+[taggroup]: ./form/g-tag-group#在表单中使用
 [日期格式化]: ./form/date-format

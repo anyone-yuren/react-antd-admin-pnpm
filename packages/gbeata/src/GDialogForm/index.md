@@ -589,7 +589,7 @@ export default function AyDialogFormDemo() {
 | updateApi    | 进出详情模式。                                        | Promise                                                    | -      | -     |
 | beforeSubmit | 表单的提交前校验，return false 则不会提交。           | (params?: AnyKeyProps, mode?: string) => boolean \| obejct | -      | -     |
 | dialogOnly   | 是否只使用申明了 dialog 的 Field。                    | boolean                                                    | false  | -     |
-| dialogExtend | [GDialog](../mw-dialog#参数) 的扩展值。               | object                                                     | -      | -     |
+| dialogExtend | [GDialog](../g-dialog#参数) 的扩展值。                | object                                                     | -      | -     |
 | formExtend   | [GForm](../form#props-参数) 的扩展值。                | object                                                     | -      | -     |
 | autoClose    | 成功后是否自动关闭弹窗。                              | boolean                                                    | true   | -     |
 | drawer       | 是否用 Drawer 替换 Modal。                            | boolean                                                    | false  | -     |

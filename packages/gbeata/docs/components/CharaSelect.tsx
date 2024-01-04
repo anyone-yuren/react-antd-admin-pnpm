@@ -108,7 +108,7 @@ export default function CharaSelect(props: CharaSelectProps) {
     <div className="chara-select">
       {content}
       {readonly ? (
-        <div className="mw-form-text">-</div>
+        <div className="g-form-text">-</div>
       ) : (
         <GDialog
           title="角色选择"

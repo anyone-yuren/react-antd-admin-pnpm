@@ -29,7 +29,7 @@ registerField('date-range', {
       text = text.join('\n');
     }
     return readonly ? (
-      <span className="mw-form-text">{text || '-'}</span>
+      <span className="g-form-text">{text || '-'}</span>
     ) : (
       <DatePicker.RangePicker
         presets={presets}
@@ -95,7 +95,7 @@ registerField('date', {
       text = '';
     }
     return readonly ? (
-      <span className="mw-form-text">{text || '-'}</span>
+      <span className="g-form-text">{text || '-'}</span>
     ) : (
       <DatePicker
         renderExtraFooter={() => renderExtraFooter({ setFieldsValue, field })}

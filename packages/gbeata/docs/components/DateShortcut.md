@@ -91,7 +91,7 @@ registerField('date-range', {
       text = text.join('\n');
     }
     return readonly ? (
-      <span className="mw-form-text">{text || '-'}</span>
+      <span className="g-form-text">{text || '-'}</span>
     ) : (
       <DatePicker.RangePicker
         presets={presets}
@@ -109,7 +109,7 @@ const renderExtraFooter = ({ setFieldsValue, field }: AnyKeyProps) => {
    * 填充日期
    * @param value 日期
    */
-  const setValue = (value: dayjs.dayjs) => {
+  const setValue = (value: any) => {
     setFieldsValue({
       [field.key]: value,
     });
@@ -157,7 +157,7 @@ registerField('date', {
       text = '';
     }
     return readonly ? (
-      <span className="mw-form-text">{text || '-'}</span>
+      <span className="g-form-text">{text || '-'}</span>
     ) : (
       <DatePicker
         renderExtraFooter={() => renderExtraFooter({ setFieldsValue, field })}
