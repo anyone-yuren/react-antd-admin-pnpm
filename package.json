@@ -1,12 +1,12 @@
 {
   "name": "pnpm-monorepo-mui",
-  "version": "1.1.0",
+  "version": "1.3.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "bootstrap": "pnpm install",
     "build": "turbo build",
-    "build:admin": "pnpm run build --filter react-admin-design",
+    "build:admin": "pnpm run build --filter gbeata-admin",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",

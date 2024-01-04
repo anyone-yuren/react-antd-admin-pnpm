@@ -36,6 +36,11 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           secure: true,
           rewrite: (pt) => pt.replace(/^\/repos/, ''),
         },
+        '/content_api': {
+          target: 'https://api.juejin.cn',
+          changeOrigin: true,
+          secure: true,
+        },
       },
     },
     plugins: [

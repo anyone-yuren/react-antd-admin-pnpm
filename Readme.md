@@ -25,8 +25,9 @@ antd5已经发布很久了，之前一直在维护的一套基于antd4版本的�
 
 - [x] pnpm turbo vite 集成方案搭建
 - [x] 配置代码提交规范与自动化部署
-- [ ] antd5组件库开发
-- [ ] 分包设计与应用设计
+- [x] antd5组件库开发
+- [x] 分包设计与应用设计
+- [x] 自动化tag版本打包
 - [ ] 微前端接入
 - [ ] 模板编写
 
@@ -47,13 +48,13 @@ antd5已经发布很久了，之前一直在维护的一套基于antd4版本的�
 "antd": "^5.x","vite": "^5.x","echarts-for-react": "^3.x","antd-style": "^3.x","@react-spring/web": "^9.x","zustand": "^4.x"
 ``` -->
 
-- [ ] 框架设计
+- [x] 框架设计
 - [x] 主题设计
 - [x] 登录页设计
 - [x] 状态管理（zustand）
 - [x] 路由设计，使用loadable-compoment替代React.lazy
 - [x] 主题控制面板
-- [ ] 模块高亮搜索
+- [x] 模块高亮搜索
 
 ## 分支管理
 
@@ -71,10 +72,14 @@ antd5已经发布很久了，之前一直在维护的一套基于antd4版本的�
 npx @chenshuai2144/less2cssinjs less2js -i src
 ```
 
+3. 关于本地运行项目，出现gbeata未定义的问题，起初在设计组件库阶段，并没有打算直接在项目包中直接应用workspace中的源码，所以，你可以在执行 ` pnpm dev --filter gbeata-admin` 之前，请先将gbeata组件包打包生成lib目录， 执行` pnpm build --filter gbeata`
+
 ## 贡献
 
 <a href="https://github.com/anyone-yuren/react-antd-admin-pnpm/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=anyone-yuren/react-antd-admin-pnpm" />
 </a>
 
-欢迎 PR，您可以直接找我讨论，QQ: 1003473088，如果这是一个很大的变化！
+欢迎 PR，当然您也可以扫码进群讨论，或者直接联系我，QQ: 1003473088，如果这是一个很大的变化！欢迎您的加入！
+
+<img src="https://raw.githubusercontent.com/anyone-yuren/multiway/master/WechatIMG8679.jpeg"/>
