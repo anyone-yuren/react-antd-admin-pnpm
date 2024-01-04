@@ -1,12 +1,5 @@
+/* eslint-disable react/jsx-key */
 import { Card, Image, List, Space, Tag } from 'antd';
-import {
-  AnyKeyProps,
-  GAction,
-  GCtrl,
-  GSearchList,
-  GSearchTableField,
-  GTableCtrlField,
-} from 'gbeata';
 import React, { useEffect, useRef, useState } from 'react';
 import {
   addApi,
@@ -15,11 +8,19 @@ import {
   professionOptions,
   updateApi,
 } from '../../api';
+import {
+  AnyKeyProps,
+  GAction,
+  GCtrl,
+  GSearchList,
+  GSearchTableField,
+  GTableCtrlField,
+} from '../../index.d';
 import './index.less';
 
 const ctrl: GTableCtrlField = {
   width: 200,
-  render: (value, record) => {
+  render: (_, record) => {
     return (
       <GCtrl>
         <GAction record={record} action="update">
@@ -157,7 +158,7 @@ export default function AySearchDemo() {
         extendSearchParams={{ class: tag, rarity }}
         searchExtend={{
           actionVisible: false,
-          visibleRow: 99,
+          openRow: 99,
           colon: false,
           labelAlign: 'left',
         }}
@@ -167,7 +168,7 @@ export default function AySearchDemo() {
         pagination={{
           pageSize: 20,
         }}
-        renderItem={(record: AnyKeyProps, index: number) => {
+        renderItem={(record: AnyKeyProps) => {
           return (
             <List.Item key={record.sort_id}>
               <Card

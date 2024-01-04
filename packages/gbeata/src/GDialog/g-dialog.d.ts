@@ -8,7 +8,7 @@ export interface GDialogProps extends ModalProps {
   /** 标题 */
   title: ReactNode;
   /** 显示 */
-  visible: boolean;
+  open: boolean;
   /** 显示控制 */
   setVisible?: Dispatch<SetStateAction<boolean>>;
   /** 弹窗关闭 */

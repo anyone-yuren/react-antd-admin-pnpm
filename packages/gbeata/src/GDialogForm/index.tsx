@@ -129,7 +129,7 @@ const GDialogForm = forwardRef(function GDialogForm(
     drawer,
     dialogOnly,
     autoClose = true,
-    visible: defaultVisible,
+    open: defaultVisible,
     mode: defaultMode,
     spinning = false,
     onClose,
@@ -146,7 +146,7 @@ const GDialogForm = forwardRef(function GDialogForm(
   }, [originFields, children]);
 
   /** 弹窗是否可见 */
-  const [visible, setVisible] = useState<boolean>(false);
+  const [open, setVisible] = useState<boolean>(false);
   /** 当前所处于的模式 */
   let [mode, setMode] = useState<ModeType>(MODE_ADD);
   /** 表单是否可以编辑 */
@@ -437,7 +437,7 @@ const GDialogForm = forwardRef(function GDialogForm(
     <GDialog
       width={width}
       title={getTitle(mode, dialogTitle)}
-      visible={visible}
+      open={open}
       drawer={drawer}
       onConfirm={debounce(() => {
         !loading && onConfirm();

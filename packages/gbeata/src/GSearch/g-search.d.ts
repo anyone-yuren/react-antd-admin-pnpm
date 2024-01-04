@@ -14,7 +14,7 @@ export interface GSearchProps {
   /** 查询占用的格数 */
   actionSpan?: number;
   /** mini 状态展示 n 行 */
-  visibleRow?: number;
+  openRow?: number;
   /** 查询、展示、展开按钮是否可见 */
   actionVisible?: boolean;
   /** 是否平铺展示 */

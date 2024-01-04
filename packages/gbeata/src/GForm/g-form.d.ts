@@ -168,7 +168,7 @@ export interface GFormField extends Field {
   rules?: Array<AnyKeyProps>;
   /** 是否展示，保留占位; 保留默认值 */
   // eslint-disable-next-line @typescript-eslint/ban-types
-  visible?: boolean | Function | string;
+  open?: boolean | Function | string;
   /** 是否展示，不会占位; 保留默认值 */
   // eslint-disable-next-line @typescript-eslint/ban-types
   hidden?: boolean | Function | string;
