@@ -13,11 +13,8 @@ Gbeata Admin是一套用于快速构建后台管理系统模板
 <!-- SHIELD GROUP -->
 
 [![][npm-release-shield]][npm-release-link]
-[![][vercel-shield]][vercel-link]
-[![][discord-shield]][discord-link]
 [![][npm-downloads-shield]][npm-downloads-link]
 [![][github-releasedate-shield]][github-releasedate-link]
-[![][github-action-test-shield]][github-action-test-link]
 [![][github-action-release-shield]][github-action-release-link]<br/>
 [![][github-contributors-shield]][github-contributors-link]
 [![][github-forks-shield]][github-forks-link]
@@ -32,7 +29,7 @@ Gbeata Admin是一套用于快速构建后台管理系统模板
 <details>
 <summary><kbd>目录</kbd></summary>
 
-#### TOC
+#### 目录
 
 - [简介](#简介)
   - [动机 ｜ 为什么想做这个](#动机--为什么想做这个)
@@ -158,7 +155,12 @@ npx @chenshuai2144/less2cssinjs less2js -i src
 [![][back-to-top]](#readme-top)
 
 </div>
+
 ## 贡献
+
+欢迎各种类型的贡献，如果您有兴趣贡献代码，请随时查看我们的 GitHub [问题][github-issues-link]，并展示您的才华。
+
+[![][pr-welcome-shield]][pr-welcome-link]
 
 <a href="https://github.com/anyone-yuren/react-antd-admin-pnpm/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=anyone-yuren/react-antd-admin-pnpm" />
@@ -172,3 +174,45 @@ npx @chenshuai2144/less2cssinjs less2js -i src
 [![][back-to-top]](#readme-top)
 
 </div>
+
+<!-- LINK GROUP -->
+
+[back-to-top]: https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square
+[banner]: https://github.com/anyone-yuren/multiway/blob/master/iShot_2024-01-05_17.05.52.gif?raw=true
+[bun-link]: https://bun.sh
+[bun-shield]: https://img.shields.io/badge/-speedup%20with%20bun-black?logo=bun&style=for-the-badge
+[codespaces-link]: https://codespaces.new/anyone-yuren/react-antd-admin-pnpm
+[codespaces-shield]: https://github.com/codespaces/badge.svg
+[contributors-contrib]: https://contrib.rocks/image?repo=anyone-yuren/react-antd-admin-pnpm
+[contributors-link]: https://github.com/anyone-yuren/react-antd-admin-pnpm/graphs/contributors
+[discord-link]: https://discord.gg/AYFPHvv2jT
+[discord-shield]: https://img.shields.io/discord/1127171173982154893?color=5865F2&label=discord&labelColor=black&logo=discord&logoColor=white&style=flat-square
+[fossa-license-link]: https://app.fossa.com/projects/git%2Bgithub.com%2Fanyone-yuren%2Freact-antd-admin-pnpm
+[fossa-license-shield]: https://app.fossa.com/api/projects/git%2Bgithub.com%2Fanyone-yuren%2Freact-antd-admin-pnpm.svg?type=large
+[github-action-release-link]: https://github.com/actions/workflows/anyone-yuren/react-antd-admin-pnpm/blank.yml
+[github-action-release-shield]: https://img.shields.io/github/actions/workflow/status/anyone-yuren/react-antd-admin-pnpm/release.yml?label=release&labelColor=black&logo=githubactions&logoColor=white&style=flat-square
+[github-action-test-link]: https://github.com/actions/workflows/anyone-yuren/react-antd-admin-pnpm/test.yml
+[github-action-test-shield]: https://img.shields.io/github/actions/workflow/status/anyone-yuren/react-antd-admin-pnpm/test.yml?label=test&labelColor=black&logo=githubactions&logoColor=white&style=flat-square
+[github-contributors-link]: https://github.com/anyone-yuren/react-antd-admin-pnpm/graphs/contributors
+[github-contributors-shield]: https://img.shields.io/github/contributors/anyone-yuren/react-antd-admin-pnpm?color=c4f042&labelColor=black&style=flat-square
+[github-forks-link]: https://github.com/anyone-yuren/react-antd-admin-pnpm/network/members
+[github-forks-shield]: https://img.shields.io/github/forks/anyone-yuren/react-antd-admin-pnpm?color=8ae8ff&labelColor=black&style=flat-square
+[github-issues-link]: https://github.com/anyone-yuren/react-antd-admin-pnpm/issues
+[github-issues-shield]: https://img.shields.io/github/issues/anyone-yuren/react-antd-admin-pnpm?color=ff80eb&labelColor=black&style=flat-square
+[github-license-link]: https://github.com/anyone-yuren/react-antd-admin-pnpm/blob/master/LICENSE
+[github-license-shield]: https://img.shields.io/github/license/anyone-yuren/react-antd-admin-pnpm?color=white&labelColor=black&style=flat-square
+[github-releasedate-link]: https://github.com/anyone-yuren/react-antd-admin-pnpm/releases
+[github-releasedate-shield]: https://img.shields.io/github/release-date/anyone-yuren/react-antd-admin-pnpm?labelColor=black&style=flat-square
+[github-stars-link]: https://github.com/anyone-yuren/react-antd-admin-pnpm/network/stargazers
+[github-stars-shield]: https://img.shields.io/github/stars/anyone-yuren/react-antd-admin-pnpm?color=ffcb47&labelColor=black&style=flat-square
+[lobe-chat]: https://github.com/anyone-yuren/lobe-chat
+[lobe-commit]: https://github.com/anyone-yuren/lobe-commit/tree/master/packages/lobe-commit
+[lobe-i18n]: https://github.com/anyone-yuren/lobe-commit/tree/master/packages/lobe-i18n
+[lobe-theme]: https://github.com/anyone-yuren/sd-webui-lobe-theme
+[npm-downloads-link]: https://www.npmjs.com/package/gbeata
+[npm-downloads-shield]: https://img.shields.io/npm/dt/@anyone-yuren/ui?labelColor=black&style=flat-square
+[npm-release-link]: https://www.npmjs.com/package/gbeata
+[npm-release-shield]: https://img.shields.io/npm/v/@anyone-yuren/ui?color=369eff&labelColor=black&logo=npm&logoColor=white&style=flat-square
+[pr-welcome-link]: https://github.com/anyone-yuren/lobe-chat/pulls
+[pr-welcome-shield]: https://img.shields.io/badge/🤯_pr_welcome-%E2%86%92-ffcb47?labelColor=black&style=for-the-badge
+[profile-link]: https://github.com/anyone-yuren
