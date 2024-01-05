@@ -26,7 +26,7 @@ Gbeata Admin是一套用于快速构建后台管理系统模板
 
 </div>
 
-<details>
+<details open>
 <summary><kbd>目录</kbd></summary>
 
 #### 目录
@@ -89,12 +89,7 @@ antd5已经发布很久了，之前一直在维护的一套基于antd4版本的�
 
 ### 第二阶段:react-antd-admin模板搭建
 
-- [ ] 技术选型
-
-<!-- ```bash
-"antd": "^5.x","vite": "^5.x","echarts-for-react": "^3.x","antd-style": "^3.x","@react-spring/web": "^9.x","zustand": "^4.x"
-``` -->
-
+- [x] 技术选型
 - [x] 框架设计
 - [x] 主题设计
 - [x] 登录页设计
@@ -110,7 +105,6 @@ antd5已经发布很久了，之前一直在维护的一套基于antd4版本的�
 
 ```bash
 git clone git@github.com:anyone-yuren/react-antd-admin-pnpm.git
-
 
 pnpm bootstrap
 
@@ -189,7 +183,7 @@ npx @chenshuai2144/less2cssinjs less2js -i src
 [discord-shield]: https://img.shields.io/discord/1127171173982154893?color=5865F2&label=discord&labelColor=black&logo=discord&logoColor=white&style=flat-square
 [fossa-license-link]: https://app.fossa.com/projects/git%2Bgithub.com%2Fanyone-yuren%2Freact-antd-admin-pnpm
 [fossa-license-shield]: https://app.fossa.com/api/projects/git%2Bgithub.com%2Fanyone-yuren%2Freact-antd-admin-pnpm.svg?type=large
-[github-action-release-link]: https://github.com/actions/workflows/anyone-yuren/react-antd-admin-pnpm/blank.yml
+[github-action-release-link]: https://github.com/anyone-yuren/react-antd-admin-pnpm/actions/workflows/blank.yml
 [github-action-release-shield]: https://img.shields.io/github/actions/workflow/status/anyone-yuren/react-antd-admin-pnpm/release.yml?label=release&labelColor=black&logo=githubactions&logoColor=white&style=flat-square
 [github-action-test-link]: https://github.com/actions/workflows/anyone-yuren/react-antd-admin-pnpm/test.yml
 [github-action-test-shield]: https://img.shields.io/github/actions/workflow/status/anyone-yuren/react-antd-admin-pnpm/test.yml?label=test&labelColor=black&logo=githubactions&logoColor=white&style=flat-square
