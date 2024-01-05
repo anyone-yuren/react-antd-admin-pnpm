@@ -1,8 +1,58 @@
-## monorepo react-admin集成方案
+<a name="readme-top"></a>
 
-### 简介
+<div align="center">
 
-方案集成当下最流行的一些前端框架和库做集成，致力于构建一套通用型强的前端后台管理系统解决方案。
+<img height="120" src="https://raw.githubusercontent.com/anyone-yuren/multiway/master/favicon.ico">
+
+<h1>Gbeata Admin</h1>
+
+Gbeata Admin是一套用于快速构建后台管理系统模板
+
+[English](./README.md) ・ 简体中文 ・ [更新日志](./CHANGELOG.md) · [报告问题][github-issues-link] · [请求功能][github-issues-link]
+
+<!-- SHIELD GROUP -->
+
+[![][npm-release-shield]][npm-release-link]
+[![][vercel-shield]][vercel-link]
+[![][discord-shield]][discord-link]
+[![][npm-downloads-shield]][npm-downloads-link]
+[![][github-releasedate-shield]][github-releasedate-link]
+[![][github-action-test-shield]][github-action-test-link]
+[![][github-action-release-shield]][github-action-release-link]<br/>
+[![][github-contributors-shield]][github-contributors-link]
+[![][github-forks-shield]][github-forks-link]
+[![][github-stars-shield]][github-stars-link]
+[![][github-issues-shield]][github-issues-link]
+[![][github-license-shield]][github-license-link]
+
+[![][banner]][vercel-link]
+
+</div>
+
+<details>
+<summary><kbd>目录</kbd></summary>
+
+#### TOC
+
+- [简介](#简介)
+  - [动机 ｜ 为什么想做这个](#动机--为什么想做这个)
+  - [特性](#特性)
+- [建设目标](#建设目标)
+  - [第一阶段：组件库设计阶段](#第一阶段组件库设计阶段)
+  - [第二阶段:react-antd-admin模板搭建](#第二阶段react-antd-admin模板搭建)
+- [使用](#使用)
+- [分支管理](#分支管理)
+- [注意点：](#注意点)
+- [贡献](#贡献)
+
+####
+
+</details>
+
+## 简介
+
+> \[!IMPORTANT]\
+> 方案集成当下最流行的一些前端框架和库做集成，致力于构建一套通用型强的前端后台管理系统解决方案。
 
 ### 动机 ｜ 为什么想做这个
 
@@ -21,7 +71,7 @@ antd5已经发布很久了，之前一直在维护的一套基于antd4版本的�
 - 代码规范设计
 - ...
 
-### 建设目标
+## 建设目标
 
 - [x] pnpm turbo vite 集成方案搭建
 - [x] 配置代码提交规范与自动化部署
@@ -56,11 +106,41 @@ antd5已经发布很久了，之前一直在维护的一套基于antd4版本的�
 - [x] 主题控制面板
 - [x] 模块高亮搜索
 
+## 使用
+
+> \[!IMPORTANT]\
+> 代码中包含gbeata组件库，如果不想使用到package/gbeata组件库源码，可直接从npm包中安装。
+
+```bash
+git clone git@github.com:anyone-yuren/react-antd-admin-pnpm.git
+
+
+pnpm bootstrap
+
+pnpm build --filter gbeata
+
+pnpm dev --filter gbeata-admin
+```
+
+也可以直接使用pnpm dev，但这样就会启动项目中所有包含dev命令的包项目。
+
+<div align="right">
+
+[![][back-to-top]](#readme-top)
+
+</div>
+
 ## 分支管理
 
 发布组件库分支： `main`
 
 后台管理模板分支： `admin`
+
+<div align="right">
+
+[![][back-to-top]](#readme-top)
+
+</div>
 
 ## 注意点：
 
@@ -73,7 +153,11 @@ npx @chenshuai2144/less2cssinjs less2js -i src
 ```
 
 3. 关于本地运行项目，出现gbeata未定义的问题，起初在设计组件库阶段，并没有打算直接在项目包中直接应用workspace中的源码，所以，你可以在执行 ` pnpm dev --filter gbeata-admin` 之前，请先将gbeata组件包打包生成lib目录， 执行` pnpm build --filter gbeata`
+<div align="right">
 
+[![][back-to-top]](#readme-top)
+
+</div>
 ## 贡献
 
 <a href="https://github.com/anyone-yuren/react-antd-admin-pnpm/graphs/contributors">
@@ -83,3 +167,8 @@ npx @chenshuai2144/less2cssinjs less2js -i src
 欢迎 PR，当然您也可以扫码进群讨论，或者直接联系我，QQ: 1003473088，如果这是一个很大的变化！欢迎您的加入！
 
 <img src="https://raw.githubusercontent.com/anyone-yuren/multiway/master/WechatIMG8679.jpeg"/>
+<div align="right">
+
+[![][back-to-top]](#readme-top)
+
+</div>
