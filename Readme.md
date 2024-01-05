@@ -22,7 +22,7 @@ Gbeata Admin是一套用于快速构建后台管理系统模板
 [![][github-issues-shield]][github-issues-link]
 [![][github-license-shield]][github-license-link]
 
-[![][banner]][vercel-link]
+![][banner]
 
 </div>
 
@@ -205,7 +205,7 @@ npx @chenshuai2144/less2cssinjs less2js -i src
 [github-releasedate-shield]: https://img.shields.io/github/release-date/anyone-yuren/react-antd-admin-pnpm?labelColor=black&style=flat-square
 [github-stars-link]: https://github.com/anyone-yuren/react-antd-admin-pnpm/network/stargazers
 [github-stars-shield]: https://img.shields.io/github/stars/anyone-yuren/react-antd-admin-pnpm?color=ffcb47&labelColor=black&style=flat-square
-[lobe-chat]: https://github.com/anyone-yuren/lobe-chat
+[react-antd-admin-pnpm]: https://github.com/anyone-yuren/react-antd-admin-pnpm
 [lobe-commit]: https://github.com/anyone-yuren/lobe-commit/tree/master/packages/lobe-commit
 [lobe-i18n]: https://github.com/anyone-yuren/lobe-commit/tree/master/packages/lobe-i18n
 [lobe-theme]: https://github.com/anyone-yuren/sd-webui-lobe-theme
@@ -213,6 +213,6 @@ npx @chenshuai2144/less2cssinjs less2js -i src
 [npm-downloads-shield]: https://img.shields.io/npm/dt/@anyone-yuren/ui?labelColor=black&style=flat-square
 [npm-release-link]: https://www.npmjs.com/package/gbeata
 [npm-release-shield]: https://img.shields.io/npm/v/@anyone-yuren/ui?color=369eff&labelColor=black&logo=npm&logoColor=white&style=flat-square
-[pr-welcome-link]: https://github.com/anyone-yuren/lobe-chat/pulls
+[pr-welcome-link]: https://github.com/anyone-yuren/react-antd-admin-pnpm/pulls
 [pr-welcome-shield]: https://img.shields.io/badge/🤯_pr_welcome-%E2%86%92-ffcb47?labelColor=black&style=for-the-badge
 [profile-link]: https://github.com/anyone-yuren
