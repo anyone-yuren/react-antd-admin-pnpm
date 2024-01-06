@@ -14,6 +14,8 @@ const { Text, Title } = Typography;
 
 export interface UserCardProp extends CardProps {
   children?: React.ReactNode;
+  data?: any;
+  index?: number;
 }
 
 export const UserFooter: React.FC<{ name: string; count: number }> = ({ name, count }) => (
@@ -25,14 +27,27 @@ export const UserFooter: React.FC<{ name: string; count: number }> = ({ name, co
   </div>
 );
 
-const UserCard: React.FC<UserCardProp> = (prop) => {
-  const { children, ...rest } = prop;
+const UserCard: React.FC<UserCardProp> = ({
+  data = {
+    id: 1,
+    name: 'Gbeata',
+    position: 'Front-end',
+    sex: 'male',
+    follwer: 1341,
+    mits: 231,
+    forbid: false,
+  },
+  index = 1,
+  ...rest
+}) => {
+  console.log(index);
+
   const [loading, setLoading] = React.useState(true);
   const { styles } = useStyles();
   React.useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 1500);
+    }, 500);
   }, []);
   return (
     <>
@@ -49,7 +64,7 @@ const UserCard: React.FC<UserCardProp> = (prop) => {
           <Skeleton loading avatar active />
         </Card>
       )}
-      <Translatex direction='up' run={!loading} delay={100}>
+      <Translatex direction='up' run={!loading} delay={index * 100}>
         <Card
           className={styles['user-card']}
           cover={
@@ -58,9 +73,9 @@ const UserCard: React.FC<UserCardProp> = (prop) => {
             </span>
           }
           actions={[
-            <UserFooter name='Foloower' count={1.02} />,
-            <UserFooter name='Folowing' count={2.58} />,
-            <UserFooter name='Total Post' count={1.13} />,
+            <UserFooter name='Foloower' count={data.follwer} />,
+            <UserFooter name='Folowing' count={data.mits} />,
+            <UserFooter name='Total Post' count={data.total} />,
           ]}
         >
           <div className='user_info'>
@@ -70,9 +85,9 @@ const UserCard: React.FC<UserCardProp> = (prop) => {
             </div>
             <div className='info'>
               <Title style={{ margin: 0 }} level={5}>
-                Gbeata
+                {data.name}
               </Title>
-              <Text type='secondary'>来历不明</Text>
+              <Text type='secondary'>{data.position}</Text>
               <Flex style={{ marginTop: 8 }} gap={8}>
                 <Button shape='circle' icon={<SvgIcon style={{ color: '#1890ff' }} name='github' />} />
                 <Button shape='circle' icon={<SvgIcon name='message' />} />

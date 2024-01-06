@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { NonIndexRouteObject, LoaderFunction } from 'react-router-dom';
+import type { LoaderFunction, NonIndexRouteObject } from 'react-router-dom';
 
 export interface MetaProps {
   title: string;
@@ -22,6 +22,7 @@ export interface RouteObject extends NonIndexRouteObject {
   children?: RouteObject[];
   index?: false;
   meta?: MetaProps;
+  name?: string;
 }
 
 export interface AppMenu {

@@ -5,8 +5,6 @@ import useStyles from './index.module.style';
 import type { SvgIconProp } from './types';
 
 export default function SvgIcon({ name, prefix = 'icon', size = 16, style, className }: SvgIconProp) {
-  console.log(className);
-
   const { styles } = useStyles();
   const symbolId = `#${prefix}-${name}`;
   const iconStyle = {
