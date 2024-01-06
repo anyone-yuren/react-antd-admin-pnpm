@@ -1,8 +1,8 @@
 import { Card } from 'antd';
 import { GSearchTable } from 'gbeata';
-import React, { useState } from 'react';
+import React from 'react';
 
-import { juejinData } from './data';
+import { getJueJinList } from '@/api';
 
 import type { GSearchTableField } from 'gbeata/lib/GSearchTable/g-search-table';
 
@@ -13,7 +13,7 @@ const fields: Array<GSearchTableField> = [
     search: true,
     render: (text, record) => {
       // eslint-disable-next-line @typescript-eslint/naming-convention
-      const { title, article_id } = record.article_info;
+      const { title, article_id } = record;
       return (
         <a href={`https://juejin.cn/post/${article_id}`} target='_blank' rel='noreferrer'>
           {title}
@@ -26,7 +26,7 @@ const fields: Array<GSearchTableField> = [
     key: 'brief_content',
     render: (text, record) => {
       // eslint-disable-next-line @typescript-eslint/naming-convention
-      const { brief_content } = record.article_info;
+      const { brief_content } = record;
       return brief_content;
     },
   },
@@ -37,7 +37,7 @@ const fields: Array<GSearchTableField> = [
     key: 'view_count',
     render: (text, record) => {
       // eslint-disable-next-line @typescript-eslint/naming-convention
-      const { view_count } = record.article_info;
+      const { view_count } = record;
       return view_count;
     },
   },
@@ -48,7 +48,7 @@ const fields: Array<GSearchTableField> = [
     sort: true,
     render: (text, record) => {
       // eslint-disable-next-line @typescript-eslint/naming-convention
-      const { digg_count } = record.article_info;
+      const { digg_count } = record;
       return digg_count;
     },
   },
@@ -58,17 +58,16 @@ const fields: Array<GSearchTableField> = [
     width: '90px',
     render: (text, record) => {
       // eslint-disable-next-line @typescript-eslint/naming-convention
-      const { collect_count } = record.article_info;
+      const { collect_count } = record;
       return collect_count;
     },
   },
 ];
 
 export default function JuejinTable() {
-  const [data] = useState(juejinData);
   return (
     <Card>
-      <GSearchTable data={data} title='我的掘金文章' fields={fields} rowKey='sort_id' />
+      <GSearchTable api={getJueJinList} title='我的掘金文章' fields={fields} rowKey='sort_id' />
     </Card>
   );
 }

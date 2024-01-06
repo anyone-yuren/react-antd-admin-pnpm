@@ -1,6 +1,7 @@
 import { Layout } from 'antd';
 import ErrorBoundary from 'antd/es/alert/ErrorBoundary';
 import { Outlet } from 'react-router-dom';
+import '@/gbeata';
 
 import { AppLogo } from '@/components/AppLogo';
 
