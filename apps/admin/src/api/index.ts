@@ -46,3 +46,10 @@ export function getJueJinList() {
     method: 'post',
   });
 }
+
+export function getUsersList<T>() {
+  return service({
+    url: 'user/getUserList',
+    method: 'get',
+  }) as unknown as Promise<T>;
+}
