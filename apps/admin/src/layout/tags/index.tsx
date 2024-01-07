@@ -8,7 +8,7 @@ import { searchRoute } from '@/utils';
 
 import { basicRoutes } from '@/router';
 import { useAppDispatch, useAppSelector } from '@/stores';
-import { addVisitedTags, closeAllTags, closeTagByKey, closeTagsByType } from '@/stores/modules/tags';
+import { addVisitedTags, closeAllTags, closeTagByKey, closeTagsByType, updateVisitedTags } from '@/stores/modules/tags';
 
 import { TagItem } from './components';
 import useStyles from './index.module.style';
@@ -166,7 +166,17 @@ const LayoutTags: FC = () => {
     navigate(path);
   };
 
-  const handleReload = () => {};
+  function getKey() {
+    return new Date().getTime().toString();
+  }
+  const handleReload = () => {
+    // 刷新当前路由，页面不刷新
+    const index = visitedTags.findIndex((tab) => tab.fullPath === activeTag);
+    if (index >= 0) {
+      // 这个是react的特性，key变了，组件会卸载重新渲染
+      navigate(activeTag, { replace: true, state: { key: getKey() } });
+    }
+  };
 
   return (
     <div className={styles.layout_tags}>
@@ -182,6 +192,7 @@ const LayoutTags: FC = () => {
           {visitedTags.map((item: RouteObject) => (
             <span key={item.fullPath} data-path={item.fullPath}>
               <TagItem
+                key={item.key}
                 name={item.meta?.title!}
                 active={activeTag === item.fullPath}
                 fixed={item.meta?.affix}
