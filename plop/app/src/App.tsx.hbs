@@ -4,7 +4,7 @@ import { HashRouter, RouterProvider } from 'react-router-dom';
 import { useGlobalStore } from 'store';
 import { GlobalConfig } from 'ui';
 
-import router, { Router } from '@/router';
+import router from '@/router/router';
 import CustomGlobal from '@/styles/GlobalPager';
 
 import LoadingPage from './components/LoadingPage';
@@ -25,24 +25,11 @@ function App() {
     };
 
     asyncOperation();
-  }, []); // 仅在组件挂载时执行
+  }, []); 
   return (
     <GlobalConfig>
       <ThemeProvider
         defaultThemeMode='light'
-        theme={{
-          token: {
-            colorPrimary: preset,
-            colorInfo: '#00B8D9',
-            colorSuccess: '#22C55E',
-            colorWarning: '#FFAB00',
-            colorError: '#FF5630',
-            colorLink: preset,
-          },
-        }}
-        customToken={{
-          colorDefault: '#212b36',
-        }}
       >
         <CustomGlobal />
         {loading ? <LoadingPage /> : <RouterProvider router={router} />}

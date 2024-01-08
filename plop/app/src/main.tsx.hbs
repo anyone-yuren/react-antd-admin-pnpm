@@ -20,7 +20,7 @@ declare module 'antd-style' {
 // const { preset } = useGlobalState();
 // console.log(preset);
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById(`${appName}-root`) as HTMLElement).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
