@@ -52,6 +52,7 @@
     "@ant-design/icons": "^5.2.6",
     "antd": "^5.12.1",
     "antd-style": "^3.6.1",
-    "esbuild": "0.18.20"
+    "esbuild": "0.18.20",
+    "plop": "^4.0.1"
   }
 }
