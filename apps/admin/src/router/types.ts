@@ -23,6 +23,7 @@ export interface RouteObject extends NonIndexRouteObject {
   index?: false;
   meta?: MetaProps;
   name?: string;
+  key?: string;
 }
 
 export interface AppMenu {

@@ -8,7 +8,7 @@ import { searchRoute } from '@/utils';
 
 import { basicRoutes } from '@/router';
 import { useAppDispatch, useAppSelector } from '@/stores';
-import { addVisitedTags, closeAllTags, closeTagByKey, closeTagsByType } from '@/stores/modules/tags';
+import { addVisitedTags, closeAllTags, closeTagByKey, closeTagsByType, updateVisitedTags } from '@/stores/modules/tags';
 
 import { TagItem } from './components';
 import useStyles from './index.module.style';
@@ -53,9 +53,9 @@ const LayoutTags: FC = () => {
 
   useEffect(() => {
     const affixTags = initAffixTags(basicRoutes);
-    for (const tag of affixTags) {
+    affixTags.forEach((tag) => {
       dispatch(addVisitedTags(tag));
-    }
+    });
   }, []);
 
   useEffect(() => {
@@ -73,9 +73,9 @@ const LayoutTags: FC = () => {
   }, [activeTag]);
 
   const initAffixTags = (routes: RouteObject[], basePath: string = '/') => {
-    let affixTags: RouteObject[] = [];
+    const affixTags: RouteObject[] = [];
 
-    for (const route of routes) {
+    const processRoute = (route: RouteObject) => {
       if (route.meta?.affix) {
         const fullPath = route.path!.startsWith('/') ? route.path : basePath + route.path;
         affixTags.push({
@@ -84,9 +84,11 @@ const LayoutTags: FC = () => {
         });
       }
       if (route.children && route.children.length) {
-        affixTags = affixTags.concat(initAffixTags(route.children, route.path));
+        route.children.forEach((child) => processRoute(child));
       }
-    }
+    };
+
+    routes.forEach((route) => processRoute(route));
 
     return affixTags;
   };
@@ -98,15 +100,18 @@ const LayoutTags: FC = () => {
     const mainBodyWidth = tagsMainBody.current?.offsetWidth!;
     if (mainBodyWidth < mainWidth) {
       leftOffset = 0;
-    } else if (tag?.offsetLeft! < -tagsBodyLeft) {
+    } else if ((tag?.offsetLeft ?? 0) < -tagsBodyLeft) {
       // 标签在可视区域左侧 (The active tag on the left side of the layout_tags-main)
-      leftOffset = -tag?.offsetLeft! + mainBodyPadding;
-    } else if (tag?.offsetLeft! > -tagsBodyLeft && tag?.offsetLeft! + tag?.offsetWidth! < -tagsBodyLeft + mainWidth) {
+      leftOffset = (tag?.offsetLeft ?? 0) + mainBodyPadding;
+    } else if (
+      (tag?.offsetLeft ?? 0) > -tagsBodyLeft &&
+      (tag?.offsetLeft ?? 0) + (tag?.offsetWidth ?? 0) < -tagsBodyLeft + mainWidth
+    ) {
       // 标签在可视区域 (The active tag on the layout_tags-main)
-      leftOffset = Math.min(0, mainWidth - tag?.offsetWidth! - tag?.offsetLeft! - mainBodyPadding);
+      leftOffset = Math.min(0, mainWidth - (tag?.offsetWidth ?? 0) - (tag?.offsetLeft ?? 0) - mainBodyPadding);
     } else {
       // 标签在可视区域右侧 (The active tag on the right side of the layout_tags-main)
-      leftOffset = -(tag?.offsetLeft! - (mainWidth - mainBodyPadding - tag?.offsetWidth!));
+      leftOffset = -((tag?.offsetLeft ?? 0) - (mainWidth - mainBodyPadding - (tag?.offsetWidth ?? 0)));
     }
     setTagsBodyLeft(leftOffset);
   };
@@ -161,7 +166,17 @@ const LayoutTags: FC = () => {
     navigate(path);
   };
 
-  const handleReload = () => {};
+  function getKey() {
+    return new Date().getTime().toString();
+  }
+  const handleReload = () => {
+    // 刷新当前路由，页面不刷新
+    const index = visitedTags.findIndex((tab) => tab.fullPath === activeTag);
+    if (index >= 0) {
+      // 这个是react的特性，key变了，组件会卸载重新渲染
+      navigate(activeTag, { replace: true, state: { key: getKey() } });
+    }
+  };
 
   return (
     <div className={styles.layout_tags}>
@@ -177,6 +192,7 @@ const LayoutTags: FC = () => {
           {visitedTags.map((item: RouteObject) => (
             <span key={item.fullPath} data-path={item.fullPath}>
               <TagItem
+                key={item.key}
                 name={item.meta?.title!}
                 active={activeTag === item.fullPath}
                 fixed={item.meta?.affix}

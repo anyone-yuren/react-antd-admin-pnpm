@@ -1,6 +1,6 @@
 import { Layout } from 'antd';
 import ErrorBoundary from 'antd/es/alert/ErrorBoundary';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import '@/gbeata';
 
 import { AppLogo } from '@/components/AppLogo';
@@ -14,11 +14,13 @@ import useStyles from './index.style';
 import LayoutMenu from './menu';
 
 export const BasicLayout = (props: any) => {
+  const { state } = useLocation();
+  const { key = 'key' } = state || {};
   useTitle();
   const { Sider, Content } = Layout;
   const { styles } = useStyles();
 
-  const getMenuFold = useAppSelector((state) => state.app.appConfig?.menuSetting?.menuFold);
+  const getMenuFold = useAppSelector((st) => st.app.appConfig?.menuSetting?.menuFold);
 
   return (
     <Layout className={styles.layout_wrapper}>
@@ -30,7 +32,7 @@ export const BasicLayout = (props: any) => {
         <LayoutHeader />
         <Content>
           <ErrorBoundary>
-            <Outlet />
+            <Outlet key={key} />
           </ErrorBoundary>
         </Content>
       </Layout>
