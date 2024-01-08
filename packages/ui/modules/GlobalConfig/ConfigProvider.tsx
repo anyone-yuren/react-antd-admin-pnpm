@@ -58,8 +58,8 @@ const showInsetEffect: WaveConfig['showEffect'] = (node, { event, component }) =
       holder.remove();
     };
 
-    dot.style.width = '200px';
-    dot.style.height = '200px';
+    dot.style.width = '400px';
+    dot.style.height = '400px';
     dot.style.opacity = '0';
   });
 };
