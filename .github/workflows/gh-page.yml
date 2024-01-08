@@ -49,4 +49,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_PACKAGE }}
         run: |
+          cd ./apps/admin
           npx semantic-release

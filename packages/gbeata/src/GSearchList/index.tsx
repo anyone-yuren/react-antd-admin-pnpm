@@ -35,12 +35,12 @@ import Selection from './Selection';
 import SelectionAll from './SelectionAll';
 import { GSearchListProps } from './g-search-list';
 
-import './mw-search-list.less';
+import './g-search-list.less';
 
 export { Selection, SelectionAll };
 
 /**
- * 转化并过滤成 mw-search 能用的 fields
+ * 转化并过滤成 g-search 能用的 fields
  * @param fields 查询表格的 fields
  */
 const getSearchFields = (fields: Array<GSearchTableField>) => {
@@ -345,14 +345,14 @@ function GSearchList(props: GSearchListProps, ref: Ref<any>) {
     if (moreSearchFields && moreSearchFields.length) {
       children.push(
         <GForm
-          className="mw-search-list-more"
-          key="mw-search-list-more"
+          className="g-search-list-more"
+          key="g-search-list-more"
           ref={moreSearchRef}
           fields={moreSearchFields}
           onConfirm={onConfirm}
         >
           <GButton
-            className="mw-search-list-more-submit"
+            className="g-search-list-more-submit"
             htmlType="submit"
           ></GButton>
         </GForm>,
@@ -372,7 +372,7 @@ function GSearchList(props: GSearchListProps, ref: Ref<any>) {
   }, [moreSearchRef, moreSearchFields, onConfirm, rightActions, extraBtns]);
 
   return (
-    <div className={`mw-search-list ${isEnter ? 'full' : ''}`}>
+    <div className={`g-search-list ${isEnter ? 'full' : ''}`}>
       <GSearchTableContext.Provider
         value={{
           formRef,
@@ -411,7 +411,7 @@ function GSearchList(props: GSearchListProps, ref: Ref<any>) {
           {tableChildren}
         </GList>
         {selection.length && footerActions.length ? (
-          <div className="mw-search-list-footer-actions">
+          <div className="g-search-list-footer-actions">
             {message}
             <Space>{footerActions}</Space>
           </div>

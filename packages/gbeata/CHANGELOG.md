@@ -1,3 +1,25 @@
+# [1.4.0](https://github.com/anyone-yuren/react-antd-admin-pnpm/compare/v1.3.0...v1.4.0) (2024-01-04)
+
+
+### Features
+
+* :sparkles: 实现自动化tag打包 ([91eb454](https://github.com/anyone-yuren/react-antd-admin-pnpm/commit/91eb454adbec053bbb976cf9d7bc92c871145209))
+* :sparkles: 更新部分组件库组件命名 ([4da56f4](https://github.com/anyone-yuren/react-antd-admin-pnpm/commit/4da56f4e4021bd263b2e677ecd5c32810511f32c))
+
+# [1.3.0](https://github.com/anyone-yuren/react-antd-admin-pnpm/compare/v1.2.5...v1.3.0) (2024-01-04)
+
+
+### Features
+
+* :sparkles: 更新部分组件库组件命名 ([4da56f4](https://github.com/anyone-yuren/react-antd-admin-pnpm/commit/4da56f4e4021bd263b2e677ecd5c32810511f32c))
+
+# [1.3.0](https://github.com/anyone-yuren/react-antd-admin-pnpm/compare/v1.2.5...v1.3.0) (2024-01-04)
+
+
+### Features
+
+* :sparkles: 更新部分组件库组件命名 ([4da56f4](https://github.com/anyone-yuren/react-antd-admin-pnpm/commit/4da56f4e4021bd263b2e677ecd5c32810511f32c))
+
 ## [1.2.5](https://github.com/anyone-yuren/pnpm-monorepo-mui/compare/v1.2.4...v1.2.5) (2023-12-15)
 
 

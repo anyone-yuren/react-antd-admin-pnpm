@@ -37,7 +37,7 @@ export default function GCard(props: GCardProps) {
 
   const icon = collapsible ? (
     <DownOutlined
-      className={`mw-card-collapsible-icon ${collapsePosition}`}
+      className={`g-card-collapsible-icon ${collapsePosition}`}
       onClick={toggleCollapsed}
     />
   ) : null;
@@ -45,7 +45,7 @@ export default function GCard(props: GCardProps) {
   return (
     <Card
       {...params}
-      className={`mw-card ${collapsed ? 'collapsed' : ''}`}
+      className={`g-card ${collapsed ? 'collapsed' : ''}`}
       title={
         title ? (
           <>

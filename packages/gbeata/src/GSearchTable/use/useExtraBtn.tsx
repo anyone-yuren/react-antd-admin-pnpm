@@ -187,10 +187,10 @@ const useFieldsEdit = (
             return (
               !fieldEdit.hidden && (
                 <div
-                  className="mw-search-table-extra-fields-edit-line"
+                  className="g-search-table-extra-fields-edit-line"
                   key={fieldEdit.key}
                 >
-                  <div className="mw-search-table-extra-fields-edit-line-left">
+                  <div className="g-search-table-extra-fields-edit-line-left">
                     <Checkbox
                       defaultChecked={fieldEdit.checked}
                       onChange={(e) => handleCheckedChange(i, e.target.checked)}
@@ -198,7 +198,7 @@ const useFieldsEdit = (
                       {fieldEdit.title}
                     </Checkbox>
                   </div>
-                  <div className="mw-search-table-extra-fields-edit-line-right">
+                  <div className="g-search-table-extra-fields-edit-line-right">
                     <Input
                       style={{ marginRight: 20 }}
                       value={fieldEdit.alias}
@@ -283,10 +283,7 @@ export default function useExtraBtn(
   }, [isEnter]);
 
   const extraBtns = extraVisible ? (
-    <div
-      className="mw-search-table-extra-btns"
-      key="mw-search-table-extra-btns"
-    >
+    <div className="g-search-table-extra-btns" key="g-search-table-extra-btns">
       <Space size="middle">
         {extraRefreshVisible ? (
           <Tooltip title={locale.extra.refresh}>
@@ -327,7 +324,7 @@ export default function useExtraBtn(
               key={locale.extra.exitFullScreen}
             >
               <FullscreenExitOutlined
-                className="mw-search-table-fullscrenn-enter"
+                className="g-search-table-fullscrenn-enter"
                 onClick={() => setIsEnter(false)}
               />
             </Tooltip>
@@ -337,7 +334,7 @@ export default function useExtraBtn(
               key={locale.extra.fullScreen}
             >
               <FullscreenOutlined
-                className="mw-search-table-fullscrenn-out"
+                className="g-search-table-fullscrenn-out"
                 onClick={() => setIsEnter(true)}
               />
             </Tooltip>

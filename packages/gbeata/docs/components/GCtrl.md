@@ -51,7 +51,7 @@ GSearchTable 下 GCtrl 的样式会更加紧凑。
 ```tsx
 import React from 'react';
 import { GSearchTable, GAction, GCtrl, GSearchTableField } from 'gbeata';
-import { GTableCtrlField } from 'gbeata/lib/GTable/mw-table';
+import { GTableCtrlField } from 'gbeata/lib/GTable/g-table';
 
 /**
  * 测试接口，实际过程中推荐使用 axios 接口
@@ -147,7 +147,7 @@ export default function Demo() {
 - Type: boolean
 - Default: false
 
-可以让 GCtrl 下所有的按钮变成[次级按钮](./mw-button#次级字体)。
+可以让 GCtrl 下所有的按钮变成[次级按钮](./g-button#次级字体)。
 
 ### more
 

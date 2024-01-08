@@ -13,7 +13,7 @@ order: 3
 全屏遮罩默认层级是固定 999，如果发生覆盖现象，可以考虑调整此参数。
 
 ```css
-.mw-search-table.full {
+.g-search-table.full {
   z-index: 999;
 }
 ```
