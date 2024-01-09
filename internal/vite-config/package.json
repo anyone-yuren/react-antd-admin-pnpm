@@ -45,6 +45,7 @@
     "vite": "4.5.0"
   },
   "devDependencies": {
-    "antd": "^5.12.8"
+    "antd": "^5.12.8",
+    "vite-plugin-dts": "^3.7.0"
   }
 }
