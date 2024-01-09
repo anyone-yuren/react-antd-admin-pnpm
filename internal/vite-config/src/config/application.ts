@@ -68,14 +68,14 @@ function defineApplicationConfig(options: DefineOptions = {}) {
         },
       },
 
-      css: {
-        preprocessorOptions: {
-          less: {
-            javascriptEnabled: true,
-            modifyVars: generateModifyVars(),
-          },
-        },
-      },
+      // css: {
+      //   preprocessorOptions: {
+      //     less: {
+      //       javascriptEnabled: true,
+      //       modifyVars: generateModifyVars(),
+      //     },
+      //   },
+      // },
       plugins,
     };
 
