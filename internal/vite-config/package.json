@@ -38,6 +38,13 @@
     }
   },
   "dependencies": {
+    "@ant-design/colors": "^7.0.2",
+    "@ant-design/compatible": "^5.1.2",
+    "dayjs": "^1.11.10",
+    "pkg-types": "^1.0.3",
     "vite": "4.5.0"
+  },
+  "devDependencies": {
+    "antd": "^5.12.8"
   }
 }
