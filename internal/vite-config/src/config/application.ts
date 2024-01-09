@@ -5,6 +5,7 @@ import { readPackageJSON } from "pkg-types";
 import { defineConfig, loadEnv, mergeConfig, type UserConfig } from "vite";
 import { generateModifyVars } from "../utils/modifyVars";
 import { commonConfig } from "./common";
+import { createPlugins } from "../plugins";
 interface DefineOptions {
   overrides?: UserConfig;
   options?: {};
@@ -23,6 +24,14 @@ function defineApplicationConfig(options: DefineOptions = {}) {
       VITE_ENABLE_ANALYZE,
     } = loadEnv(mode, root);
     const defineData = await createDefineData(root);
+
+    const plugins = await createPlugins({
+      isBuild,
+      root,
+      enableAnalyze: VITE_ENABLE_ANALYZE === "true",
+      enableMock: VITE_USE_MOCK === "true",
+      compress: VITE_BUILD_COMPRESS,
+    });
 
     const pathResolve = (path: string) => {
       return resolve(root, path);
@@ -46,6 +55,7 @@ function defineApplicationConfig(options: DefineOptions = {}) {
       build: {
         target: "es2015",
         cssTarget: "chrome80",
+        minify: "esbuild",
         rollupOptions: {
           output: {
             entryFileNames: `assets/entry/[name]-[hash].${timestamp}.js`,
@@ -57,6 +67,7 @@ function defineApplicationConfig(options: DefineOptions = {}) {
           },
         },
       },
+
       css: {
         preprocessorOptions: {
           less: {
@@ -65,6 +76,7 @@ function defineApplicationConfig(options: DefineOptions = {}) {
           },
         },
       },
+      plugins,
     };
 
     const mergedConfig = mergeConfig(commonConfig(mode), applicationConfig);

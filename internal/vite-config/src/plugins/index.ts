@@ -2,6 +2,7 @@ import { type PluginOption } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import { createAppConfigPlugin } from "./appConfig";
 import { configMockPlugin } from "./mock";
+import { configSvgIconsPlugin } from "./svgSprite";
 
 interface Options {
   isBuild: boolean;
@@ -25,6 +26,10 @@ async function createPlugins({
     isBuild,
   });
   vitePlugins.push(appConfigPlugin);
+
+  // vite-plugin-svg-icons
+  vitePlugins.push(configSvgIconsPlugin({ isBuild }));
+
   if (enableMock) {
     vitePlugins.push(configMockPlugin({ isBuild }));
   }
