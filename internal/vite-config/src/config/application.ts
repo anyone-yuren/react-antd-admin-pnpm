@@ -16,6 +16,7 @@ function defineApplicationConfig(options: DefineOptions = {}) {
 
   return defineConfig(async ({ command, mode }) => {
     const root = process.cwd();
+    const { TURBO_INVOCATION_DIR } = process.env;
     const isBuild = command === "build";
     const {
       VITE_PUBLIC_PATH,
@@ -56,6 +57,7 @@ function defineApplicationConfig(options: DefineOptions = {}) {
         target: "es2015",
         cssTarget: "chrome80",
         minify: "esbuild",
+        outDir: TURBO_INVOCATION_DIR + "/" + defineData?.pkg?.name ?? "dist",
         rollupOptions: {
           output: {
             entryFileNames: `assets/entry/[name]-[hash].${timestamp}.js`,
@@ -68,14 +70,14 @@ function defineApplicationConfig(options: DefineOptions = {}) {
         },
       },
 
-      // css: {
-      //   preprocessorOptions: {
-      //     less: {
-      //       javascriptEnabled: true,
-      //       modifyVars: generateModifyVars(),
-      //     },
-      //   },
-      // },
+      css: {
+        preprocessorOptions: {
+          less: {
+            javascriptEnabled: true,
+            modifyVars: generateModifyVars(),
+          },
+        },
+      },
       plugins,
     };
 
@@ -94,6 +96,7 @@ async function createDefineData(root: string) {
     };
     return {
       __APP_INFO__: JSON.stringify(__APP_INFO__),
+      pkg,
     };
   } catch (error) {
     return {};

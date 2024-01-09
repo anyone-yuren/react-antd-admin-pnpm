@@ -42,7 +42,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.2.2 # 使用插件 => https://github.com/JamesIves/github-pages-deploy-action
         with:
           BRANCH: gh-pages # 部署分支
-          FOLDER: gbeata-dist # 打包, 静态资源输出的目录
+          FOLDER: gbeata-admin # 打包, 静态资源输出的目录
 
       - name: Release
         env:
