@@ -5,7 +5,6 @@ node_modules
 dist
 dist-ssr
 *.local
-.env
 .cache
 server/dist
 public/dist
