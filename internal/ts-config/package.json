@@ -1,0 +1,26 @@
+{
+  "name": "@gbeata/ts-config",
+  "version": "1.0.0",
+  "private": true,
+  "homepage": "https://github.com/anyone-yuren/react-antd-admin-pnpm",
+  "bugs": {
+    "url": "https://github.com/anyone-yuren/react-antd-admin-pnpm/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anyone-yuren/react-antd-admin-pnpm.git",
+    "directory": "internal/ts-config"
+  },
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "base.json",
+    "node.json",
+    "vue-app.json",
+    "node-server.json"
+  ],
+  "dependencies": {
+    "@types/node": "^20.10.6",
+    "vite": "^5.0.10"
+  }
+}

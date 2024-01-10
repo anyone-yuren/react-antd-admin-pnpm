@@ -1,0 +1,22 @@
+import Dashboard from "@/pages/dashboard";
+import DataTable from "@/pages/dataTable";
+import NotFound from "@/pages/noFound";
+
+import { createHashRouter } from "react-router-dom";
+
+const router = [
+  {
+    path: "/",
+    element: <Dashboard />,
+  },
+  {
+    path: "/data-table",
+    element: <DataTable />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
+  },
+];
+
+export default createHashRouter(router);

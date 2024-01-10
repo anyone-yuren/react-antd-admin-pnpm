@@ -19,7 +19,8 @@
     "clean": "pnpm clean:node-modules & pnpm clean:turbo-cache",
     "clean:node-modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
     "clean:turbo-cache": "rm -rf ./node_modules/.cache",
-    "reinstall": "pnpm run clean && rm -rf node_modules && rm -rf pnpm-lock.yaml && pnpm run bootstrap"
+    "reinstall": "pnpm run clean && rm -rf node_modules && rm -rf pnpm-lock.yaml && pnpm run bootstrap",
+    "create:app": "plop app"
   },
   "keywords": [],
   "author": "",
@@ -34,11 +35,13 @@
     "@changesets/cli": "^2.27.1",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
+    "@gbeata/ts-config": "workspace:^",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^9.2.5",
     "@semantic-release/npm": "^11.0.2",
     "@semantic-release/release-notes-generator": "^12.1.0",
+    "@types/node": "^20.10.7",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "cz-git": "^1.8.0",
@@ -46,12 +49,15 @@
     "husky": "^8.0.3",
     "prettier": "^3.1.0",
     "semantic-release": "^22.0.12",
-    "turbo": "^1.11.0"
+    "turbo": "^1.11.0",
+    "typescript": "^5.2.2",
+    "unbuild": "^2.0.0"
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
     "antd": "^5.12.1",
     "antd-style": "^3.6.1",
-    "esbuild": "0.18.20"
+    "esbuild": "0.18.20",
+    "plop": "^4.0.1"
   }
 }
