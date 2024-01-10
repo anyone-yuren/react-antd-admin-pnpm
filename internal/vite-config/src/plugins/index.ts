@@ -31,7 +31,7 @@ async function createPlugins({
   vitePlugins.push(configSvgIconsPlugin({ isBuild }));
 
   if (enableMock) {
-    vitePlugins.push(configMockPlugin({ isBuild }));
+    vitePlugins.push(configMockPlugin({ isBuild, root }));
   }
   return vitePlugins;
 }

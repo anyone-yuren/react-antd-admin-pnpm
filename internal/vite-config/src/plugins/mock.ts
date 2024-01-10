@@ -5,8 +5,14 @@
 import path from "node:path";
 import { viteMockServe } from "vite-plugin-mock";
 
-export function configMockPlugin({ isBuild }: { isBuild: boolean }) {
-  console.log("目标路径", __dirname, isBuild);
+export function configMockPlugin({
+  isBuild,
+  root,
+}: {
+  isBuild: boolean;
+  root: string;
+}) {
+  console.log("目标路径", __dirname, isBuild, root);
 
   return viteMockServe({
     mockPath: "mock",
@@ -18,6 +24,6 @@ export function configMockPlugin({ isBuild }: { isBuild: boolean }) {
           setupProdMockServer()
           `,
     // 当前文件夹下的src/main.ts
-    injectFile: path.join(__dirname, "/src/main.tsx"),
+    injectFile: path.join(root, "/src/main.tsx"),
   });
 }
