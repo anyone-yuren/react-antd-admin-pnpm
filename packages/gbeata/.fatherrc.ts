@@ -12,6 +12,7 @@ export default defineConfig({
     ignores: [
       'src/**/*.md', // 避免打包demo文件到npm包里面
     ],
+    sourcemap: true,
     output: 'lib',
   },
   // 打包的时候自动引入antd的样式链接
