@@ -25,8 +25,6 @@ async function createAppConfigPlugin({
     };
   }
   const { version = "" } = await readPackageJSON(resolve(root, "package.json"));
-  const configEnv = getEnvConfig();
-
   return {
     name: PLUGIN_NAME,
     async configResolved(_config) {

@@ -2,6 +2,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { useRequest } from 'ahooks';
 import { Button, Col, Flex, Row } from 'antd';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import UserCard from '@/components/UserCard';
 
@@ -23,6 +24,7 @@ interface PUSerList {
 
 const UserList: FC<PUSerList> = () => {
   const { styles, theme, cx } = useStyles();
+  const navigate = useNavigate();
 
   const [tableTableData, setTableTableData] = useState<UserItemType[]>([]);
   const { data: user, loading } = useRequest<ListResult, any>(getUsersList);
@@ -33,7 +35,12 @@ const UserList: FC<PUSerList> = () => {
   return (
     <Flex gap={16} vertical>
       <Flex justify={'end'}>
-        <Button className={cx(styles['add-button'])} type='primary' icon={<PlusOutlined />}>
+        <Button
+          className={cx(styles['add-button'])}
+          type='primary'
+          icon={<PlusOutlined />}
+          onClick={() => navigate('/user/add-user')}
+        >
           新建
         </Button>
       </Flex>

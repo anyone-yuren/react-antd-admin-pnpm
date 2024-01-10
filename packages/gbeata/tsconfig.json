@@ -3,7 +3,6 @@
     "lib": ["ESNext", "DOM"],
     "rootDirs": ["src", "docs"],
     "strict": true,
-    "declaration": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "jsx": "react",
