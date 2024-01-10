@@ -1,7 +1,5 @@
 import { CloudUploadOutlined, PlusOutlined } from '@ant-design/icons';
-import {
-  Button, Card, Col, Modal, Row, Upload,
-} from 'antd';
+import { Button, Card, Col, Modal, Row, Upload } from 'antd';
 import React, { useState } from 'react';
 
 import { PageWrapper } from '@/components/Page';
@@ -48,12 +46,13 @@ const ImageUpload: React.FC = () => {
     setPreviewTitle(file.name || file.url!.substring(file.url!.lastIndexOf('/') + 1));
   };
 
-  const getBase64 = (file: RcFile): Promise<string> => new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = (error) => reject(error);
-  });
+  const getBase64 = (file: RcFile): Promise<string> =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = (error) => reject(error);
+    });
 
   const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) => setListImgs(newFileList);
 
@@ -73,11 +72,13 @@ const ImageUpload: React.FC = () => {
               accept='.jpg, .jpeg, .gif, .png, .bmp'
               multiple
             >
-              <p className="ant-upload-drag-icon" style={{ marginBottom: 0 }}>
+              <p className='ant-upload-drag-icon' style={{ marginBottom: 0 }}>
                 <CloudUploadOutlined rev={undefined} />
               </p>
-              <p>将图片拖到此处, 或<span style={{ color: '#1890ff;' }}>点击上传</span></p>
-              <p className="ant-upload-hint">只能上传jpg、jpeg、gif、png、bmp文件, 且不超过500kb</p>
+              <p>
+                将图片拖到此处, 或<span style={{ color: '#1890ff' }}>点击上传</span>
+              </p>
+              <p className='ant-upload-hint'>只能上传jpg、jpeg、gif、png、bmp文件, 且不超过500kb</p>
             </Dragger>
           </Card>
         </Col>
@@ -94,7 +95,7 @@ const ImageUpload: React.FC = () => {
                 <CloudUploadOutlined rev={undefined} />
                 <span>点击上传</span>
               </Button>
-              <p className="ant-upload-hint">只能上传jpg、jpeg、gif、png、bmp文件, 且不超过500kb</p>
+              <p className='ant-upload-hint'>只能上传jpg、jpeg、gif、png、bmp文件, 且不超过500kb</p>
             </Upload>
           </Card>
         </Col>
@@ -115,12 +116,7 @@ const ImageUpload: React.FC = () => {
               </div>
             </Upload>
           </Card>
-          <Modal
-            open={previewVisible}
-            title={previewTitle}
-            footer={null}
-            onCancel={handleCancle}
-          >
+          <Modal open={previewVisible} title={previewTitle} footer={null} onCancel={handleCancle}>
             <img src={previewImage} style={{ width: '100%' }} />
           </Modal>
         </Col>

@@ -45,6 +45,9 @@ const useStyles = createStyles(({ token }) => ({
       borderRadius: token.borderRadiusLG,
     },
   },
+  'btn-submit': {
+    width: '100%',
+  },
 }));
 
 export default useStyles;
