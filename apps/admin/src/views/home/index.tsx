@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { getNumber } from '@gbeata/utils';
 import { Button, Col, Divider, Row, Typography } from 'antd';
 import { AnimatePanel } from 'ui';
 
@@ -15,6 +17,8 @@ import type { FC } from 'react';
 const { Title, Text } = Typography;
 const HomePage: FC = () => {
   const { styles } = useStyles();
+  console.log(getNumber(12));
+
   return (
     <div className={styles['home-container']}>
       <Row gutter={[16, 16]}>

@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "postinstall": "turbo run stub",
     "build": "rimraf dist && vite build",
     "preview": "vite preview",
     "clean:cache": "rimraf .eslintcache && rimraf node_modules && pnpm install",
@@ -60,6 +61,7 @@
     "@babel/core": "^7.23.3",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
+    "@gbeata/utils": "workspace:^",
     "@gbeata/vite-config": "workspace:^",
     "@types/crypto-js": "^4.2.1",
     "@types/dom-to-image": "^2.6.7",
