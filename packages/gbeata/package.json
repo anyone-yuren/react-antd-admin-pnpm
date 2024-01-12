@@ -30,7 +30,8 @@
     "doctor": "father doctor",
     "prepublishOnly": "father doctor && npm run build",
     "release": "npm run build && npm publish --access public --force",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "stub": "father build"
   },
   "commitlint": {
     "extends": [
