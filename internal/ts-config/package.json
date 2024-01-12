@@ -16,7 +16,7 @@
   "files": [
     "base.json",
     "node.json",
-    "vue-app.json",
+    "react-app.json",
     "node-server.json"
   ],
   "dependencies": {
