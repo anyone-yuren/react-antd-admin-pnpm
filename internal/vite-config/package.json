@@ -31,15 +31,10 @@
   "license": "MIT",
   "type": "module",
   "exports": {
-    "number": {
-      "import": "./dist/number/index.mjs",
-      "require": "./dist/number/index.cjs",
-      "types": "./dist/number/index.d.ts"
-    },
-    "string": {
-      "import": "./dist/string/index.mjs",
-      "require": "./dist/string/index.cjs",
-      "types": "./dist/string/index.d.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     }
   },
   "dependencies": {
