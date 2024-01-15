@@ -1,0 +1,8 @@
+*.sh
+node_modules
+*.md
+*.woff
+*.ttf
+.turbo
+dist
+package.json

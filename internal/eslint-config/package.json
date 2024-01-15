@@ -1,0 +1,55 @@
+{
+  "name": "@gbeata/eslint-config",
+  "version": "1.0.0",
+  "private": true,
+  "homepage": "https://github.com/anyone-yuren/react-antd-admin-pnpm",
+  "bugs": {
+    "url": "https://github.com/anyone-yuren/react-antd-admin-pnpm/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anyone-yuren/react-antd-admin-pnpm.git",
+    "directory": "internal/eslint-config"
+  },
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./strict": {
+      "types": "./dist/strict.d.ts",
+      "import": "./dist/strict.mjs",
+      "require": "./dist/strict.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "pnpm rimraf .turbo node_modules dist",
+    "lint": "pnpm eslint .",
+    "stub": "pnpm unbuild --stub"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "^5.1.2",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "prettier": "^3.1.1",
+    "@gbeata/ts-config": "workspace:^"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
