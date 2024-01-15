@@ -1,7 +1,6 @@
 import { createStyles } from 'antd-style';
 
-const useStyles = createStyles(() => {
-  return {
+const useStyles = createStyles(() => ({
     '*': {
       padding: '0',
       margin: '0',
@@ -75,6 +74,5 @@ const useStyles = createStyles(() => {
       display: 'flex',
       justifyContent: 'space-between',
     },
-  };
-});
+  }));
 export default useStyles;

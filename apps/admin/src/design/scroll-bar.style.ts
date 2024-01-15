@@ -1,7 +1,6 @@
 import { createStyles } from 'antd-style';
 
-const useStyles = createStyles(() => {
-  return {
+const useStyles = createStyles(() => ({
     '&::-webkit-scrollbar-track-piece': {
       backgroundColor: 'rgba(0, 0, 0, 0)',
       borderLeft: '1px solid rgba(0, 0, 0, 0)',
@@ -27,6 +26,5 @@ const useStyles = createStyles(() => {
       MozBorderRadius: '3px',
       borderRadius: '3px',
     },
-  };
-});
+  }));
 export default useStyles;

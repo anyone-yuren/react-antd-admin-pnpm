@@ -156,12 +156,10 @@ export function treeMapEach(data: any, { children = 'children', conversion }: { 
   if (haveChildren) {
     return {
       ...conversionData,
-      [children]: data[children].map((i: number) =>
-        treeMapEach(i, {
+      [children]: data[children].map((i: number) => treeMapEach(i, {
           children,
           conversion,
-        }),
-      ),
+        })),
     };
   }
   return {

@@ -19,7 +19,6 @@
     "paths": {
       "@/*": ["src/*"],
       "#/*": ["types/*"]
-    },
-    "types": ["vite/client", "vite-plugin-svg-icons/client"]
+    }
   }
 }

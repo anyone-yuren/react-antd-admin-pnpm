@@ -1,7 +1,6 @@
 import { createStyles } from 'antd-style';
 
-const useStyles = createStyles(() => {
-  return {
+const useStyles = createStyles(() => ({
     'page-header': {
       width: '100%',
       minHeight: '48px',
@@ -21,6 +20,5 @@ const useStyles = createStyles(() => {
     'page-content': {
       minHeight: '420px',
     },
-  };
-});
+  }));
 export default useStyles;

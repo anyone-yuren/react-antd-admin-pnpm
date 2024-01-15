@@ -35,6 +35,7 @@
     "@changesets/cli": "^2.27.1",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
+    "@gbeata/eslint-config": "workspace:^",
     "@gbeata/ts-config": "workspace:^",
     "@gbeata/utils": "workspace:^",
     "@semantic-release/changelog": "^6.0.3",

@@ -1,7 +1,7 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
   root: true,
-  extends: ['gbeata-eslint'],
+  extends: ['@gbeata'],
   parserOptions: {
     tsconfigRootDir: __dirname,
     project: ['./tsconfig.json'],

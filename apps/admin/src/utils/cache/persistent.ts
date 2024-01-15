@@ -2,11 +2,11 @@ import { createLocalStorage, createSessionStorage } from '@/utils/cache';
 
 import {
   type APP_CONFIG_KEY,
+  APP_LOCAL_CACHE_KEY,
+  APP_SESSION_CACHE_KEY,
   type APP_TAGS_KEY,
   type TOKEN_KEY,
   type USER_INFO_KEY,
-  APP_LOCAL_CACHE_KEY,
-  APP_SESSION_CACHE_KEY,
 } from '@/enums/cacheEnum';
 import { DEFAULT_CACHE_TIME } from '@/settings/encryptionSetting';
 

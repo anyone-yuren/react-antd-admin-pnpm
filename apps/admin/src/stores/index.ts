@@ -1,4 +1,4 @@
-import { type Action, type ThunkAction, configureStore } from '@reduxjs/toolkit';
+import { type Action, configureStore, type ThunkAction } from '@reduxjs/toolkit';
 import { type TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';

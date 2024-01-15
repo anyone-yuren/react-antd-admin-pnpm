@@ -1,6 +1,6 @@
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import {
-  type TableProps, Button, Card, Modal, Popover, Select, Space, Switch, Table, Tag,
+Button, Card, Modal, Popover, Select, Space, Switch, Table, type TableProps, Tag,
 } from 'antd';
 import { type FC, useEffect, useState } from 'react';
 

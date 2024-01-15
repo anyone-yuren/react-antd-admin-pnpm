@@ -46,8 +46,7 @@ const ImageUpload: React.FC = () => {
     setPreviewTitle(file.name || file.url!.substring(file.url!.lastIndexOf('/') + 1));
   };
 
-  const getBase64 = (file: RcFile): Promise<string> =>
-    new Promise((resolve, reject) => {
+  const getBase64 = (file: RcFile): Promise<string> => new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => resolve(reader.result as string);
