@@ -1,6 +1,4 @@
 import { createStyles } from 'antd-style';
 
-const useStyles = createStyles(() => {
-  return {};
-});
+const useStyles = createStyles(() => ({}));
 export default useStyles;

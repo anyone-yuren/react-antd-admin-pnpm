@@ -1,7 +1,7 @@
 import { CloseOutlined, LeftOutlined, RedoOutlined, RightOutlined } from '@ant-design/icons';
 import { Button, Dropdown } from 'antd';
 import classNames from 'classnames';
-import { type FC, type WheelEvent, useEffect, useRef, useState } from 'react';
+import { type FC, useEffect, useRef, useState, type WheelEvent } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { searchRoute } from '@/utils';
@@ -104,8 +104,8 @@ const LayoutTags: FC = () => {
       // 标签在可视区域左侧 (The active tag on the left side of the layout_tags-main)
       leftOffset = (tag?.offsetLeft ?? 0) + mainBodyPadding;
     } else if (
-      (tag?.offsetLeft ?? 0) > -tagsBodyLeft &&
-      (tag?.offsetLeft ?? 0) + (tag?.offsetWidth ?? 0) < -tagsBodyLeft + mainWidth
+      (tag?.offsetLeft ?? 0) > -tagsBodyLeft
+      && (tag?.offsetLeft ?? 0) + (tag?.offsetWidth ?? 0) < -tagsBodyLeft + mainWidth
     ) {
       // 标签在可视区域 (The active tag on the layout_tags-main)
       leftOffset = Math.min(0, mainWidth - (tag?.offsetWidth ?? 0) - (tag?.offsetLeft ?? 0) - mainBodyPadding);

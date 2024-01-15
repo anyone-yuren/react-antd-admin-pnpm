@@ -238,6 +238,9 @@ importers:
       '@commitlint/config-conventional':
         specifier: ^18.4.3
         version: registry.npmmirror.com/@commitlint/config-conventional@18.4.3
+      '@gbeata/eslint-config':
+        specifier: workspace:^
+        version: link:../../internal/eslint-config
       '@gbeata/ts-config':
         specifier: workspace:^
         version: link:../../internal/ts-config
