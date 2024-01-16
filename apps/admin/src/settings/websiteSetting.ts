@@ -8,6 +8,13 @@ export const FORM_COMPO = {
   desc: 'ant-design-form: 使用 ant-design 的 form 组件, 可用以收集、校验和提交数据等操作。',
 };
 
+// Form Search Component
+export const FORM_SEARCH_COMPO = {
+  name: 'Form查询表单',
+  url: '暂未发布，可直接查看 /packages/gbeata 组件库',
+  desc: 'GSearchForm: 使用 ant-design 的 form 组件, 进行二次封装的组件，具体实现可查看 /packages/gbeata/src/GSearchForm 组件库',
+};
+
 // Form-create plugin
 export const FORM_CREATE_DESIGNER = {
   name: 'Form表单设计器',

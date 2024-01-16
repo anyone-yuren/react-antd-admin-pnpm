@@ -15,10 +15,6 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "paths": {
-      "@/*": ["src/*"],
-      "#/*": ["types/*"]
-    }
+    "noEmit": true
   }
 }
