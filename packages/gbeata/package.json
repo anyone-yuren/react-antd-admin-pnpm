@@ -1,6 +1,6 @@
 {
   "name": "gbeata",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "基于最新antd5二次封装的组件库",
   "keywords": [
     "ant",
@@ -31,7 +31,8 @@
     "prepublishOnly": "father doctor && npm run build",
     "release": "npm run build && npm publish --access public --force",
     "start": "npm run dev",
-    "stub": "father build"
+    "stub": "father build",
+    "clean": "pnpm rimraf .turbo node_modules es lib dist"
   },
   "commitlint": {
     "extends": [

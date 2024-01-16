@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "bootstrap": "pnpm install",
+    "preinstall": "npx only-allow pnpm",
+    "postinstall": "turbo run stub",
     "build": "turbo build",
     "build:admin": "pnpm run build --filter gbeata-admin",
     "dev": "turbo dev",
@@ -16,10 +18,10 @@
     "init-changeset": "changeset init",
     "change:ver": "changeset version",
     "change:pub": "changeset publish",
-    "clean": "pnpm clean:node-modules & pnpm clean:turbo-cache",
+    "clean": "pnpm clean:turbo-cache",
     "clean:node-modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
-    "clean:turbo-cache": "rm -rf ./node_modules/.cache",
-    "reinstall": "pnpm run clean && rm -rf node_modules && rm -rf pnpm-lock.yaml && pnpm run bootstrap",
+    "clean:turbo-cache": "turbo run clean && rimraf node_modules",
+    "reinstall": "pnpm run clean && rimraf pnpm-lock.yaml && rimraf package.lock.json && rimraf node_modules && npm run bootstrap",
     "create:app": "plop app"
   },
   "keywords": [],
@@ -47,9 +49,11 @@
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "cz-git": "^1.8.0",
+    "esbuild": "0.19.11",
     "eslint": "^8.54.0",
     "husky": "^8.0.3",
     "prettier": "^3.1.0",
+    "rimraf": "^5.0.5",
     "semantic-release": "^22.0.12",
     "turbo": "^1.11.0",
     "typescript": "^5.2.2",
@@ -59,7 +63,6 @@
     "@ant-design/icons": "^5.2.6",
     "antd": "^5.12.1",
     "antd-style": "^3.6.1",
-    "esbuild": "0.18.20",
     "plop": "^4.0.1"
   }
 }

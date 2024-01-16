@@ -1,3 +1,21 @@
+# [1.5.0](https://github.com/anyone-yuren/react-antd-admin-pnpm/compare/v1.4.0...v1.5.0) (2024-01-10)
+
+
+### Bug Fixes
+
+* :bug: 修复ta模块语法错误 ([6f08208](https://github.com/anyone-yuren/react-antd-admin-pnpm/commit/6f082082b47bb3bd1c4b36e3318abb45155f2bb0))
+
+
+### Features
+
+* :sparkles: 新增plop脚手架 ([8bfb719](https://github.com/anyone-yuren/react-antd-admin-pnpm/commit/8bfb71985695070714a91a731fdc4c34ad804b7d))
+* :sparkles: 新增plop项目模板app ([d7c1833](https://github.com/anyone-yuren/react-antd-admin-pnpm/commit/d7c183312bf476307d581d91fe914c551152b22f))
+* :sparkles: 新增用户模块 ([9733845](https://github.com/anyone-yuren/react-antd-admin-pnpm/commit/9733845a35cbdd89654c647a94512491840023f1))
+* :sparkles: 新增用户页面设计 ([59c5997](https://github.com/anyone-yuren/react-antd-admin-pnpm/commit/59c59970d65c23523329528cd18ea7309502959f))
+* :sparkles: 添加刷新功能 ([cbdc7ff](https://github.com/anyone-yuren/react-antd-admin-pnpm/commit/cbdc7ff9b102c1ac1d1ad3038eb0c259a70d0b1c))
+* :sparkles: 设置.env ([81c5a02](https://github.com/anyone-yuren/react-antd-admin-pnpm/commit/81c5a02f1385317e4d0b1d9d1e5e2bdceef2754f))
+* :sparkles: 还原路由 ([c61f03a](https://github.com/anyone-yuren/react-antd-admin-pnpm/commit/c61f03a612d2e28419535102b66ddc14a4caf563))
+
 # [1.4.0](https://github.com/anyone-yuren/react-antd-admin-pnpm/compare/v1.3.0...v1.4.0) (2024-01-04)
 
 
