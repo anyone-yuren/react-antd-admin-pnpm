@@ -134,6 +134,7 @@ export default {
         allowBitwiseExpressions: true,
       },
     ],
+    // "@typescript-eslint/naming-convention": "off",
 
     "react-hooks/rules-of-hooks": "off",
     "react-hooks/exhaustive-deps": "off",
