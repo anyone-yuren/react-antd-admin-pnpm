@@ -20,7 +20,7 @@
     "change:pub": "changeset publish",
     "clean": "pnpm clean:turbo-cache",
     "clean:node-modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
-    "clean:turbo-cache": "rimraf ./node_modules/.cache",
+    "clean:turbo-cache": "turbo run clean && rimraf node_modules",
     "reinstall": "pnpm run clean && rimraf pnpm-lock.yaml && rimraf package.lock.json && rimraf node_modules && npm run bootstrap",
     "create:app": "plop app"
   },
@@ -49,6 +49,7 @@
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "cz-git": "^1.8.0",
+    "esbuild": "0.19.11",
     "eslint": "^8.54.0",
     "husky": "^8.0.3",
     "prettier": "^3.1.0",
@@ -62,7 +63,6 @@
     "@ant-design/icons": "^5.2.6",
     "antd": "^5.12.1",
     "antd-style": "^3.6.1",
-    "esbuild": "0.18.20",
     "plop": "^4.0.1"
   }
 }
