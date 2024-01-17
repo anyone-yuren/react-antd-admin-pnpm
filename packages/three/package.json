@@ -1,0 +1,27 @@
+{
+  "name": "@gbeata/three",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
+  "main": "./index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@react-spring/three": "^9.7.3",
+    "@react-three/drei": "^9.94.1",
+    "@react-three/fiber": "^8.15.14",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "three": "^0.160.0"
+  },
+  "devDependencies": {
+    "@gbeata/eslint-config": "workspace:^",
+    "@gbeata/ts-config": "workspace:^",
+    "@types/node": "^20.11.5",
+    "@types/react": "^18.2.48",
+    "@types/three": "^0.160.0"
+  }
+}
