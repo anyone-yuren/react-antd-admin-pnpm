@@ -1,6 +1,7 @@
 import { Canvas, Props as CanvasProps } from '@react-three/fiber';
 import * as React from 'react';
 import { Vector3 } from 'three';
+import BasicElements from '../components/basicElements/BasicElements';
 
 type Props = React.PropsWithChildren<
   CanvasProps & {
@@ -27,5 +28,6 @@ export const Setup = ({ children, ...restProps }: Props) => (
   >
     <color attach="background" args={['#17171b']} />
     {children}
+    <BasicElements />
   </Canvas>
 );
