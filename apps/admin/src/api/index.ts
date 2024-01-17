@@ -40,10 +40,11 @@ export function getTableList(params: any) {
 }
 
 // juejin api
-export function getJueJinList() {
+export function getJueJinList(params) {
   return service({
     url: 'article/queryList',
     method: 'post',
+    data: params,
   });
 }
 
