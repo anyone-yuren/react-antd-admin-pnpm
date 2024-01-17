@@ -18,7 +18,11 @@ export default {
   },
   globals: { defineOptions: "readonly" },
   plugins: ["simple-import-sort", "@typescript-eslint", "import"],
-  extends: ["airbnb-base", "airbnb-typescript/base"],
+  extends: [
+    "airbnb-base",
+    "airbnb-typescript/base",
+    "plugin:prettier/recommended",
+  ],
   rules: {
     "import/extensions": "off",
     "import/order": "off",
