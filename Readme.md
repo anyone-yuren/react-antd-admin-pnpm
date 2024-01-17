@@ -114,8 +114,6 @@ git clone git@github.com:anyone-yuren/react-antd-admin-pnpm.git
 
 pnpm bootstrap
 
-pnpm build --filter gbeata
-
 pnpm dev --filter gbeata-admin
 ```
 

@@ -1,12 +1,10 @@
-import {
-  Card, Form, Radio, Switch,
-} from 'antd';
+import { Card, Form, Radio, Switch } from 'antd';
 import { type FC, useState } from 'react';
 import OrgTree from 'react-org-tree';
 
 import { PageWrapper } from '@/components/Page';
 
-import { React_TREE_ORG_PLUGIN } from '@/settings/websiteSetting';
+import { REACR_TREE_ORG_PLUGIN } from '@/settings/websiteSetting';
 
 import { data } from './data';
 
@@ -24,7 +22,7 @@ const OrgTreePage: FC = () => {
   };
 
   return (
-    <PageWrapper plugin={React_TREE_ORG_PLUGIN}>
+    <PageWrapper plugin={REACR_TREE_ORG_PLUGIN}>
       <Card bordered={false} bodyStyle={{ minHeight: '400px' }}>
         <Form
           form={form}
@@ -44,12 +42,7 @@ const OrgTreePage: FC = () => {
           </Form.Item>
         </Form>
         <div style={{ textAlign: 'center' }}>
-          <OrgTree
-            data={data}
-            collapsable={true}
-            horizontal={config.horizontal}
-            expandAll={config.expandAll}
-          />
+          <OrgTree data={data} collapsable={true} horizontal={config.horizontal} expandAll={config.expandAll} />
         </div>
       </Card>
     </PageWrapper>

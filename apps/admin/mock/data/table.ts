@@ -521,7 +521,8 @@ export default [
     url: '/api/article/queryList',
     timeout: 200,
     method: 'post',
-    response: ({ body }) => {
+    response: ({ body, headers, query }) => {
+      console.log('body', body);
       const { current = 1, pageSize = 10 } = body;
       return resultPageSuccess(current, pageSize, articleListData);
     },

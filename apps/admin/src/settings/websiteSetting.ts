@@ -137,7 +137,7 @@ export const ANTV_G6_PLUGIN = {
 };
 
 // ReactTreeOrg plugin
-export const React_TREE_ORG_PLUGIN = {
+export const REACR_TREE_ORG_PLUGIN = {
   name: 'Tree-Org树状组织图',
   url: 'https://github.com/artdong/react-org-tree',
   desc: 'react-tree-org: 基于 react 的树结构组织图, 可用于公司组织架构展示。',
