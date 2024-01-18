@@ -1,4 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
+import { MacBook } from '@gbeata/three';
 import { Button, Col, Divider, Row, Typography } from 'antd';
 import { AnimatePanel } from 'ui';
 
@@ -6,13 +7,11 @@ import SvgIcon from '@/components/SvgIcon';
 import UserCard from '@/components/UserCard';
 
 import { AnalyzeCard } from './components/AnalyzeCard';
-
 import CommitTable from './components/CommitTable';
 import JuejinTable from './components/juejinTable';
 import SlickBox from './components/SlickBox';
 import useStyles from './index.style';
 
-import { MacBook } from '@gbeata/three';
 import type { FC } from 'react';
 
 const { Title, Text } = Typography;
