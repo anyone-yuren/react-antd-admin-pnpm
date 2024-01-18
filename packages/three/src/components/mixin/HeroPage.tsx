@@ -105,7 +105,7 @@ export default function Example() {
                 </div>
                 <Popover.Group as='nav' className='hidden space-x-10'>
                   <Popover className='relative'>
-                    {({ op }) => (
+                    {({ open: op }) => (
                       <>
                         <Popover.Button
                           className={classNames(

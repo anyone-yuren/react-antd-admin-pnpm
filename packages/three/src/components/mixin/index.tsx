@@ -1,6 +1,6 @@
 import { ContactShadows, Environment, Html, OrbitControls, useGLTF } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
-import React, { Suspense, useRef } from 'react';
+import React, { memo, Suspense, useRef } from 'react';
 import * as THREE from 'three';
 
 import HeroPage from './HeroPage';
@@ -75,7 +75,7 @@ function Model(props) {
   );
 }
 
-export default function App() {
+const App = () => {
   return (
     <Canvas camera={{ position: [-5, 0, -15], fov: 45 }}>
       <pointLight position={[10, 10, 10]} intensity={1.5} />
@@ -89,4 +89,6 @@ export default function App() {
       <OrbitControls enablePan={false} enableZoom={false} minPolarAngle={Math.PI / 2.2} maxPolarAngle={Math.PI / 2.2} />
     </Canvas>
   );
-}
+};
+
+export default memo(App);
