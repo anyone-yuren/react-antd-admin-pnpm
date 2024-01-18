@@ -1,0 +1,1 @@
+export MacBook from './components/mixin'

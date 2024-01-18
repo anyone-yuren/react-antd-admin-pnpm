@@ -12,7 +12,7 @@ type Props = React.PropsWithChildren<
 
 /**
  * 渲染3D基础场景
- *
+ * @param {Props} props - The props for the component.
  * @param {Props} children - The child elements to be rendered within the component.
  * @param {...any} restProps - The rest of the props to be spread onto the Canvas element.
  * @return {JSX.Element} - The rendered Setup component.
