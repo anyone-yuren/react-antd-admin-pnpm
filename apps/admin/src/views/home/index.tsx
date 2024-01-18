@@ -7,7 +7,6 @@ import SvgIcon from '@/components/SvgIcon';
 import UserCard from '@/components/UserCard';
 
 import { AnalyzeCard } from './components/AnalyzeCard';
-import CommitTable from './components/CommitTable';
 import JuejinTable from './components/juejinTable';
 import SlickBox from './components/SlickBox';
 import useStyles from './index.style';
