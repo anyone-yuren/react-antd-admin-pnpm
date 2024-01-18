@@ -6,12 +6,15 @@ import SvgIcon from '@/components/SvgIcon';
 import UserCard from '@/components/UserCard';
 
 import { AnalyzeCard } from './components/AnalyzeCard';
+
 import CommitTable from './components/CommitTable';
 import JuejinTable from './components/juejinTable';
 import SlickBox from './components/SlickBox';
 import useStyles from './index.style';
 
+import { MacBook } from '@gbeata/three';
 import type { FC } from 'react';
+import LoadingPage from '@/components/LoadingPage';
 
 const { Title, Text } = Typography;
 const HomePage: FC = () => {
@@ -19,6 +22,7 @@ const HomePage: FC = () => {
 
   return (
     <div className={styles['home-container']}>
+      <LoadingPage />
       <Row gutter={[16, 16]}>
         <Col className='gutter-row' span={16}>
           <div className='user-info g-paper'>
@@ -65,7 +69,8 @@ const HomePage: FC = () => {
           <UserCard></UserCard>
         </Col>
         <Col span={12}>
-          <CommitTable />
+          {/* <CommitTable /> */}
+          <MacBook />
         </Col>
         <Col span={24}>
           <JuejinTable />

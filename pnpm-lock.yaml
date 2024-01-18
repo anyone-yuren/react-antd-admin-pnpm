@@ -102,6 +102,9 @@ importers:
       '@codemirror/view':
         specifier: ^6.22.0
         version: registry.npmmirror.com/@codemirror/view@6.23.0
+      '@gbeata/three':
+        specifier: workspace:^
+        version: link:../../packages/three
       '@loadable/component':
         specifier: ^5.16.3
         version: registry.npmmirror.com/@loadable/component@5.16.3(react@18.2.0)
@@ -594,12 +597,6 @@ importers:
       '@react-three/fiber':
         specifier: ^8.15.14
         version: registry.npmmirror.com/@react-three/fiber@8.15.14(react-dom@18.2.0)(react@18.2.0)(three@0.160.0)
-      '@splinetool/loader':
-        specifier: ^1.0.30
-        version: registry.npmmirror.com/@splinetool/loader@1.0.30(three@0.160.0)
-      '@splinetool/r3f-spline':
-        specifier: ^1.0.2
-        version: registry.npmmirror.com/@splinetool/r3f-spline@1.0.2(@react-three/fiber@8.15.14)(@splinetool/loader@1.0.30)
       leva:
         specifier: ^0.9.35
         version: registry.npmmirror.com/leva@0.9.35(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
@@ -6820,31 +6817,6 @@ packages:
     resolution: {integrity: sha512-shaGl4ttFDpHjYBoMaZpciOtsi/lKvJ3VfcBYk6+PjjbFs6H5GxPAyhbiSqy3Vmx30aos284pd88QzD3rE6iag==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@sketch-hq/sketch-file-format-ts/-/sketch-file-format-ts-6.5.0.tgz}
     name: '@sketch-hq/sketch-file-format-ts'
     version: 6.5.0
-
-  registry.npmmirror.com/@splinetool/loader@1.0.30(three@0.160.0):
-    resolution: {integrity: sha512-M3vsvJWLzvMOl7nriBF7H19Mw7suVcSFzxuXbp+9qhc8peF0A2tsp9/w8G0yI8/OQP9g4Jf7x2tB90kEqbLMVw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@splinetool/loader/-/loader-1.0.30.tgz}
-    id: registry.npmmirror.com/@splinetool/loader/1.0.30
-    name: '@splinetool/loader'
-    version: 1.0.30
-    peerDependencies:
-      three: '>=0.133.0'
-    dependencies:
-      semver-compare: registry.npmmirror.com/semver-compare@1.0.0
-      three: registry.npmmirror.com/three@0.160.0
-    dev: false
-
-  registry.npmmirror.com/@splinetool/r3f-spline@1.0.2(@react-three/fiber@8.15.14)(@splinetool/loader@1.0.30):
-    resolution: {integrity: sha512-Fl1qboRpTE8yJm4BAe1l6j3Xgh3HwIzvtdX2LjCpBiSo21+j0b2rilJpLHfsXJndrq4Hegz6oEUKlPvVWumaHg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@splinetool/r3f-spline/-/r3f-spline-1.0.2.tgz}
-    id: registry.npmmirror.com/@splinetool/r3f-spline/1.0.2
-    name: '@splinetool/r3f-spline'
-    version: 1.0.2
-    peerDependencies:
-      '@react-three/fiber': '>=7.0.0'
-      '@splinetool/loader': '>=0.9.19'
-    dependencies:
-      '@react-three/fiber': registry.npmmirror.com/@react-three/fiber@8.15.14(react-dom@18.2.0)(react@18.2.0)(three@0.160.0)
-      '@splinetool/loader': registry.npmmirror.com/@splinetool/loader@1.0.30(three@0.160.0)
-    dev: false
 
   registry.npmmirror.com/@stackblitz/sdk@1.9.0:
     resolution: {integrity: sha512-3m6C7f8pnR5KXys/Hqx2x6ylnpqOak6HtnZI6T5keEO0yT+E4Spkw37VEbdwuC+2oxmjdgq6YZEgiKX7hM1GmQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@stackblitz/sdk/-/sdk-1.9.0.tgz}
@@ -27179,12 +27151,6 @@ packages:
       - supports-color
       - typescript
     dev: true
-
-  registry.npmmirror.com/semver-compare@1.0.0:
-    resolution: {integrity: sha512-YM3/ITh2MJ5MtzaM429anh+x2jiLVjqILF4m4oyQB18W7Ggea7BfqdH/wGMK7dDiMghv/6WG7znWMwUDzJiXow==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/semver-compare/-/semver-compare-1.0.0.tgz}
-    name: semver-compare
-    version: 1.0.0
-    dev: false
 
   registry.npmmirror.com/semver-diff@2.1.0:
     resolution: {integrity: sha512-gL8F8L4ORwsS0+iQ34yCYv///jsOq0ZL7WP55d1HnJ32o7tyFYEFQZQA22mrLIacZdU6xecaBBZ+uEiffGNyXw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/semver-diff/-/semver-diff-2.1.0.tgz}

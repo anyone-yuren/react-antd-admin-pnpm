@@ -1,5 +1,4 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import {
   BookmarkAltIcon,
@@ -16,6 +15,7 @@ import {
   XIcon,
 } from '@heroicons/react/outline';
 import { ChevronDownIcon } from '@heroicons/react/solid';
+import { Fragment } from 'react';
 
 const features = [
   {
@@ -90,7 +90,11 @@ export default function Example() {
                 <div className='flex justify-start'>
                   <a href='#'>
                     <span className='sr-only'>Workflow</span>
-                    <img className='h-8 w-auto h-10' src='/assets/logo.png' alt='' />
+                    <img
+                      className='h-8 w-auto h-10'
+                      src='https://raw.githubusercontent.com/anyone-yuren/multiway/master/logo.png'
+                      alt=''
+                    />
                   </a>
                 </div>
                 <div className='-mr-2 -my-2'>
@@ -101,11 +105,11 @@ export default function Example() {
                 </div>
                 <Popover.Group as='nav' className='hidden space-x-10'>
                   <Popover className='relative'>
-                    {({ open }) => (
+                    {({ op }) => (
                       <>
                         <Popover.Button
                           className={classNames(
-                            open ? 'text-gray-900' : 'text-gray-500',
+                            op ? 'text-gray-900' : 'text-gray-500',
                             'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
                           )}
                         >
@@ -177,7 +181,7 @@ export default function Example() {
                   </a>
 
                   <Popover className='relative'>
-                    {({ open }) => (
+                    {() => (
                       <>
                         <Popover.Button
                           className={classNames(
@@ -289,7 +293,7 @@ export default function Example() {
                       <div>
                         <img
                           className='h-8 w-auto'
-                          src='https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg'
+                          src='https://raw.githubusercontent.com/anyone-yuren/multiway/master/logo.png'
                           alt='Workflow'
                         />
                       </div>
