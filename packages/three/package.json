@@ -12,6 +12,8 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@headlessui/react": "^1.4.0",
+    "@heroicons/react": "^1.0.6",
     "@react-spring/three": "^9.7.3",
     "@react-three/drei": "^9.94.1",
     "@react-three/fiber": "^8.15.14",

@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Setup } from '../base';
+import Hero from './index';
 
 const meta = {
-  title: 'Example/初始化',
-  component: Setup,
+  title: 'Example/笔记本',
+  component: Hero,
   tags: ['autodocs'],
-} as Meta<typeof Setup>;
+} as Meta<typeof Hero>;
 export default meta;
 type Story = StoryObj<typeof meta>;
 

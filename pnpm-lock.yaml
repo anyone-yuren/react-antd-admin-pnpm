@@ -102,6 +102,9 @@ importers:
       '@codemirror/view':
         specifier: ^6.22.0
         version: registry.npmmirror.com/@codemirror/view@6.23.0
+      '@gbeata/three':
+        specifier: workspace:^
+        version: link:../../packages/three
       '@loadable/component':
         specifier: ^5.16.3
         version: registry.npmmirror.com/@loadable/component@5.16.3(react@18.2.0)
@@ -579,6 +582,12 @@ importers:
 
   packages/three:
     dependencies:
+      '@headlessui/react':
+        specifier: ^1.4.0
+        version: registry.npmmirror.com/@headlessui/react@1.4.0(react-dom@18.2.0)(react@18.2.0)
+      '@heroicons/react':
+        specifier: ^1.0.6
+        version: registry.npmmirror.com/@heroicons/react@1.0.6(react@18.2.0)
       '@react-spring/three':
         specifier: ^9.7.3
         version: registry.npmmirror.com/@react-spring/three@9.7.3(@react-three/fiber@8.15.14)(react@18.2.0)(three@0.160.0)
@@ -4391,6 +4400,31 @@ packages:
       intl-messageformat: registry.npmmirror.com/intl-messageformat@10.5.8
       tslib: registry.npmmirror.com/tslib@2.6.2
       typescript: registry.npmmirror.com/typescript@5.3.3
+
+  registry.npmmirror.com/@headlessui/react@1.4.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-C+FmBVF6YGvqcEI5fa2dfVbEaXr2RGR6Kw1E5HXIISIZEfsrH/yuCgsjWw5nlRF9vbCxmQ/EKs64GAdKeb8gCw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@headlessui/react/-/react-1.4.0.tgz}
+    id: registry.npmmirror.com/@headlessui/react/1.4.0
+    name: '@headlessui/react'
+    version: 1.4.0
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16 || ^17 || ^18
+      react-dom: ^16 || ^17 || ^18
+    dependencies:
+      react: registry.npmmirror.com/react@18.2.0
+      react-dom: registry.npmmirror.com/react-dom@18.2.0(react@18.2.0)
+    dev: false
+
+  registry.npmmirror.com/@heroicons/react@1.0.6(react@18.2.0):
+    resolution: {integrity: sha512-JJCXydOFWMDpCP4q13iEplA503MQO3xLoZiKum+955ZCtHINWnx26CUxVxxFQu/uLb4LW3ge15ZpzIkXKkJ8oQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@heroicons/react/-/react-1.0.6.tgz}
+    id: registry.npmmirror.com/@heroicons/react/1.0.6
+    name: '@heroicons/react'
+    version: 1.0.6
+    peerDependencies:
+      react: '>= 16'
+    dependencies:
+      react: registry.npmmirror.com/react@18.2.0
+    dev: false
 
   registry.npmmirror.com/@humanwhocodes/config-array@0.11.14:
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@humanwhocodes/config-array/-/config-array-0.11.14.tgz}

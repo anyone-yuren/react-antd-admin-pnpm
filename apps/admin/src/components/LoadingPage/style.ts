@@ -7,6 +7,7 @@ const useStyles = createStyles(({ token }) => ({
     justifyContent: 'center',
     width: '100%',
     height: '100vh',
+    position: 'relative',
     '.loading-logo': {
       position: 'absolute',
       color: token.colorPrimary,
@@ -48,7 +49,7 @@ const useStyles = createStyles(({ token }) => ({
       height: '68px',
       position: 'absolute',
       left: '50%',
-      marginLeft: '-38px',
+      marginLeft: '-34px',
       border: `4px solid ${token.colorPrimaryBorderHover}`,
       animation: 'loading1 3s linear forwards',
     },
