@@ -36,4 +36,4 @@ jobs:
           REPO: git@github.com:anyone-yuren/gbeata-admin-docs.git
           BRANCH: gh-pages
           FOLDER: docs-dist
-          SSH_PRIVATE_KEY: ${{ secrets.PERSONAL_TOKEN }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
