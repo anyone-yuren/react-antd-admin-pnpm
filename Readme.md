@@ -8,6 +8,8 @@
 
 Gbeata Admin是一套用于快速构建后台管理系统模板
 
+文档地址：[https://anyone-yuren.github.io/gbeata-admin-docs](https://anyone-yuren.github.io/gbeata-admin-docs)
+
 [English](./README.md) ・ 简体中文 ・ [更新日志](./CHANGELOG.md) · [报告问题][github-issues-link] · [请求功能][github-issues-link]
 
 <!-- SHIELD GROUP -->

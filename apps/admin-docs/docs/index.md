@@ -1,8 +1,8 @@
 ---
-title: dumi - 为组件研发而生的静态站点框架
+title: gbeata-admin
 hero:
-  title: dumi
-  description: 为组件研发而生的静态站点框架
+  title: gbeata-admin
+  description: 致力于做一个react生态最全的前端中后台解决方案
   actions:
     - text: 立即上手
       link: /guide
