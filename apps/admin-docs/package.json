@@ -1,0 +1,27 @@
+{
+  "name": "@gbeata/admin-docs",
+  "version": "0.0.1",
+  "description": "gbeata-admin 文档",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "dumi dev",
+    "build": "dumi build",
+    "prepare": "dumi setup"
+  },
+  "authors": [
+    "1003473088@qq.com"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "babel-plugin-antd-style": "^1.0.4",
+    "dumi": "^2.2.13",
+    "dumi-theme-antd-style": "^0.29.7",
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.2.6",
+    "antd": "^5.13.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
