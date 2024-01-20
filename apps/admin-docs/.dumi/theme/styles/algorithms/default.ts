@@ -31,7 +31,7 @@ export const genMapTokenAlgorithm = (params?: MapTokenAlgorithmParams) => {
     relationship = defaultRelationship,
     infoColorFollowPrimary = false,
     adjustWarning,
-    brandColor = '#1677FF',
+    brandColor = '#00A76F',
   } = params || {};
 
   const funcColors = generateAssociatedColors(brandColor, adjustWarning);
@@ -47,11 +47,15 @@ export const genMapTokenAlgorithm = (params?: MapTokenAlgorithmParams) => {
   }
 
   const palettes: ColorPalettes = {
-    primary: generateColorPalette(seedColors.primary, params).map((color) => color.hex),
+    primary: generateColorPalette(seedColors.primary, params).map(
+      (color) => color.hex,
+    ),
     error: generateColorPalette(seedColors.error, params).map((c) => c.hex),
     warning: generateColorPalette(seedColors.warning, params).map((c) => c.hex),
     success: generateColorPalette(seedColors.success, params).map((c) => c.hex),
-    info: generateColorPalette(seedColors.info, params).map((color) => color.hex),
+    info: generateColorPalette(seedColors.info, params).map(
+      (color) => color.hex,
+    ),
     neutral: generateNeutralPalette(seedColors.primary, {
       ...params,
       neutral: true,
@@ -61,7 +65,13 @@ export const genMapTokenAlgorithm = (params?: MapTokenAlgorithmParams) => {
 
   let tokens = {} as Partial<Record<keyof ColorMapToken, string>>;
 
-  const types = ['primary', 'error', 'warning', 'success', 'info'] as TokenType[];
+  const types = [
+    'primary',
+    'error',
+    'warning',
+    'success',
+    'info',
+  ] as TokenType[];
 
   types.forEach((type) => {
     Object.entries(relationship(type)).forEach(([key, value]) => {
