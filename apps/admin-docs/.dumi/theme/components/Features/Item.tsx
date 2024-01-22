@@ -30,6 +30,7 @@ const FeatureItem: FC<IFeature> = ({
   description,
   image,
   title,
+  emoji,
   link,
   imageStyle,
   openExternal,
@@ -57,13 +58,23 @@ const FeatureItem: FC<IFeature> = ({
     >
       <div className={styles.cell}>
         {image && (
-          <Center image-style={imageType} className={styles.imgContainer} style={imageStyle}>
+          <Center
+            image-style={imageType}
+            className={styles.imgContainer}
+            style={imageStyle}
+          >
             <Image className={styles.img} image={image} title={title} />
           </Center>
         )}
         {title && (
-          <Flexbox as={'h3'} horizontal gap={8} align={'center'} className={styles.title}>
-            {title}
+          <Flexbox
+            as={'h3'}
+            horizontal
+            gap={8}
+            align={'center'}
+            className={styles.title}
+          >
+            {title} {emoji}
             {imageType === 'soon' ? (
               <Tag
                 color={theme.isDarkMode ? 'pink-inverse' : 'cyan-inverse'}
@@ -75,7 +86,10 @@ const FeatureItem: FC<IFeature> = ({
           </Flexbox>
         )}
         {description && (
-          <p dangerouslySetInnerHTML={{ __html: description }} className={styles.desc} />
+          <p
+            dangerouslySetInnerHTML={{ __html: description }}
+            className={styles.desc}
+          />
         )}
         {link && (
           <div className={styles.link}>
