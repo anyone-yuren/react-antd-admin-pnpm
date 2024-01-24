@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable implicit-arrow-linebreak */
 import { Menu, Spin } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
@@ -21,7 +23,8 @@ const getItem = (
   icon?: React.ReactNode,
   children?: MenuItem[],
   type?: 'group',
-): MenuItem => ({
+): MenuItem =>
+  ({
     label,
     key,
     icon,
