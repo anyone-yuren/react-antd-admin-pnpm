@@ -19,7 +19,7 @@ const HomeRoute: RouteObject = {
   // errorElement: <ErrorBoundary />,
   loader: () => null,
   meta: {
-    title: t('首页'),
+    title: '首页',
     icon: 'home',
     affix: true,
     orderNo: 1,
@@ -30,7 +30,7 @@ const HomeRoute: RouteObject = {
       path: '',
       element: LazyLoad(HomePage),
       meta: {
-        title: t('首页'),
+        title: '首页',
         key: 'home',
         icon: 'home',
         orderNo: 1,

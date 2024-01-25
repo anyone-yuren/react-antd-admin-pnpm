@@ -1,6 +1,4 @@
 import { lazy } from '@loadable/component';
-import { t } from 'i18next';
-import { useTranslation } from 'react-i18next';
 
 import LazyLoad from '@/components/LazyLoad';
 
@@ -16,7 +14,7 @@ const ExceptionRoute: RouteObject = {
   name: 'ExceptionPage',
   element: <LayoutGuard />,
   meta: {
-    title: t('异常页面'),
+    title: '异常页面',
     icon: 'bug',
     orderNo: 11,
   },
@@ -27,7 +25,7 @@ const ExceptionRoute: RouteObject = {
       // element: <Exception />,
       element: LazyLoad(lazy(() => import('@/views/exception'))),
       meta: {
-        title: t('403页面'),
+        title: '403页面',
         key: 'page403',
       },
       loader: () => ({ status: ExceptionEnum.PAGE_NOT_ACCESS, withCard: true }),
@@ -38,7 +36,7 @@ const ExceptionRoute: RouteObject = {
       // element: <Exception />,
       element: LazyLoad(lazy(() => import('@/views/exception'))),
       meta: {
-        title: t('404页面'),
+        title: '404页面',
         key: 'page404',
       },
       loader: () => ({ status: ExceptionEnum.PAGE_NOT_FOUND, withCard: true }),
@@ -49,7 +47,7 @@ const ExceptionRoute: RouteObject = {
       // element: <Exception />,
       element: LazyLoad(lazy(() => import('@/views/exception'))),
       meta: {
-        title: t('500页面'),
+        title: '500页面',
         key: 'page500',
       },
       loader: () => ({ status: ExceptionEnum.SERVER_ERROR, withCard: true }),

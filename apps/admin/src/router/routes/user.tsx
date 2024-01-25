@@ -14,7 +14,7 @@ const UserRoute: RouteObject = {
   path: '/user',
   element: <LayoutGuard />,
   meta: {
-    title: t('用户管理'),
+    title: '用户管理',
     icon: 'ic_user',
     orderNo: 2,
     iconSize: 20,
@@ -24,7 +24,7 @@ const UserRoute: RouteObject = {
       path: 'profile',
       element: LazyLoad(lazy(() => import('@/views/user/profile'))),
       meta: {
-        title: t('个人中心'),
+        title: '个人中心',
         key: 'profile',
       },
     },
@@ -32,7 +32,7 @@ const UserRoute: RouteObject = {
       path: 'user-list',
       element: LazyLoad(lazy(() => import('@/views/user/list'))),
       meta: {
-        title: t('用户列表'),
+        title: '用户列表',
         key: 'userList',
       },
     },
@@ -40,7 +40,7 @@ const UserRoute: RouteObject = {
       path: 'add-user',
       element: LazyLoad(lazy(() => import('@/views/user/addUser'))),
       meta: {
-        title: t('添加用户'),
+        title: '添加用户',
         key: 'addUser',
       },
     },

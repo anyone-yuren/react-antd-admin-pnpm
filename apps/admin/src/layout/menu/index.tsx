@@ -2,6 +2,7 @@
 /* eslint-disable implicit-arrow-linebreak */
 import { Menu, Spin } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -39,6 +40,7 @@ const LayoutMenu = (props: any) => {
   const [menuList, setMenuList] = useState<MenuItem[]>([]);
   const [openKeys, setOpenKeys] = useState<string[]>([]);
   const [selectedKeys, setSelectedKeys] = useState<string[]>([pathname]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setSelectedKeys([pathname]);
@@ -58,9 +60,9 @@ const LayoutMenu = (props: any) => {
   const getMenuItem = (data: AppMenu[], list: MenuItem[] = []) => {
     data.forEach((item: AppMenu) => {
       if (!item?.children?.length) {
-        return list.push(getItem(item.name, item.path, addIcon(item.icon, item.iconSize)));
+        return list.push(getItem(t(item.name), item.path, addIcon(item.icon, item.iconSize)));
       }
-      list.push(getItem(item.name, item.path, addIcon(item.icon, item.iconSize), getMenuItem(item.children)));
+      list.push(getItem(t(item.name) + 1, item.path, addIcon(item.icon, item.iconSize), getMenuItem(item.children)));
     });
     return list;
   };

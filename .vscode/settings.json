@@ -2,6 +2,7 @@
   "yaml.schemas": {
     "https://json.schemastore.org/github-workflow.json": "file:///Users/niyonggui/multiway/learn/2024/pnpm-monorepo-mui/.github/workflows/deploy-ui.yml"
   },
+  "eslint.enable": true, // 开启eslint检查
   "typescript.tsdk": "./node_modules/typescript/lib",
   "volar.tsPlugin": true,
   "volar.tsPluginStatus": false,
@@ -89,13 +90,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
     "source.fixAll.stylelint": "explicit"
-  },
-  "[vue]": {
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit",
-      "source.fixAll.stylelint": "explicit"
-    },
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "i18n-ally.localesPaths": ["src/locales/lang"],
   "i18n-ally.keystyle": "nested",

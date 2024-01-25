@@ -14,7 +14,7 @@ const CompoRoute: RouteObject = {
   name: 'Compo',
   element: <LayoutGuard />,
   meta: {
-    title: t('组件'),
+    title: '组件',
     icon: 'compo',
     orderNo: 6,
   },
@@ -25,7 +25,7 @@ const CompoRoute: RouteObject = {
       // element: <ImageUpload />,
       element: LazyLoad(lazy(() => import('@/views/compo/image-upload'))),
       meta: {
-        title: t('图片上传'),
+        title: '图片上传',
         key: 'imageUpload',
       },
     },
@@ -33,7 +33,7 @@ const CompoRoute: RouteObject = {
       path: 'drag',
       name: 'Drag',
       meta: {
-        title: t('拖拽'),
+        title: '拖拽',
       },
       children: [
         {
@@ -42,7 +42,7 @@ const CompoRoute: RouteObject = {
           // element: <DragList />,
           element: LazyLoad(lazy(() => import('@/views/compo/drag/drag-list'))),
           meta: {
-            title: t('列表拖拽'),
+            title: '列表拖拽',
             key: 'dragList',
           },
         },
@@ -52,7 +52,7 @@ const CompoRoute: RouteObject = {
           // element: <DragResize />,
           element: LazyLoad(lazy(() => import('@/views/compo/drag/drag-resize'))),
           meta: {
-            title: t('组件拖拽'),
+            title: '组件拖拽',
             key: 'dragResize',
           },
         },
@@ -64,7 +64,7 @@ const CompoRoute: RouteObject = {
       // element: <Transfer />,
       element: LazyLoad(lazy(() => import('@/views/compo/transfer'))),
       meta: {
-        title: t('穿梭框'),
+        title: '穿梭框',
       },
     },
     {
@@ -73,7 +73,7 @@ const CompoRoute: RouteObject = {
       // element: <CountUp />,
       element: LazyLoad(lazy(() => import('@/views/compo/count-up'))),
       meta: {
-        title: t('数字滚动'),
+        title: '数字滚动',
         key: 'countUp',
       },
     },
