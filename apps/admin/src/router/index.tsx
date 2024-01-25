@@ -1,4 +1,6 @@
+import { t } from 'i18next';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { createHashRouter, Navigate, redirect, useRoutes } from 'react-router-dom';
 
 import { getAuthCache } from '@/utils/auth';
@@ -32,7 +34,7 @@ const rootRoutes: RouteObject[] = [
     path: '/login',
     element: <LoginPage />,
     meta: {
-      title: '登录页',
+      title: t('登录页'),
       key: 'login',
     },
     loader: () => {

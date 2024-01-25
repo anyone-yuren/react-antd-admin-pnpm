@@ -63,6 +63,10 @@
     "@ant-design/icons": "^5.2.6",
     "antd": "^5.12.1",
     "antd-style": "^3.6.1",
-    "plop": "^4.0.1"
+    "i18next": "^23.7.19",
+    "i18next-browser-languagedetector": "^7.2.0",
+    "i18next-http-backend": "^2.4.2",
+    "plop": "^4.0.1",
+    "react-i18next": "^14.0.1"
   }
 }

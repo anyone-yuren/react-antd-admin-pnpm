@@ -1,5 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { lazy } from '@loadable/component';
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import LazyLoad from '@/components/LazyLoad';
 
@@ -12,7 +14,7 @@ const UserRoute: RouteObject = {
   path: '/user',
   element: <LayoutGuard />,
   meta: {
-    title: '用户管理',
+    title: t('用户管理'),
     icon: 'ic_user',
     orderNo: 2,
     iconSize: 20,
@@ -22,7 +24,7 @@ const UserRoute: RouteObject = {
       path: 'profile',
       element: LazyLoad(lazy(() => import('@/views/user/profile'))),
       meta: {
-        title: '个人中心',
+        title: t('个人中心'),
         key: 'profile',
       },
     },
@@ -30,7 +32,7 @@ const UserRoute: RouteObject = {
       path: 'user-list',
       element: LazyLoad(lazy(() => import('@/views/user/list'))),
       meta: {
-        title: '用户列表',
+        title: t('用户列表'),
         key: 'userList',
       },
     },
@@ -38,7 +40,7 @@ const UserRoute: RouteObject = {
       path: 'add-user',
       element: LazyLoad(lazy(() => import('@/views/user/addUser'))),
       meta: {
-        title: '添加用户',
+        title: t('添加用户'),
         key: 'addUser',
       },
     },

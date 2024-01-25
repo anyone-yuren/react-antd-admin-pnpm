@@ -1,5 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { lazy } from '@loadable/component';
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import LazyLoad from '@/components/LazyLoad';
 
@@ -17,7 +19,7 @@ const HomeRoute: RouteObject = {
   // errorElement: <ErrorBoundary />,
   loader: () => null,
   meta: {
-    title: '首页',
+    title: t('首页'),
     icon: 'home',
     affix: true,
     orderNo: 1,
@@ -28,7 +30,7 @@ const HomeRoute: RouteObject = {
       path: '',
       element: LazyLoad(HomePage),
       meta: {
-        title: '首页',
+        title: t('首页'),
         key: 'home',
         icon: 'home',
         orderNo: 1,

@@ -1,8 +1,8 @@
 import { CloudUploadOutlined } from '@ant-design/icons';
-import {
-  Card, message, Space, Table, Upload,
-} from 'antd';
+import { Card, message, Space, Table, Upload } from 'antd';
+import { t } from 'i18next';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { PageWrapper } from '@/components/Page';
 
@@ -25,13 +25,13 @@ const ImportExcel = (props: any) => {
 
     if (!rawFile) return;
     if (!/\.(xlsx|xls|csv)$/.test(rawFile.name)) {
-      message.warning('Excel文件只支持.xlsx, .xls, .csv格式!');
+      message.warning(t('Excel文件只支持.xlsx, .xls, .csv格式!'));
       return;
     }
 
     const isLimit1M = rawFile.size / 1024 / 1024 < 1;
     if (!isLimit1M) {
-      message.warning('上传的Excel文件大小不能超过1M!');
+      message.warning(t('上传的Excel文件大小不能超过1M!'));
       return;
     }
 
@@ -49,7 +49,7 @@ const ImportExcel = (props: any) => {
     };
     reader.readAsArrayBuffer(rawFile);
     reader.onerror = () => {
-      message.error('Excel文件读取出错!');
+      message.error(t('Excel文件读取出错!'));
     };
   }
 
@@ -57,22 +57,16 @@ const ImportExcel = (props: any) => {
     <PageWrapper plugin={XLSX_PLUGIN}>
       <Card bordered={false}>
         <Space direction='vertical' size={16} style={{ width: '100%' }}>
-          <Dragger
-            accept='.xlsx, .xls, .csv'
-            showUploadList={false}
-            maxCount={1}
-            onChange={handleChange}
-          >
-            <p className="ant-upload-drag-icon" style={{ marginBottom: 0 }}>
+          <Dragger accept='.xlsx, .xls, .csv' showUploadList={false} maxCount={1} onChange={handleChange}>
+            <p className='ant-upload-drag-icon' style={{ marginBottom: 0 }}>
               <CloudUploadOutlined rev={undefined} />
             </p>
-            <p>将Excel文件拖到此处, 或<span style={{ color: '#1890ff' }}>点击上传</span></p>
+            <p>
+              {t('将Excel文件拖到此处, 或')}
+              <span style={{ color: '#1890ff' }}>{t('点击上传')}</span>
+            </p>
           </Dragger>
-          <Table
-            dataSource={tableData}
-            columns={tableColumns}
-            pagination={false}
-          />
+          <Table dataSource={tableData} columns={tableColumns} pagination={false} />
         </Space>
       </Card>
     </PageWrapper>

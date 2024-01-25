@@ -1,4 +1,6 @@
 import { lazy } from '@loadable/component';
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import LazyLoad from '@/components/LazyLoad';
 
@@ -23,7 +25,7 @@ const ExcelRoute: RouteObject = {
       // element: <ExportExcel />,
       element: LazyLoad(lazy(() => import('@/views/excel/export-excel'))),
       meta: {
-        title: '导出Excel',
+        title: t('导出Excel'),
         key: 'exportExcel',
       },
     },
@@ -33,7 +35,7 @@ const ExcelRoute: RouteObject = {
       // element: <ImportExcel />,
       element: LazyLoad(lazy(() => import('@/views/excel/import-excel'))),
       meta: {
-        title: '导入Excel',
+        title: t('导入Excel'),
         key: 'importExcel',
       },
     },

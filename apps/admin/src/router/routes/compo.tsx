@@ -1,4 +1,6 @@
 import { lazy } from '@loadable/component';
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import LazyLoad from '@/components/LazyLoad';
 
@@ -12,7 +14,7 @@ const CompoRoute: RouteObject = {
   name: 'Compo',
   element: <LayoutGuard />,
   meta: {
-    title: '组件',
+    title: t('组件'),
     icon: 'compo',
     orderNo: 6,
   },
@@ -23,7 +25,7 @@ const CompoRoute: RouteObject = {
       // element: <ImageUpload />,
       element: LazyLoad(lazy(() => import('@/views/compo/image-upload'))),
       meta: {
-        title: '图片上传',
+        title: t('图片上传'),
         key: 'imageUpload',
       },
     },
@@ -31,7 +33,7 @@ const CompoRoute: RouteObject = {
       path: 'drag',
       name: 'Drag',
       meta: {
-        title: '拖拽',
+        title: t('拖拽'),
       },
       children: [
         {
@@ -40,7 +42,7 @@ const CompoRoute: RouteObject = {
           // element: <DragList />,
           element: LazyLoad(lazy(() => import('@/views/compo/drag/drag-list'))),
           meta: {
-            title: '列表拖拽',
+            title: t('列表拖拽'),
             key: 'dragList',
           },
         },
@@ -50,7 +52,7 @@ const CompoRoute: RouteObject = {
           // element: <DragResize />,
           element: LazyLoad(lazy(() => import('@/views/compo/drag/drag-resize'))),
           meta: {
-            title: '组件拖拽',
+            title: t('组件拖拽'),
             key: 'dragResize',
           },
         },
@@ -62,7 +64,7 @@ const CompoRoute: RouteObject = {
       // element: <Transfer />,
       element: LazyLoad(lazy(() => import('@/views/compo/transfer'))),
       meta: {
-        title: '穿梭框',
+        title: t('穿梭框'),
       },
     },
     {
@@ -71,7 +73,7 @@ const CompoRoute: RouteObject = {
       // element: <CountUp />,
       element: LazyLoad(lazy(() => import('@/views/compo/count-up'))),
       meta: {
-        title: '数字滚动',
+        title: t('数字滚动'),
         key: 'countUp',
       },
     },

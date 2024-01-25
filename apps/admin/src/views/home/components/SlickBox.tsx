@@ -1,6 +1,8 @@
 import { Typography } from 'antd';
 import { useTheme } from 'antd-style';
+import { t } from 'i18next';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BaseSlick, Translatex } from 'ui';
 
 import cover_1 from '@/assets/images/cover_1.jpg';
@@ -34,17 +36,17 @@ const SlickBox = () => {
         <div className='img-info'>
           <Translatex run={current === 1} delay={100}>
             <Text ellipsis style={{ fontWeight: 'bold', color: token.colorPrimary }} type='success'>
-              作者：Gbeata
+              {t('作者：Gbeata')}
             </Text>
           </Translatex>
           <Translatex run={current === 1} delay={200}>
             <Title style={{ color: 'white', margin: '8px 0' }} ellipsis level={4} color='white'>
-              还没有想清楚如何介绍自己和系统之前，就请允许我使用这些文字占位吧～
+              {t('还没有想清楚如何介绍自己和系统之前，就请允许我使用这些文字占位吧～')}
             </Title>
           </Translatex>
           <Translatex run={current === 1} delay={300}>
             <Text ellipsis style={{ color: 'white' }}>
-              详细介绍下自己吧：我是一个小前端呀小前端，小前端啊小前端
+              {t('详细介绍下自己吧：我是一个小前端呀小前端，小前端啊小前端')}
             </Text>
           </Translatex>
         </div>
@@ -54,17 +56,17 @@ const SlickBox = () => {
         <div className='img-info'>
           <Translatex run={current === 2} delay={100}>
             <Text ellipsis style={{ fontWeight: 'bold', color: token.colorPrimary }} type='success'>
-              作者：Gbeata
+              {t('作者：Gbeata')}
             </Text>
           </Translatex>
           <Translatex run={current === 2} delay={200}>
             <Title style={{ color: 'white', margin: '8px 0' }} ellipsis level={4} color='white'>
-              还没有想清楚如何介绍自己和系统之前，就请允许我使用这些文字占位吧～
+              {t('还没有想清楚如何介绍自己和系统之前，就请允许我使用这些文字占位吧～')}
             </Title>
           </Translatex>
           <Translatex run={current === 2} delay={300}>
             <Text ellipsis style={{ color: 'white' }}>
-              详细介绍下自己吧：我是一个小前端呀小前端，小前端啊小前端
+              {t('详细介绍下自己吧：我是一个小前端呀小前端，小前端啊小前端')}
             </Text>
           </Translatex>
         </div>
@@ -74,17 +76,17 @@ const SlickBox = () => {
         <div className='img-info'>
           <Translatex run={current === 3} delay={100}>
             <Text ellipsis style={{ fontWeight: 'bold', color: token.colorPrimary }} type='success'>
-              作者：Gbeata
+              {t('作者：Gbeata')}
             </Text>
           </Translatex>
           <Translatex run={current === 3} delay={200}>
             <Title style={{ color: 'white', margin: '8px 0' }} ellipsis level={4} color='white'>
-              还没有想清楚如何介绍自己和系统之前，就请允许我使用这些文字占位吧～
+              {t('还没有想清楚如何介绍自己和系统之前，就请允许我使用这些文字占位吧～')}
             </Title>
           </Translatex>
           <Translatex run={current === 3} delay={300}>
             <Text ellipsis style={{ color: 'white' }}>
-              详细介绍下自己吧：我是一个小前端呀小前端，小前端啊小前端
+              {t('详细介绍下自己吧：我是一个小前端呀小前端，小前端啊小前端')}
             </Text>
           </Translatex>
         </div>
@@ -94,17 +96,17 @@ const SlickBox = () => {
         <div className='img-info'>
           <Translatex run={current === 4} delay={100}>
             <Text ellipsis style={{ fontWeight: 'bold', color: token.colorPrimary }} type='success'>
-              作者：Gbeata
+              {t('作者：Gbeata')}
             </Text>
           </Translatex>
           <Translatex run={current === 4} delay={200}>
             <Title style={{ color: 'white', margin: '8px 0' }} ellipsis level={4} color='white'>
-              还没有想清楚如何介绍自己和系统之前，就请允许我使用这些文字占位吧～
+              {t('还没有想清楚如何介绍自己和系统之前，就请允许我使用这些文字占位吧～')}
             </Title>
           </Translatex>
           <Translatex run={current === 4} delay={300}>
             <Text ellipsis style={{ color: 'white' }}>
-              详细介绍下自己吧：我是一个小前端呀小前端，小前端啊小前端
+              {t('详细介绍下自己吧：我是一个小前端呀小前端，小前端啊小前端')}
             </Text>
           </Translatex>
         </div>
@@ -114,17 +116,17 @@ const SlickBox = () => {
         <div className='img-info'>
           <Translatex run={current === 5} delay={100}>
             <Text ellipsis style={{ fontWeight: 'bold', color: token.colorPrimary }} type='success'>
-              作者：Gbeata
+              {t('作者：Gbeata')}
             </Text>
           </Translatex>
           <Translatex run={current === 5} delay={200}>
             <Title style={{ color: 'white', margin: '8px 0' }} ellipsis level={4} color='white'>
-              还没有想清楚如何介绍自己和系统之前，就请允许我使用这些文字占位吧～
+              {t('还没有想清楚如何介绍自己和系统之前，就请允许我使用这些文字占位吧～')}
             </Title>
           </Translatex>
           <Translatex run={current === 5} delay={300}>
             <Text ellipsis style={{ color: 'white' }}>
-              详细介绍下自己吧：我是一个小前端呀小前端，小前端啊小前端
+              {t('详细介绍下自己吧：我是一个小前端呀小前端，小前端啊小前端')}
             </Text>
           </Translatex>
         </div>

@@ -1,45 +1,46 @@
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
+
 import type { TransferItem, TransferProps } from 'antd/es/transfer';
 
 interface DataState {
-  key: string
-  title: string
-  children?: DataState[]
-  disabled?: boolean
+  key: string;
+  title: string;
+  children?: DataState[];
+  disabled?: boolean;
 }
 
 const mockData: Record<string, string>[] = [];
 for (let i = 1; i < 10; i++) {
   mockData.push({
     key: i.toString(),
-    title: `备选项 ${i}`,
+    title: t('备选项{{i}}', { i }),
   });
 }
 
 const treeData: DataState[] = [
-  { key: '1', title: '备选项 1' },
+  { key: '1', title: t('备选项 1') },
   {
     key: '2',
-    title: '备选项 2',
+    title: t('备选项 2'),
     children: [
-      { key: '2-1', title: '备选项 2-1' },
-      { key: '2-2', title: '备选项 2-2' },
-      { key: '2-3', title: '备选项 2-3' },
+      { key: '2-1', title: t('备选项 2-1') },
+      { key: '2-2', title: t('备选项 2-2') },
+      { key: '2-3', title: t('备选项 2-3') },
     ],
   },
-  { key: '3', title: '备选项 3-1' },
+  { key: '3', title: t('备选项 3-1') },
   {
     key: '4',
-    title: '备选项 4',
+    title: t('备选项 4'),
     children: [
-      { key: '4-1', title: '备选项 4-1' },
+      { key: '4-1', title: t('备选项 4-1') },
       {
         key: '4-2',
-        title: '备选项 4-2',
-        children: [
-          { key: '4-2-1', title: '备选项 4-2-1' },
-        ],
+        title: t('备选项 4-2'),
+        children: [{ key: '4-2-1', title: t('备选项 4-2-1') }],
       },
-      { key: '4-3', title: '备选项 4-3' },
+      { key: '4-3', title: t('备选项 4-3') },
     ],
   },
 ];

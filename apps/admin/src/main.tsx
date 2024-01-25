@@ -8,6 +8,7 @@ import 'virtual:svg-icons-register';
 
 import App from './App';
 import { persistor, store } from './stores';
+import '@/i18n/i18n';
 
 interface NewToken {
   colorDefault: string;

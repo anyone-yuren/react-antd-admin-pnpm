@@ -1,7 +1,7 @@
-import {
-  Button, Card, Form, Input, message, Radio, Select, Space, Table,
-} from 'antd';
+import { Button, Card, Form, Input, message, Radio, Select, Space, Table } from 'antd';
+import { t } from 'i18next';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { PageWrapper } from '@/components/Page';
 
@@ -16,9 +16,9 @@ import type { ColumnType } from 'antd/es/table';
 type FileType = 'xlsx' | 'csv' | 'txt';
 
 interface FormState {
-  fileName: string
-  autoWidth: boolean
-  fileType: FileType
+  fileName: string;
+  autoWidth: boolean;
+  fileType: FileType;
 }
 
 const ExportExcel = (props: any) => {
@@ -34,12 +34,12 @@ const ExportExcel = (props: any) => {
   };
 
   const tableColumns: ColumnType<any>[] = [
-    { title: '编号', dataIndex: 'key', align: 'center' },
-    { title: '姓名', dataIndex: 'name', align: 'center' },
-    { title: '性别', dataIndex: 'sex', align: 'center' },
-    { title: '手机', dataIndex: 'phone', align: 'center' },
-    { title: '学历', dataIndex: 'education', align: 'center' },
-    { title: '爱好', dataIndex: 'hobby', align: 'center' },
+    { title: t('编号'), dataIndex: 'key', align: 'center' },
+    { title: t('姓名'), dataIndex: 'name', align: 'center' },
+    { title: t('性别'), dataIndex: 'sex', align: 'center' },
+    { title: t('手机'), dataIndex: 'phone', align: 'center' },
+    { title: t('学历'), dataIndex: 'education', align: 'center' },
+    { title: t('爱好'), dataIndex: 'hobby', align: 'center' },
   ];
 
   const [tableSelectedKeys, setTableSelectedKeys] = useState<number[]>([]);
@@ -60,14 +60,14 @@ const ExportExcel = (props: any) => {
   function handleExport(values: FormState) {
     console.log('values', values);
     if (!tableSelectedRows.length) {
-      message.warning('请勾选要导出的数据项！');
+      message.warning(t('请勾选要导出的数据项！'));
       return;
     }
     const { fileName, autoWidth, fileType: bookType } = values;
 
     const params: DataToSheet = {
       data: tableSelectedRows,
-      header: ['编号', '姓名', '性别', '手机', '学历', '爱好'],
+      header: [t('编号'), t('姓名'), t('性别'), t('手机'), t('学历'), t('爱好')],
       key: ['key', 'name', 'sex', 'phone', 'education', 'hobby'],
       fileName,
       autoWidth,
@@ -83,18 +83,18 @@ const ExportExcel = (props: any) => {
       <Card bordered={false}>
         <Space direction='vertical' size={16} style={{ width: '100%' }}>
           <Form layout='inline' autoComplete='off' initialValues={formParam} onFinish={handleExport}>
-            <Item label='文件名:' name='fileName'>
-              <Input placeholder='文件名' />
+            <Item label={t('文件名:')} name='fileName'>
+              <Input placeholder={t('文件名')} />
             </Item>
-            <Item label='自动宽度:' name='autoWidth'>
+            <Item label={t('自动宽度:')} name='autoWidth'>
               <Group
                 options={[
-                  { label: '自动', value: true },
-                  { label: '固定', value: false },
+                  { label: t('自动'), value: true },
+                  { label: t('固定'), value: false },
                 ]}
               />
             </Item>
-            <Item label='文件类型:' name='fileType'>
+            <Item label={t('文件类型:')} name='fileType'>
               <Select
                 options={[
                   { label: 'xlsx', value: 'xlsx' },
@@ -106,7 +106,7 @@ const ExportExcel = (props: any) => {
             </Item>
             <Item>
               <Button type='primary' htmlType='submit'>
-                导出Excel
+                {t('导出Excel')}
               </Button>
             </Item>
           </Form>

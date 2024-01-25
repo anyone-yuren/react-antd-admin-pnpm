@@ -8,7 +8,9 @@
     "preview": "vite preview",
     "clean": "rimraf .eslintcache && rimraf node_modules",
     "lint": "eslint --cache --fix  \"{src,mock,build}/**/*.{js,ts,tsx}\"",
-    "lint:prettier": "prettier --write \"src/**/*.{js,json,ts,tsx,css,less,html,md}\""
+    "lint:prettier": "prettier --write \"src/**/*.{js,json,ts,tsx,css,less,html,md}\"",
+    "i18n": "i18n-helper scan -wec",
+    "i18nMachine": "i18n-helper scan -we -tm -c"
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
@@ -82,6 +84,7 @@
     "cz-git": "^1.7.1",
     "eslint-config-gbeata-eslint": "workspace:^",
     "fast-glob": "^3.3.2",
+    "i18n-helper-cli": "^0.1.8",
     "less": "^4.2.0",
     "lint-staged": "^15.1.0",
     "postcss": "^8.4.31",

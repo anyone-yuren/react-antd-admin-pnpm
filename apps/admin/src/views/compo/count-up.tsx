@@ -1,8 +1,8 @@
-import {
-  Button, Card, Col, Form, Input, InputNumber, Row, Space,
-} from 'antd';
+import { Button, Card, Col, Form, Input, InputNumber, Row, Space } from 'antd';
+import { t } from 'i18next';
 import React, { useEffect, useRef, useState } from 'react';
 import CountUp, { useCountUp } from 'react-countup';
+import { useTranslation } from 'react-i18next';
 
 import { PageWrapper } from '@/components/Page';
 
@@ -38,7 +38,7 @@ const CountUpPage: React.FC = () => {
     <PageWrapper plugin={COUNTUP_PLUGIN}>
       <Row gutter={12}>
         <Col span={6}>
-          <Card title='正向增加' bordered={false} bodyStyle={{ height: '300px' }}>
+          <Card title={t('正向增加')} bordered={false} bodyStyle={{ height: '300px' }}>
             <CountUp
               start={0}
               end={2020}
@@ -53,7 +53,7 @@ const CountUpPage: React.FC = () => {
           </Card>
         </Col>
         <Col span={12}>
-          <Card title='自定义配置' bordered={false} bodyStyle={{ height: '300px' }}>
+          <Card title={t('自定义配置')} bordered={false} bodyStyle={{ height: '300px' }}>
             <div className='flex-center' style={{ marginBottom: '30px' }}>
               <span
                 ref={countUpRef}
@@ -72,32 +72,16 @@ const CountUpPage: React.FC = () => {
               onValuesChange={onValuesChange}
             >
               <Form.Item label='startVal:' name='start'>
-                <InputNumber
-                  min={0}
-                  max={10000}
-                  style={{ width: '100px' }}
-                />
+                <InputNumber min={0} max={10000} style={{ width: '100px' }} />
               </Form.Item>
               <Form.Item label='endVal:' name='end'>
-                <InputNumber
-                  min={0}
-                  max={10000}
-                  style={{ width: '100px' }}
-                />
+                <InputNumber min={0} max={10000} style={{ width: '100px' }} />
               </Form.Item>
               <Form.Item label='duration:' name='duration'>
-                <InputNumber
-                  min={1}
-                  max={100}
-                  style={{ width: '100px' }}
-                />
+                <InputNumber min={1} max={100} style={{ width: '100px' }} />
               </Form.Item>
               <Form.Item label='decimals:' name='decimals'>
-                <InputNumber
-                  min={0}
-                  max={100}
-                  style={{ width: '100px' }}
-                />
+                <InputNumber min={0} max={100} style={{ width: '100px' }} />
               </Form.Item>
               <Form.Item label='separator:' name='separator'>
                 <Input style={{ width: '100px' }} />
@@ -110,15 +94,19 @@ const CountUpPage: React.FC = () => {
               </Form.Item>
               <Form.Item>
                 <Space>
-                  <Button type='primary' onClick={start}>开始</Button>
-                  <Button type='primary' danger onClick={reset}>重置</Button>
+                  <Button type='primary' onClick={start}>
+                    {t('开始')}
+                  </Button>
+                  <Button type='primary' danger onClick={reset}>
+                    {t('重置')}
+                  </Button>
                 </Space>
               </Form.Item>
             </Form>
           </Card>
         </Col>
         <Col span={6}>
-          <Card title='反向减少' bordered={false} bodyStyle={{ height: '300px' }}>
+          <Card title={t('反向减少')} bordered={false} bodyStyle={{ height: '300px' }}>
             <CountUp
               start={2020}
               end={0}

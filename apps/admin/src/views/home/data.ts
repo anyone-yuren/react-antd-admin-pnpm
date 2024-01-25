@@ -1,32 +1,35 @@
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
+
 import type { EChartsOption } from 'echarts';
 
 export const countUpData = [
   {
-    title: '今日点击',
+    title: t('今日点击'),
     icon: 'location',
     count: 682,
     color: '#1890ff',
   },
   {
-    title: '新增用户',
+    title: t('新增用户'),
     icon: 'person',
     count: 259,
     color: '#fa541c',
   },
   {
-    title: '信息发送',
+    title: t('信息发送'),
     icon: 'message',
     count: 1262,
     color: '#faad14',
   },
   {
-    title: '点赞统计',
+    title: t('点赞统计'),
     icon: 'like',
     count: 508,
     color: '#13c2c2',
   },
   {
-    title: '累计收藏',
+    title: t('累计收藏'),
     icon: 'heart',
     count: 379,
     color: '#722ed1',
@@ -43,18 +46,19 @@ export const pieOptions: EChartsOption = {
   },
   series: [
     {
-      name: '访问来源',
+      name: t('访问来源'),
       type: 'pie',
       radius: '70%',
       center: ['50%', '45%'],
       color: ['#1890ff', '#fa541c', '#faad14', '#13c2c2', '#722ed1'],
       data: [
-        { value: 1620, name: '直接访问' },
-        { value: 1169, name: '邮件营销' },
-        { value: 986, name: '联盟广告' },
-        { value: 624, name: '视频广告' },
-        { value: 857, name: '搜索引擎' },
+        { value: 1620, name: t('直接访问') },
+        { value: 1169, name: t('邮件营销') },
+        { value: 986, name: t('联盟广告') },
+        { value: 624, name: t('视频广告') },
+        { value: 857, name: t('搜索引擎') },
       ],
+
       roseType: 'radius',
       animationType: 'scale',
       animationEasing: 'exponentialInOut',
@@ -76,7 +80,7 @@ export const ringOptions: EChartsOption = {
   series: [
     {
       color: ['#1890ff', '#fa541c', '#faad14', '#13c2c2', '#722ed1'],
-      name: '访问来源',
+      name: t('访问来源'),
       type: 'pie',
       radius: ['40%', '70%'],
       center: ['50%', '45%'],
@@ -101,12 +105,13 @@ export const ringOptions: EChartsOption = {
         show: false,
       },
       data: [
-        { value: 1620, name: '直接访问' },
-        { value: 1169, name: '邮件营销' },
-        { value: 986, name: '联盟广告' },
-        { value: 624, name: '视频广告' },
-        { value: 2758, name: '搜索引擎' },
+        { value: 1620, name: t('直接访问') },
+        { value: 1169, name: t('邮件营销') },
+        { value: 986, name: t('联盟广告') },
+        { value: 624, name: t('视频广告') },
+        { value: 2758, name: t('搜索引擎') },
       ],
+
       animationType: 'scale',
       animationEasing: 'exponentialInOut',
       animationDelay() {
@@ -119,7 +124,7 @@ export const ringOptions: EChartsOption = {
 export const radarOptions: EChartsOption = {
   legend: {
     bottom: 0,
-    data: ['推广渠道', '广告投放', '访问来源'],
+    data: [t('推广渠道'), t('广告投放'), t('访问来源')],
   },
   radar: {
     radius: '70%',
@@ -127,19 +132,19 @@ export const radarOptions: EChartsOption = {
     splitNumber: 8,
     indicator: [
       {
-        name: '直接访问',
+        name: t('直接访问'),
       },
       {
-        name: '邮件营销',
+        name: t('邮件营销'),
       },
       {
-        name: '联盟广告',
+        name: t('联盟广告'),
       },
       {
-        name: '视频广告',
+        name: t('视频广告'),
       },
       {
-        name: '搜索引擎',
+        name: t('搜索引擎'),
       },
     ],
   },
@@ -157,21 +162,21 @@ export const radarOptions: EChartsOption = {
       data: [
         {
           value: [1920, 1920, 1920, 0, 0],
-          name: '推广渠道',
+          name: t('推广渠道'),
           itemStyle: {
             color: '#1890ff',
           },
         },
         {
           value: [1920, 0, 0, 1920, 1920],
-          name: '访问来源',
+          name: t('访问来源'),
           itemStyle: {
             color: '#722ed1',
           },
         },
         {
           value: [920, 920, 920, 920, 920],
-          name: '广告投放',
+          name: t('广告投放'),
           itemStyle: {
             color: '#faad14',
           },
@@ -219,7 +224,7 @@ export const barOptions: EChartsOption = {
   series: [
     {
       type: 'bar',
-      name: '访问量',
+      name: t('访问量'),
       barWidth: '40%',
       color: ['#1890ff'],
       data: [782, 925, 1196, 812, 328, 223, 1080],
@@ -265,7 +270,7 @@ export const lineOptions: EChartsOption = {
   series: [
     {
       type: 'line',
-      name: '访问量',
+      name: t('访问量'),
       color: ['#722ed1'],
       smooth: true,
       data: [782, 925, 1196, 812, 328, 223, 1080],

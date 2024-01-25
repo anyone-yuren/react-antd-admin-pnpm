@@ -1,8 +1,8 @@
 import { ExclamationCircleOutlined } from '@ant-design/icons';
-import {
-Button, Card, Modal, Popover, Select, Space, Switch, Table, type TableProps, Tag,
-} from 'antd';
+import { Button, Card, Modal, Popover, Select, Space, Switch, Table, type TableProps, Tag } from 'antd';
+import { t } from 'i18next';
 import { type FC, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { PageWrapper } from '@/components/Page';
 
@@ -13,10 +13,10 @@ import type { APIResult, PageState, TableDataType } from './types';
 import type { ColumnsType } from 'antd/es/table';
 
 const marriedOptions = [
-  { label: '单身', value: 0 },
-  { label: '未婚', value: 1 },
-  { label: '已婚', value: 2 },
-  { label: '离异', value: 3 },
+  { label: t('单身'), value: 0 },
+  { label: t('未婚'), value: 1 },
+  { label: t('已婚'), value: 2 },
+  { label: t('离异'), value: 3 },
 ];
 
 const TableBasic: FC = () => {
@@ -27,23 +27,33 @@ const TableBasic: FC = () => {
 
   const columns: ColumnsType<TableDataType> = [
     {
-      title: '编号',
+      title: t('编号'),
       dataIndex: 'id',
       align: 'center',
       sorter: true,
     },
     {
-      title: '姓名',
+      title: t('姓名'),
       dataIndex: 'name',
       align: 'center',
       render: (_, record: any) => {
         const content = (
           <div>
-            <p>姓名: {record.name}</p>
-            <p>手机: {record.phone}</p>
-            <p>爱好: {record.hobby.join('、')}</p>
+            <p>
+              {t('姓名:')}
+              {record.name}
+            </p>
+            <p>
+              {t('手机:')}
+              {record.phone}
+            </p>
+            <p>
+              {t('爱好:')}
+              {record.hobby.join('、')}
+            </p>
           </div>
         );
+
         return (
           <Popover content={content}>
             <Tag color='blue'>{record.name}</Tag>
@@ -52,59 +62,52 @@ const TableBasic: FC = () => {
       },
     },
     {
-      title: '性别',
+      title: t('性别'),
       dataIndex: 'sex',
       align: 'center',
     },
     {
-      title: '手机',
+      title: t('手机'),
       dataIndex: 'phone',
       align: 'center',
     },
     {
-      title: '学历',
+      title: t('学历'),
       dataIndex: 'education',
       align: 'center',
     },
     {
-      title: '婚姻状况',
+      title: t('婚姻状况'),
       dataIndex: 'married',
       align: 'center',
       render: (text, record: any) => (
-        <Select
-          options={marriedOptions}
-          defaultValue={record.married}
-          onChange={(value) => record.married = value}
-        />
+        <Select options={marriedOptions} defaultValue={record.married} onChange={(value) => (record.married = value)} />
       ),
     },
     {
-      title: '禁止编辑',
+      title: t('禁止编辑'),
       dataIndex: 'forbid',
       align: 'center',
       render: (_, record: any) => (
-        <Switch
-          defaultChecked={record.forbid}
-          onChange={(checked) => record.forbid = checked}
-        />
+        <Switch defaultChecked={record.forbid} onChange={(checked) => (record.forbid = checked)} />
       ),
     },
     {
-      title: '爱好',
+      title: t('爱好'),
       dataIndex: 'hobby',
       align: 'center',
-      render: (_, record: any) => (
-        <span>{record.hobby.join('、')}</span>
-      ),
+      render: (_, record: any) => <span>{record.hobby.join('、')}</span>,
     },
     {
-      title: '操作',
+      title: t('操作'),
       key: 'action',
       align: 'center',
       render: (_, record: any) => (
         <Space>
-          <Button disabled={record.forbid}>编辑</Button>
-          <Button danger onClick={handleDelete}>删除</Button>
+          <Button disabled={record.forbid}>{t('编辑')}</Button>
+          <Button danger onClick={handleDelete}>
+            {t('删除')}
+          </Button>
         </Space>
       ),
     },
@@ -135,11 +138,11 @@ const TableBasic: FC = () => {
 
   function handleDelete() {
     Modal.confirm({
-      title: '此操作将删除选中数据, 是否继续?',
+      title: t('此操作将删除选中数据, 是否继续?'),
       icon: <ExclamationCircleOutlined rev={undefined} />,
       // okType: 'danger',
-      okText: '确定',
-      cancelText: '取消',
+      okText: t('确定'),
+      cancelText: t('取消'),
       onOk() {
         console.log('OK');
       },

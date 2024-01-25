@@ -1,8 +1,8 @@
-import {
-  Button, Card, Col, Row, Space,
-} from 'antd';
+import { Button, Card, Col, Row, Space } from 'antd';
+import { t } from 'i18next';
 import React, { useRef, useState } from 'react';
 import Cropper, { type ReactCropperElement } from 'react-cropper';
+import { useTranslation } from 'react-i18next';
 
 import { PageWrapper } from '@/components/Page';
 import { UploadImage } from '@/components/Upload';
@@ -33,7 +33,7 @@ const ImageCropper: React.FC = () => {
     <PageWrapper plugin={REACT_CROPPER_PLUGIN}>
       <Row gutter={12}>
         <Col span={10}>
-          <Card title='裁剪区域' bordered={false} bodyStyle={{ height: '400px' }}>
+          <Card title={t('裁剪区域')} bordered={false} bodyStyle={{ height: '400px' }}>
             <Cropper
               ref={cropperRef}
               src={imgSrc}
@@ -51,17 +51,19 @@ const ImageCropper: React.FC = () => {
           </Card>
         </Col>
         <Col span={4}>
-          <Card title='设置区域' bordered={false}>
+          <Card title={t('设置区域')} bordered={false}>
             <div className='flex-center' style={{ height: '352px' }}>
               <Space direction='vertical'>
                 <UploadImage onSuccess={handleSuccess} />
-                <Button type='primary' onClick={downloadImage}>下载图片</Button>
+                <Button type='primary' onClick={downloadImage}>
+                  {t('下载图片')}
+                </Button>
               </Space>
             </div>
           </Card>
         </Col>
         <Col span={10}>
-          <Card title='预览区域' bordered={false} bodyStyle={{ height: '400px' }}>
+          <Card title={t('预览区域')} bordered={false} bodyStyle={{ height: '400px' }}>
             <div
               className='img-preview'
               style={{
@@ -69,7 +71,8 @@ const ImageCropper: React.FC = () => {
                 height: '100%',
                 overflow: 'hidden',
                 margin: 'auto',
-              }} />
+              }}
+            />
           </Card>
         </Col>
       </Row>

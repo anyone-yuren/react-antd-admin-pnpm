@@ -1,5 +1,7 @@
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
 import { Avatar, Button, Card, Col, Dropdown, Flex, Row, Space, Typography } from 'antd';
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { SvgIcon } from 'ui';
 
 import travel_3 from '@/assets/images/travel_3.jpg';
@@ -26,7 +28,7 @@ const Friends: FC<PFriends> = () => {
       label: (
         <Space size={8}>
           <DeleteOutlined rev={undefined} />
-          <span>删除</span>
+          <span>{t('删除')}</span>
         </Space>
       ),
     },
@@ -35,11 +37,12 @@ const Friends: FC<PFriends> = () => {
       label: (
         <Space size={8}>
           <EditOutlined rev={undefined} />
-          <span>修改</span>
+          <span>{t('修改')}</span>
         </Space>
       ),
     },
   ];
+
   const onClick: MenuProps['onClick'] = ({ key }) => {
     switch (key) {
       case 'lock':
@@ -55,24 +58,25 @@ const Friends: FC<PFriends> = () => {
     {
       avatar: travel_3,
       name: 'Gbeata',
-      title: '来历不明',
+      title: t('来历不明'),
     },
     {
       avatar: travel_3,
       name: 'Gbeata',
-      title: '来历不明',
+      title: t('来历不明'),
     },
     {
       avatar: travel_3,
       name: 'Gbeata',
-      title: '来历不明',
+      title: t('来历不明'),
     },
     {
       avatar: travel_3,
       name: 'Gbeata',
-      title: '来历不明',
+      title: t('来历不明'),
     },
   ];
+
   return (
     <>
       <Row gutter={[16, 16]}>

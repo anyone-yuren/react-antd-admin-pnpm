@@ -1,4 +1,6 @@
 import { Avatar, Button, Flex, Input, Typography } from 'antd';
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { SvgIcon } from 'ui';
 
 import avatarUser from '@/assets/images/avatar_6.jpg';
@@ -21,7 +23,7 @@ const SendBox: FC<PSendBox> = ({ avatar = avatarUser, time, content, user }) => 
       <Avatar src={avatar}></Avatar>
       <div className='send-content'>
         <Input
-          placeholder='请在这里输入您的留言'
+          placeholder={t('请在这里输入您的留言')}
           suffix={
             <Flex>
               <Button type='text' shape='circle' icon={<SvgIcon name='picture' />}></Button>
