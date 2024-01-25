@@ -136,5 +136,6 @@
     ".eslintrc.cjs": ".eslintignore,.prettierignore,.stylelintignore,.commitlintrc.*,.prettierrc.*,.stylelintrc.*",
     ".eslintrc.mjs": ".eslintignore,.prettierignore,.stylelintignore,.commitlintrc.*,.prettierrc.*,.stylelintrc.*"
   },
-  "terminal.integrated.scrollback": 10000
+  "terminal.integrated.scrollback": 10000,
+  "i18next.i18nPaths": "/Users/niyonggui/multiway/learn/2024/pnpm-monorepo-mui/packages/gbeata/es/locale,/Users/niyonggui/multiway/learn/2024/pnpm-monorepo-mui/packages/gbeata/lib/locale,/Users/niyonggui/multiway/learn/2024/pnpm-monorepo-mui/packages/gbeata/src/locale"
 }
