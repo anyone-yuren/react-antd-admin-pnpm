@@ -1,16 +1,39 @@
+import { Icon } from '@iconify/react';
+import { Button, Dropdown } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { t } from 'i18next';
-import { Switch } from 'antd';
+
+import type { MenuProps } from 'antd';
 
 const Selectlangulage = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
+  const languages: MenuProps['items'] = [
+    {
+      key: 'zh',
+      label: '中文',
+    },
+    {
+      key: 'en',
+      label: 'English',
+    },
+  ];
   return (
-    <Switch
-      checkedChildren={t('中文')}
-      unCheckedChildren={'English'}
-      defaultChecked
-      onChange={(checked) => i18n.changeLanguage(checked ? 'zh' : 'en')}
-    />
+    // <Switch
+    //   checkedChildren={'zh'}
+    //   unCheckedChildren={'en'}
+    //   defaultChecked
+    //   onChange={(checked) => i18n.changeLanguage(checked ? 'zh' : 'en')}
+    // />
+    <Dropdown menu={{ items: languages, onClick: ({ key }) => i18n.changeLanguage(key) }} trigger={['click']}>
+      <Button
+        shape='circle'
+        size='small'
+        icon={
+          <span className='anticon'>
+            <Icon icon='ant-design:global-outlined'></Icon>
+          </span>
+        }
+      />
+    </Dropdown>
   );
 };
 

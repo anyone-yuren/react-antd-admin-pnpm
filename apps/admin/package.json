@@ -68,6 +68,7 @@
     "@gbeata/ts-config": "workspace:^",
     "@gbeata/utils": "workspace:^",
     "@gbeata/vite-config": "workspace:^",
+    "@iconify/react": "^4.1.1",
     "@types/crypto-js": "^4.2.1",
     "@types/dom-to-image": "^2.6.7",
     "@types/file-saver": "^2.0.7",
