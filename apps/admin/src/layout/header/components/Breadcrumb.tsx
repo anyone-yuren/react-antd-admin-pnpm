@@ -1,5 +1,6 @@
 import { Breadcrumb } from 'antd';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { matchRoutes, useLocation } from 'react-router-dom';
 
 import SvgIcon from '@/components/SvgIcon';
@@ -11,6 +12,7 @@ type BreadcrumbProps = {
 };
 
 export default function LayoutBreadcrumb(props: BreadcrumbProps) {
+  const { t, i18n } = useTranslation();
   const { show = true } = props;
   if (!show) return null;
   const [breadcrumbs, setBreadcrumbs] = useState<any[]>([]);
@@ -25,13 +27,13 @@ export default function LayoutBreadcrumb(props: BreadcrumbProps) {
         title: (
           <>
             {icon && <SvgIcon name={icon} style={{ marginRight: 8 }} />}
-            <span>{name}</span>
+            <span>{t(name)}</span>
           </>
         ),
       };
     });
     setBreadcrumbs(breadcrumbList);
-  }, [pathname]);
+  }, [pathname, i18n.language]);
 
   return (
     <div className='flex-center-v' style={{ padding: '0 16px' }}>

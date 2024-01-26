@@ -1,7 +1,6 @@
 import { CloseOutlined, LeftOutlined, RedoOutlined, RightOutlined } from '@ant-design/icons';
 import { Button, Dropdown } from 'antd';
 import classNames from 'classnames';
-import { t } from 'i18next';
 import { type FC, useEffect, useRef, useState, type WheelEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -19,6 +18,7 @@ import type { RouteObject } from '@/router/types';
 import type { MenuProps } from 'antd';
 
 const LayoutTags: FC = () => {
+  const { t } = useTranslation();
   const { styles } = useStyles();
   const items: MenuProps['items'] = [
     { key: 'left', label: t('关闭左侧') },
@@ -195,7 +195,7 @@ const LayoutTags: FC = () => {
             <span key={item.fullPath} data-path={item.fullPath}>
               <TagItem
                 key={item.key}
-                name={item.meta?.title!}
+                name={t(item.meta?.title!)}
                 active={activeTag === item.fullPath}
                 fixed={item.meta?.affix}
                 onClick={() => handleClickTag(item.fullPath!)}

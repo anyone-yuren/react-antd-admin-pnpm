@@ -40,7 +40,7 @@ const LayoutMenu = (props: any) => {
   const [menuList, setMenuList] = useState<MenuItem[]>([]);
   const [openKeys, setOpenKeys] = useState<string[]>([]);
   const [selectedKeys, setSelectedKeys] = useState<string[]>([pathname]);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     setSelectedKeys([pathname]);
@@ -62,7 +62,9 @@ const LayoutMenu = (props: any) => {
       if (!item?.children?.length) {
         return list.push(getItem(t(item.name), item.path, addIcon(item.icon, item.iconSize)));
       }
-      list.push(getItem(t(item.name) + 1, item.path, addIcon(item.icon, item.iconSize), getMenuItem(item.children)));
+      console.log(t(item.name));
+
+      list.push(getItem(t(item.name), item.path, addIcon(item.icon, item.iconSize), getMenuItem(item.children)));
     });
     return list;
   };
@@ -80,7 +82,7 @@ const LayoutMenu = (props: any) => {
 
   useEffect(() => {
     getMenuList();
-  }, []);
+  }, [i18n.language]);
 
   const handleOpenChange: MenuProps['onOpenChange'] = (keys: string[]) => {
     if (keys.length === 0 || keys.length === 1) return setOpenKeys(keys);
