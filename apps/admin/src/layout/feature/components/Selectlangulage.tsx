@@ -17,12 +17,6 @@ const Selectlangulage = () => {
     },
   ];
   return (
-    // <Switch
-    //   checkedChildren={'zh'}
-    //   unCheckedChildren={'en'}
-    //   defaultChecked
-    //   onChange={(checked) => i18n.changeLanguage(checked ? 'zh' : 'en')}
-    // />
     <Dropdown menu={{ items: languages, onClick: ({ key }) => i18n.changeLanguage(key) }} trigger={['click']}>
       <Button
         shape='circle'
