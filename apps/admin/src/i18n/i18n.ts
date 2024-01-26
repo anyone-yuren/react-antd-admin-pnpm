@@ -1,8 +1,7 @@
 import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-
-import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import Backend from 'i18next-http-backend';
+import { initReactI18next } from 'react-i18next';
 // import LanguageDetector from 'i18next-browser-languagedetector';
 // don't want to use this?
 // have a look at the Quick start guide
@@ -11,7 +10,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 console.log(window.location.search);
 
 const currentLanguage = window.location.search.split('=')[1];
-console.log('currentLanguage:' + currentLanguage);
+console.log(`currentLanguage:${currentLanguage}`);
 
 i18n
   // load translation using http -> see /public/locales (i.e. https://github.com/i18next/react-i18next/tree/master/example/react/public/locales)
@@ -29,9 +28,13 @@ i18n
     lng: currentLanguage || 'zh',
     fallbackLng: 'en',
     debug: false,
-
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
+    },
+    partialBundledLanguages: true,
+    backend: {
+      // 获取VITE_PUBLIC_PATH，用于拼接后端请求地址
+      loadPath: `${import.meta.env.VITE_PUBLIC_PATH}/locales/{{lng}}/{{ns}}.json`,
     },
   });
 
