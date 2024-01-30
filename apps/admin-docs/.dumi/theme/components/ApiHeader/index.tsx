@@ -57,6 +57,7 @@ export const ApiHeader: FC<ApiTitleProps> = memo(
     sourceUrl,
     docUrl,
     serviceList = [],
+    packageName,
   }) => {
     const { styles } = useStyles();
     const { mobile } = useResponsive();
@@ -75,8 +76,8 @@ export const ApiHeader: FC<ApiTitleProps> = memo(
     ].filter((i) => i) as ServiceItem[];
 
     const importStr = defaultImport
-      ? `import ${componentName} from '${pkg}';`
-      : `import { ${componentName} } from '${pkg}';`;
+      ? `import ${componentName} from '${packageName}';`
+      : `import { ${componentName} } from '${packageName}';`;
 
     return (
       <Flexbox>
@@ -100,7 +101,11 @@ export const ApiHeader: FC<ApiTitleProps> = memo(
             <Code>{importStr}</Code>
           </Flexbox>
           <Divider dashed style={{ margin: '2px 0' }} />
-          <Flexbox horizontal={!mobile} gap={mobile ? 24 : 0} distribution={'space-between'}>
+          <Flexbox
+            horizontal={!mobile}
+            gap={mobile ? 24 : 0}
+            distribution={'space-between'}
+          >
             <Space split={<Divider type={'vertical'} />} wrap>
               {serviceList.map((item) => (
                 <a
@@ -110,7 +115,12 @@ export const ApiHeader: FC<ApiTitleProps> = memo(
                   rel="noreferrer"
                   title={item.label}
                 >
-                  <Flexbox horizontal align={'center'} gap={8} className={styles.text}>
+                  <Flexbox
+                    horizontal
+                    align={'center'}
+                    gap={8}
+                    className={styles.text}
+                  >
                     <>{item.icon}</>
                     <>{item.children}</>
                   </Flexbox>
@@ -118,10 +128,23 @@ export const ApiHeader: FC<ApiTitleProps> = memo(
               ))}
             </Space>
 
-            <Space split={<Divider type={'vertical'} />} className={styles.meta}>
+            <Space
+              split={<Divider type={'vertical'} />}
+              className={styles.meta}
+            >
               {items.map((item) => (
-                <a key={item.url} href={item.url} target={'_blank'} rel="noreferrer">
-                  <Flexbox horizontal align={'center'} gap={8} className={styles.text}>
+                <a
+                  key={item.url}
+                  href={item.url}
+                  target={'_blank'}
+                  rel="noreferrer"
+                >
+                  <Flexbox
+                    horizontal
+                    align={'center'}
+                    gap={8}
+                    className={styles.text}
+                  >
                     <>{item.icon}</>
                     <>{item.children}</>
                   </Flexbox>

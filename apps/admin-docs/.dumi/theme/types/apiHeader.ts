@@ -40,6 +40,11 @@ export interface ApiHeaderProps {
    * @description ApiHeader 组件的名称
    */
   componentName: string;
+  /**
+   * @title 包名
+   * @description ApiHeader 组件所在的包名
+   */
+  packageName?: string;
 }
 /**
  * @title ApiHeader 配置项

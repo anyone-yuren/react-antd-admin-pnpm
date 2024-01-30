@@ -10,17 +10,25 @@ import { githubSel } from './siteBasicInfo';
 export const isApiPageSel = (s: SiteStore) => {
   const fm = s.routeMeta.frontmatter;
 
-  if (s.siteData.themeConfig.apiHeader === false || fm.apiHeader === false) return false;
+  if (s.siteData.themeConfig.apiHeader === false || fm.apiHeader === false)
+    return false;
 
   if (!!fm.apiHeader) return true;
 
-  const baseMatch = ['/api', '/components', ...(s.siteData.themeConfig.apiHeader?.match || [])];
+  const baseMatch = [
+    '/api',
+    '/components',
+    ...(s.siteData.themeConfig.apiHeader?.match || []),
+  ];
 
   return baseMatch.some((path) => s.location.pathname.startsWith(path));
 };
 
 function convertCase(value: string, caseStyle: string) {
-  const map: Record<'camel' | 'kebab' | 'snake' | 'pascal' | 'default', () => string> = {
+  const map: Record<
+    'camel' | 'kebab' | 'snake' | 'pascal' | 'default',
+    () => string
+  > = {
     camel: () => camelCase(value),
     pascal: () => upperFirst(camelCase(value)),
     kebab: () => kebabCase(value),
@@ -70,12 +78,17 @@ export const apiHeaderSel = (s: SiteStore): ApiHeaderProps => {
   // 2. 兜底到文档 title
   const componentName = fm.atomId || fm.title;
 
+  // 设置当前页面包名
+  const packageName = fm.package || pkg;
+
   // 1. 优先选择使用文档 apiHeader.defaultImport
   // 2. 默认使用 false
   const defaultImport = fm.apiHeader?.defaultImport || false;
 
   const sourceUrlMatch = fm.apiHeader?.sourceUrl || globalSourceUrl;
-  const sourceUrl = haseUrl(sourceUrlMatch) ? replaceUrl(sourceUrlMatch as string) : undefined;
+  const sourceUrl = haseUrl(sourceUrlMatch)
+    ? replaceUrl(sourceUrlMatch as string)
+    : undefined;
 
   const docUrlMatch = fm.apiHeader?.docUrl || globalDocUrl;
   const docUrl = haseUrl(docUrlMatch) ? replaceUrl(docUrlMatch) : undefined;
@@ -88,5 +101,6 @@ export const apiHeaderSel = (s: SiteStore): ApiHeaderProps => {
     componentName,
     sourceUrl,
     docUrl,
+    packageName,
   };
 };
