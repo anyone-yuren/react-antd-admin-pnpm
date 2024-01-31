@@ -1,3 +1,22 @@
+# [1.7.0](https://github.com/anyone-yuren/react-antd-admin-pnpm/compare/v1.6.0...v1.7.0) (2024-01-31)
+
+
+### Bug Fixes
+
+* :bug: 配置多语言文件请求路径 ([85fcb9b](https://github.com/anyone-yuren/react-antd-admin-pnpm/commit/85fcb9be35cce685775a9e0dd5d67d5aa5f07729))
+
+
+### Features
+
+* :sparkles: 修改eslint import规则 ([70b99c4](https://github.com/anyone-yuren/react-antd-admin-pnpm/commit/70b99c407c8b43ab48bdc1067344c8c0c230f86a))
+* :sparkles: 修改多语言切换样式 ([8c22c7e](https://github.com/anyone-yuren/react-antd-admin-pnpm/commit/8c22c7e7ff35d6e3c3579d643bc17baa3be7e479))
+* :sparkles: 修改菜单，头部面包屑国际化 ([f28539f](https://github.com/anyone-yuren/react-antd-admin-pnpm/commit/f28539f86fcaff3e560b68714862c0f091f1f5b8))
+* :sparkles: 新增react-query与query-tools ([0f0ffe3](https://github.com/anyone-yuren/react-antd-admin-pnpm/commit/0f0ffe3b259785acd966e2416da640d6e40c4017))
+* :sparkles: 新增vite预编译配置 ([3ab2408](https://github.com/anyone-yuren/react-antd-admin-pnpm/commit/3ab2408735833bc508664ef34dd1abd9aef3c866))
+* :sparkles: 新增国际化方案 ([3b6b3c2](https://github.com/anyone-yuren/react-antd-admin-pnpm/commit/3b6b3c225bb4aee638ae59112078e7a3f01cb9ec))
+* :sparkles: 更新pnpm-lock ([69636a4](https://github.com/anyone-yuren/react-antd-admin-pnpm/commit/69636a4d4f4bb6ce509f867844d0fde490d0b57c))
+* :sparkles: 补充项目文档地址 ([dab0a5a](https://github.com/anyone-yuren/react-antd-admin-pnpm/commit/dab0a5a24d9048c63485a1d53bdbb5ebdcb5a7b3))
+
 # [1.6.0](https://github.com/anyone-yuren/react-antd-admin-pnpm/compare/v1.5.0...v1.6.0) (2024-01-19)
 
 
