@@ -1,5 +1,7 @@
 import { Card, Segmented, Typography } from 'antd';
+import { t } from 'i18next';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { SvgIcon, Translatex } from 'ui';
 
 import avatar from '@/assets/images/avatar_2.jpg';
@@ -43,7 +45,7 @@ const UserCard: React.FC<UserCardProp> = (prop) => {
                 <Title style={{ margin: 0, color: 'inherit' }} level={3}>
                   Gbeata
                 </Title>
-                <Text style={{ color: 'inherit', opacity: 0.7 }}>来历不明</Text>
+                <Text style={{ color: 'inherit', opacity: 0.7 }}>{t('来历不明')}</Text>
               </div>
             </div>
           </>

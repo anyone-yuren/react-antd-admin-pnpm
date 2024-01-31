@@ -1,4 +1,6 @@
 import { lazy } from '@loadable/component';
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import LazyLoad from '@/components/LazyLoad';
 
@@ -12,7 +14,7 @@ const TextEditorRoute: RouteObject = {
   name: 'Editor',
   element: <LayoutGuard />,
   meta: {
-    title: '文本编辑器',
+    title: t('文本编辑器'),
     icon: 'editor',
     orderNo: 7,
   },
@@ -23,7 +25,7 @@ const TextEditorRoute: RouteObject = {
       // element: <MarkdownEditor />,
       element: LazyLoad(lazy(() => import('@/views/editor/markdown'))),
       meta: {
-        title: 'Markdown编辑器',
+        title: t('Markdown编辑器'),
         key: 'markdown',
       },
     },
@@ -33,7 +35,7 @@ const TextEditorRoute: RouteObject = {
       // element: <RichTextEditor />,
       element: LazyLoad(lazy(() => import('@/views/editor/rich-text'))),
       meta: {
-        title: '富文本编辑器',
+        title: t('富文本编辑器'),
         key: 'richText',
       },
     },
@@ -43,7 +45,7 @@ const TextEditorRoute: RouteObject = {
       // element: <CodeMirror />,
       element: LazyLoad(lazy(() => import('@/views/editor/code-mirror'))),
       meta: {
-        title: '代码编辑器',
+        title: t('代码编辑器'),
         key: 'codeEditor',
       },
     },

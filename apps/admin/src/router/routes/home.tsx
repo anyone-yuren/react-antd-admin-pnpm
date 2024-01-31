@@ -1,5 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { lazy } from '@loadable/component';
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import LazyLoad from '@/components/LazyLoad';
 

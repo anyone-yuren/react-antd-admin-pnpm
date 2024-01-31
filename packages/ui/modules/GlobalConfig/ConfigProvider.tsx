@@ -1,4 +1,4 @@
-import { ConfigProvider } from 'antd';
+import { App as AntApp, ConfigProvider } from 'antd';
 
 import SvgIcon from '../SvgIcon';
 import useStyles from './style';
@@ -79,7 +79,7 @@ const GlobalConfig: FC<GlobalConfigProps> = ({ children, ...rest }) => {
       renderEmpty={customizeRenderEmpty}
       {...rest}
     >
-      {children}
+      <AntApp>{children}</AntApp>
     </ConfigProvider>
   );
 };

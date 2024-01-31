@@ -4,7 +4,9 @@ import { Badge, Input, List, Modal } from 'antd';
 import { useTheme } from 'antd-style';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Fuse from 'fuse.js';
+import { t } from 'i18next';
 import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import { treeToList } from '@/utils/helper/treeHelper';
@@ -100,7 +102,7 @@ const SearchModal = forwardRef<SearchModalMethods, SearchModalProps>((props, ref
             size='large'
             onChange={(e) => setValue(e.target.value)}
             value={value}
-            placeholder='请输入搜索...'
+            placeholder={t('请输入搜索...')}
             prefix={<SearchOutlined />}
             suffix={<Badge count={'Esc'} color={token.colorPrimaryHover} />}
           />

@@ -28,6 +28,7 @@ export default {
     "import/order": "off",
     "import/prefer-default-export": "off",
     "simple-import-sort/exports": "warn",
+    "import/no-extraneous-dependencies": "off",
     "simple-import-sort/imports": [
       "warn",
       {

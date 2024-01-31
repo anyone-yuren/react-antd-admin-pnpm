@@ -1,0 +1,21 @@
+{
+  "cliLang": "zh",
+  "projectType": "[react]",
+  "srcPath": "./src/",
+  "fileExt": "js,ts,tsx",
+  "wrapCharacter": "[\u4e00-\u9fa5]",
+  "gitModel": false,
+  "wrapperFuncName": "t",
+  "excludeWrapperFuncName": "^console,indexOf,split",
+  "jsx2Trans": false,
+  "importStr": "import { useTranslation } from 'react-i18next';\n import { t } from 'i18next';\n",
+  "exclude": "node_modules,dist,.git, ./src/router",
+  "format": "ESlint",
+  "localeDir": "./public/locales",
+  "languages": "zh,en",
+  "sourceLanguage": "zh",
+  "transFileName": "translation",
+  "transFileExt": "json",
+  "secretId": "",
+  "secretKey": ""
+}

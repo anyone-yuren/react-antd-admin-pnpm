@@ -1,5 +1,4 @@
 import { lazy } from '@loadable/component';
-
 import LazyLoad from '@/components/LazyLoad';
 
 import { LayoutGuard } from '../guard';

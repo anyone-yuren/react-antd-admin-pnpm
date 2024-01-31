@@ -1,7 +1,9 @@
 import { SettingOutlined } from '@ant-design/icons';
 import { Button, Drawer, List, Switch, Tooltip, Typography } from 'antd';
 import ErrorBoundary from 'antd/es/alert/ErrorBoundary';
+import { t } from 'i18next';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useGlobalStore } from 'store';
 
 import FullScreen from './FullScreen';
@@ -21,14 +23,14 @@ export default function Settings() {
   };
   return (
     <ErrorBoundary>
-      <Tooltip title='设置' placement='bottom' mouseEnterDelay={0.5}>
+      <Tooltip title={t('设置')} placement='bottom' mouseEnterDelay={0.5}>
         <Button shape='circle' onClick={() => setOpen(true)} size='small' icon={<SettingOutlined />} />
       </Tooltip>
       <Drawer
         classNames={{
           content: styles.driwer,
         }}
-        title='设置'
+        title={t('设置')}
         placement='right'
         onClose={onClose}
         open={open}
@@ -37,17 +39,17 @@ export default function Settings() {
       >
         <List split={false}>
           <List.Item>
-            <List.Item.Meta title={<Text type='secondary'>主题</Text>} description={<SlideTheme />} />
+            <List.Item.Meta title={<Text type='secondary'>{t('主题')}</Text>} description={<SlideTheme />} />
           </List.Item>
           <List.Item>
-            <List.Item.Meta title={<Text type='secondary'>布局</Text>} description={<LayoutSettings />} />
+            <List.Item.Meta title={<Text type='secondary'>{t('布局')}</Text>} description={<LayoutSettings />} />
           </List.Item>
           <List.Item>
-            <List.Item.Meta title={<Text type='secondary'>预设</Text>} description={<Presets />} />
+            <List.Item.Meta title={<Text type='secondary'>{t('预设')}</Text>} description={<Presets />} />
           </List.Item>
           <List.Item>
             <List.Item.Meta
-              title={<Text type='secondary'>内容区域</Text>}
+              title={<Text type='secondary'>{t('内容区域')}</Text>}
               description={
                 <List>
                   <List.Item
@@ -60,7 +62,7 @@ export default function Settings() {
                       />,
                     ]}
                   >
-                    页签
+                    {t('页签')}
                   </List.Item>
                   <List.Item
                     actions={[
@@ -72,9 +74,9 @@ export default function Settings() {
                       />,
                     ]}
                   >
-                    面包屑导航
+                    {t('面包屑导航')}
                   </List.Item>
-                  <List.Item actions={[<Switch defaultChecked onChange={() => {}} />]}>系统名称</List.Item>
+                  <List.Item actions={[<Switch defaultChecked onChange={() => {}} />]}>{t('系统名称')}</List.Item>
                 </List>
               }
             />

@@ -1,6 +1,8 @@
 import { CloudUploadOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Card, Col, Modal, Row, Upload } from 'antd';
+import { t } from 'i18next';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { PageWrapper } from '@/components/Page';
 
@@ -20,6 +22,7 @@ const ImageUpload: React.FC = () => {
     { uid: '-1', name: 'beautiful-girl.jpg' },
     { uid: '-2', name: 'beautiful-sunshine.jpg' },
   ];
+
   const [listImgs, setListImgs] = useState<UploadFile[]>([
     {
       uid: '-1',
@@ -64,7 +67,7 @@ const ImageUpload: React.FC = () => {
     <PageWrapper plugin={UPLOAD_COMPO}>
       <Row gutter={12}>
         <Col span={8}>
-          <Card title='拖拽上传' bordered={false} bodyStyle={{ height: '300px' }}>
+          <Card title={t('拖拽上传')} bordered={false} bodyStyle={{ height: '300px' }}>
             <Dragger
               defaultFileList={dragImgs}
               action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
@@ -75,14 +78,15 @@ const ImageUpload: React.FC = () => {
                 <CloudUploadOutlined rev={undefined} />
               </p>
               <p>
-                将图片拖到此处, 或<span style={{ color: '#1890ff' }}>点击上传</span>
+                {t('将图片拖到此处, 或')}
+                <span style={{ color: '#1890ff' }}>{t('点击上传')}</span>
               </p>
-              <p className='ant-upload-hint'>只能上传jpg、jpeg、gif、png、bmp文件, 且不超过500kb</p>
+              <p className='ant-upload-hint'>{t('只能上传jpg、jpeg、gif、png、bmp文件, 且不超过500kb')}</p>
             </Dragger>
           </Card>
         </Col>
         <Col span={8}>
-          <Card title='列表样式' bordered={false} bodyStyle={{ height: '300px' }}>
+          <Card title={t('列表样式')} bordered={false} bodyStyle={{ height: '300px' }}>
             <Upload
               defaultFileList={[...listImgs]}
               action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
@@ -92,14 +96,14 @@ const ImageUpload: React.FC = () => {
             >
               <Button type='primary'>
                 <CloudUploadOutlined rev={undefined} />
-                <span>点击上传</span>
+                <span>{t('点击上传')}</span>
               </Button>
-              <p className='ant-upload-hint'>只能上传jpg、jpeg、gif、png、bmp文件, 且不超过500kb</p>
+              <p className='ant-upload-hint'>{t('只能上传jpg、jpeg、gif、png、bmp文件, 且不超过500kb')}</p>
             </Upload>
           </Card>
         </Col>
         <Col span={8}>
-          <Card title='照片墙' bordered={false} bodyStyle={{ height: '300px' }}>
+          <Card title={t('照片墙')} bordered={false} bodyStyle={{ height: '300px' }}>
             <Upload
               fileList={listImgs}
               action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
@@ -111,7 +115,7 @@ const ImageUpload: React.FC = () => {
             >
               <div>
                 <PlusOutlined rev={undefined} />
-                <div style={{ marginTop: '8px' }}>点击上传</div>
+                <div style={{ marginTop: '8px' }}>{t('点击上传')}</div>
               </div>
             </Upload>
           </Card>

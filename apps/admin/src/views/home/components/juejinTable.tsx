@@ -1,6 +1,8 @@
 import { Card } from 'antd';
 import { GSearchTable } from 'gbeata';
+import { t } from 'i18next';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { getJueJinList } from '@/api';
 
@@ -8,7 +10,7 @@ import type { GSearchTableField } from 'gbeata/lib/GSearchTable/g-search-table';
 
 const fields: Array<GSearchTableField> = [
   {
-    title: '文章标题',
+    title: t('文章标题'),
     key: 'title',
     search: true,
     render: (text, record) => {
@@ -22,7 +24,7 @@ const fields: Array<GSearchTableField> = [
     },
   },
   {
-    title: '简介',
+    title: t('简介'),
     key: 'brief_content',
     render: (text, record) => {
       // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -32,7 +34,7 @@ const fields: Array<GSearchTableField> = [
   },
 
   {
-    title: '阅读数',
+    title: t('阅读数'),
     width: '120px',
     key: 'view_count',
     render: (text, record) => {
@@ -42,7 +44,7 @@ const fields: Array<GSearchTableField> = [
     },
   },
   {
-    title: '点赞数',
+    title: t('点赞数'),
     key: 'digg_count',
     width: '120px',
     sort: true,
@@ -53,7 +55,7 @@ const fields: Array<GSearchTableField> = [
     },
   },
   {
-    title: '收藏数',
+    title: t('收藏数'),
     key: 'collect_count',
     width: '90px',
     render: (text, record) => {
@@ -67,7 +69,7 @@ const fields: Array<GSearchTableField> = [
 export default function JuejinTable() {
   return (
     <Card>
-      <GSearchTable api={getJueJinList} title='我的掘金文章' fields={fields} rowKey='sort_id' />
+      <GSearchTable api={getJueJinList} title={t('我的掘金文章')} fields={fields} rowKey='sort_id' />
     </Card>
   );
 }

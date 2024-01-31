@@ -1,4 +1,6 @@
+import { t } from 'i18next';
 import { type FC, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { PageWrapper } from '@/components/Page';
 
@@ -16,15 +18,19 @@ const RichTextEditor: FC = () => {
   const [html, setHtml] = useState('<p>hello</p>');
 
   const toolbarConfig: Partial<IToolbarConfig> = {};
-  const editorConfig: Partial<IEditorConfig> = { // TS 语法
-    placeholder: '请输入内容...',
+  const editorConfig: Partial<IEditorConfig> = {
+    // TS 语法
+    placeholder: t('请输入内容...'),
   };
 
-  useEffect(() => () => {
-    if (editor == null) return;
-    editor.destroy();
-    setEditor(null);
-  }, [editor]);
+  useEffect(
+    () => () => {
+      if (editor == null) return;
+      editor.destroy();
+      setEditor(null);
+    },
+    [editor],
+  );
 
   return (
     <PageWrapper plugin={WANG_EDITOR_PLUGIN}>
@@ -35,6 +41,7 @@ const RichTextEditor: FC = () => {
           mode='default'
           style={{ borderBottom: '1px solid #ccc' }}
         />
+
         <Editor
           defaultConfig={editorConfig}
           value={html}

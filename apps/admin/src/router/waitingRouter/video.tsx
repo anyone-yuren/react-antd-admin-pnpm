@@ -1,4 +1,6 @@
 import { lazy } from '@loadable/component';
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import LazyLoad from '@/components/LazyLoad';
 
@@ -12,7 +14,7 @@ const VideoRoute: RouteObject = {
   name: 'Video',
   element: <LayoutGuard />,
   meta: {
-    title: '视频处理',
+    title: t('视频处理'),
     icon: 'video',
     orderNo: 5,
   },
@@ -23,7 +25,7 @@ const VideoRoute: RouteObject = {
       // element: <VideoPlayer />,
       element: LazyLoad(lazy(() => import('@/views/video/video-player'))),
       meta: {
-        title: '视频播放器',
+        title: t('视频播放器'),
         key: 'videoPlayer',
       },
     },

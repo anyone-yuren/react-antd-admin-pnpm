@@ -1,4 +1,6 @@
 import { lazy } from '@loadable/component';
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import LazyLoad from '@/components/LazyLoad';
 
@@ -12,7 +14,7 @@ const TableRoute: RouteObject = {
   name: 'Table',
   element: <LayoutGuard />,
   meta: {
-    title: '表格',
+    title: t('表格'),
     icon: 'table',
     orderNo: 3,
   },
@@ -23,7 +25,7 @@ const TableRoute: RouteObject = {
       // element: <TableBasic />,
       element: LazyLoad(lazy(() => import('@/views/table/table-basic'))),
       meta: {
-        title: '基础表格',
+        title: t('基础表格'),
         key: 'tableBasic',
       },
     },
@@ -33,7 +35,7 @@ const TableRoute: RouteObject = {
       // element: <TableEditRow />,
       element: LazyLoad(lazy(() => import('@/views/table/table-edit-row'))),
       meta: {
-        title: '可编辑行表格',
+        title: t('可编辑行表格'),
         key: 'tableEditRow',
       },
     },

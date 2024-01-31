@@ -1,5 +1,7 @@
 import { Card, Col, Flex, Row, Tag, Upload } from 'antd';
 import { GButton, GForm } from 'gbeata';
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { SvgIcon, Translatex } from 'ui';
 
@@ -18,38 +20,38 @@ const AddUser: FC<PAddUser> = () => {
   const { styles } = useStyles();
   const fields = [
     {
-      title: '全名',
+      title: t('全名'),
       key: 'input',
       required: true,
       defaultValue: 'Gbeata',
     },
     {
-      title: '密码',
+      title: t('密码'),
       type: 'password',
       key: 'password',
       defaultValue: 'gbeata',
     },
     {
-      title: '城市',
+      title: t('城市'),
       type: 'select',
       key: 'select',
       defaultValue: 1,
       options: [
-        { label: <Tag>选项A</Tag>, value: 1 },
-        { label: '选项2', value: 2 },
+        { label: <Tag>{t('选项A')}</Tag>, value: 1 },
+        { label: t('选项2'), value: 2 },
       ],
     },
     {
-      title: '电话号码',
+      title: t('电话号码'),
       key: 'number',
       required: true,
       defaultValue: 15305999999,
     },
     {
-      title: '地址',
+      title: t('地址'),
       type: 'textarea',
       key: 'textarea',
-      defaultValue: '广东省深圳市南山区科技园',
+      defaultValue: t('广东省深圳市南山区科技园'),
       span: 24,
     },
   ];
@@ -77,9 +79,10 @@ const AddUser: FC<PAddUser> = () => {
                 </Flex>
               </div>
               <p>
-                将图片拖到此处, 或<span style={{ color: '#1890ff' }}>点击上传</span>
+                {t('将图片拖到此处, 或')}
+                <span style={{ color: '#1890ff' }}>{t('点击上传')}</span>
               </p>
-              <p className='ant-upload-hint'>只能上传jpg、jpeg、gif、png、bmp文件, 且不超过500kb</p>
+              <p className='ant-upload-hint'>{t('只能上传jpg、jpeg、gif、png、bmp文件, 且不超过500kb')}</p>
             </Dragger>
           </Card>
         </Col>
@@ -88,7 +91,7 @@ const AddUser: FC<PAddUser> = () => {
             <GForm fields={fields} span={12} onConfirm={onFinish}>
               <Flex justify='end' className={styles['btn-submit']}>
                 <GButton type='primary' htmlType='submit'>
-                  创建用户
+                  {t('创建用户')}
                 </GButton>
               </Flex>
             </GForm>

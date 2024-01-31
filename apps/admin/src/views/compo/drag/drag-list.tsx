@@ -1,6 +1,8 @@
 import { Card, Col, Row } from 'antd';
+import { t } from 'i18next';
 import { cloneDeep } from 'lodash-es';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ReactSortable } from 'react-sortablejs';
 
 import { PageWrapper } from '@/components/Page';
@@ -8,8 +10,8 @@ import { PageWrapper } from '@/components/Page';
 import { SORTABLE_PLUGIN } from '@/settings/websiteSetting';
 
 interface ItemState {
-  id: number
-  name: string
+  id: number;
+  name: string;
 }
 
 const DragList: React.FC = () => {
@@ -25,15 +27,12 @@ const DragList: React.FC = () => {
     { name: 'TypeScript', id: 7 },
   ]);
 
-  const [dragLogs, setDragLogs] = useState<string[]>([
-    '列表1 => 列表2, 6 => 1',
-    '列表1 => 列表2, 6 => 2',
-  ]);
+  const [dragLogs, setDragLogs] = useState<string[]>([t('列表1 => 列表2, 6 => 1'), t('列表1 => 列表2, 6 => 2')]);
 
   const handleDrop = (event: any) => {
     const listMap = new Map([
-      ['list1', '列表1'],
-      ['list2', '列表2'],
+      ['list1', t('列表1')],
+      ['list2', t('列表2')],
     ]);
     const fromClsName = event.from.className;
     const toClsName = event.to.className;
@@ -48,57 +47,69 @@ const DragList: React.FC = () => {
     <PageWrapper plugin={SORTABLE_PLUGIN}>
       <Row gutter={12}>
         <Col span={5}>
-          <Card title='列表1事项' bordered={false} bodyStyle={{ height: '520px' }}>
-            <ReactSortable list={listOne} setList={setListOne} onEnd={handleDrop} group='list' className='list1' style={{ height: '100%' }}>
-              {
-                listOne.map((item) => (
-                  <Card
-                    key={item.id}
-                    hoverable
-                    size='small'
-                    style={{ marginBottom: '12px' }}
-                  >
-                    {item.name}
-                  </Card>
-                ))
-              }
+          <Card title={t('列表1事项')} bordered={false} bodyStyle={{ height: '520px' }}>
+            <ReactSortable
+              list={listOne}
+              setList={setListOne}
+              onEnd={handleDrop}
+              group='list'
+              className='list1'
+              style={{ height: '100%' }}
+            >
+              {listOne.map((item) => (
+                <Card key={item.id} hoverable size='small' style={{ marginBottom: '12px' }}>
+                  {item.name}
+                </Card>
+              ))}
             </ReactSortable>
           </Card>
         </Col>
         <Col span={5}>
-          <Card title='列表2事项' bordered={false} bodyStyle={{ height: '520px' }}>
-            <ReactSortable list={listTwo} setList={setListTwo} onEnd={handleDrop} group='list' className='list2' style={{ height: '100%' }}>
-              {
-                listTwo.map((item) => (
-                  <Card
-                    key={item.id}
-                    hoverable
-                    size='small'
-                    style={{ marginBottom: '12px' }}
-                  >
-                    {item.name}
-                  </Card>
-                ))
-              }
+          <Card title={t('列表2事项')} bordered={false} bodyStyle={{ height: '520px' }}>
+            <ReactSortable
+              list={listTwo}
+              setList={setListTwo}
+              onEnd={handleDrop}
+              group='list'
+              className='list2'
+              style={{ height: '100%' }}
+            >
+              {listTwo.map((item) => (
+                <Card key={item.id} hoverable size='small' style={{ marginBottom: '12px' }}>
+                  {item.name}
+                </Card>
+              ))}
             </ReactSortable>
           </Card>
         </Col>
         <Col span={4}>
-          <Card title='操作记录' bordered={false} bodyStyle={{ height: '520px' }}>
-            { dragLogs.map((item) => <p key={item} style={{ marginBottom: '8px' }}>{item}</p>) }
+          <Card title={t('操作记录')} bordered={false} bodyStyle={{ height: '520px' }}>
+            {dragLogs.map((item) => (
+              <p key={item} style={{ marginBottom: '8px' }}>
+                {item}
+              </p>
+            ))}
           </Card>
         </Col>
         <Col span={5}>
-          <Card title='列表1数据' bordered={false} bodyStyle={{ height: '520px' }}>
+          <Card title={t('列表1数据')} bordered={false} bodyStyle={{ height: '520px' }}>
             <pre>
-              {JSON.stringify(listOne.map(({ name, id }) => ({ name, id })), null, 2)}
+              {JSON.stringify(
+                listOne.map(({ name, id }) => ({ name, id })),
+                null,
+                2,
+              )}
             </pre>
           </Card>
         </Col>
         <Col span={5}>
-          <Card title='列表2数据' bordered={false} bodyStyle={{ height: '520px' }}>
+          <Card title={t('列表2数据')} bordered={false} bodyStyle={{ height: '520px' }}>
             <pre>
-              {JSON.stringify(listTwo.map(({ name, id }) => ({ name, id })), null, 2)}
+              {JSON.stringify(
+                listTwo.map(({ name, id }) => ({ name, id })),
+                null,
+                2,
+              )}
             </pre>
           </Card>
         </Col>

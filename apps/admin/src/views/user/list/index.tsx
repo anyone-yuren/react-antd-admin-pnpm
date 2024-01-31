@@ -1,7 +1,9 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { useRequest } from 'ahooks';
 import { Button, Col, Flex, Row } from 'antd';
+import { t } from 'i18next';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import UserCard from '@/components/UserCard';
@@ -41,7 +43,7 @@ const UserList: FC<PUSerList> = () => {
           icon={<PlusOutlined />}
           onClick={() => navigate('/user/add-user')}
         >
-          新建
+          {t('新建')}
         </Button>
       </Flex>
       <Row gutter={[16, 16]}>

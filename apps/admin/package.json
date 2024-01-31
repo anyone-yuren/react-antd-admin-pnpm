@@ -8,7 +8,9 @@
     "preview": "vite preview",
     "clean": "rimraf .eslintcache && rimraf node_modules",
     "lint": "eslint --cache --fix  \"{src,mock,build}/**/*.{js,ts,tsx}\"",
-    "lint:prettier": "prettier --write \"src/**/*.{js,json,ts,tsx,css,less,html,md}\""
+    "lint:prettier": "prettier --write \"src/**/*.{js,json,ts,tsx,css,less,html,md}\"",
+    "i18n": "i18n-helper scan -wec",
+    "i18nMachine": "i18n-helper scan -we -tm -c"
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
@@ -16,6 +18,8 @@
     "@gbeata/three": "workspace:^",
     "@loadable/component": "^5.16.3",
     "@reduxjs/toolkit": "^2.0.1",
+    "@tanstack/react-query": "^5.18.0",
+    "@tanstack/react-query-devtools": "^5.18.0",
     "@types/loadable__component": "^5.13.8",
     "@types/react-router-dom": "^5.3.3",
     "@uiw/react-codemirror": "^4.21.20",
@@ -56,7 +60,8 @@
     "use-immer": "^0.9.0",
     "video-react": "^0.16.0",
     "vite-plugin-mock": "2.9.6",
-    "xlsx": "^0.18.5"
+    "xlsx": "^0.18.5",
+    "zustand": "^4.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.23.3",
@@ -66,6 +71,7 @@
     "@gbeata/ts-config": "workspace:^",
     "@gbeata/utils": "workspace:^",
     "@gbeata/vite-config": "workspace:^",
+    "@iconify/react": "^4.1.1",
     "@types/crypto-js": "^4.2.1",
     "@types/dom-to-image": "^2.6.7",
     "@types/file-saver": "^2.0.7",
@@ -80,8 +86,8 @@
     "commitizen": "^4.3.0",
     "cssnano": "^6.0.1",
     "cz-git": "^1.7.1",
-    "eslint-config-gbeata-eslint": "workspace:^",
     "fast-glob": "^3.3.2",
+    "i18n-helper-cli": "^0.1.8",
     "less": "^4.2.0",
     "lint-staged": "^15.1.0",
     "postcss": "^8.4.31",
@@ -93,6 +99,12 @@
     "vite": "4.5.0",
     "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-svg-icons": "^2.0.1"
+  },
+  "peerDependencies": {
+    "i18next": "^23.7.19",
+    "i18next-browser-languagedetector": "^7.2.0",
+    "i18next-http-backend": "^2.4.2",
+    "react-i18next": "^14.0.1"
   },
   "lint-staged": {
     "{src,mock,build}/**/*.{js,ts,tsx}": [

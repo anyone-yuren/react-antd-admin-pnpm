@@ -1,5 +1,7 @@
 import { LockOutlined, PoweroffOutlined } from '@ant-design/icons';
 import { Dropdown, Space } from 'antd';
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { useMessage } from '@/hooks/web/useMessage';
@@ -22,7 +24,7 @@ export default function UserDropdown() {
       label: (
         <Space size={4}>
           <LockOutlined rev={undefined} />
-          <span>锁定屏幕</span>
+          <span>{t('锁定屏幕')}</span>
         </Space>
       ),
     },
@@ -31,7 +33,7 @@ export default function UserDropdown() {
       label: (
         <Space size={4}>
           <PoweroffOutlined rev={undefined} />
-          <span>退出登录</span>
+          <span>{t('退出登录')}</span>
         </Space>
       ),
     },
@@ -60,8 +62,8 @@ export default function UserDropdown() {
 
   const handleLogout = () => {
     createConfirm({
-      title: <span>温馨提醒</span>,
-      content: <span>是否确认退出系统?</span>,
+      title: <span>{t('温馨提醒')}</span>,
+      content: <span>{t('是否确认退出系统?')}</span>,
       onOk: async () => {
         await logoutAction(true);
       },
@@ -74,7 +76,7 @@ export default function UserDropdown() {
         await logoutApi();
       } catch (error) {
         const { createMessage } = useMessage();
-        createMessage.error('注销失败!');
+        createMessage.error(t('注销失败!'));
       }
     }
     dispatch(resetState());

@@ -2,6 +2,7 @@ import { CloseOutlined, LeftOutlined, RedoOutlined, RightOutlined } from '@ant-d
 import { Button, Dropdown } from 'antd';
 import classNames from 'classnames';
 import { type FC, useEffect, useRef, useState, type WheelEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { searchRoute } from '@/utils';
@@ -17,12 +18,13 @@ import type { RouteObject } from '@/router/types';
 import type { MenuProps } from 'antd';
 
 const LayoutTags: FC = () => {
+  const { t } = useTranslation();
   const { styles } = useStyles();
   const items: MenuProps['items'] = [
-    { key: 'left', label: '关闭左侧' },
-    { key: 'right', label: '关闭右侧' },
-    { key: 'other', label: '关闭其它' },
-    { key: 'all', label: '关闭所有' },
+    { key: 'left', label: t('关闭左侧') },
+    { key: 'right', label: t('关闭右侧') },
+    { key: 'other', label: t('关闭其它') },
+    { key: 'all', label: t('关闭所有') },
   ];
 
   const onClick: MenuProps['onClick'] = ({ key }) => {
@@ -104,8 +106,8 @@ const LayoutTags: FC = () => {
       // 标签在可视区域左侧 (The active tag on the left side of the layout_tags-main)
       leftOffset = (tag?.offsetLeft ?? 0) + mainBodyPadding;
     } else if (
-      (tag?.offsetLeft ?? 0) > -tagsBodyLeft
-      && (tag?.offsetLeft ?? 0) + (tag?.offsetWidth ?? 0) < -tagsBodyLeft + mainWidth
+      (tag?.offsetLeft ?? 0) > -tagsBodyLeft &&
+      (tag?.offsetLeft ?? 0) + (tag?.offsetWidth ?? 0) < -tagsBodyLeft + mainWidth
     ) {
       // 标签在可视区域 (The active tag on the layout_tags-main)
       leftOffset = Math.min(0, mainWidth - (tag?.offsetWidth ?? 0) - (tag?.offsetLeft ?? 0) - mainBodyPadding);
@@ -193,7 +195,7 @@ const LayoutTags: FC = () => {
             <span key={item.fullPath} data-path={item.fullPath}>
               <TagItem
                 key={item.key}
-                name={item.meta?.title!}
+                name={t(item.meta?.title!)}
                 active={activeTag === item.fullPath}
                 fixed={item.meta?.affix}
                 onClick={() => handleClickTag(item.fullPath!)}

@@ -1,17 +1,20 @@
 import { GButton } from 'gbeata';
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 const GbeataForm = () => {
   const fields: Array<any> = [
     {
-      title: '中文名',
+      title: t('中文名'),
       key: 'cn',
     },
     {
-      title: '年龄',
+      title: t('年龄'),
       type: 'slider',
       key: 'sex',
     },
   ];
+
   const handleConfirm = (form: any) => {
     console.log(form);
     alert(JSON.stringify(form));
@@ -19,7 +22,7 @@ const GbeataForm = () => {
 
   return (
     <GButton style={{ marginLeft: 120 }} type='primary' htmlType='submit'>
-      提交
+      {t('提交')}
     </GButton>
   );
 };

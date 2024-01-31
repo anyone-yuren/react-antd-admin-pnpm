@@ -4,7 +4,9 @@
 // 晚点处理吧，类型导出有问题i
 import dayjs from 'dayjs';
 import { GSearchTable } from 'gbeata';
+import { t } from 'i18next';
 import { memo, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import type { GSearchTableField } from 'gbeata/lib/GSearchTable/g-search-table';
 
@@ -13,18 +15,19 @@ function CommitTable() {
 
   const fields: Array<GSearchTableField> = [
     {
-      title: '作者',
+      title: t('作者'),
       key: 'author',
     },
     {
-      title: '提交信息',
+      title: t('提交信息'),
       key: 'message',
     },
     {
-      title: '时间',
+      title: t('时间'),
       key: 'time',
     },
   ];
+
   const apiUrl = 'https://api.github.com/repos/anyone-yuren/react-antd-admin-pnpm/commits?sha=admin&per_page=5';
   const accessToken = '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';
 
@@ -37,7 +40,7 @@ function CommitTable() {
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error(`GitHub API请求失败：${response.statusText}`);
+          throw new Error(t('GitHub API请求失败：{{statusText}}', { statusText: response.statusText }));
         }
         return response.json();
       })
@@ -64,7 +67,7 @@ function CommitTable() {
 
   return (
     <>
-      <GSearchTable title='Github 提交记录' data={data} fields={fields} />
+      <GSearchTable title={t('Github 提交记录')} data={data} fields={fields} />
     </>
   );
 }

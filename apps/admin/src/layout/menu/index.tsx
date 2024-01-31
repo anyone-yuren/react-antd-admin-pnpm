@@ -1,5 +1,8 @@
+/* eslint-disable consistent-return */
+/* eslint-disable implicit-arrow-linebreak */
 import { Menu, Spin } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -21,7 +24,8 @@ const getItem = (
   icon?: React.ReactNode,
   children?: MenuItem[],
   type?: 'group',
-): MenuItem => ({
+): MenuItem =>
+  ({
     label,
     key,
     icon,
@@ -36,6 +40,7 @@ const LayoutMenu = (props: any) => {
   const [menuList, setMenuList] = useState<MenuItem[]>([]);
   const [openKeys, setOpenKeys] = useState<string[]>([]);
   const [selectedKeys, setSelectedKeys] = useState<string[]>([pathname]);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     setSelectedKeys([pathname]);
@@ -55,9 +60,11 @@ const LayoutMenu = (props: any) => {
   const getMenuItem = (data: AppMenu[], list: MenuItem[] = []) => {
     data.forEach((item: AppMenu) => {
       if (!item?.children?.length) {
-        return list.push(getItem(item.name, item.path, addIcon(item.icon, item.iconSize)));
+        return list.push(getItem(t(item.name), item.path, addIcon(item.icon, item.iconSize)));
       }
-      list.push(getItem(item.name, item.path, addIcon(item.icon, item.iconSize), getMenuItem(item.children)));
+      console.log(t(item.name));
+
+      list.push(getItem(t(item.name), item.path, addIcon(item.icon, item.iconSize), getMenuItem(item.children)));
     });
     return list;
   };
@@ -75,7 +82,7 @@ const LayoutMenu = (props: any) => {
 
   useEffect(() => {
     getMenuList();
-  }, []);
+  }, [i18n.language]);
 
   const handleOpenChange: MenuProps['onOpenChange'] = (keys: string[]) => {
     if (keys.length === 0 || keys.length === 1) return setOpenKeys(keys);

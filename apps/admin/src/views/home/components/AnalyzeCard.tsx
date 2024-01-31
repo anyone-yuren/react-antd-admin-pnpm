@@ -1,8 +1,10 @@
 import { Col, Typography } from 'antd';
 import { useTheme } from 'antd-style';
 import classNames from 'classnames';
+import { t } from 'i18next';
 import { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
+import { useTranslation } from 'react-i18next';
 import { BaseCard } from 'ui';
 
 import SvgIcon from '@/components/SvgIcon';
@@ -27,7 +29,7 @@ export const AnalyzeCard = () => {
         <BaseCard loading={loading}>
           <div className={classNames(styles.flex)}>
             <div className='card-left'>
-              <Text strong>活跃用户数量</Text>
+              <Text strong>{t('活跃用户数量')}</Text>
               <Title className='count' level={5} style={{ margin: '8px 0' }}>
                 <SvgIcon size={20} style={{ marginRight: '4px', color: token.colorPrimary }} name='solar'></SvgIcon>
                 +2.6%
@@ -60,12 +62,14 @@ export const AnalyzeCard = () => {
                       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
                     },
                   ],
+
                   yAxis: [
                     {
                       show: false,
                       type: 'value',
                     },
                   ],
+
                   series: [
                     {
                       name: 'Direct',
@@ -87,7 +91,7 @@ export const AnalyzeCard = () => {
         <BaseCard loading={loading}>
           <div className={classNames(styles.flex)}>
             <div className='card-left'>
-              <Text strong>总下载量</Text>
+              <Text strong>{t('总下载量')}</Text>
               <Title className='count' level={5} style={{ margin: '8px 0' }}>
                 <SvgIcon
                   size={20}
@@ -124,12 +128,14 @@ export const AnalyzeCard = () => {
                       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
                     },
                   ],
+
                   yAxis: [
                     {
                       show: false,
                       type: 'value',
                     },
                   ],
+
                   series: [
                     {
                       name: 'Direct',
@@ -151,7 +157,7 @@ export const AnalyzeCard = () => {
         <BaseCard loading={loading}>
           <div className={classNames(styles.flex)}>
             <div className='card-left'>
-              <Text strong>总安装数量</Text>
+              <Text strong>{t('总安装数量')}</Text>
               <Title className='count' level={5} style={{ margin: '8px 0' }}>
                 <SvgIcon size={20} style={{ marginRight: '4px', color: token.colorPrimary }} name='solar'></SvgIcon>
                 +5.6%
@@ -184,12 +190,14 @@ export const AnalyzeCard = () => {
                       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
                     },
                   ],
+
                   yAxis: [
                     {
                       show: false,
                       type: 'value',
                     },
                   ],
+
                   series: [
                     {
                       name: 'Direct',

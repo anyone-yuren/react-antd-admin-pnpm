@@ -1,4 +1,6 @@
 import { lazy } from '@loadable/component';
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import LazyLoad from '@/components/LazyLoad';
 
@@ -12,7 +14,7 @@ const ImageRoute: RouteObject = {
   name: 'Image',
   element: <LayoutGuard />,
   meta: {
-    title: '图片处理',
+    title: t('图片处理'),
     icon: 'image',
     orderNo: 4,
   },
@@ -23,7 +25,7 @@ const ImageRoute: RouteObject = {
       // element: <ImageCropper />,
       element: LazyLoad(lazy(() => import('@/views/image/image-cropper'))),
       meta: {
-        title: '图片裁剪',
+        title: t('图片裁剪'),
         key: 'imageCropper',
       },
     },
@@ -33,7 +35,7 @@ const ImageRoute: RouteObject = {
       // element: <ImageCompress />,
       element: LazyLoad(lazy(() => import('@/views/image/image-compress'))),
       meta: {
-        title: '图片压缩',
+        title: t('图片压缩'),
         key: 'imageCompress',
       },
     },
