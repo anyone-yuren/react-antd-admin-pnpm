@@ -39,7 +39,6 @@ const LoginPage: FC = () => {
   const [searchParams] = useSearchParams();
 
   const handleLogin = async (values: any) => {
-    debugger;
     try {
       setLoading(true);
       const userInfo = await loginAction({

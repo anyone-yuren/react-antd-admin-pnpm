@@ -1,18 +1,24 @@
 import { service } from '@/utils/axios';
 
-interface LoginParams {
+import type { UserInfo, UserToken } from '#/entity';
+
+export interface LoginParams {
   username: string;
   password: string;
 }
 
+export type SignRes = UserToken & {
+  user: UserInfo;
+};
+
 // User login api
-export function loginApi(data: LoginParams): Promise<any> {
+export const loginApi = (data: LoginParams): Promise<SignRes> => {
   return service({
     url: '/login',
     method: 'post',
     data,
   });
-}
+};
 
 // Get User info
 export function getUserInfo(): Promise<any> {
