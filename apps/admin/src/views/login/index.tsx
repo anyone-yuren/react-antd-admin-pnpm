@@ -8,17 +8,11 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import SvgIcon from '@/components/SvgIcon';
 
-import { getAuthCache } from '@/utils/auth';
-
-import { getUserInfo, loginApi } from '@/api';
 import illustrationDashboard from '@/assets/images/illustration_dashboard.png';
-import { TOKEN_KEY } from '@/enums/cacheEnum';
-import { useAppDispatch, useAppSelector } from '@/stores';
-import { setSessionTimeout, setToken, setUserInfo } from '@/stores/modules/user';
+import { useSignIn } from '@/stores/modules/userStore';
 
 import useStyles from './index.style';
 
-import type { LoginParams, UserInfo } from '@/types';
 import type { FormInstance } from 'antd/es/form';
 
 const { Title, Text } = Typography;
@@ -27,80 +21,28 @@ const LoginPage: FC = () => {
   const [form] = Form.useForm();
   const loginFormRef = useRef<FormInstance>(null);
   const [loading, setLoading] = useState(false);
-
-  const { styles } = useStyles();
-
-  const dispatch = useAppDispatch();
-
-  const { token, sessionTimeout } = useAppSelector((state) => state.user);
-  const getToken = (): string => token || getAuthCache<string>(TOKEN_KEY);
-
+  const signIn = useSignIn();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
+  const { styles } = useStyles();
+
   const handleLogin = async (values: any) => {
+    setLoading(true);
     try {
-      setLoading(true);
-      const userInfo = await loginAction({
+      const res = await signIn({
         username: values.username,
         password: values.password,
       });
-      if (userInfo) {
-        message.success(t('登陆成功！'));
+
+      if (res) {
+        navigate(searchParams.get('redirect') || '/');
       }
     } catch (error) {
-      console.log(error);
-
       message.error((error as unknown as Error).message);
     } finally {
       setLoading(false);
     }
-  };
-
-  const loginAction = async (
-    params: LoginParams & {
-      goHome?: boolean;
-    },
-  ): Promise<UserInfo | null> => {
-    try {
-      const { goHome = true, ...loginParams } = params;
-      const data = await loginApi(loginParams);
-
-      // 保存 Token
-      dispatch(setToken(data?.token));
-      return await afterLoginAction(goHome);
-    } catch (error) {
-      return Promise.reject(error);
-    }
-  };
-
-  const afterLoginAction = async (goHome?: boolean): Promise<UserInfo | null> => {
-    if (!getToken()) return null;
-
-    const userInfo = await getUserInfoAction();
-
-    if (sessionTimeout) {
-      dispatch(setSessionTimeout(false));
-    } else {
-      const redirect = searchParams.get('redirect');
-      if (redirect) {
-        navigate(redirect);
-      } else {
-        goHome && navigate(userInfo?.homePath || '/home');
-      }
-    }
-
-    return userInfo;
-  };
-
-  const getUserInfoAction = async (): Promise<UserInfo | null> => {
-    if (!getToken()) return null;
-
-    const userInfo = await getUserInfo();
-
-    dispatch(setUserInfo(userInfo));
-
-    return userInfo;
   };
 
   return (

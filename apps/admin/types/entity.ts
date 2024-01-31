@@ -14,6 +14,7 @@ export interface UserInfo {
 export interface UserToken {
   accessToken?: string;
   refreshToken?: string;
+  token?: string;
 }
 
 export interface Permission {

@@ -2,7 +2,6 @@ import { useMutation } from '@tanstack/react-query';
 import { App } from 'antd';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import { create } from 'zustand';
 
 import { loginApi, type LoginParams } from '@/api';
@@ -31,7 +30,7 @@ const useUserStore = create<UserStore>((set) => ({
 
 export const useUserInfo = () => useUserStore((state) => state.userInfo);
 
-export const useToken = () => useUserStore((state) => state.userToken);
+export const useUserToken = () => useUserStore((state) => state.userToken);
 
 export const useUserPermissions = () => useUserStore((state) => state.userInfo?.permissions);
 
@@ -47,14 +46,10 @@ export const useUserActions = () => useUserStore((state) => state.actions);
  */
 export const useSignIn = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const { notification, message } = App.useApp();
   const { setUserToken, setUserInfo } = useUserActions();
   const signInMutation = useMutation({
     mutationFn: loginApi,
-    onSuccess: () => {
-      message.success(t('登录成功'));
-    },
   });
 
   /**
@@ -63,25 +58,26 @@ export const useSignIn = () => {
    * @param {LoginParams} data - the parameters for signing in
    * @return {Promise<void>}
    */
-  const signIn = async (data: LoginParams): Promise<void> => {
+  const signIn = async (data: LoginParams): Promise<any> => {
     try {
       const res = await signInMutation.mutateAsync(data);
-      const { user, accessToken, refreshToken } = res;
-      setUserToken({ accessToken, refreshToken });
+      const { user, token } = res;
+      setUserToken({ token });
       setUserInfo(user);
       notification.success({
         message: t('登录成功'),
-        description: `${t('欢迎回来')}: ${data.username}`,
+        description: `欢迎回来: ${data.username}`,
         duration: 3,
       });
-      navigate('/home');
+      return await Promise.resolve(res);
     } catch (error: any) {
-      message.warning({
+      message.error({
         content: error.message,
         duration: 3,
       });
+      return Promise.reject(error);
     }
   };
 
-  return useCallback(signIn, []) as typeof signIn;
+  return useCallback(signIn, []);
 };
