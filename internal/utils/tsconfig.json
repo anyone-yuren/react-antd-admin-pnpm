@@ -1,5 +1,13 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "@gbeata/ts-config/node.json",
-  "include": ["src"]
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "esnext",
+    "lib": ["esnext", "dom"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true
+  }
 }
