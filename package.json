@@ -57,7 +57,7 @@
     "semantic-release": "^22.0.12",
     "turbo": "^1.11.0",
     "typescript": "^5.2.2",
-    "unbuild": "^2.0.0"
+    "unbuild": "v3.0.0-rc.1"
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",

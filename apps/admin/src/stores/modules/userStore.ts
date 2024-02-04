@@ -1,11 +1,11 @@
+import { getItem, removeItem, setItem } from '@gbeata/utils';
 import { useMutation } from '@tanstack/react-query';
 import { App } from 'antd';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { create } from 'zustand';
 
-import { getItem, removeItem, setItem } from '@/utils/storage';
-
+// import { getItem, removeItem, setItem } from '@/utils/storage';
 // 由于无法在异步函数中使用 persist, 所以这里无法使用，使用其他的持久化管理方式
 // import { persist } from 'zustand/middleware';
 import { loginApi, type LoginParams } from '@/api';
@@ -64,6 +64,8 @@ export const useSignIn = () => {
   const { t } = useTranslation();
   const { notification, message } = App.useApp();
   const { setUserToken, setUserInfo } = useUserActions();
+
+  console.log(getNumber(123));
 
   const signInMutation = useMutation({
     mutationFn: loginApi,
