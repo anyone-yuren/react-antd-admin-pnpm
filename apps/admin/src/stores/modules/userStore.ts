@@ -65,8 +65,6 @@ export const useSignIn = () => {
   const { notification, message } = App.useApp();
   const { setUserToken, setUserInfo } = useUserActions();
 
-  console.log(getNumber(123));
-
   const signInMutation = useMutation({
     mutationFn: loginApi,
   });
