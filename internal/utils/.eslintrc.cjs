@@ -5,4 +5,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: ["./tsconfig.json"],
   },
+  rules: {
+    "implicit-arrow-linebreak": "off",
+  },
 };

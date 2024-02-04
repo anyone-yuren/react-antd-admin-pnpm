@@ -46,6 +46,8 @@
     "@semantic-release/npm": "^11.0.2",
     "@semantic-release/release-notes-generator": "^12.1.0",
     "@types/node": "^20.10.7",
+    "@types/numeral": "^2.0.5",
+    "@types/ramda": "^0.29.10",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "cz-git": "^1.8.0",
@@ -66,6 +68,7 @@
     "i18next": "^23.7.19",
     "i18next-browser-languagedetector": "^7.2.0",
     "i18next-http-backend": "^2.4.2",
+    "numeral": "^2.0.6",
     "plop": "^4.0.1",
     "ramda": "^0.29.1",
     "react-i18next": "^14.0.1"
