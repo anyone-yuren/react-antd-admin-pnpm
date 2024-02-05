@@ -17,7 +17,7 @@ const LayoutHeader = (props: any) => {
       <div className='flex-between-h' style={{ padding: '0 12px' }}>
         <div className='flex-center-v'>
           <FoldTrigger />
-          <Breadcrumb show={hasCrumbs} />
+          {hasCrumbs && <Breadcrumb />}
         </div>
         <LayoutFeature />
       </div>

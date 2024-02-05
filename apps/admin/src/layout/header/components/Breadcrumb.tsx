@@ -13,8 +13,6 @@ type BreadcrumbProps = {
 
 export default function LayoutBreadcrumb(props: BreadcrumbProps) {
   const { t, i18n } = useTranslation();
-  const { show = true } = props;
-  if (!show) return null;
   const [breadcrumbs, setBreadcrumbs] = useState<any[]>([]);
   const { pathname } = useLocation();
   const getMenuList = useAppSelector((state) => state.menu.menuList);

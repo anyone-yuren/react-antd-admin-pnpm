@@ -3,7 +3,6 @@ import { type TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import appSlice from './modules/app';
 import menuSlice from './modules/menu';
 import tagsSlice from './modules/tags';
 
@@ -16,7 +15,6 @@ const persistConfig = {
 
 export const store: Store = configureStore({
   reducer: {
-    app: persistReducer(persistConfig, appSlice),
     menu: persistReducer(persistConfig, menuSlice),
     tags: persistReducer(persistConfig, tagsSlice),
   },
