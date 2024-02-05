@@ -35,3 +35,12 @@ export enum ThemeColorPresets {
   Orange = 'orange',
   Red = 'red',
 }
+
+export enum MultiTabOperation {
+  REFRESH = 'refresh',
+  CLOSE = 'close',
+  CLOSEOTHERS = 'closeOthers',
+  CLOSEALL = 'closeAll',
+  CLOSELEFT = 'closeLeft',
+  CLOSERIGHT = 'closeRight',
+}
