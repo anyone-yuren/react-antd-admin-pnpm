@@ -4,80 +4,80 @@ import type { MenuFoldBtnEnum, MenuModeEnum, MenuTypeEnum } from '../enums/menuE
 
 export interface AppConfig {
   // Theme color
-  themeColor: string
+  themeColor: string;
   // Storage location of permission related information
-  permissionCacheType: CacheTypeEnum
+  permissionCacheType: CacheTypeEnum;
   // Header setting
-  headerSetting: HeaderSetting
+  headerSetting: HeaderSetting;
   // Menu setting
-  menuSetting: MenuSetting
+  menuSetting: MenuSetting;
   // Transition setting
-  transitionSetting: TransitionSetting
+  transitionSetting: TransitionSetting;
   // Permission mode
-  permissionMode: PermissionModeEnum
+  permissionMode: PermissionModeEnum;
   // Whether tags cached
-  tagsCached: boolean
+  tagsCached: boolean;
   // Route keepAlive
-  openKeepAlive: boolean
+  openKeepAlive: boolean;
   // Lock screen time
-  lockScreenTime: number
+  lockScreenTime: number;
   // Whether to show the global footer
-  showFooter: boolean
+  showFooter: boolean;
   // Whether to turn on the color weak mode
-  colorWeak: boolean
+  colorWeak: boolean;
   // Whether to turn on the gray mode
-  grayMode: boolean
+  grayMode: boolean;
 }
 
 export interface HeaderSetting {
   // Show breadCrumb
-  showBreadCrumb: boolean
+  showBreadCrumb: boolean;
   // Show tags
-  showTags: boolean
+  showTags: boolean;
   // Show search
-  showSearch: boolean
+  showSearch: boolean;
   // Turn on full screen
-  showFullScreen: boolean
+  showFullScreen: boolean;
   // Show locale
-  showLocale: boolean
+  showLocale: boolean;
   // Show document button
-  showDoc: boolean
+  showDoc: boolean;
   // Show github button
-  showGithub: boolean
+  showGithub: boolean;
 }
 
 export interface MenuSetting {
   // Menu type
-  menuType: MenuTypeEnum
+  menuType: MenuTypeEnum;
   // Menu mode
-  menuMode: MenuModeEnum
+  menuMode: MenuModeEnum;
   // Menu theme
-  menuTheme: ThemeEnum
+  menuTheme: ThemeEnum;
   // Menu split
-  menuSplit: boolean
+  menuSplit: boolean;
   // Menu can drag
-  menuCanDrag: boolean
+  menuCanDrag: boolean;
   // Menu collapse
-  menuFold: boolean
+  menuFold: boolean;
   // Menu collapse type
-  menuFoldBtn: MenuFoldBtnEnum
+  menuFoldBtn: MenuFoldBtnEnum;
   // Whether to display the menu name when folding the menu
-  menuFoldShowTitle: boolean
+  menuFoldShowTitle: boolean;
   // Menu width
-  menuWidth: number,
+  menuWidth: number;
   // Hydrid mode sider menu fixed
-  menuFixed: boolean,
+  menuFixed: boolean;
   // Hybrid mode sider menu hidden
-  menuHidden: boolean
+  menuHidden: boolean;
 }
 
 export interface TransitionSetting {
   // Whether to open the top progress bar
-  openNProgress: boolean
+  openNProgress: boolean;
   // Whether to open page switching loading
-  openPageLoading: boolean
+  openPageLoading: boolean;
   // Whether to open the page switching animation
-  openTransition: boolean
+  openTransition: boolean;
   // Page basic switching animation
-  basicTransition: PageTransitionEnum
+  basicTransition: PageTransitionEnum;
 }

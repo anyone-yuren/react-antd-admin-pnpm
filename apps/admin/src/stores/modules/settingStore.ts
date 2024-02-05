@@ -10,6 +10,7 @@ type SettingsType = {
   themeStretch: boolean;
   breadCrumb: boolean;
   multiTab: boolean;
+  unfold: boolean;
 };
 type SettingStore = {
   settings: SettingsType;
@@ -27,6 +28,7 @@ const useSettingStore = create<SettingStore>((set) => ({
     themeStretch: false,
     breadCrumb: true,
     multiTab: true,
+    unfold: true,
   },
   actions: {
     setSettings: (settings: SettingsType) => {
