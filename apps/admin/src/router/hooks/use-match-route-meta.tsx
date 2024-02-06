@@ -8,7 +8,7 @@ import type { RouteMeta } from '#/router';
 
 export function useMatchRouteMeta() {
   const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
-  const [matchRouteMEta, setMatchRouteMeta] = useState<RouteMeta>();
+  const [matchRouteMeta, setMatchRouteMeta] = useState<RouteMeta>();
   // 获取路由组件实例
   const children = useOutlet();
   // 获取所有匹配到路由
@@ -16,7 +16,7 @@ export function useMatchRouteMeta() {
   // 获取拍平后到路由菜单
   const flattenedRoutes = useFlattenedRoutes();
   // const pathname = usePathname();
-  const { path } = useRouter();
+  const { push } = useRouter();
 
   useEffect(() => {
     const lastRoute = matches.at(-1);
@@ -29,6 +29,9 @@ export function useMatchRouteMeta() {
         currentRouteMeta.outlet = children;
         setMatchRouteMeta(currentRouteMeta);
       }
+    } else {
+      push(HOMEPAGE);
     }
   }, [matches]);
+  return matchRouteMeta;
 }

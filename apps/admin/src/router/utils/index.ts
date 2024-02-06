@@ -3,7 +3,7 @@ import { ascend } from 'ramda';
 import type { AppRouteObject, RouteMeta } from '#/router';
 
 /**
- * 根据特定条件过滤菜单项并对过滤后的项目进行排序
+ * 根据特定条件过滤菜单项并对过滤后的项目进行排序，并按照order升序返回
  *
  * @param {AppRouteObject[]} items - The array of items to be filtered and sorted
  * @return {AppRouteObject[]} The filtered and sorted array of items
