@@ -2,6 +2,7 @@
   "name": "@gbeata/admin-docs",
   "version": "0.0.1",
   "description": "gbeata-admin 文档",
+  "type": "module",
   "scripts": {
     "start": "npm run dev",
     "dev": "dumi dev",

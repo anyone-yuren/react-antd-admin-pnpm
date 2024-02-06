@@ -5,7 +5,9 @@ import { useFlattenedRoutes } from './use-flattened-routes';
 import { useRouter } from './use-router';
 
 import type { RouteMeta } from '#/router';
-
+/**
+ * 返回当前路由Meta信息
+ */
 export function useMatchRouteMeta() {
   const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
   const [matchRouteMeta, setMatchRouteMeta] = useState<RouteMeta>();

@@ -4577,7 +4577,7 @@ packages:
       ink: 4.4.1(@types/react@18.2.48)(react@18.2.0)
       json-stable-stringify: 1.1.1
       just-diff: 6.0.2
-      langchain: 0.1.12(jsdom@22.1.0)(lodash@4.17.21)
+      langchain: 0.1.13(jsdom@22.1.0)(lodash@4.17.21)
       lodash-es: 4.17.21
       p-map: 7.0.1
       pangu: 4.0.7
@@ -17893,8 +17893,8 @@ packages:
   /kolorist@1.8.0:
     resolution: {integrity: sha512-Y+60/zizpJ3HRH8DCss+q95yr6145JXZo46OTpFvDZWLfRCE4qChOyk1b26nMaNpfHHgxagk9dXT5OP0Tfe+dQ==}
 
-  /langchain@0.1.12(jsdom@22.1.0)(lodash@4.17.21):
-    resolution: {integrity: sha512-F3WK6KJGeA+gnXIrijKy892yEGzUOpO4pEWWphUrCxrtfjXh1hFcXfj5Oh14qGvaUCmn8ezBqQMJ/LhL6z3DhQ==}
+  /langchain@0.1.13(jsdom@22.1.0)(lodash@4.17.21):
+    resolution: {integrity: sha512-A56Qi5Jlxc3b/G9ny/B6gsqujFp9dFpnT7HIKFCq/mS/5foCb0nQ8P2F/Pwv8COg6b/be9Gwu1WQ97L93uE+dw==}
     engines: {node: '>=18'}
     peerDependencies:
       '@aws-sdk/client-s3': ^3.310.0
@@ -17923,7 +17923,6 @@ packages:
       faiss-node: '*'
       fast-xml-parser: ^4.2.7
       google-auth-library: ^8.9.0
-      googleapis: ^126.0.1
       handlebars: ^4.7.8
       html-to-text: ^9.0.5
       ignore: ^5.2.0
@@ -18001,8 +18000,6 @@ packages:
       fast-xml-parser:
         optional: true
       google-auth-library:
-        optional: true
-      googleapis:
         optional: true
       handlebars:
         optional: true
@@ -18116,6 +18113,7 @@ packages:
       - discord.js
       - encoding
       - firebase-admin
+      - googleapis
       - hnswlib-node
       - llmonitor
       - lodash

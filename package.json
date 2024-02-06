@@ -21,7 +21,7 @@
     "clean": "pnpm clean:turbo-cache",
     "clean:node-modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
     "clean:turbo-cache": "turbo run clean && rimraf node_modules",
-    "reinstall": "pnpm run clean && rimraf pnpm-lock.yaml && rimraf package.lock.json && rimraf node_modules && npm run bootstrap",
+    "reinstall": "pnpm run clean && rimraf pnpm-lock.yaml && rimraf package.lock.json && rimraf node_modules && pnpm cache clear --force && npm run bootstrap",
     "create:app": "plop app"
   },
   "keywords": [],
