@@ -12,6 +12,7 @@ import { useAppSelector } from '@/stores';
 import LayoutHeader from './header';
 import useStyles from './index.style';
 import LayoutMenu from './menu';
+import { useGlobalStore } from 'store';
 
 export const BasicLayout = (props: any) => {
   const { state } = useLocation();
@@ -22,20 +23,54 @@ export const BasicLayout = (props: any) => {
 
   const getMenuFold = useAppSelector((st) => st.app.appConfig?.menuSetting?.menuFold);
 
-  return (
-    <Layout className={styles.layout_wrapper}>
-      <Sider width={240} trigger={null} theme='light' collapsed={getMenuFold} className='ant-layout-sider'>
-        <AppLogo />
-        <LayoutMenu />
-      </Sider>
-      <Layout>
+  const { layoutType, } = useGlobalStore();
+  console.log('layoutType:', layoutType);
+  
+  if(layoutType === "2") {
+    return (
+      <Layout className={styles.layout_wrapper}>
+        <LayoutHeader />
+        <Layout>
+        <Sider width={240} trigger={null} theme='light' collapsed={getMenuFold} className='ant-layout-sider'>
+          <AppLogo />
+          <LayoutMenu />
+        </Sider>
+          <Content>
+            <ErrorBoundary>
+              <Outlet key={key} />
+            </ErrorBoundary>
+          </Content>
+        </Layout>
+      </Layout>
+    );
+  }
+  if(layoutType === "3") {
+    return (
+      <Layout className={styles.layout_wrapper}>
         <LayoutHeader />
         <Content>
           <ErrorBoundary>
             <Outlet key={key} />
           </ErrorBoundary>
         </Content>
-      </Layout>
     </Layout>
-  );
+    );
+  } else { // 默认为1
+    return (
+      <Layout className={styles.layout_wrapper}>
+        <Sider width={240} trigger={null} theme='light' collapsed={getMenuFold} className='ant-layout-sider'>
+          <AppLogo />
+          <LayoutMenu />
+        </Sider>
+        <Layout>
+          <LayoutHeader />
+          <Content>
+            <ErrorBoundary>
+              <Outlet key={key} />
+            </ErrorBoundary>
+          </Content>
+        </Layout>
+      </Layout>
+    );
+  }
 };

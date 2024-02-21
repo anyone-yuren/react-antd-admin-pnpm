@@ -4,6 +4,8 @@ import { persist } from "zustand/middleware";
 interface State {
   theme: string;
   setTheme: (theme: string) => void;
+  layoutType: string;
+  setLayoutType: (layoutType: string) => void;
   preset: string;
   setPreset: (preset: string) => void;
   hasTabs: boolean;
@@ -19,6 +21,10 @@ export const useGlobalStore = create<State>()(
         theme: "light",
         setTheme: (theme: string) => {
           set({ theme });
+        },
+        layoutType: "1",
+        setLayoutType: (layoutType: string) => {
+          set({ layoutType });
         },
         preset: "#00A76F",
         setPreset: (preset: string) => {

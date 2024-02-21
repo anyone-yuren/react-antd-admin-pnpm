@@ -5,10 +5,20 @@ import { useState } from 'react';
 import SvgIcon from '@/components/SvgIcon';
 
 import type { SegmentedLabeledOption, SegmentedValue } from 'antd/lib/segmented';
+import { useGlobalStore } from 'store';
 
 export default function LayoutSettings() {
-  const [value, setValue] = useState<SegmentedValue>('1');
+  
+  const { layoutType, setLayoutType } = useGlobalStore();
+
+  const [value, setValue] = useState<SegmentedValue>(layoutType || '1');
   const token = useTheme();
+
+  const changeLayoutType = (layoutType: string) => {
+    setValue(layoutType)
+    setLayoutType(layoutType)
+  }
+
   const options: SegmentedLabeledOption[] = [
     {
       label: (
@@ -42,7 +52,7 @@ export default function LayoutSettings() {
       }}
       block
       value={value}
-      onChange={(v) => setValue(v)}
+      onChange={(v) => changeLayoutType(v as string)}
       options={options}
     />
   );
