@@ -13,7 +13,9 @@
     "@react-spring/web": "^9.7.3",
     "antd": "^5.12.1",
     "antd-style": "^3.6.1",
+    "konva": "^9.3.3",
     "react": "^18.2.0",
+    "react-konva": "^18.2.10",
     "react-slick": "^0.29.0"
   },
   "devDependencies": {
