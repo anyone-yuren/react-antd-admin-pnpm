@@ -22,13 +22,12 @@ jobs:
 
       - name: Install dependencies
         shell: bash
-        run: pnpm install
-
-      # step 3. 安装依赖并打包
-      - name: Install and Build 🔧
         run: |
           pnpm config set registry https://registry.npmmirror.com
-          pnpm build --filter @gbeata/admin-docs
+          pnpm install
+
+      - name: Build 🔧
+        run: pnpm build --filter @gbeata/admin-docs
 
       - name: Deploy
         uses: s0/git-publish-subdir-action@develop
