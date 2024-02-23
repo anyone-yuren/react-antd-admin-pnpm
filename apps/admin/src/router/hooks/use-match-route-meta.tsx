@@ -15,6 +15,7 @@ export function useMatchRouteMeta() {
   const children = useOutlet();
   // 获取所有匹配到路由
   const matches = useMatches();
+  debugger;
   // 获取拍平后到路由菜单
   const flattenedRoutes = useFlattenedRoutes();
   // const pathname = usePathname();

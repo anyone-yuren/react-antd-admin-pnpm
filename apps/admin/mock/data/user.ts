@@ -1,6 +1,6 @@
 import { MockMethod } from 'vite-plugin-mock';
 import { requestParams, resultSuccess, resultError, getRequestToken } from '../_utils';
-
+import { USER_LIST } from '../_assets';
 export function createFakeUserList() {
   return [
     {
@@ -10,7 +10,7 @@ export function createFakeUserList() {
       avatar: 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/avatar.png',
       desc: 'super admin',
       password: '123456',
-      token: 'fakeToken',
+      token: 'gbeataToken',
       homePath: '/home',
     },
   ];
@@ -24,17 +24,13 @@ export default [
     method: 'post',
     response: ({ body }) => {
       const { username, password } = body;
-      const checkUser = createFakeUserList().find((item) => item.username === username && password === item.password);
-      if (!checkUser) {
+      const user = USER_LIST.find((item) => item.username === username);
+      // const checkUser = createFakeUserList().find((item) => item.username === username && password === item.password);
+      if (!user) {
         return resultError('Incorrect account or password!');
       }
-      const { userId, username: _username, token, realName, desc } = checkUser;
       return resultSuccess({
-        userId,
-        username: _username,
-        token,
-        realName,
-        desc,
+        ...user,
       });
     },
   },

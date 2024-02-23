@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { useGlobalStore } from 'store';
 
 import LayoutFeature from '../feature';
+import MultiTabs from '../multi-tab';
 import LayoutTags from '../tags';
 import { Breadcrumb, FoldTrigger } from './components';
 import useStyles from './style';
@@ -22,6 +23,7 @@ const LayoutHeader = (props: any) => {
         <LayoutFeature />
       </div>
       {hasTabs ? <LayoutTags /> : null}
+      {/* {hasTabs ? <MultiTabs offsetTop={true} /> : null} */}
     </Header>
   );
 };
