@@ -3,7 +3,7 @@
   "display": "Node Config",
   "extends": "./base.json",
   "compilerOptions": {
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM"],
     "noImplicitAny": true,
     "sourceMap": true,
     "noEmit": true,

@@ -1,13 +1,15 @@
 import { createStyles } from 'antd-style';
 
 const useStyles = createStyles(() => ({
-  'compo_fold-trigger': {
-    display: 'flex',
+  anticon: {
+    display: 'inline-flex',
     alignItems: 'center',
+    verticalAlign: 'middle',
     cursor: 'pointer',
-  },
-  unfold: {
-    svg: { transform: 'scaleX(-1)', transition: 'transform 0.2s' },
+    svg: {
+      display: 'inline-block',
+    },
   },
 }));
+
 export default useStyles;

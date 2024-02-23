@@ -4,8 +4,7 @@ import classNames from 'classnames';
 
 import SvgIcon from '@/components/SvgIcon';
 
-import logoName from '@/assets/images/name_white.png';
-import { useAppSelector } from '@/stores';
+import { useSettings } from '@/stores/modules/settingStore';
 
 import useStyles from './app-logo.module.style';
 
@@ -14,7 +13,8 @@ import type { FC } from 'react';
 const AppLogo: FC = () => {
   const token = useTheme();
   const { styles } = useStyles();
-  const getMenuFold = useAppSelector((state) => state.app.appConfig?.menuSetting?.menuFold);
+  const settings = useSettings();
+  const getMenuFold = settings.unfold;
 
   return (
     <div className={classNames('anticon', styles['app-logo'])}>

@@ -21,7 +21,7 @@
     "clean": "pnpm clean:turbo-cache",
     "clean:node-modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
     "clean:turbo-cache": "turbo run clean && rimraf node_modules",
-    "reinstall": "pnpm run clean && rimraf pnpm-lock.yaml && rimraf package.lock.json && rimraf node_modules && npm run bootstrap",
+    "reinstall": "pnpm run clean && rimraf pnpm-lock.yaml && rimraf package.lock.json && rimraf node_modules && pnpm cache clear --force && npm run bootstrap",
     "create:app": "plop app"
   },
   "keywords": [],
@@ -46,6 +46,8 @@
     "@semantic-release/npm": "^11.0.2",
     "@semantic-release/release-notes-generator": "^12.1.0",
     "@types/node": "^20.10.7",
+    "@types/numeral": "^2.0.5",
+    "@types/ramda": "^0.29.10",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "cz-git": "^1.8.0",
@@ -57,7 +59,7 @@
     "semantic-release": "^22.0.12",
     "turbo": "^1.11.0",
     "typescript": "^5.2.2",
-    "unbuild": "^2.0.0"
+    "unbuild": "v3.0.0-rc.1"
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
@@ -66,7 +68,9 @@
     "i18next": "^23.7.19",
     "i18next-browser-languagedetector": "^7.2.0",
     "i18next-http-backend": "^2.4.2",
+    "numeral": "^2.0.6",
     "plop": "^4.0.1",
+    "ramda": "^0.29.1",
     "react-i18next": "^14.0.1"
   }
 }

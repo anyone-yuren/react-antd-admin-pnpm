@@ -1,6 +1,6 @@
-import { MockMethod } from 'vite-plugin-mock'
-import { requestParams, resultSuccess, resultError, getRequestToken } from '../_utils'
-
+import { MockMethod } from 'vite-plugin-mock';
+import { requestParams, resultSuccess, resultError, getRequestToken } from '../_utils';
+import { USER_LIST } from '../_assets';
 export function createFakeUserList() {
   return [
     {
@@ -10,10 +10,10 @@ export function createFakeUserList() {
       avatar: 'https://cdn.jsdelivr.net/gh/baimingxuan/media-store/images/avatar.png',
       desc: 'super admin',
       password: '123456',
-      token: 'fakeToken',
-      homePath: '/home'
-    }
-  ]
+      token: 'gbeataToken',
+      homePath: '/home',
+    },
+  ];
 }
 
 // Mock user login
@@ -23,46 +23,36 @@ export default [
     timeout: 500,
     method: 'post',
     response: ({ body }) => {
-      const { username, password } = body
-      const checkUser = createFakeUserList().find(item => item.username === username && password === item.password)
-      if (!checkUser) {
-        return resultError('Incorrect account or password!')
+      const { username, password } = body;
+      const user = USER_LIST.find((item) => item.username === username);
+      // const checkUser = createFakeUserList().find((item) => item.username === username && password === item.password);
+      if (!user) {
+        return resultError('Incorrect account or password!');
       }
-      const { userId, username: _username, token, realName, desc } = checkUser
       return resultSuccess({
-        userId,
-        username: _username,
-        token,
-        realName,
-        desc
-      })
-    }
+        ...user,
+      });
+    },
   },
   {
     url: '/api/getUserInfo',
     method: 'get',
     response: (request: requestParams) => {
-      const token = getRequestToken(request)
-      if (!token) return resultError('Invalid token!')
-      const checkUser = createFakeUserList().find(item => item.token === token)
+      const token = getRequestToken(request);
+      if (!token) return resultError('Invalid token!');
+      const checkUser = createFakeUserList().find((item) => item.token === token);
       if (!checkUser) {
-        return resultError('The corresponding user information was not obtained!')
+        return resultError('The corresponding user information was not obtained!');
       }
-      return resultSuccess(checkUser)
-    }
+      return resultSuccess(checkUser);
+    },
   },
   {
     url: '/api/logout',
     timeout: 200,
     method: 'get',
     response: (request: requestParams) => {
-      const token = getRequestToken(request)
-      if (!token) return resultError('Invalid token!')
-      const checkUser = createFakeUserList().find(item => item.token === token)
-      if (!checkUser) {
-        return resultError('Invalid token!')
-      }
-      return resultSuccess(undefined, { message: 'Token has been destroyed!' })
-    }
-  }
-] as MockMethod[]
+      return resultSuccess(undefined, { message: 'Token has been destroyed!' });
+    },
+  },
+] as MockMethod[];

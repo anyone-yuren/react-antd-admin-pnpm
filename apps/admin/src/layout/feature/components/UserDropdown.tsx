@@ -1,23 +1,21 @@
 import { LockOutlined, PoweroffOutlined } from '@ant-design/icons';
 import { Dropdown, Space } from 'antd';
-import { t } from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { useMessage } from '@/hooks/web/useMessage';
 
-import { clearAuthCache, getAuthCache } from '@/utils/auth';
-
 import { logoutApi } from '@/api';
 import headerImg from '@/assets/images/avatar.jpeg';
-import { TOKEN_KEY } from '@/enums/cacheEnum';
-import { useAppDispatch, useAppSelector } from '@/stores';
-import { resetState } from '@/stores/modules/user';
+import { useUserActions, useUserToken } from '@/stores/modules/userStore';
 
 import type { MenuProps } from 'antd';
 
 export default function UserDropdown() {
-  const { createConfirm, contextHolder } = useMessage();
+  const { createConfirm, contextHolder, createMessage } = useMessage();
+  const { clearUserInfoAndToken } = useUserActions();
+  const { t } = useTranslation();
+  const { token } = useUserToken();
   const items: MenuProps['items'] = [
     {
       key: 'lock',
@@ -54,10 +52,6 @@ export default function UserDropdown() {
 
   const navigate = useNavigate();
 
-  const dispatch = useAppDispatch();
-  const { token } = useAppSelector((state) => state.user);
-  const getToken = (): string => token || getAuthCache<string>(TOKEN_KEY);
-
   const handleLock = () => {};
 
   const handleLogout = () => {
@@ -71,16 +65,14 @@ export default function UserDropdown() {
   };
 
   const logoutAction = async (goLogin = false) => {
-    if (getToken()) {
+    if (token) {
       try {
         await logoutApi();
       } catch (error) {
-        const { createMessage } = useMessage();
         createMessage.error(t('注销失败!'));
       }
     }
-    dispatch(resetState());
-    clearAuthCache();
+    clearUserInfoAndToken();
     goLogin && navigate('/login');
   };
 

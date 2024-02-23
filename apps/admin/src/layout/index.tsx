@@ -7,7 +7,7 @@ import { AppLogo } from '@/components/AppLogo';
 
 import { useTitle } from '@/hooks/web/useTitle';
 
-import { useAppSelector } from '@/stores';
+import { useSettings } from '@/stores/modules/settingStore';
 
 import LayoutHeader from './header';
 import useStyles from './index.style';
@@ -15,16 +15,14 @@ import LayoutMenu from './menu';
 
 export const BasicLayout = (props: any) => {
   const { state } = useLocation();
+  const { unfold } = useSettings();
   const { key = 'key' } = state || {};
   useTitle();
   const { Sider, Content } = Layout;
   const { styles } = useStyles();
-
-  const getMenuFold = useAppSelector((st) => st.app.appConfig?.menuSetting?.menuFold);
-
   return (
     <Layout className={styles.layout_wrapper}>
-      <Sider width={240} trigger={null} theme='light' collapsed={getMenuFold} className='ant-layout-sider'>
+      <Sider width={240} trigger={null} theme='light' collapsed={unfold} className='ant-layout-sider'>
         <AppLogo />
         <LayoutMenu />
       </Sider>

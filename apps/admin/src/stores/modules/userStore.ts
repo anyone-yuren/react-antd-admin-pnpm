@@ -1,12 +1,18 @@
+import { getItem, removeItem, setItem } from '@gbeata/utils';
 import { useMutation } from '@tanstack/react-query';
 import { App } from 'antd';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { create } from 'zustand';
 
+// import { getItem, removeItem, setItem } from '@/utils/storage';
+// 由于无法在异步函数中使用 persist, 所以这里无法使用，使用其他的持久化管理方式
+// import { persist } from 'zustand/middleware';
 import { loginApi, type LoginParams } from '@/api';
 
 import type { UserInfo, UserToken } from '#/entity';
+
+import { StorageEnum } from '#/enum';
 
 type UserStore = {
   userInfo: Partial<UserInfo>;
@@ -19,12 +25,22 @@ type UserStore = {
 };
 
 const useUserStore = create<UserStore>((set) => ({
-  userInfo: {},
-  userToken: {},
+  userInfo: getItem<UserInfo>(StorageEnum.User) || {},
+  userToken: getItem<UserToken>(StorageEnum.Token) || {},
   actions: {
-    setUserInfo: (userInfo: UserInfo) => set({ userInfo }),
-    setUserToken: (token: UserToken) => set({ userToken: token }),
-    clearUserInfoAndToken: () => set({ userInfo: {}, userToken: {} }),
+    setUserInfo: (userInfo: UserInfo) => {
+      set({ userInfo });
+      setItem(StorageEnum.User, userInfo);
+    },
+    setUserToken: (token: UserToken) => {
+      set({ userToken: token });
+      setItem(StorageEnum.Token, token);
+    },
+    clearUserInfoAndToken: () => {
+      set({ userInfo: {}, userToken: {} });
+      removeItem(StorageEnum.User);
+      removeItem(StorageEnum.Token);
+    },
   },
 }));
 
@@ -48,6 +64,7 @@ export const useSignIn = () => {
   const { t } = useTranslation();
   const { notification, message } = App.useApp();
   const { setUserToken, setUserInfo } = useUserActions();
+
   const signInMutation = useMutation({
     mutationFn: loginApi,
   });
@@ -61,9 +78,11 @@ export const useSignIn = () => {
   const signIn = async (data: LoginParams): Promise<any> => {
     try {
       const res = await signInMutation.mutateAsync(data);
-      const { user, token } = res;
+      const { token, ...rest } = res;
+      debugger;
       setUserToken({ token });
-      setUserInfo(user);
+      // 暂未提供，后续再决定权限如何处理
+      setUserInfo(rest);
       notification.success({
         message: t('登录成功'),
         description: `欢迎回来: ${data.username}`,

@@ -3,10 +3,8 @@ import { type TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import appSlice from './modules/app';
 import menuSlice from './modules/menu';
 import tagsSlice from './modules/tags';
-import userSlice from './modules/user';
 
 import type { Store } from 'redux';
 
@@ -17,14 +15,13 @@ const persistConfig = {
 
 export const store: Store = configureStore({
   reducer: {
-    app: persistReducer(persistConfig, appSlice),
     menu: persistReducer(persistConfig, menuSlice),
     tags: persistReducer(persistConfig, tagsSlice),
-    user: persistReducer(persistConfig, userSlice),
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-    serializableCheck: false,
-  }),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
   devTools: true,
 });
 

@@ -6,10 +6,10 @@ import { isNullOrUnDef } from '../is';
 import type { EncryptParams } from '../cipher';
 
 export interface CreateStorageParams extends EncryptParams {
-  prefixKey: string
-  storage: Storage
-  hasEncrypt: boolean
-  timeout?: Nullable<number>
+  prefixKey: string;
+  storage: Storage;
+  hasEncrypt: boolean;
+  timeout?: Nullable<number>;
 }
 
 export const createStorage = ({
@@ -65,9 +65,7 @@ export const createStorage = ({
         time: Date.now(),
         expire: !isNullOrUnDef(expire) ? new Date().getTime() + expire * 1000 : null,
       });
-      const stringifyValue = this.hasEncrypt
-        ? this.encrypt.encryptByAES(stringData)
-        : stringData;
+      const stringifyValue = this.hasEncrypt ? this.encrypt.encryptByAES(stringData) : stringData;
       this.storage.setItem(this.getKey(key), stringifyValue);
     }
 

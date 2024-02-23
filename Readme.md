@@ -5,7 +5,7 @@
 <img height="120" src="https://raw.githubusercontent.com/anyone-yuren/multiway/master/favicon.ico">
 
 <h1>Gbeata Admin</h1>
-
+<p>最新代码请查看 release-admin 分支</p>
 Gbeata Admin是一套用于快速构建后台管理系统模板
 
 文档地址：[https://anyone-yuren.github.io/gbeata-admin-docs](https://anyone-yuren.github.io/gbeata-admin-docs)
