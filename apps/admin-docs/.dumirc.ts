@@ -15,5 +15,5 @@ export default defineConfig({
   publicPath:
     process.env.NODE_ENV === 'production' ? '/' : '/',
   outputPath: '../../docs-dist',
-  base: process.env.NODE_ENV === 'production' ? '/gbeata-admin-docs/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/' : '/',
 });
