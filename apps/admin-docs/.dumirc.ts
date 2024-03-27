@@ -13,7 +13,7 @@ export default defineConfig({
     'https://raw.githubusercontent.com/anyone-yuren/multiway/master/logo.png',
   ],
   publicPath:
-    process.env.NODE_ENV === 'production' ? '/gbeata-admin-docs/' : '/',
+    process.env.NODE_ENV === 'production' ? '/' : '/',
   outputPath: '../../docs-dist',
   base: process.env.NODE_ENV === 'production' ? '/gbeata-admin-docs/' : '/',
 });
