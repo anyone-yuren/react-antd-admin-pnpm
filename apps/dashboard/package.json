@@ -1,0 +1,77 @@
+{
+  "name": "gbeata-dashboard",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "rimraf dist && vite build",
+    "preview": "vite preview",
+    "clean": "rimraf .eslintcache && rimraf node_modules",
+    "lint": "eslint --cache --fix  \"{src,mock,build}/**/*.{js,ts,tsx}\"",
+    "lint:prettier": "prettier --write \"src/**/*.{js,json,ts,tsx,css,less,html,md}\"",
+    "i18n": "i18n-helper scan -wec",
+    "i18nMachine": "i18n-helper scan -we -tm -c"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.2.6",
+    "@types/react-router-dom": "^5.3.3",
+    "ahooks": "^3.7.8",
+    "antd": "^5.11.2",
+    "antd-style": "^3.6.1",
+    "apis": "workspace:*",
+    "axios": "^1.6.2",
+    "classnames": "^2.3.2",
+    "dayjs": "^1.11.10",
+    "echarts": "^5.4.3",
+    "echarts-for-react": "^3.0.2",
+    "framer-motion": "^11.1.7",
+    "gbeata": "workspace:*",
+    "lodash-es": "^4.17.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.1",
+    "store": "workspace:^",
+    "ui": "workspace:^",
+    "vconsole": "^3.15.1",
+    "zustand": "^4.5.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.3",
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "@gbeata/eslint-config": "workspace:^",
+    "@gbeata/ts-config": "workspace:^",
+    "@gbeata/utils": "workspace:^",
+    "@gbeata/vite-config": "workspace:^",
+    "@types/lodash-es": "^4.17.11",
+    "@types/node": "^20.9.2",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "@vitejs/plugin-react": "^4.2.0",
+    "autoprefixer": "^10.4.16",
+    "commitizen": "^4.3.0",
+    "cz-git": "^1.7.1",
+    "i18n-helper-cli": "^0.1.8",
+    "less": "^4.2.0",
+    "lint-staged": "^15.1.0",
+    "postcss": "^8.4.31",
+    "prettier": "^3.1.0",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.5.1",
+    "typescript": "^5.2.2",
+    "vite": "4.5.0",
+    "vite-plugin-eslint": "^1.8.1",
+    "vite-plugin-svg-icons": "^2.0.1"
+  },
+  "peerDependencies": {
+    "i18next": "^23.7.19",
+    "i18next-browser-languagedetector": "^7.2.0",
+    "i18next-http-backend": "^2.4.2",
+    "react-i18next": "^14.0.1"
+  },
+  "lint-staged": {
+    "{src,mock,build}/**/*.{js,ts,tsx}": [
+      "eslint --fix"
+    ]
+  }
+}
