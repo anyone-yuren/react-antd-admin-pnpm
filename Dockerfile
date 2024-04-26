@@ -12,7 +12,7 @@ COPY . .
 
 RUN npm install pnpm -g 
 
-RUN pnpm bootstrap && pnpm build
+RUN pnpm i && pnpm build
 
 COPY . /source
 
