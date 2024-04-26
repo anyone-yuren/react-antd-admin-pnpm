@@ -17,7 +17,7 @@ RUN pnpm i && pnpm build
 COPY . /source
 
 # 选择更小体积的基础镜像
-FROM registry.cn-shenzhen.aliyuncs.com/mwcloud/nginxwebui:latest
+FROM nginx:latest
 
 COPY --from=build /source/gbeata-admin/ /usr/share/nginx/html/
 COPY default.conf /etc/nginx/conf.d/default.conf
