@@ -13,3 +13,4 @@ lib
 gbeata-dist
 gbeata-*
 *.eslintcache
+docs-dist

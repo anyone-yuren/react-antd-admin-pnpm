@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "rimraf dist && vite build",
+    "prod": "rimraf dist && vite build",
     "preview": "vite preview",
     "clean": "rimraf .eslintcache && rimraf node_modules",
     "lint": "eslint --cache --fix  \"{src,mock,build}/**/*.{js,ts,tsx}\"",

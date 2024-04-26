@@ -6,7 +6,7 @@ export interface ChartsProp {
 }
 
 const BaseCharts = (prop: ChartsProp) => (
-  <ReactECharts opts={{ renderer: 'svg' }} style={{ height: '100px' }} option={prop} />
+  <ReactECharts opts={{ renderer: 'svg' }} style={{ height: '300px' }} option={prop.option} />
 );
 
 export default BaseCharts;

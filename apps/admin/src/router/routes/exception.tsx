@@ -17,6 +17,7 @@ const ExceptionRoute: RouteObject = {
     title: '异常页面',
     icon: 'bug',
     orderNo: 11,
+    hideMenu: true,
   },
   children: [
     {

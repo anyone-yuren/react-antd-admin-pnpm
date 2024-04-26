@@ -29,7 +29,7 @@ export const AnalyzeCard = () => {
         <BaseCard loading={loading}>
           <div className={classNames(styles.flex)}>
             <div className='card-left'>
-              <Text strong>{t('活跃用户数量')}</Text>
+              <Text strong>{t('总库流水')}</Text>
               <Title className='count' level={5} style={{ margin: '8px 0' }}>
                 <SvgIcon size={20} style={{ marginRight: '4px', color: token.colorPrimary }} name='solar'></SvgIcon>
                 +2.6%
@@ -91,7 +91,7 @@ export const AnalyzeCard = () => {
         <BaseCard loading={loading}>
           <div className={classNames(styles.flex)}>
             <div className='card-left'>
-              <Text strong>{t('总下载量')}</Text>
+              <Text strong>{t('出入库数量')}</Text>
               <Title className='count' level={5} style={{ margin: '8px 0' }}>
                 <SvgIcon
                   size={20}
@@ -157,7 +157,7 @@ export const AnalyzeCard = () => {
         <BaseCard loading={loading}>
           <div className={classNames(styles.flex)}>
             <div className='card-left'>
-              <Text strong>{t('总安装数量')}</Text>
+              <Text strong>{t('在线库存')}</Text>
               <Title className='count' level={5} style={{ margin: '8px 0' }}>
                 <SvgIcon size={20} style={{ marginRight: '4px', color: token.colorPrimary }} name='solar'></SvgIcon>
                 +5.6%

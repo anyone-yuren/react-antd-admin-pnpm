@@ -1,7 +1,4 @@
 import { lazy } from '@loadable/component';
-import { t } from 'i18next';
-import { useTranslation } from 'react-i18next';
-
 import LazyLoad from '@/components/LazyLoad';
 
 import { LayoutGuard } from '../guard';
@@ -14,9 +11,9 @@ const FormRoute: RouteObject = {
   name: 'Form',
   element: <LayoutGuard />,
   meta: {
-    title: t('表单'),
+    title: '表单',
     icon: 'form',
-    orderNo: 2,
+    orderNo: 3,
   },
   children: [
     {
@@ -25,20 +22,30 @@ const FormRoute: RouteObject = {
       // element: <BasicForm />,
       element: LazyLoad(lazy(() => import('@/views/form/basic-form'))),
       meta: {
-        title: t('基础表单'),
+        title: '基础表单',
         key: 'basicForm',
       },
     },
     {
-      path: 'form-designer',
-      name: 'FormDesigner',
-      // element: <BlankPage />,
-      element: LazyLoad(lazy(() => import('@/views/blank'))),
+      path: 'search-form',
+      name: 'SearchForm',
+      // element: <SearchForm />,
+      element: LazyLoad(lazy(() => import('@/views/form/search-form'))),
       meta: {
-        title: t('表单设计器'),
-        key: 'formDesigner',
+        title: '查询表单',
+        key: 'searchForm',
       },
     },
+    // {
+    //   path: 'form-designer',
+    //   name: 'FormDesigner',
+    //   // element: <BlankPage />,
+    //   element: LazyLoad(lazy(() => import('@/views/blank'))),
+    //   meta: {
+    //     title: '表单设计器',
+    //     key: 'formDesigner',
+    //   },
+    // },
   ],
 };
 
