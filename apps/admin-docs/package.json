@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "dumi dev",
-    "build": "dumi build",
+    "prod": "dumi build",
     "prepare": "dumi setup"
   },
   "authors": [

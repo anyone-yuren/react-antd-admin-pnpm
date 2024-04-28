@@ -9,7 +9,7 @@ WORKDIR /source
 
 COPY . .
 # ADD package.json /source
-
+RUN npm install turbo@1.11.0 -g
 RUN npm install pnpm -g 
 
 RUN pnpm i && pnpm build

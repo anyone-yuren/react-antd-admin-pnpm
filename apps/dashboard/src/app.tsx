@@ -6,6 +6,8 @@ import { GlobalConfig } from 'ui';
 import { useVcosole } from '@/hooks/useVonsole';
 
 import MyRoutes from '@/router';
+
+import './app.css';
 // 这个是全局的页面 还可以做一些其他的操作
 
 export default function App() {

@@ -39,7 +39,7 @@ export const AnalyzeCard = () => {
               </Title>
             </div>
             <div className='card-right'>
-              <ChartsCard
+              {/* <ChartsCard
                 loading={loading}
                 options={{
                   tooltip: {
@@ -82,7 +82,7 @@ export const AnalyzeCard = () => {
                     },
                   ],
                 }}
-              ></ChartsCard>
+              ></ChartsCard> */}
             </div>
           </div>
         </BaseCard>

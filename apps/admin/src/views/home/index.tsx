@@ -19,12 +19,12 @@ const HomePage: FC = () => {
     <div className={styles['home-container']}>
       <Row gutter={[16, 16]}>
         <AnalyzeCard />
-        <Col span={12}>
+        {/* <Col span={12}>
           <BarChart />
         </Col>
         <Col span={12}>
           <CategoryChart />
-        </Col>
+        </Col> */}
         <Col span={24}>
           <InlineChart />
         </Col>
