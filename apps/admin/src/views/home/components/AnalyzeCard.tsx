@@ -1,4 +1,4 @@
-import { Col, Typography } from 'antd';
+import { Col, Flex, Typography } from 'antd';
 import { useTheme } from 'antd-style';
 import classNames from 'classnames';
 import { t } from 'i18next';
@@ -83,6 +83,18 @@ export const AnalyzeCard = () => {
                   ],
                 }}
               ></ChartsCard> */}
+              <Flex>
+                <Title level={5}>年收入：</Title>
+                <Text>124.4万</Text>
+              </Flex>
+              <Flex>
+                <Title level={5}>月收入：</Title>
+                <Text>24.4万</Text>
+              </Flex>
+              <Flex>
+                <Title level={5}>日收入：</Title>
+                <Text>4.4万</Text>
+              </Flex>
             </div>
           </div>
         </BaseCard>
@@ -105,7 +117,19 @@ export const AnalyzeCard = () => {
               </Title>
             </div>
             <div className='card-right'>
-              <ChartsCard
+              <Flex>
+                <Title level={5}>年出入库总量：</Title>
+                <Text>14.4万件</Text>
+              </Flex>
+              <Flex>
+                <Title level={5}>月出入库总量：</Title>
+                <Text>4.4万件</Text>
+              </Flex>
+              <Flex>
+                <Title level={5}>日出入库总量：</Title>
+                <Text>0.4万件</Text>
+              </Flex>
+              {/* <ChartsCard
                 loading={loading}
                 options={{
                   tooltip: {
@@ -148,7 +172,7 @@ export const AnalyzeCard = () => {
                     },
                   ],
                 }}
-              ></ChartsCard>
+              ></ChartsCard> */}
             </div>
           </div>
         </BaseCard>

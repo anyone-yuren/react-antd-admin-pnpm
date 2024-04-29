@@ -11,19 +11,19 @@ import type { RouteObject } from '../types';
 
 // user module page
 const UserRoute: RouteObject = {
-  path: '/materials',
+  path: '/storeHourse',
   element: <LayoutGuard />,
   meta: {
-    title: '物料进出存',
+    title: '仓库管理',
     icon: 'ic_user',
-    orderNo: 7,
+    orderNo: 12,
     iconSize: 20,
     hideChildrenInMenu: true,
   },
   children: [
     {
       path: '',
-      element: LazyLoad(lazy(() => import('@/views/materials'))),
+      element: LazyLoad(lazy(() => import('@/views/storeHourse'))),
       meta: {
         title: '',
         key: '',

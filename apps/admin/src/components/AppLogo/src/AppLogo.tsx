@@ -26,9 +26,7 @@ const AppLogo: FC = () => {
           name='logo'
           size={30}
         />
-        <div className={styles.container}>
-          {!getMenuFold ? <span className={styles.text}>{'Beata Admin'}</span> : ''}
-        </div>
+        <div className={styles.container}>{!getMenuFold ? <span className={styles.text}>{'神马集团'}</span> : ''}</div>
 
         {/* <img className={classNames(styles['logo-name'], { [styles.hidden]: getMenuFold })} src={logoName} alt='logo' /> */}
       </Space>
