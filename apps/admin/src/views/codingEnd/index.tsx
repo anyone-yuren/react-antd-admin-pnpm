@@ -6,7 +6,7 @@ import G6Modal from './components/g6Modal';
 
 const fields: Array<GSearchTableField> = [
   {
-    title: '物料编码',
+    title: '唯一编码',
     key: 'cn1',
     search: true,
     dialog: {
@@ -14,7 +14,7 @@ const fields: Array<GSearchTableField> = [
     },
   },
   {
-    title: '物料描述',
+    title: '组织',
     key: 'index',
     sort: true,
     search: true,
@@ -23,22 +23,42 @@ const fields: Array<GSearchTableField> = [
     },
   },
   {
-    title: '物料类别',
+    title: '仓库',
     key: 'des1',
     type: 'textarea',
     dialog: true,
   },
   {
-    title: '库存数量',
+    title: '物料编码',
     key: 'des2',
   },
   {
-    title: '库存单位',
+    title: '物料名称',
     key: 'des3',
   },
   {
-    title: '库存价值',
+    title: '订单号',
     key: 'des4',
+  },
+  {
+    title: '批次号',
+    key: 'des5',
+  },
+  {
+    title: '规格型号',
+    key: 'des6',
+  },
+  {
+    title: '创建时间',
+    key: 'des7',
+  },
+  {
+    title: '创建人',
+    key: 'des8',
+  },
+  {
+    title: '剩余数量',
+    key: 'des9',
   },
 ];
 
