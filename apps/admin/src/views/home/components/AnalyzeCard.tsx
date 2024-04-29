@@ -29,7 +29,7 @@ export const AnalyzeCard = () => {
         <BaseCard loading={loading}>
           <div className={classNames(styles.flex)}>
             <div className='card-left'>
-              <Text strong>{t('总库流水')}</Text>
+              <Text strong>{t('入库总资产')}</Text>
               <Title className='count' level={5} style={{ margin: '8px 0' }}>
                 <SvgIcon size={20} style={{ marginRight: '4px', color: token.colorPrimary }} name='solar'></SvgIcon>
                 +2.6%
@@ -84,16 +84,16 @@ export const AnalyzeCard = () => {
                 }}
               ></ChartsCard> */}
               <Flex>
-                <Title level={5}>年收入：</Title>
-                <Text>124.4万</Text>
+                <Title level={5}>年入库资产：</Title>
+                <Text>14.4万</Text>
               </Flex>
               <Flex>
-                <Title level={5}>月收入：</Title>
-                <Text>24.4万</Text>
-              </Flex>
-              <Flex>
-                <Title level={5}>日收入：</Title>
+                <Title level={5}>月入库资产：</Title>
                 <Text>4.4万</Text>
+              </Flex>
+              <Flex>
+                <Title level={5}>日入库资产：</Title>
+                <Text>0.4万</Text>
               </Flex>
             </div>
           </div>
@@ -103,7 +103,7 @@ export const AnalyzeCard = () => {
         <BaseCard loading={loading}>
           <div className={classNames(styles.flex)}>
             <div className='card-left'>
-              <Text strong>{t('出入库数量')}</Text>
+              <Text strong>{t('出库总资产')}</Text>
               <Title className='count' level={5} style={{ margin: '8px 0' }}>
                 <SvgIcon
                   size={20}
@@ -118,16 +118,16 @@ export const AnalyzeCard = () => {
             </div>
             <div className='card-right'>
               <Flex>
-                <Title level={5}>年出入库总量：</Title>
-                <Text>14.4万件</Text>
+                <Title level={5}>年出库资产：</Title>
+                <Text>14.4万</Text>
               </Flex>
               <Flex>
-                <Title level={5}>月出入库总量：</Title>
-                <Text>4.4万件</Text>
+                <Title level={5}>月出库资产：</Title>
+                <Text>4.4万</Text>
               </Flex>
               <Flex>
-                <Title level={5}>日出入库总量：</Title>
-                <Text>0.4万件</Text>
+                <Title level={5}>日出库资产：</Title>
+                <Text>0.4万</Text>
               </Flex>
               {/* <ChartsCard
                 loading={loading}
@@ -181,7 +181,7 @@ export const AnalyzeCard = () => {
         <BaseCard loading={loading}>
           <div className={classNames(styles.flex)}>
             <div className='card-left'>
-              <Text strong>{t('在线库存')}</Text>
+              <Text strong>{t('当前总资产')}</Text>
               <Title className='count' level={5} style={{ margin: '8px 0' }}>
                 <SvgIcon size={20} style={{ marginRight: '4px', color: token.colorPrimary }} name='solar'></SvgIcon>
                 +5.6%

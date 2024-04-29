@@ -12,7 +12,7 @@ const fields: Array<GSearchTableField> = [
     },
   },
   {
-    title: '库存组织',
+    title: '矿队',
     key: 'index',
     sort: true,
     search: true,

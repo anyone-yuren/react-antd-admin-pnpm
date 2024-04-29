@@ -14,7 +14,7 @@ const useStyles = createStyles(({ token }) => ({
       },
     },
     '.card-right': {
-      width: '40%',
+      width: '50%',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',

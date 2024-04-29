@@ -4,15 +4,7 @@ import { listApi } from './api';
 
 const fields: Array<GSearchTableField> = [
   {
-    title: '仓库名称',
-    key: 'cn1',
-    search: true,
-    dialog: {
-      required: true,
-    },
-  },
-  {
-    title: '所属矿队',
+    title: '所属组织',
     key: 'index',
     type: 'select',
     options: [],
@@ -21,6 +13,19 @@ const fields: Array<GSearchTableField> = [
     dialog: {
       required: true,
     },
+  },
+  {
+    title: '仓库名称',
+    key: 'cn1',
+    search: true,
+    dialog: {
+      required: true,
+    },
+  },
+  {
+    title: '仓库编号',
+    key: 'des4',
+    dialog: true,
   },
   {
     title: '管理员',
