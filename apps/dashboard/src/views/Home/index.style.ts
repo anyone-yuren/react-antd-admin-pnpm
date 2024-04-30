@@ -65,6 +65,10 @@ const useStyles = createStyles(({ token }) => {
         backgroundColor: 'rgba(0,0,0,0.2)',
         height: '100%',
         padding: '20px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '24px',
+        overflow: 'hidden',
       },
       '.center': {
         marginTop: '20px',
@@ -129,11 +133,13 @@ const useStyles = createStyles(({ token }) => {
         },
       },
       '.buttom': {
-        maxHeight: '50%',
         minHeight: '200px',
         display: 'flex',
+        flex: 'auto',
       },
       '.card': {
+        flex: 'auto',
+        minHeight: '50%',
         '.card-title': {
           height: '50px',
           backgroundColor: '#1b7ef22e',

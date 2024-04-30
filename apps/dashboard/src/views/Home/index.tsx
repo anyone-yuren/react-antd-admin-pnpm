@@ -5,7 +5,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { button } from '@/assets/motion/index';
 
-import { consumeConfig, deliveryConfig, errorConfig } from './data';
+import OldChart from './components/oldChart';
+import TransferChart from './components/transferChart';
+import { consumeConfig, deliveryConfig, errorConfig, outConfig } from './data';
 import useStyles from './index.style';
 
 const { Header, Content } = Layout;
@@ -52,14 +54,26 @@ function Home() {
       <Content className={styles['home-content']}>
         <div className='home-content_bg'></div>
         <Row gutter={16} style={{ flex: 'auto' }}>
+          {/* 左侧 */}
           <Col className='gutter-row' span={6}>
             <div className='gutter-box'>
-              <div className='card'>
-                <div className='card-title'>矿资物资消耗排行</div>
-                <ScrollBoard config={consumeConfig} style={{ height: '220px' }} />
-              </div>
+              <Row gutter={16} style={{ height: '100%' }}>
+                <Col span={24} style={{ height: '50%' }}>
+                  <div className='card' style={{ height: '100%' }}>
+                    <div className='card-title'>一码到底变更记录</div>
+                    <ScrollBoard config={consumeConfig} style={{ height: 'calc(100% - 50px' }} />
+                  </div>
+                </Col>
+                <Col span={24} style={{ height: '50%' }}>
+                  <div className='card' style={{ height: '100%' }}>
+                    <div className='card-title'>矿资物资消耗排行</div>
+                    <TransferChart style={{ height: 'calc(100% - 50px' }} />
+                  </div>
+                </Col>
+              </Row>
             </div>
           </Col>
+          {/* 中间 */}
           <Col className='gutter-row' span={12}>
             <Flex vertical gap={16} justify={'space-between'} style={{ height: '100%' }}>
               <motion.div
@@ -133,7 +147,7 @@ function Home() {
                     <div className='gutter-box'>
                       <div className='card'>
                         <div className='card-title'>出库订单统计</div>
-                        <ScrollBoard config={errorConfig} style={{ height: '220px' }} />
+                        <ScrollBoard config={outConfig} style={{ height: 'calc( 100% - 50px)' }} />
                       </div>
                     </div>
                   </Col>
@@ -141,7 +155,8 @@ function Home() {
                     <div className='gutter-box'>
                       <div className='card'>
                         <div className='card-title'>交旧排行</div>
-                        <ScrollBoard config={errorConfig} style={{ height: '220px' }} />
+                        <OldChart style={{ height: 'calc( 100% - 50px)' }} />
+                        {/* <ScrollBoard config={errorConfig} style={{ height: 'calc( 100% - 50px)' }} /> */}
                       </div>
                     </div>
                   </Col>
@@ -149,15 +164,16 @@ function Home() {
               </div>
             </Flex>
           </Col>
+          {/* 右侧 */}
           <Col className='gutter-row' span={6}>
             <div className='gutter-box'>
               <div className='card'>
                 <div className='card-title'>异常消耗情况</div>
-                <ScrollBoard config={errorConfig} style={{ height: '220px' }} />
+                <ScrollBoard config={errorConfig} style={{ height: 'calc( 100% - 50px)' }} />
               </div>
               <div className='card'>
                 <div className='card-title'>待配送订单</div>
-                <ScrollBoard config={deliveryConfig} style={{ height: '220px' }} />
+                <ScrollBoard config={deliveryConfig} style={{ height: 'calc( 100% - 50px)' }} />
               </div>
             </div>
           </Col>
