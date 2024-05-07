@@ -32,8 +32,8 @@ export function transformRouteToMenu(routes: RouteObject[]) {
 
   const list = treeMap(routeList, {
     conversion: (node: RouteObject) => {
+      // TODO 做鉴权过滤，根据后端返回的数据做过滤
       const { meta: { title, hideMenu = false, ...rest } = {} } = node;
-
       return {
         ...(rest || {}),
         name: title,

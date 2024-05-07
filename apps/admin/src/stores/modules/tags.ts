@@ -11,10 +11,10 @@ const initialState: TagsState = {
 };
 
 const createAppAsyncThunk = createAsyncThunk.withTypes<{
-  state: RootState
-  dispatch: AppDispatch
-  rejectValue: string
-  extra: { s: string; n: number }
+  state: RootState;
+  dispatch: AppDispatch;
+  rejectValue: string;
+  extra: { s: string; n: number };
 }>();
 
 const tags = createSlice({

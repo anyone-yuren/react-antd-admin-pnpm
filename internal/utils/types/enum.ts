@@ -14,4 +14,5 @@ export enum StorageEnum {
   Token = "token",
   Settings = "settings",
   I18N = "i18nextLng",
+  Menu = "menuList",
 }

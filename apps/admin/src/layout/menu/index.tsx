@@ -3,7 +3,6 @@
 import { Menu, Spin } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { connect } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import SvgIcon from '@/components/SvgIcon';
@@ -11,8 +10,9 @@ import SvgIcon from '@/components/SvgIcon';
 import { getOpenKeys } from '@/utils/helper/menuHelper';
 
 import { getAsyncMenus } from '@/router/menus';
-import { setMenuList } from '@/stores/modules/menu';
+import { useMenuActions } from '@/stores/modules/menu';
 
+// import { setMenuList as setMenuListAction } from '@/stores/modules/menu';
 import type { AppMenu } from '@/router/types';
 import type { MenuProps } from 'antd';
 
@@ -34,13 +34,14 @@ const getItem = (
   }) as MenuItem;
 
 const LayoutMenu = (props: any) => {
+  debugger;
   const { pathname } = useLocation();
-  const { setMenuList: setMenuListAction } = props;
   const [loading, setLoading] = useState(false);
   const [menuList, setMenuList] = useState<MenuItem[]>([]);
   const [openKeys, setOpenKeys] = useState<string[]>([]);
   const [selectedKeys, setSelectedKeys] = useState<string[]>([pathname]);
   const { t, i18n } = useTranslation();
+  const { setMenuList: setMenuListAction } = useMenuActions();
 
   useEffect(() => {
     setSelectedKeys([pathname]);
@@ -62,8 +63,6 @@ const LayoutMenu = (props: any) => {
       if (!item?.children?.length) {
         return list.push(getItem(t(item.name), item.path, addIcon(item.icon, item.iconSize)));
       }
-      console.log(t(item.name));
-
       list.push(getItem(t(item.name), item.path, addIcon(item.icon, item.iconSize), getMenuItem(item.children)));
     });
     return list;
@@ -121,7 +120,4 @@ const LayoutMenu = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: any) => state.menu;
-const mapDispatchToProps = { setMenuList };
-
-export default connect(mapStateToProps, mapDispatchToProps)(LayoutMenu);
+export default LayoutMenu;
