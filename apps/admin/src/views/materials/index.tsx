@@ -31,7 +31,7 @@ const fields: Array<GSearchTableField> = [
     key: 'des2',
   },
   {
-    title: '7⃣期初',
+    title: '期初',
     key: 'des3',
   },
   {

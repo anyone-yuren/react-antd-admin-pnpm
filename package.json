@@ -44,7 +44,7 @@
     "@semantic-release/github": "^9.2.5",
     "@semantic-release/npm": "^11.0.2",
     "@semantic-release/release-notes-generator": "^12.1.0",
-    "@types/node": "^20.10.7",
+    "@types/node": "^20.11.3",
     "@types/numeral": "^2.0.5",
     "@types/ramda": "^0.29.10",
     "commitizen": "^4.3.0",

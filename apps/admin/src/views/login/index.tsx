@@ -2,6 +2,7 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Alert, Button, Checkbox, Form, Input, message, Typography } from 'antd';
 import classNames from 'classnames';
 import { t } from 'i18next';
+import md5 from 'md5';
 import { type FC, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -32,7 +33,7 @@ const LoginPage: FC = () => {
     try {
       const res = await signIn({
         username: values.username,
-        password: values.password,
+        password: md5(values.password),
       });
 
       if (res) {
@@ -72,14 +73,14 @@ const LoginPage: FC = () => {
               {t('立即注册')}
             </Button>
           </Text>
-          <Alert message={t('登录信息： 用户名：admin 密码：123456')} type='info' showIcon />
+          <Alert message={t('登录信息： 用户名：admin 密码：admin')} type='info' showIcon />
         </div>
         <Form
           ref={loginFormRef}
           form={form}
           initialValues={{
             username: 'admin',
-            password: '123456',
+            password: 'admin',
             remember: true,
           }}
           className='login-box-form'

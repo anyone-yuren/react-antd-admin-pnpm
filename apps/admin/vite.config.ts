@@ -1,5 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { defineApplicationConfig } from '@gbeata/vite-config';
+import { loadEnv } from 'vite';
+
+const root = process.cwd();
+
+const { VITE_APP_BASE_API } = loadEnv(process.env.NODE_ENV as string, root);
 
 export default defineApplicationConfig({
   overrides: {
@@ -10,8 +15,8 @@ export default defineApplicationConfig({
       // Listening on all local ips
       host: true,
       proxy: {
-        '/content_api': {
-          target: 'https://api.juejin.cn',
+        '/api': {
+          target: VITE_APP_BASE_API,
           changeOrigin: true,
           secure: true,
         },

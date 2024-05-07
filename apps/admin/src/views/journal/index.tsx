@@ -1,4 +1,7 @@
+import { adminLogin, DictionaryList } from 'apis';
 import { GAction, GCtrl, GSearchTable, type GSearchTableField, type GTableCtrlField, type Record } from 'gbeata';
+import md5 from 'md5';
+import { useEffect } from 'react';
 
 import { listApi } from './api';
 
@@ -42,6 +45,13 @@ const ctrl: GTableCtrlField = {
 };
 
 export default function Demo() {
+  const login = async (values) => {
+    return adminLogin(values);
+  };
+
+  useEffect(() => {
+    login({ username: 'admin', password: md5('admin') });
+  }, []);
   return (
     <GSearchTable
       api={listApi}

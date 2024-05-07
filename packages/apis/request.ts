@@ -3,11 +3,10 @@ import { notification } from 'antd';
 import request, { type RequestOptionsInit, extend } from 'umi-request';
 
 // 全局请求参数设置
-const PREFIX = '';
 export const GRequest = extend({
   timeout: 60000,
   // 记得区分开发环境与生产环境
-  prefix: PREFIX,
+  prefix: import.meta.env.VITE_PREFIX_URL,
 });
 
 let isRefreshingToken = false; // 是否正在刷新token
@@ -18,8 +17,10 @@ const requestQueue: {
   reject: (reason?: any) => void;
 }[] = []; // 请求队列
 GRequest.interceptors.request.use((url, options) => {
-  const { headers } = options;
-
+  const { headers = {} } = options;
+  const token = localStorage.getItem('token') || '';
+  headers.Authorization = `Bearer ${token}`;
+  debugger;
   return {
     url,
     options: {
@@ -33,7 +34,7 @@ GRequest.interceptors.response.use(async (response, options) => {
   const { status } = response;
   if (status === 200) {
     const data = await response.clone().json();
-    if (data.code !== 0) {
+    if (data.statusCode !== 200) {
       notification.error({
         message: '请求错误',
         description: data.msg,

@@ -1,6 +1,7 @@
 import { getItem, removeItem, setItem } from '@gbeata/utils';
 import { useMutation } from '@tanstack/react-query';
 import { App } from 'antd';
+import { adminLogin } from 'apis';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { create } from 'zustand';
@@ -66,7 +67,7 @@ export const useSignIn = () => {
   const { setUserToken, setUserInfo } = useUserActions();
 
   const signInMutation = useMutation({
-    mutationFn: loginApi,
+    mutationFn: adminLogin,
   });
 
   /**
@@ -78,9 +79,8 @@ export const useSignIn = () => {
   const signIn = async (data: LoginParams): Promise<any> => {
     try {
       const res = await signInMutation.mutateAsync(data);
-      const { token, ...rest } = res;
-      debugger;
-      setUserToken({ token });
+      const { ...rest } = res;
+      setUserToken(res.resultData);
       // 暂未提供，后续再决定权限如何处理
       setUserInfo(rest);
       notification.success({
