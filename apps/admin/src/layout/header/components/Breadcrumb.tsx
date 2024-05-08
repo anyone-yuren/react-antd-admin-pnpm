@@ -17,7 +17,6 @@ export default function LayoutBreadcrumb() {
   const { pathname } = useLocation();
 
   const menuList = useMenus();
-  debugger;
 
   useEffect(() => {
     const matchRouteList = matchRoutes(menuList, pathname) || [];

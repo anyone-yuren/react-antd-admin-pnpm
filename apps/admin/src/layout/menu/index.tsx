@@ -34,7 +34,6 @@ const getItem = (
   }) as MenuItem;
 
 const LayoutMenu = (props: any) => {
-  debugger;
   const { pathname } = useLocation();
   const [loading, setLoading] = useState(false);
   const [menuList, setMenuList] = useState<MenuItem[]>([]);

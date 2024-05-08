@@ -44,7 +44,6 @@ const useMenuStore = create<SettingStore>((set) => ({
   isCollapse: true,
   actions: {
     setMenuList: (menuList: MenusType) => {
-      debugger;
       set({ menuList });
       setItem(StorageEnum.Menu, menuList);
     },

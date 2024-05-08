@@ -1,5 +1,6 @@
 import { GAction, GCtrl, GSearchTable, type GSearchTableField, type GTableCtrlField } from 'gbeata';
 
+import AuthAction from '../components/auth';
 import { listApi } from './api';
 
 const fields: Array<GSearchTableField> = [
@@ -30,6 +31,7 @@ const fields: Array<GSearchTableField> = [
   },
 ];
 const ctrl: GTableCtrlField = {
+  width: 200,
   render: (_, record) => (
     <GCtrl>
       <GAction record={record} action='view'>
@@ -38,6 +40,7 @@ const ctrl: GTableCtrlField = {
       <GAction record={record} action='update'>
         编辑
       </GAction>
+      <AuthAction record={record}>授权</AuthAction>
     </GCtrl>
   ),
 };
