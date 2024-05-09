@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { notification } from 'antd';
-import request, { type RequestOptionsInit, extend } from 'umi-request';
+import request, { extend, type RequestOptionsInit } from 'umi-request';
 
 // 全局请求参数设置
 export const GRequest = extend({
@@ -34,13 +34,13 @@ GRequest.interceptors.response.use(async (response, options) => {
   const { status } = response;
   if (status === 200) {
     const data = await response.clone().json();
-    if (data.statusCode !== 200) {
-      notification.error({
-        message: '请求错误',
-        description: data.msg,
-      });
-      return Promise.reject(data.msg);
-    }
+    // if (data.statusCode !== 200) {
+    //   notification.error({
+    //     message: '请求错误',
+    //     description: data.msg,
+    //   });
+    //   return Promise.reject(data.msg);
+    // }
     return data;
   }
   if (status === 401) {
@@ -65,6 +65,12 @@ GRequest.interceptors.response.use(async (response, options) => {
     // 正在刷新token，将返回一个未执行resolve的promise
     return new Promise((resolve, reject) => {
       requestQueue.push({ url: options.url, options, resolve, reject });
+    });
+  }
+  if (status === 400) {
+    notification.error({
+      message: '请求错误',
+      description: '参数错误',
     });
   }
   notification.error({

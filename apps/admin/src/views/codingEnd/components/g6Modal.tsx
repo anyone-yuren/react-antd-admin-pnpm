@@ -1,10 +1,12 @@
 import G6, { type IGraph, type TreeGraphData } from '@antv/g6';
 import { useSize } from 'ahooks';
-import { Drawer, Flex, Layout, Typography } from 'antd';
+import { Descriptions, Drawer, Flex, Layout, Typography } from 'antd';
 import ErrorBoundary from 'antd/es/alert/ErrorBoundary';
+import { coddingTree } from 'apis';
 import { t } from 'i18next';
 import React, { useEffect } from 'react';
 
+import { Description } from '../enum';
 import { data as gData } from './data';
 import useStyles from './styles';
 
@@ -97,14 +99,50 @@ G6.registerNode('card-node', {
   },
 });
 
-const G6Modal = ({ open, onClose }: { open: boolean; onClose: () => void }) => {
+interface TreeNode {
+  organizationName?: string;
+  warehouseName?: string;
+  orderNo?: string;
+  batchNo?: string;
+  remark?: string;
+  placeCode?: string;
+  locationCode?: string;
+  qty?: number;
+  imagePaths?: any;
+  code?: any;
+  children: TreeNode[];
+  creationTime?: string;
+  id: string;
+  label?: string;
+}
+
+const G6Modal = ({ open, onClose, record }: { open: boolean; onClose: () => void; record: Record<string, any> }) => {
   const { styles } = useStyles();
   const ref = React.useRef(null);
   const size = useSize(ref);
   let graph: IGraph | null = null;
   const [node, setNode] = React.useState<TreeGraphData | null>(null);
+  const [g6Data, setG6Data] = React.useState();
+  function transformOrderNoToLabel(tree: TreeNode): TreeNode {
+    return {
+      ...tree,
+      label: tree.orderNo,
+      id: String(tree.id),
+      children: tree.children ? tree.children.map(transformOrderNoToLabel) : [],
+    };
+  }
   useEffect(() => {
     if (!open) return;
+    const fetchData = async () => {
+      const res = await coddingTree(record.id);
+      if (res) {
+        setG6Data(transformOrderNoToLabel(res));
+      }
+    };
+    fetchData();
+  }, [open]);
+  useEffect(() => {
+    if (!open || !g6Data) return;
     if (!graph) {
       graph = new G6.TreeGraph({
         container: ref.current as unknown as HTMLElement,
@@ -143,7 +181,7 @@ const G6Modal = ({ open, onClose }: { open: boolean; onClose: () => void }) => {
       }
       setNode(e.item?.getModel() as TreeGraphData);
     });
-    graph?.data(gData);
+    graph?.data(g6Data);
     graph.render();
     graph.fitView();
     // eslint-disable-next-line consistent-return
@@ -152,7 +190,23 @@ const G6Modal = ({ open, onClose }: { open: boolean; onClose: () => void }) => {
       graph = null;
       setNode(null);
     };
-  }, [open]);
+  }, [open, g6Data]);
+
+  // 处理Descriptions展示的数据
+  const items = React.useMemo(() => {
+    if (!node) return [];
+    const keys = Object.keys(node);
+    return keys
+      .filter((key) => key !== 'children')
+      .map((key) => {
+        return {
+          label: Description[key],
+          children: node[key] as string,
+        };
+      })
+      .filter((item) => item.label !== undefined);
+  }, [node]);
+
   return (
     <ErrorBoundary>
       <Drawer
@@ -173,10 +227,11 @@ const G6Modal = ({ open, onClose }: { open: boolean; onClose: () => void }) => {
             {node && (
               <Footer style={{ maxHeight: 200, overflow: 'auto' }}>
                 <Flex gap={8}>
-                  <Title level={5} style={{ minWidth: '100px' }}>
+                  {/* <Title level={5} style={{ minWidth: '100px' }}>
                     详细描述:
-                  </Title>
-                  <Text type='secondary'>{JSON.stringify(node, null, 2)}</Text>
+                  </Title> */}
+                  <Descriptions title='详细描述' layout='vertical' items={items} />
+                  {/* <Text type='secondary'>{JSON.stringify(node, null, 2)}</Text> */}
                 </Flex>
               </Footer>
             )}

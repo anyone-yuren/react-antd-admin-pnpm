@@ -844,6 +844,9 @@ importers:
       antd:
         specifier: ^5.12.4
         version: 5.13.1(react-dom@18.2.0)(react@18.2.0)
+      axios:
+        specifier: ^1.6.2
+        version: 1.6.5
       qs:
         specifier: ^6.11.2
         version: 6.11.2

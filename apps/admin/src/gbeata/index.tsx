@@ -6,9 +6,9 @@ import { setDefaultDataFilter, setDefaultSearchFilter, setGlobalDialogField } fr
  */
 setDefaultDataFilter((res: any) => ({
   // 表格列表的数据
-  content: res.list,
+  content: res.items,
   // 数据总共 n 条
-  totalCount: res.total,
+  totalCount: res.totalCount,
   ...res,
 }));
 
