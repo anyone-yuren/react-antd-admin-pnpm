@@ -50,25 +50,37 @@ export function logoutApi() {
 
 // Table list
 export function getTableList(params: any) {
-  return service({
+  // return service({
+  //   url: '/table/getTableList',
+  //   method: 'get',
+  //   params,
+  // });
+  return defHttp.get({
     url: '/table/getTableList',
-    method: 'get',
     params,
   });
 }
 
 // juejin api
 export function getJueJinList(params) {
-  return service({
-    url: 'article/queryList',
-    method: 'post',
+  // return service({
+  //   url: 'article/queryList',
+  //   method: 'post',
+  //   data: params,
+  // });
+  return defHttp.post({
+    url: '/article/queryList',
     data: params,
   });
 }
 
 export function getUsersList<T>() {
-  return service({
-    url: 'user/getUserList',
-    method: 'get',
-  }) as unknown as Promise<T>;
+  // return service({
+  //   url: 'user/getUserList',
+  //   method: 'get',
+  // }) as unknown as Promise<T>;
+
+  return defHttp.get<T>({
+    url: '/user/getUserList',
+  });
 }
