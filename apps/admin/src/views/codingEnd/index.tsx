@@ -84,7 +84,7 @@ export default function Demo() {
     <>
       <GSearchTable
         api={() => {
-          return coddingEndList({ No: '' });
+          return coddingEndList({ No: '4' });
         }}
         ctrl={ctrl}
         fields={fields}

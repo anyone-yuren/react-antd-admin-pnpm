@@ -20,7 +20,6 @@ GRequest.interceptors.request.use((url, options) => {
   const { headers = {} } = options;
   const token = localStorage.getItem('token') || '';
   headers.Authorization = `Bearer ${token}`;
-  debugger;
   return {
     url,
     options: {
