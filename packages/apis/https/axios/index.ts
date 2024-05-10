@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { deepMerge } from '@gbeata/utils';
+import { deepMerge, getItem } from '@gbeata/utils';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { clone } from 'lodash-es';
 
-import { ContentTypeEnum, ResultEnum } from '../enums/httpEnum';
+import { ContentTypeEnum, ResultEnum, StorageEnum } from '../enums/httpEnum';
 import { GAxios } from './Axios';
 import axios from 'axios';
 
@@ -35,12 +35,12 @@ const transform: AxiosTransform = {
       throw new Error('请求接口错误');
     }
     //  这里 code，result，message为 后台统一的字段，需要在 types.ts内修改为项目自己的接口返回格式
-    const { code, result, message } = data;
+    const { code, message } = data;
 
     // 这里逻辑可以根据项目进行修改
     const hasSuccess = data && Reflect.has(data, 'code') && code === ResultEnum.SUCCESS;
     if (hasSuccess) {
-      return result;
+      return data.data;
     }
     // 在此处根据自己项目的实际情况对不同的code执行不同的操作
     // 如果不希望中断当前请求，请return数据，否则直接抛出异常即可
@@ -115,14 +115,24 @@ const transform: AxiosTransform = {
     // ...
     return config;
   },
+  // 请求拦截器处理
+  requestInterceptors: (config, options) => {
+    const token = getItem(StorageEnum.Token);
+    if (token && (config as Recordable).requestOptions?.withToken !== false) {
+      // 是否携带token
+      (config as Recordable).headers.Authorization = options.authenticationScheme
+        ? `${options.authenticationScheme} ${token}`
+        : token;
+    }
+    return config;
+  },
 };
 
 function createAxios(options?: Partial<CreateAxiosOptions>) {
-  console.log(import.meta.env.VITE_PREFIX_URL);
   return new GAxios(
     deepMerge(
       {
-        authenticationScheme: '',
+        authenticationScheme: 'Bearer',
         timeout: 10 * 1000,
         header: { 'Content-Type': ContentTypeEnum.JSON },
         transform: clone(transform),
