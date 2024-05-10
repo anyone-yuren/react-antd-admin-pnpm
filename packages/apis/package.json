@@ -10,14 +10,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@gbeata/utils": "workspace:^",
     "antd": "^5.12.4",
-    "qs": "^6.11.2",
+    "axios": "^1.6.2",
+    "lodash-es": "^4.17.21",
     "store": "workspace:*",
     "umi-request": "^1.4.0"
   },
   "devDependencies": {
+    "@types/lodash-es": "^4.17.11",
+    "@types/qs": "^6.9.15",
     "eslint-config-gbeata-eslint": "workspace:^",
     "prettier": "^3.1.0",
+    "qs": "^6.11.2",
     "typescript": "^5.2.2"
   }
 }
