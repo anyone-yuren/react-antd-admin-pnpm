@@ -1,3 +1,5 @@
+import { defHttp } from 'apis';
+
 import { service } from '@/utils/axios';
 
 import type { UserInfo, UserToken } from '#/entity';
@@ -13,26 +15,36 @@ export type SignRes = UserToken & {
 
 // User login api
 export const loginApi = (data: LoginParams): Promise<SignRes> => {
-  return service({
+  // return service({
+  //   url: '/login',
+  //   method: 'post',
+  //   data,
+  // });
+  return defHttp.post<SignRes>({
     url: '/login',
-    method: 'post',
     data,
   });
 };
 
 // Get User info
 export function getUserInfo(): Promise<any> {
-  return service({
+  // return service({
+  //   url: '/getUserInfo',
+  //   method: 'get',
+  // });
+  return defHttp.get({
     url: '/getUserInfo',
-    method: 'get',
   });
 }
 
 // User logout api
 export function logoutApi() {
-  return service({
+  // return service({
+  //   url: '/logout',
+  //   method: 'get',
+  // });
+  return defHttp.get({
     url: '/logout',
-    method: 'get',
   });
 }
 

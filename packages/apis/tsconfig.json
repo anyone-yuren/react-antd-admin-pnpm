@@ -19,8 +19,7 @@
     "paths": {
       "@/*": ["src/*"],
       "#/*": ["types/*"]
-    },
-    "types": ["vite/client", "vite-plugin-svg-icons/client"]
+    }
   },
   "include": [
     "modules/**/*.ts",
@@ -31,7 +30,8 @@
     "https/**/*.tsx",
     "index.ts",
     "request.ts",
-    "type.d.ts"
+    "type.d.ts",
+    "vite-env.d.ts"
   ],
   "exclude": ["node_modules", "dist", "**/*.js"]
 }

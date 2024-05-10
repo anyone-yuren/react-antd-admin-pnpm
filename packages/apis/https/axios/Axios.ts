@@ -19,6 +19,7 @@ export class GAxios {
 
   constructor(options: CreateAxiosOptions) {
     this.options = options;
+    debugger;
     this.axiosInstance = axios.create(options);
     this.setupInterceptors();
   }
@@ -76,9 +77,9 @@ export class GAxios {
 
     const axiosCanceler = new AxiosCanceler();
 
-    // Request interceptor configuration processing
+    // 请求拦截器配置处理
     this.axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
-      // If cancel repeat request is turned on, then cancel repeat request is prohibited
+      // 如果取消重复请求打开，则禁止取消重复请求
       const requestOptions = (config as unknown as any).requestOptions ?? this.options.requestOptions;
       const ignoreCancelToken = requestOptions?.ignoreCancelToken ?? true;
 
@@ -90,12 +91,12 @@ export class GAxios {
       return config;
     }, undefined);
 
-    // Request interceptor error capture
+    // 请求拦截器错误捕获
     requestInterceptorsCatch &&
       isFunction(requestInterceptorsCatch) &&
       this.axiosInstance.interceptors.request.use(undefined, requestInterceptorsCatch);
 
-    // Response result interceptor processing
+    // 响应拦截器处理
     this.axiosInstance.interceptors.response.use((res: AxiosResponse<any>) => {
       res && axiosCanceler.removePending(res.config);
       if (responseInterceptors && isFunction(responseInterceptors)) {
@@ -104,7 +105,7 @@ export class GAxios {
       return res;
     }, undefined);
 
-    // Response result interceptor error capture
+    // 响应拦截器错误捕获
     responseInterceptorsCatch &&
       isFunction(responseInterceptorsCatch) &&
       this.axiosInstance.interceptors.response.use(undefined, (error) => {
