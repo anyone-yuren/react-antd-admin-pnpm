@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { deepMerge, getItem } from '@gbeata/utils';
+import { deepMerge, formatRequestDate, getItem, joinTimestamp, setObjToUrlParams } from '@gbeata/utils';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { clone } from 'lodash-es';
+import { clone, isString } from 'lodash-es';
 
-import { ContentTypeEnum, ResultEnum, StorageEnum } from '../enums/httpEnum';
+import { ContentTypeEnum, RequestEnum, ResultEnum, StorageEnum } from '../enums/httpEnum';
 import { GAxios } from './Axios';
 import axios from 'axios';
 
@@ -112,7 +112,43 @@ const transform: AxiosTransform = {
       config.url = `${urlPrefix}${config.url}`;
     }
     // TODO 在这兼容restFul风格
-    // ...
+    const params = config.params || {};
+    const data = config.data || false;
+    formatDate && data && !isString(data) && formatRequestDate(data);
+    if (config.method?.toUpperCase() === RequestEnum.GET) {
+      if (!isString(params)) {
+        // 给 get 请求加上时间戳参数，避免从缓存中拿数据。
+        config.params = Object.assign(params || {}, joinTimestamp(joinTime, false));
+      } else {
+        // 兼容restful风格
+        config.url = config.url + params + `${joinTimestamp(joinTime, true)}`;
+        config.params = undefined;
+      }
+    } else {
+      if (!isString(params)) {
+        formatDate && formatRequestDate(params);
+        if (
+          Reflect.has(config, 'data') &&
+          config.data &&
+          (Object.keys(config.data).length > 0 || config.data instanceof FormData)
+        ) {
+          config.data = data;
+          config.params = params;
+        } else {
+          // 非GET请求如果没有提供data，则将params视为data
+          config.data = params;
+          config.params = undefined;
+        }
+        if (joinParamsToUrl) {
+          config.url = setObjToUrlParams(config.url as string, Object.assign({}, config.params, config.data));
+        }
+      } else {
+        // 兼容restful风格
+        config.url = config.url + params;
+        config.params = undefined;
+      }
+    }
+
     return config;
   },
   // 请求拦截器处理
@@ -156,6 +192,8 @@ function createAxios(options?: Partial<CreateAxiosOptions>) {
           },
           apiUrl: import.meta.env.VITE_API_URL,
           urlPrefix: import.meta.env.VITE_PREFIX_URL,
+          // 格式化提交参数时间
+          formatDate: true,
         },
       },
       options || {},
