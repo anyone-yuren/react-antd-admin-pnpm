@@ -19,7 +19,8 @@
     "paths": {
       "@/*": ["src/*"],
       "#/*": ["types/*"]
-    }
+    },
+    "types": ["vite/client"]
   },
   "include": [
     "modules/**/*.ts",

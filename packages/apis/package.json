@@ -15,7 +15,8 @@
     "axios": "^1.6.2",
     "lodash-es": "^4.17.21",
     "store": "workspace:*",
-    "umi-request": "^1.4.0"
+    "umi-request": "^1.4.0",
+    "vite": "^5.2.11"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.11",

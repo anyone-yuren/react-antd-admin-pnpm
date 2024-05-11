@@ -19,7 +19,6 @@ export class GAxios {
 
   constructor(options: CreateAxiosOptions) {
     this.options = options;
-    debugger;
     this.axiosInstance = axios.create(options);
     this.setupInterceptors();
   }
