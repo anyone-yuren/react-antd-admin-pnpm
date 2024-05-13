@@ -1,6 +1,8 @@
-import { MockMethod } from 'vite-plugin-mock';
 import { Random } from 'mockjs';
+
 import { resultPageSuccess } from '../_utils';
+
+import type { MockMethod } from 'vite-plugin-mock';
 
 const getPhone = () => {
   const prefixList = [135, 136, 137, 138, 139, 155, 158, 183, 185, 189];
@@ -33,7 +35,7 @@ const getHobby = () => {
 const genList = () => {
   const list: any[] = [];
   for (let index = 0; index < 100; index++) {
-    const num = index < 10 ? '0' + index : index;
+    const num = index < 10 ? `0${index}` : index;
     list.push({
       id: Number(`10${num}`) + 1,
       name: Random.cname(),
