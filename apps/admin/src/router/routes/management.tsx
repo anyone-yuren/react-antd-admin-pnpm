@@ -35,6 +35,14 @@ const UserRoute: RouteObject = {
         key: 'user',
       },
     },
+    {
+      path: 'permission',
+      element: LazyLoad(lazy(() => import('@/views/management/permission'))),
+      meta: {
+        title: t('权限管理'),
+        key: 'permission',
+      },
+    },
   ],
 };
 export default UserRoute;
