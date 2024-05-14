@@ -1,6 +1,7 @@
 import { USER_LIST } from '../_assets';
-import { getRequestToken, type RequestParams, resultError, resultSuccess } from '../_utils';
+import { getRequestToken, resultError, resultSuccess } from '../_utils';
 
+import type { RequestParams } from '../_utils';
 import type { MockMethod } from 'vite-plugin-mock';
 
 /**
@@ -66,7 +67,7 @@ export default [
     url: '/api/logout',
     timeout: 200,
     method: 'get',
-    response: (request: RequestParams) => {
+    response: () => {
       return resultSuccess(undefined, { message: 'Token has been destroyed!' });
     },
   },
