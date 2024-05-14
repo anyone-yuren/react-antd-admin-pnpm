@@ -93,7 +93,6 @@ export default function User() {
       }}
       // ctrl={ctrl}
       fields={fields}
-      rowKey='sort_id'
       dialogFormExtend={{
         fields,
       }}
