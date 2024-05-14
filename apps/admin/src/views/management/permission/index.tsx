@@ -7,6 +7,14 @@ import AuthAction from '../component/auth';
 
 const fields: Array<GSearchTableField> = [
   {
+    title: t('别名'),
+    key: 'label',
+    search: true,
+    dialog: {
+      required: true,
+    },
+  },
+  {
     title: t('名称'),
     key: 'name',
     search: true,
@@ -72,9 +80,9 @@ export default function User() {
   const permissions = useUserPermissions();
   return (
     <GSearchTable
+      rowKey={(record) => record.id}
       api={() => {
         return new Promise((resolve) => {
-          debugger;
           setTimeout(() => {
             resolve({
               content: permissions,
