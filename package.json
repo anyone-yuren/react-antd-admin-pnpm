@@ -8,6 +8,7 @@
     "preinstall": "npx only-allow pnpm",
     "postinstall": "turbo run stub",
     "build": "turbo build",
+    "docs:build": "turbo docs:build --filter gbeata",
     "build:admin": "pnpm run build --filter gbeata-admin",
     "dev": "turbo dev",
     "lint": "turbo lint",
