@@ -2,6 +2,8 @@ import { defineConfig } from 'dumi';
 
 export default defineConfig({
   outputPath: '../../gbeata-dist',
+  publicPath:
+    process.env.NODE_ENV === 'production' ? '/gbeata-component-docs/' : '/',
   themeConfig: {
     name: 'gbeata',
     mfsu: false,
