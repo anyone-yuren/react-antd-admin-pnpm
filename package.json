@@ -8,6 +8,7 @@
     "preinstall": "npx only-allow pnpm",
     "postinstall": "turbo run stub",
     "build": "turbo build",
+    "docs:build": "turbo docs:build --filter gbeata",
     "build:admin": "pnpm run build --filter gbeata-admin",
     "dev": "turbo dev",
     "lint": "turbo lint",
@@ -72,5 +73,8 @@
     "plop": "^4.0.1",
     "ramda": "^0.29.1",
     "react-i18next": "^14.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
