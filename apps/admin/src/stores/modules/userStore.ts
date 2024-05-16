@@ -79,7 +79,6 @@ export const useSignIn = () => {
     try {
       const res = await signInMutation.mutateAsync(data);
       const { token, ...rest } = res;
-      debugger;
       setUserToken({ token });
       // 暂未提供，后续再决定权限如何处理
       setUserInfo(rest);

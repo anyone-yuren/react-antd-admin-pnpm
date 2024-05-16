@@ -77,14 +77,15 @@ export default function useKeepAlive() {
   /**
    *  检测是否已经存在，如果不存在就添加
    */
-  // useEffect(() => {
-  //   if (!currentRouteMeta) return;
-  //   const existed = tabs.find((item) => item.key === currentRouteMeta.key);
-  //   if (!existed) {
-  //     setTabs((prev) => [...prev, { ...currentRouteMeta, children: currentRouteMeta.outlet, timeStamp: getKey() }]);
-  //   }
-  //   setActiveTabRoutePath(currentRouteMeta.key);
-  // }, [currentRouteMeta]);
+  useEffect(() => {
+    debugger;
+    if (!currentRouteMeta) return;
+    const existed = tabs.find((item) => item.key === currentRouteMeta.key);
+    if (!existed) {
+      setTabs((prev) => [...prev, { ...currentRouteMeta, children: currentRouteMeta.outlet, timeStamp: getKey() }]);
+    }
+    setActiveTabRoutePath(currentRouteMeta.key);
+  }, [currentRouteMeta]);
   return {
     tabs,
     activeTabRoutePath,
