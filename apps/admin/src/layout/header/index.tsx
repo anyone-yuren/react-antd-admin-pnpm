@@ -22,8 +22,8 @@ const LayoutHeader = (props: any) => {
         </div>
         <LayoutFeature />
       </div>
-      {/* {hasTabs ? <LayoutTags /> : null} */}
-      {hasTabs ? <MultiTabs offsetTop={true} /> : null}
+      {hasTabs ? <LayoutTags /> : null}
+      {/* {hasTabs ? <MultiTabs offsetTop={true} /> : null} */}
     </Header>
   );
 };
