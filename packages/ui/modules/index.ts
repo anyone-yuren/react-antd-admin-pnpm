@@ -5,5 +5,6 @@ import GlobalConfig from './GlobalConfig/ConfigProvider';
 import BaseSlick from './Slick/BaseSlick';
 import SvgIcon from './SvgIcon';
 import DrawBoard from './DrawBoard';
+import Toast from './Toast';
 
-export { AnimatePanel, BaseCard, BaseSlick, GlobalConfig, SvgIcon, Translatex, DrawBoard };
+export { AnimatePanel, BaseCard, BaseSlick, GlobalConfig, SvgIcon, Translatex, DrawBoard,Toast };
