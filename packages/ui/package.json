@@ -11,15 +11,18 @@
   "license": "ISC",
   "dependencies": {
     "@react-spring/web": "^9.7.3",
+    "@types/react-dom": "^18.2.0",
     "antd": "^5.12.1",
     "antd-style": "^3.6.1",
     "konva": "^9.3.3",
     "react": "^18.2.0",
+    "react-dom": "18.2.0",
     "react-konva": "^18.2.10",
     "react-slick": "^0.29.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.3.0",
     "@types/react-slick": "^0.23.13",
     "eslint-config-gbeata-eslint": "workspace:^",
     "prettier": "^3.1.0",
