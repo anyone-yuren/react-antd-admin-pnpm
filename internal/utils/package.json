@@ -37,6 +37,10 @@
   "type": "module",
   "devDependencies": {
     "@gbeata/eslint-config": "workspace:^",
-    "@gbeata/ts-config": "workspace:^"
+    "@gbeata/ts-config": "workspace:^",
+    "@types/lodash-es": "^4.17.11"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.21"
   }
 }

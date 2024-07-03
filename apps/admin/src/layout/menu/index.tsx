@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import IconifyIcon from '@/components/iconify-icon';
 import SvgIcon from '@/components/SvgIcon';
 
 import { getOpenKeys } from '@/utils/helper/menuHelper';
@@ -50,6 +51,14 @@ const LayoutMenu = (props: any) => {
 
   const addIcon = (icon?: string, iconSize?: number) => {
     if (!icon) return null;
+    // gbeata-标识的为自定义图标 出自iconify
+    if (icon.startsWith('gbeata-')) {
+      return (
+        <span className='anticon'>
+          <IconifyIcon icon={icon.replace('gbeata-', '')} size={iconSize || 16} />
+        </span>
+      );
+    }
     return (
       <span className='anticon'>
         <SvgIcon name={icon} size={iconSize || 16} />

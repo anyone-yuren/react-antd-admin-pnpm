@@ -1,6 +1,8 @@
-import { MockMethod } from 'vite-plugin-mock';
 import { Random } from 'mockjs';
+
 import { resultPageSuccess } from '../_utils';
+
+import type { MockMethod } from 'vite-plugin-mock';
 
 const getPhone = () => {
   const prefixList = [135, 136, 137, 138, 139, 155, 158, 183, 185, 189];
@@ -33,7 +35,7 @@ const getHobby = () => {
 const genList = () => {
   const list: any[] = [];
   for (let index = 0; index < 100; index++) {
-    const num = index < 10 ? '0' + index : index;
+    const num = index < 10 ? `0${index}` : index;
     list.push({
       id: Number(`10${num}`) + 1,
       name: Random.cname(),
@@ -73,8 +75,8 @@ const articleListData = [
     rtime: '-62135596800',
     draft_id: '7302787905043693577',
     view_count: 397,
-    collect_count: 5,
-    digg_count: 7,
+    collect_count: 25,
+    digg_count: 20,
     comment_count: 0,
     hot_index: 26,
     is_hot: 0,
@@ -119,8 +121,8 @@ const articleListData = [
     rtime: '1699778058',
     draft_id: '7299506825875226661',
     view_count: 2077,
-    collect_count: 10,
-    digg_count: 15,
+    collect_count: 30,
+    digg_count: 37,
     comment_count: 2,
     hot_index: 120,
     is_hot: 0,
@@ -165,8 +167,8 @@ const articleListData = [
     rtime: '1689668573',
     draft_id: '7255491496831631416',
     view_count: 1404,
-    collect_count: 21,
-    digg_count: 19,
+    collect_count: 41,
+    digg_count: 21,
     comment_count: 6,
     hot_index: 95,
     is_hot: 0,
@@ -211,8 +213,8 @@ const articleListData = [
     rtime: '1688831884',
     draft_id: '7249765949742530597',
     view_count: 2280,
-    collect_count: 24,
-    digg_count: 16,
+    collect_count: 34,
+    digg_count: 28,
     comment_count: 5,
     hot_index: 135,
     is_hot: 0,
@@ -257,8 +259,8 @@ const articleListData = [
     rtime: '1687748103',
     draft_id: '7248466120364343333',
     view_count: 1752,
-    collect_count: 32,
-    digg_count: 22,
+    collect_count: 52,
+    digg_count: 39,
     comment_count: 1,
     hot_index: 110,
     is_hot: 0,
@@ -303,8 +305,8 @@ const articleListData = [
     rtime: '1687335742',
     draft_id: '7246564869222580282',
     view_count: 1869,
-    collect_count: 24,
-    digg_count: 13,
+    collect_count: 34,
+    digg_count: 27,
     comment_count: 0,
     hot_index: 106,
     is_hot: 0,
@@ -349,8 +351,8 @@ const articleListData = [
     rtime: '1687239614',
     draft_id: '7246311040267370556',
     view_count: 1414,
-    collect_count: 19,
-    digg_count: 10,
+    collect_count: 29,
+    digg_count: 17,
     comment_count: 2,
     hot_index: 82,
     is_hot: 0,
@@ -395,8 +397,8 @@ const articleListData = [
     rtime: '1686908640',
     draft_id: '7244785030567886907',
     view_count: 9415,
-    collect_count: 186,
-    digg_count: 86,
+    collect_count: 386,
+    digg_count: 145,
     comment_count: 33,
     hot_index: 589,
     is_hot: 0,
@@ -439,7 +441,7 @@ const articleListData = [
     rtime: '1684571408',
     draft_id: '7234887157000454202',
     view_count: 1418,
-    collect_count: 9,
+    collect_count: 49,
     digg_count: 2,
     comment_count: 2,
     hot_index: 74,
@@ -483,7 +485,7 @@ const articleListData = [
     rtime: '1684571408',
     draft_id: '7234887157000454202',
     view_count: 1418,
-    collect_count: 9,
+    collect_count: 91,
     digg_count: 2,
     comment_count: 2,
     hot_index: 74,

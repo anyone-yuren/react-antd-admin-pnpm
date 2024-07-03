@@ -17,7 +17,7 @@
     "typings/**/*.ts",
     "build/**/*.ts",
     "build/**/*.d.ts",
-    "mock/*.ts",
+    "mock/**/*.ts",
     "vite.config.ts",
     "types/*.ts",
     "tailwind.config.ts"

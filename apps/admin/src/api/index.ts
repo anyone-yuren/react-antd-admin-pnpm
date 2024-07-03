@@ -1,3 +1,5 @@
+import { defHttp } from 'apis';
+
 import { service } from '@/utils/axios';
 
 import type { UserInfo, UserToken } from '#/entity';
@@ -13,50 +15,72 @@ export type SignRes = UserToken & {
 
 // User login api
 export const loginApi = (data: LoginParams): Promise<SignRes> => {
-  return service({
+  // return service({
+  //   url: '/login',
+  //   method: 'post',
+  //   data,
+  // });
+  return defHttp.post<SignRes>({
     url: '/login',
-    method: 'post',
     data,
   });
 };
 
 // Get User info
 export function getUserInfo(): Promise<any> {
-  return service({
+  // return service({
+  //   url: '/getUserInfo',
+  //   method: 'get',
+  // });
+  return defHttp.get({
     url: '/getUserInfo',
-    method: 'get',
   });
 }
 
 // User logout api
 export function logoutApi() {
-  return service({
+  // return service({
+  //   url: '/logout',
+  //   method: 'get',
+  // });
+  return defHttp.get({
     url: '/logout',
-    method: 'get',
   });
 }
 
 // Table list
 export function getTableList(params: any) {
-  return service({
+  // return service({
+  //   url: '/table/getTableList',
+  //   method: 'get',
+  //   params,
+  // });
+  return defHttp.get({
     url: '/table/getTableList',
-    method: 'get',
     params,
   });
 }
 
 // juejin api
 export function getJueJinList(params) {
-  return service({
-    url: 'article/queryList',
-    method: 'post',
+  // return service({
+  //   url: 'article/queryList',
+  //   method: 'post',
+  //   data: params,
+  // });
+  return defHttp.post({
+    url: '/article/queryList',
     data: params,
   });
 }
 
 export function getUsersList<T>() {
-  return service({
-    url: 'user/getUserList',
-    method: 'get',
-  }) as unknown as Promise<T>;
+  // return service({
+  //   url: 'user/getUserList',
+  //   method: 'get',
+  // }) as unknown as Promise<T>;
+
+  return defHttp.get<T>({
+    url: '/user/getUserList',
+  });
 }
