@@ -22,6 +22,14 @@
     },
     "types": ["vite/client", "vite-plugin-svg-icons/client", "node"]
   },
-  "include": ["modules/**/*.ts", "modules/**/*.d.ts", "modules/**/*.tsx", "index.ts", "request.ts", "type.d.ts", "**.ts"],
+  "include": [
+    "modules/**/*.ts",
+    "modules/**/*.d.ts",
+    "modules/**/*.tsx",
+    "index.ts",
+    "request.ts",
+    "type.d.ts",
+    "**.ts"
+  ],
   "exclude": ["node_modules", "dist", "**/*.js"]
 }

@@ -15,13 +15,8 @@ export default defineApplicationConfig({
       // Listening on all local ips
       host: true,
       proxy: {
-        '/api/Auth': {
+        '/api': {
           target: VITE_APP_BASE_API,
-          changeOrigin: true,
-          secure: true,
-        },
-        '/api/unique-code': {
-          target: 'http://120.77.76.98:25026',
           changeOrigin: true,
           secure: true,
         },

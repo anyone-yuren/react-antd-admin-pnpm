@@ -16,7 +16,9 @@ function defineApplicationConfig(options: DefineOptions = {}) {
 
   return defineConfig(async ({ command, mode }) => {
     const root = process.cwd();
+    // get env root path
     const { TURBO_INVOCATION_DIR } = process.env;
+
     const isBuild = command === "build";
     const {
       VITE_PUBLIC_PATH,

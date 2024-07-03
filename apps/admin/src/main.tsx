@@ -12,6 +12,8 @@ import '@/i18n/i18n';
 import App from './App';
 import { persistor, store } from './stores';
 
+import '@gbeata/tailwind-config/globals.css';
+
 interface NewToken {
   colorDefault: string;
   paperRedImg: string;

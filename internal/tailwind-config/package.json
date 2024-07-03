@@ -1,0 +1,38 @@
+{
+  "name": "@gbeata/tailwind-config",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "private": true,
+  "homepage": "https://github.com/anyone-yuren/react-antd-admin-pnpm",
+  "bugs": {
+    "url": "https://github.com/anyone-yuren/react-antd-admin-pnpm/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anyone-yuren/react-antd-admin-pnpm.git",
+    "directory": "internal/tailwind-config"
+  },
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    "./globals.css": "./src/globals.css",
+    "./postcss.config": "./postcss.config.mjs",
+    "./tailwind.config": "./tailwind.config.ts"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "postcss-load-config": "^6.0.1",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss": "^3.4.4",
+    "tailwindcss-animate": "^1.0.7",
+    "@gbeata/eslint-config": "workspace:^",
+    "@gbeata/ts-config": "workspace:^"
+  }
+}
