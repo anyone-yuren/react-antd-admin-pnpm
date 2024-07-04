@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import { t } from 'i18next';
 import md5 from 'md5';
 import { type FC, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import SvgIcon from '@/components/SvgIcon';

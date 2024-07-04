@@ -13,6 +13,7 @@
     "@gbeata/utils": "workspace:^",
     "antd": "^5.12.4",
     "axios": "^1.6.2",
+    "lodash-es": "^4.17.21",
     "qs": "^6.11.2",
     "store": "workspace:*",
     "umi-request": "^1.4.0",

@@ -20,5 +20,4 @@ COPY . /source
 FROM nginx:latest
 
 COPY --from=build /source/gbeata-admin/ /usr/share/nginx/html/react-antd-admin-pnpm/
-COPY --from=build /source/gbeata-dashboard/ /usr/share/nginx/html/wk-dashboard/
 COPY default.conf /etc/nginx/conf.d/default.conf
