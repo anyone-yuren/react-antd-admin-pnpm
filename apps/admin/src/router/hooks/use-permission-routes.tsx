@@ -1,11 +1,10 @@
+import { useUserPermissions } from '@gbeata/store';
 import { flattenTree } from '@gbeata/utils';
 import { isEmpty } from 'ramda';
 import { lazy, Suspense, useMemo } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 import LoadingPage from '@/components/LoadingPage';
-
-import { useUserPermissions } from '@/stores/modules/userStore';
 
 import type { Permission } from '#/entity';
 import type { AppRouteObject } from '#/router';

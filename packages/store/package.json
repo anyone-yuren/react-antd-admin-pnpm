@@ -1,5 +1,5 @@
 {
-  "name": "store",
+  "name": "@gbeata/store",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "react": "^18.3.1",
     "zustand": "^4.4.7"
   }
 }

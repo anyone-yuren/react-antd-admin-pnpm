@@ -1,7 +1,6 @@
+import { useUserPermissions } from '@gbeata/store';
 import { GAction, GCtrl, GSearchTable, type GSearchTableField, type GTableCtrlField } from 'gbeata';
 import { t } from 'i18next';
-
-import { useUserPermissions } from '@/stores/modules/userStore';
 
 import AuthAction from '../component/auth';
 

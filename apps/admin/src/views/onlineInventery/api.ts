@@ -51,7 +51,6 @@ export const listApi = (params: AnyKeyProps): Promise<any> => {
     ...params.search,
     ...params.filters,
   };
-  debugger;
   return new Promise((resolve) => {
     setTimeout(() => {
       // 筛选

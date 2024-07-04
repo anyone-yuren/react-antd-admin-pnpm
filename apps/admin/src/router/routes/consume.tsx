@@ -12,7 +12,6 @@ import type { RouteObject } from '../types';
 // user module page
 const UserRoute: RouteObject = {
   path: '/consume',
-  element: <LayoutGuard />,
   meta: {
     title: '消耗统计',
     icon: 'work',

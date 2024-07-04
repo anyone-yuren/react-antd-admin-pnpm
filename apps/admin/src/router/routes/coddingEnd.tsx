@@ -12,7 +12,6 @@ import type { RouteObject } from '../types';
 // user module page
 const UserRoute: RouteObject = {
   path: '/coddingEnd',
-  element: <LayoutGuard />,
   meta: {
     title: '一码到底管理',
     icon: 'ic_user',

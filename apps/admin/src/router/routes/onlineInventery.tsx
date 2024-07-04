@@ -12,7 +12,6 @@ import type { RouteObject } from '../types';
 // user module page
 const UserRoute: RouteObject = {
   path: '/onlineInventery',
-  element: <LayoutGuard />,
   meta: {
     title: '在线库存',
     icon: 'gallery',

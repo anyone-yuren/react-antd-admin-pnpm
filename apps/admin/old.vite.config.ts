@@ -72,7 +72,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       terserOptions: {
         compress: {
           keep_infinity: true,
-          // used to delete console and debugger in production environment
+          // used to delete console and  in production environment
           drop_console: VITE_DROP_CONSOLE,
         },
       },

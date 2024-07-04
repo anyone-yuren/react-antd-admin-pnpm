@@ -7,9 +7,11 @@ import { getAuthCache } from '@/utils/auth';
 
 import { TOKEN_KEY } from '@/enums/cacheEnum';
 import { ExceptionEnum } from '@/enums/exceptionEnum';
+import { BasicLayout } from '@/layout';
 import PageException from '@/views/exception';
 import LoginPage from '@/views/login';
 
+import { GuardRoute } from './guard/guardRoute';
 import { genFullPath } from './helpers';
 
 import type { RouteObject } from './types';
@@ -28,7 +30,13 @@ Object.keys(metaRoutes).forEach((key) => {
 const rootRoutes: RouteObject[] = [
   {
     path: '/',
-    element: <Navigate to='/home' />,
+    element: (
+      <GuardRoute>
+        <BasicLayout />
+      </GuardRoute>
+    ),
+    children: [{ element: <Navigate to='/home' replace /> }, ...routeList],
+    // element: <Navigate to='/home' />,
   },
   {
     path: '/login',
@@ -44,7 +52,7 @@ const rootRoutes: RouteObject[] = [
       return null;
     },
   },
-  ...routeList,
+
   {
     path: '*',
     element: <Navigate to='/404' />,

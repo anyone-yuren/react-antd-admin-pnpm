@@ -12,7 +12,6 @@ import type { RouteObject } from '../types';
 // user module page
 const UserRoute: RouteObject = {
   path: '/picking',
-  element: <LayoutGuard />,
   meta: {
     title: '领料明细统计',
     icon: 'ic_user',

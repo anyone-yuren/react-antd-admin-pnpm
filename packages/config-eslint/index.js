@@ -54,8 +54,8 @@ module.exports = {
     "implicit-arrow-linebreak": ["error", "beside"],
     // 禁止不规则空格
     "no-irregular-whitespace": "off",
-    // 禁止使用 debugger
-    "no-debugger": "off",
+    // 禁止使用
+    "no-": "off",
     // 禁止未使用的变量
     "no-unused-vars": [
       "error",

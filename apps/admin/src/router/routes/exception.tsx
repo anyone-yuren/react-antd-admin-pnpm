@@ -12,7 +12,6 @@ import type { RouteObject } from '../types';
 const ExceptionRoute: RouteObject = {
   path: '/exception',
   name: 'ExceptionPage',
-  element: <LayoutGuard />,
   meta: {
     title: '异常页面',
     icon: 'bug',

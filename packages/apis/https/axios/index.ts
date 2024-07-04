@@ -10,6 +10,7 @@ import axios from 'axios';
 import type { RequestOptions, Result } from '../types/axios';
 import type { AxiosTransform, CreateAxiosOptions } from './axiosTransform';
 import type { AxiosInstance, AxiosResponse } from 'axios';
+import { useUserStore } from '@gbeata/store';
 
 /**
  * @description: 数据处理，方便区分多种处理方式
@@ -27,7 +28,7 @@ const transform: AxiosTransform = {
     // 不进行任何处理，直接返回
     // 用于页面代码可能需要直接获取code，data，message这些信息时开启
     if (!isTransformResponse) {
-      return res.data.data;
+      return res.data;
     }
     const { data } = res;
     // 错误的时候返回
@@ -153,7 +154,7 @@ const transform: AxiosTransform = {
   },
   // 请求拦截器处理
   requestInterceptors: (config, options) => {
-    const token = getItem(StorageEnum.Token);
+    const token = useUserStore.getState().userToken;
     if (token && (config as Recordable).requestOptions?.withToken !== false) {
       // 是否携带token
       (config as Recordable).headers.Authorization = options.authenticationScheme

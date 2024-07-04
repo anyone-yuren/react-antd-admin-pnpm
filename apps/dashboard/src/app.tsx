@@ -1,6 +1,6 @@
 import { ThemeProvider } from 'antd-style';
 import { useEffect } from 'react';
-import { useGlobalStore } from 'store';
+import { useGlobalStore } from '@gbeata/store';
 import { GlobalConfig } from 'ui';
 
 import { useVcosole } from '@/hooks/useVonsole';

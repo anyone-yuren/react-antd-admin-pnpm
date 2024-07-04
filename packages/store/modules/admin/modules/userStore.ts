@@ -21,7 +21,7 @@ type UserStore = {
   clearUserInfoAndToken: () => void;
 };
 
-const useUserStore = create<UserStore>()(
+export const useUserStore = create<UserStore>()(
   persist(
     (set, get) => ({
       userInfo: {},

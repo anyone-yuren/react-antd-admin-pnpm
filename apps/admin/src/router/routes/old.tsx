@@ -12,7 +12,6 @@ import type { RouteObject } from '../types';
 // user module page
 const UserRoute: RouteObject = {
   path: '/old',
-  element: <LayoutGuard />,
   meta: {
     title: '交旧统计',
     icon: 'ic_user',

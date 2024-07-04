@@ -15,7 +15,6 @@ const HomePage = lazy(() => import('@/views/home/index'));
 // Home route
 const HomeRoute: RouteObject = {
   path: '/home',
-  element: <LayoutGuard />,
   // errorElement: <ErrorBoundary />,
   loader: () => null,
   meta: {

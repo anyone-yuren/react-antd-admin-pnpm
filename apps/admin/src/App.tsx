@@ -1,7 +1,7 @@
+import { useGlobalStore } from '@gbeata/store';
 import { ThemeProvider } from 'antd-style';
 import { useEffect, useState } from 'react';
 import { HashRouter, RouterProvider } from 'react-router-dom';
-import { useGlobalStore } from 'store';
 import { GlobalConfig } from 'ui';
 
 import cyanImg from '@/assets/images/cyan-blur.png';

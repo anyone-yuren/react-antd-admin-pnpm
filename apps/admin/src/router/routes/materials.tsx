@@ -12,7 +12,6 @@ import type { RouteObject } from '../types';
 // user module page
 const UserRoute: RouteObject = {
   path: '/materials',
-  element: <LayoutGuard />,
   meta: {
     title: '物料进出存',
     icon: 'ic_user',

@@ -11,7 +11,6 @@ import type { RouteObject } from '../types';
 // user module page
 const UserRoute: RouteObject = {
   path: '/system',
-  element: <LayoutGuard />,
   meta: {
     title: t('系统设置'),
     icon: 'gbeata-ant-design:setting-outlined',
