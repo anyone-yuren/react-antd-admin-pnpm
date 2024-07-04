@@ -11,12 +11,12 @@ import { getLoginUserPermission, loginApi, type LoginParams } from '@/api/auth';
 // import { getItem, removeItem, setItem } from '@/utils/storage';
 // 由于无法在异步函数中使用 persist, 所以这里无法使用，使用其他的持久化管理方式
 // import { persist } from 'zustand/middleware';
-import type { Permission, UserToken } from '#/entity';
+import type { UserPermission, UserToken } from '#/entity';
 
 type UserStore = {
-  userInfo: Partial<Permission>;
+  userInfo: Partial<UserPermission>;
   userToken: string;
-  setUserInfo: (userInfo: Permission) => void;
+  setUserInfo: (userInfo: UserPermission) => void;
   setUserToken: (token: string) => void;
   clearUserInfoAndToken: () => void;
 };
@@ -26,7 +26,7 @@ export const useUserStore = create<UserStore>()(
     (set, get) => ({
       userInfo: {},
       userToken: '',
-      setUserInfo: (userInfo: Permission) => {
+      setUserInfo: (userInfo: UserPermission) => {
         set({ userInfo });
       },
       setUserToken: (token: string) => {

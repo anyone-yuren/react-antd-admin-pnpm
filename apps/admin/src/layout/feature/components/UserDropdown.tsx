@@ -15,7 +15,7 @@ export default function UserDropdown() {
   const { createConfirm, contextHolder, createMessage } = useMessage();
   const { clearUserInfoAndToken } = useUserActions();
   const { t } = useTranslation();
-  const { token } = useUserToken();
+  const token = useUserToken();
   const items: MenuProps['items'] = [
     {
       key: 'lock',

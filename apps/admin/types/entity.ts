@@ -43,3 +43,27 @@ export interface Role {
   desc?: string;
   permission?: Permission[];
 }
+
+export type WarehouseTreeList = {
+  warehouseCode: string;
+  warehouseName: string;
+  warehouseInfoList: WarehouseTreeList[];
+};
+export type UserPermission = {
+  id: string;
+  roleId: string;
+  roleName: string;
+  isAdmin: boolean;
+  userName: string;
+  avator: string;
+  realName: string;
+  userSex: string;
+  userSexDisplay: string;
+  birthday: string;
+  createName?: string;
+  createTime?: string;
+  orgCode?: string;
+  warehouseInfoList: any[];
+  warehouseTreeList: WarehouseTreeList[];
+  permission: string[];
+};
