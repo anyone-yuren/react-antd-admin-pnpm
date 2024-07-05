@@ -1,53 +1,16 @@
 // import { getItem } from '@gbeata/utils';
 // import { useMutation } from '@tanstack/react-query';
+import { useAuthStore } from '@gbeata/store';
 import { App } from 'antd';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { create } from 'zustand';
-import { createJSONStorage, persist } from 'zustand/middleware';
 
-import { getLoginUserPermission, loginApi, type LoginParams } from '@/api/auth';
+import { getLoginUserPermission, loginApi, type LoginParams, logoutApi } from '@/api/auth';
 
 // import { getItem, removeItem, setItem } from '@/utils/storage';
 // 由于无法在异步函数中使用 persist, 所以这里无法使用，使用其他的持久化管理方式
 // import { persist } from 'zustand/middleware';
-import type { Permission, UserToken } from '#/entity';
-
-type UserStore = {
-  userInfo: Partial<Permission>;
-  userToken: string;
-  setUserInfo: (userInfo: Permission) => void;
-  setUserToken: (token: string) => void;
-  clearUserInfoAndToken: () => void;
-};
-
-const useUserStore = create<UserStore>()(
-  persist(
-    (set, get) => ({
-      userInfo: {},
-      userToken: '',
-      setUserInfo: (userInfo: Permission) => {
-        set({ userInfo });
-      },
-      setUserToken: (token: string) => {
-        set({ userToken: token });
-      },
-      clearUserInfoAndToken: () => {
-        set({ userInfo: {}, userToken: '' });
-      },
-    }),
-    {
-      name: 'user-storage',
-      storage: createJSONStorage(() => localStorage),
-    },
-  ),
-);
-
-export const useUserInfo = () => useUserStore((state) => state.userInfo);
-
-export const useUserToken = () => useUserStore((state) => state.userToken);
-
-export const useUserActions = () => useUserStore((state) => state);
+import type { Permission } from '#/entity';
 
 /**
  * This function is a custom hook for signing in a user. It uses a mutation to
@@ -60,7 +23,11 @@ export const useUserActions = () => useUserStore((state) => state);
 export const useSignIn = () => {
   const { t } = useTranslation();
   const { notification, message } = App.useApp();
-  const { setUserToken } = useUserActions();
+  const { setUserToken } = useAuthStore((state) => {
+    return {
+      setUserToken: state.setUserToken,
+    };
+  });
 
   // const signInMutation = useMutation({
   //   mutationFn: loginApi,
@@ -102,7 +69,11 @@ export const useSignIn = () => {
  */
 export const usePermissions = () => {
   const { message } = App.useApp();
-  const { setUserInfo } = useUserActions();
+  const { setUserInfo } = useAuthStore((state) => {
+    return {
+      setUserInfo: state.setUserInfo,
+    };
+  });
 
   const getUserPermissions = async () => {
     try {
@@ -118,4 +89,32 @@ export const usePermissions = () => {
     }
   };
   return useCallback(getUserPermissions, []);
+};
+
+export const useSignOut = () => {
+  const { message } = App.useApp();
+  const { clearUserInfoAndToken } = useAuthStore((state) => {
+    return {
+      clearUserInfoAndToken: state.clearUserInfoAndToken,
+    };
+  });
+
+  const signOut = async (goLogin = true) => {
+    try {
+      const res = await logoutApi();
+      if (res) {
+        clearUserInfoAndToken();
+        goLogin && (window.location.href = '/login');
+        return await Promise.resolve(res);
+      }
+      return await Promise.reject(res);
+    } catch (error: any) {
+      message.error({
+        content: error.message,
+        duration: 3,
+      });
+      return Promise.reject(error);
+    }
+  };
+  return signOut;
 };

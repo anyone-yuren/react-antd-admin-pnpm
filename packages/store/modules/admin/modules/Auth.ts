@@ -1,32 +1,37 @@
-import { create } from 'zustand';
-import { createJSONStorage, persist } from 'zustand/middleware';
+import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
-interface AuthProps {
-  username: string;
-  password: string;
-}
+// import { getItem, removeItem, setItem } from '@/utils/storage';
+// 由于无法在异步函数中使用 persist, 所以这里无法使用，使用其他的持久化管理方式
+// import { persist } from 'zustand/middleware';
+import type { Permission } from "../../../types/entity";
 
-interface AuthState {
-  auth: AuthProps;
-  setAuth: (auth: AuthProps) => void;
-  token: string;
-  setToken: (token: string) => void;
-}
+type UserStore = {
+  userInfo: Partial<Permission>;
+  userToken: string;
+  setUserInfo: (userInfo: Permission) => void;
+  setUserToken: (token: string) => void;
+  clearUserInfoAndToken: () => void;
+};
 
-export const useAuthStore = create<AuthState>()(
+export const useAuthStore = create<UserStore>()(
   persist(
-    (set) => ({
-      auth: {
-        username: '',
-        password: '',
+    (set, get) => ({
+      userInfo: {},
+      userToken: "",
+      setUserInfo: (userInfo: Permission) => {
+        set({ userInfo });
       },
-      setAuth: (auth) => set({ auth }),
-      token: '',
-      setToken: (token) => set({ token }),
+      setUserToken: (token: string) => {
+        set({ userToken: token });
+      },
+      clearUserInfoAndToken: () => {
+        set({ userInfo: {}, userToken: "" });
+      },
     }),
     {
-      name: 'auth',
+      name: "user-storage",
       storage: createJSONStorage(() => localStorage),
-    },
-  ),
-)
+    }
+  )
+);

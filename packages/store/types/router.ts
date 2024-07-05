@@ -1,25 +1,7 @@
 import type { ReactNode } from 'react';
-import type { LoaderFunction, NonIndexRouteObject, RouteObject } from 'react-router-dom';
-
-export interface MetaProps {
-  title: string;
-  key?: string;
-  icon?: string;
-  iconSize?: number;
-  affix?: boolean;
-  keepAlive?: boolean;
-  orderNo?: number;
-  hideMenu?: boolean;
-  hideChildrenInMenu?: boolean;
-}
+import type { RouteObject } from 'react-router-dom';
 
 export interface RouteMeta {
-  title: string;
-  iconSize?: number;
-  affix?: boolean;
-  keepAlive?: boolean;
-  orderNo?: number;
-  hideChildrenInMenu?: boolean;
   /**
    * antd menu selectedKeys
    */
@@ -27,7 +9,7 @@ export interface RouteMeta {
   /**
    * menu label, i18n
    */
-  label?: string;
+  label: string;
   /**
    * menu prefix icon
    */
@@ -66,17 +48,3 @@ export type AppRouteObject = {
   meta?: RouteMeta;
   children?: AppRouteObject[];
 } & Omit<RouteObject, 'children'>;
-
-export interface AppMenu {
-  name: string;
-  path: string;
-  children?: AppMenu[];
-  disabled?: boolean;
-  icon?: string;
-  iconSize?: number;
-  affix?: boolean;
-  orderNo?: number;
-  hideMenu?: boolean;
-  hideChildrenInMenu?: boolean;
-  hideBreadcrumb?: boolean;
-}

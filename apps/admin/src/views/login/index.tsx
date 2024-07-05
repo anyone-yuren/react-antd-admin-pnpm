@@ -9,7 +9,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import SvgIcon from '@/components/SvgIcon';
 
 import illustrationDashboard from '@/assets/images/illustration_dashboard.png';
-import { useSignIn } from '@gbeata/store';
+import { useSignIn } from '@/stores/modules/userStore';
 
 import useStyles from './index.style';
 

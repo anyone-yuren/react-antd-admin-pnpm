@@ -1,7 +1,7 @@
 import { t } from 'i18next';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { createHashRouter, Navigate, redirect, useRoutes } from 'react-router-dom';
+import { createHashRouter, Navigate, redirect, type RouteObject, useRoutes } from 'react-router-dom';
 
 import { getAuthCache } from '@/utils/auth';
 
@@ -14,11 +14,11 @@ import LoginPage from '@/views/login';
 import { GuardRoute } from './guard/guardRoute';
 import { genFullPath } from './helpers';
 
-import type { RouteObject } from './types';
+import type { AppRouteObject } from './types';
 
 const metaRoutes = import.meta.glob('./routes/*.tsx', { eager: true }) as Recordable;
 
-const routeList: RouteObject[] = [];
+const routeList: AppRouteObject[] = [];
 
 Object.keys(metaRoutes).forEach((key) => {
   const module = metaRoutes[key].default || {};
@@ -27,7 +27,7 @@ Object.keys(metaRoutes).forEach((key) => {
   routeList.push(...moduleList);
 });
 
-const rootRoutes: RouteObject[] = [
+const rootRoutes: AppRouteObject[] = [
   {
     path: '/',
     element: (
@@ -35,7 +35,7 @@ const rootRoutes: RouteObject[] = [
         <BasicLayout />
       </GuardRoute>
     ),
-    children: [{ element: <Navigate to='/home' replace /> }, ...routeList],
+    children: [{ index: true, element: <Navigate to='/home' replace /> }, ...routeList],
     // element: <Navigate to='/home' />,
   },
   {
@@ -72,8 +72,8 @@ const rootRoutes: RouteObject[] = [
 export { routeList as basicRoutes };
 
 export const Router = () => {
-  const routes = useRoutes(rootRoutes);
+  const routes = useRoutes(rootRoutes as unknown as RouteObject[]);
   return routes;
 };
 
-export default createHashRouter(rootRoutes);
+export default createHashRouter(rootRoutes as unknown as RouteObject[]);

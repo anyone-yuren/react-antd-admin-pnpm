@@ -1,11 +1,11 @@
-import { useUserStore } from '@gbeata/store';
+import { useAuthStore } from '@gbeata/store';
 import { Cascader, Form } from 'antd';
 import React, { useState } from 'react';
 
 type LayoutType = Parameters<typeof Form>[0]['layout'];
 
 const StoreForm: React.FC = () => {
-  const { userInfo } = useUserStore((state) => {
+  const { userInfo } = useAuthStore((state) => {
     return {
       userInfo: state.userInfo,
     };

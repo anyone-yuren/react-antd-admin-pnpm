@@ -1,5 +1,5 @@
 import { LockOutlined, PoweroffOutlined } from '@ant-design/icons';
-import { useUserActions, useUserToken } from '@gbeata/store';
+import { useAuthStore } from '@gbeata/store';
 import { Dropdown, Space } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -13,9 +13,13 @@ import type { MenuProps } from 'antd';
 
 export default function UserDropdown() {
   const { createConfirm, contextHolder, createMessage } = useMessage();
-  const { clearUserInfoAndToken } = useUserActions();
   const { t } = useTranslation();
-  const token = useUserToken();
+  const { clearUserInfoAndToken, token } = useAuthStore((state) => {
+    return {
+      clearUserInfoAndToken: state.clearUserInfoAndToken,
+      token: state.userToken,
+    };
+  });
   const items: MenuProps['items'] = [
     {
       key: 'lock',

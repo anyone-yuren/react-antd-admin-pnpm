@@ -1,19 +1,20 @@
 // import { usePermissions, useUserToken } from '@gbeata/store';
-import { usePermissions, useUserStore, useUserToken } from '@gbeata/store';
+import { useAuthStore } from '@gbeata/store';
 import { type ReactNode, useEffect } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
+
+import { usePermissions } from '@/stores/modules/userStore';
 
 export const GuardRoute = ({ children }: { children: ReactNode }) => {
   const whiteList: string[] = ['/', '/home', '/login'];
   const { pathname } = useLocation();
-  const token = useUserToken();
-  const permissions = usePermissions();
-
-  const { setUserInfo } = useUserStore((state) => {
+  const { setUserInfo, token } = useAuthStore((state) => {
     return {
       setUserInfo: state.setUserInfo,
+      token: state.userToken,
     };
   });
+  const permissions = usePermissions();
 
   const getPermission = async () => {
     const res = await permissions();
