@@ -10,7 +10,7 @@ import axios from 'axios';
 import type { RequestOptions, Result } from '../types/axios';
 import type { AxiosTransform, CreateAxiosOptions } from './axiosTransform';
 import type { AxiosInstance, AxiosResponse } from 'axios';
-import { useUserStore } from '@gbeata/store';
+import { useUserStore, useSignOut } from '@gbeata/store';
 
 /**
  * @description: 数据处理，方便区分多种处理方式
@@ -50,6 +50,8 @@ const transform: AxiosTransform = {
       case ResultEnum.TIMEOUT:
         timeoutMsg = '登录超时,请重新登录';
         // TODO 登出操作 带上redirect地址
+        const signOut = useSignOut();
+        signOut();
         break;
       default:
         if (message) {

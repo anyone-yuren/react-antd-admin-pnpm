@@ -84,15 +84,15 @@ export const AnalyzeCard = () => {
                 }}
               ></ChartsCard> */}
               <Flex>
-                <Title level={5}>年入库资产：</Title>
+                <p>年入库资产：</p>
                 <Text>14.4万</Text>
               </Flex>
               <Flex>
-                <Title level={5}>月入库资产：</Title>
+                <p>月入库资产：</p>
                 <Text>4.4万</Text>
               </Flex>
               <Flex>
-                <Title level={5}>日入库资产：</Title>
+                <p>日入库资产：</p>
                 <Text>0.4万</Text>
               </Flex>
             </div>
@@ -118,15 +118,15 @@ export const AnalyzeCard = () => {
             </div>
             <div className='card-right'>
               <Flex>
-                <Title level={5}>年出库资产：</Title>
+                <p>年出库资产：</p>
                 <Text>14.4万</Text>
               </Flex>
               <Flex>
-                <Title level={5}>月出库资产：</Title>
+                <p>月出库资产：</p>
                 <Text>4.4万</Text>
               </Flex>
               <Flex>
-                <Title level={5}>日出库资产：</Title>
+                <p>日出库资产：</p>
                 <Text>0.4万</Text>
               </Flex>
               {/* <ChartsCard

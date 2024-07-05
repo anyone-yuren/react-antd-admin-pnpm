@@ -1,17 +1,23 @@
 // import { getItem } from '@gbeata/utils';
 // import { useMutation } from '@tanstack/react-query';
-import { App } from 'antd';
-import { useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
-import { create } from 'zustand';
-import { createJSONStorage, persist } from 'zustand/middleware';
+import { App } from "antd";
+import { useCallback } from "react";
+import { useTranslation } from "react-i18next";
+import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
-import { getLoginUserPermission, loginApi, type LoginParams } from '@/api/auth';
+import {
+  getLoginUserPermission,
+  loginApi,
+  logoutApi,
+  type LoginParams,
+} from "@/api/auth";
 
 // import { getItem, removeItem, setItem } from '@/utils/storage';
 // 由于无法在异步函数中使用 persist, 所以这里无法使用，使用其他的持久化管理方式
 // import { persist } from 'zustand/middleware';
-import type { UserPermission, UserToken } from '#/entity';
+import type { UserPermission, UserToken } from "#/entity";
+import { navigate } from "react-router-dom";
 
 type UserStore = {
   userInfo: Partial<UserPermission>;
@@ -25,7 +31,7 @@ export const useUserStore = create<UserStore>()(
   persist(
     (set, get) => ({
       userInfo: {},
-      userToken: '',
+      userToken: "",
       setUserInfo: (userInfo: UserPermission) => {
         set({ userInfo });
       },
@@ -33,14 +39,14 @@ export const useUserStore = create<UserStore>()(
         set({ userToken: token });
       },
       clearUserInfoAndToken: () => {
-        set({ userInfo: {}, userToken: '' });
+        set({ userInfo: {}, userToken: "" });
       },
     }),
     {
-      name: 'user-storage',
+      name: "user-storage",
       storage: createJSONStorage(() => localStorage),
-    },
-  ),
+    }
+  )
 );
 
 export const useUserInfo = () => useUserStore((state) => state.userInfo);
@@ -78,7 +84,7 @@ export const useSignIn = () => {
       setUserToken(res.resultData);
       // 暂未提供，后续再决定权限如何处理
       notification.success({
-        message: t('登录成功'),
+        message: t("登录成功"),
         description: `欢迎回来: ${data.username}`,
         duration: 3,
       });
@@ -118,4 +124,29 @@ export const usePermissions = () => {
     }
   };
   return useCallback(getUserPermissions, []);
+};
+
+export const useSignOut = () => {
+  const { message } = App.useApp();
+  const { clearUserInfoAndToken } = useUserActions();
+
+  const signOut = async (goLogin = true) => {
+    try {
+      const res = await logoutApi();
+      if (res) {
+        clearUserInfoAndToken();
+        goLogin && navigate("/login");
+        return await Promise.resolve(res);
+      } else {
+        return Promise.reject(res);
+      }
+    } catch (error: any) {
+      message.error({
+        content: error.message,
+        duration: 3,
+      });
+      return Promise.reject(error);
+    }
+  };
+  return signOut;
 };

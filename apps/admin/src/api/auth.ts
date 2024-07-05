@@ -66,7 +66,7 @@ export function logoutApi() {
   //   method: 'get',
   // });
   return defHttp.get({
-    url: '/logout',
+    url: '/Auth/Logout',
   });
 }
 
