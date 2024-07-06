@@ -241,7 +241,7 @@ export const PERMISSION_LIST = [
 /**
  * User role mock
  */
-const ADMIN_ROLE = {
+export const ADMIN_ROLE = {
   id: '4281707933534332',
   name: 'Admin',
   label: 'admin',

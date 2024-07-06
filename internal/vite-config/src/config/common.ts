@@ -5,7 +5,7 @@ const commonConfig: (mode: string) => UserConfig = (mode) => ({
   },
   esbuild: {
     // 构建之前，删除某些代码
-    drop: mode === "production" ? ["console", ""] : [],
+    drop: mode === "production" ? ["console", "debugger"] : [],
   },
   build: {
     reportCompressedSize: false,
