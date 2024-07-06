@@ -6,15 +6,14 @@ import { listApi } from './api';
 const fields: Array<GSearchTableField> = [
   {
     title: '组织',
-    key: 'cn1',
-    // search: true,
+    key: 'orgCode',
     dialog: {
       required: true,
     },
   },
   {
     title: '仓库',
-    key: 'index',
+    key: 'warehouseCode',
     sort: true,
     // search: true,
     dialog: {
@@ -23,21 +22,21 @@ const fields: Array<GSearchTableField> = [
   },
   {
     title: '物料编号',
-    key: 'des1',
+    key: 'materialName',
     type: 'textarea',
-    dialog: true,
   },
   {
     title: '规格',
-    key: 'des1',
+    key: 'materialSize',
   },
   {
     title: '数量',
-    key: 'des2',
+    key: 'quantity',
   },
   {
     title: '批次',
-    key: 'des3',
+    key: 'batchNumber',
+    search: true,
   },
   {
     title: '入库时间',

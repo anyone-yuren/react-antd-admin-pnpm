@@ -25,3 +25,19 @@ export const GetPageOnlineInventory = (data: PageListParams): Promise<any> => {
     data,
   });
 };
+
+// 库龄管理
+export const GetPageInventoryYear = (data: PageListParams): Promise<any> => {
+  return defHttp.post<PageListResult>({
+    url: '/Summary/GetPageInventoryYear',
+    data,
+  });
+};
+
+// 出入库流水
+export const GetPageInventoryFlowl = (data: PageListParams): Promise<any> => {
+  return defHttp.post<PageListResult>({
+    url: '/Summary/GetPageInventoryFlowl',
+    data,
+  });
+};

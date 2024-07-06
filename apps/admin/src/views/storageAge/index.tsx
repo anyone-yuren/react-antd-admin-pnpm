@@ -1,11 +1,12 @@
 import { GAction, GCtrl, GSearchTable, type GSearchTableField, type GTableCtrlField, type Record } from 'gbeata';
+import { GetPageInventoryYear } from '@/api/summary';
 
 import { listApi } from './api';
 
 const fields: Array<GSearchTableField> = [
   {
     title: '组织',
-    key: 'cn1',
+    key: 'orgCode',
     search: true,
     dialog: {
       required: true,
@@ -13,7 +14,7 @@ const fields: Array<GSearchTableField> = [
   },
   {
     title: '仓库',
-    key: 'index',
+    key: 'warehouseCode',
     sort: true,
     search: true,
     dialog: {
@@ -22,25 +23,25 @@ const fields: Array<GSearchTableField> = [
   },
   {
     title: '物料编号',
-    key: 'des1',
+    key: 'materialCode',
     type: 'textarea',
     dialog: true,
   },
   {
     title: '规格',
-    key: 'des1',
+    key: 'materialSize',
   },
   {
     title: '库存数量',
-    key: 'des2',
+    key: 'quantity',
   },
   {
     title: '入库时间',
-    key: 'des3',
+    key: 'receivingData',
   },
   {
     title: '当前库龄',
-    key: 'des4',
+    key: 'inventoryYear',
   },
 ];
 
@@ -60,7 +61,7 @@ const ctrl: GTableCtrlField = {
 export default function Demo() {
   return (
     <GSearchTable
-      api={listApi}
+      api={GetPageInventoryYear}
       // ctrl={ctrl}
       fields={fields}
       rowKey='sort_id'

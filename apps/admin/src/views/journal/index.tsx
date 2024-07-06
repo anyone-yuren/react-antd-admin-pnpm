@@ -2,13 +2,14 @@ import { adminLogin, DictionaryList } from 'apis';
 import { GAction, GCtrl, GSearchTable, type GSearchTableField, type GTableCtrlField, type Record } from 'gbeata';
 import md5 from 'md5';
 import { useEffect } from 'react';
+import { GetPageInventoryFlowl } from '@/api/summary';
 
 import { listApi } from './api';
 
 const fields: Array<GSearchTableField> = [
   {
     title: '组织',
-    key: 'cn1',
+    key: 'orgCode',
     search: true,
     dialog: {
       required: true,
@@ -16,7 +17,7 @@ const fields: Array<GSearchTableField> = [
   },
   {
     title: '仓库',
-    key: 'index',
+    key: 'warehouseCode',
     sort: true,
     search: true,
     dialog: {
@@ -25,9 +26,19 @@ const fields: Array<GSearchTableField> = [
   },
   {
     title: '物料编号',
-    key: 'des1',
-    type: 'textarea',
-    dialog: true,
+    key: 'materialCode',
+  },
+  {
+    title: '物料名称',
+    key: 'materialName',
+  },
+  {
+    title: '货位',
+    key: 'locationCode',
+  },
+  {
+    title: '容器号',
+    key: 'containerId',
   },
 ];
 
@@ -54,7 +65,7 @@ export default function Demo() {
   }, []);
   return (
     <GSearchTable
-      api={listApi}
+      api={GetPageInventoryFlowl}
       // ctrl={ctrl}
       fields={fields}
       rowKey='sort_id'
