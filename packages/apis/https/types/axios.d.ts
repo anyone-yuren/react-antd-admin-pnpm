@@ -37,6 +37,7 @@ export interface RetryRequest {
 }
 export interface Result<T = any> {
   code: number;
+  statusCode?: number;
   type: 'success' | 'error' | 'warning';
   message: string;
   data: T;

@@ -1,12 +1,14 @@
-import type { AxiosRequestConfig, AxiosInstance, AxiosResponse, AxiosError, InternalAxiosRequestConfig } from 'axios';
+import { isFunction } from '@gbeata/utils';
+import axios from 'axios';
+import { cloneDeep } from 'lodash-es';
+import qs from 'qs';
+
+import { ContentTypeEnum, RequestEnum } from '../enums/httpEnum';
+import { AxiosCanceler } from './axiosCancel';
+
 import type { RequestOptions, Result, UploadFileParams } from '../types/axios';
 import type { CreateAxiosOptions } from './axiosTransform';
-import axios from 'axios';
-import qs from 'qs';
-import { AxiosCanceler } from './axiosCancel';
-import { isFunction } from '@gbeata/utils';
-import { cloneDeep } from 'lodash-es';
-import { ContentTypeEnum, RequestEnum } from '../enums/httpEnum';
+import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 export * from './axiosTransform';
 
@@ -15,6 +17,7 @@ export * from './axiosTransform';
  */
 export class GAxios {
   private axiosInstance: AxiosInstance;
+
   private readonly options: CreateAxiosOptions;
 
   constructor(options: CreateAxiosOptions) {
@@ -103,13 +106,13 @@ export class GAxios {
       }
       return res;
     }, undefined);
-
+    debugger;
     // 响应拦截器错误捕获
     responseInterceptorsCatch &&
       isFunction(responseInterceptorsCatch) &&
-      this.axiosInstance.interceptors.response.use(undefined, (error) => {
-        return responseInterceptorsCatch(axiosInstance, error);
-      });
+      this.axiosInstance.interceptors.response.use(undefined, (error) =>
+        responseInterceptorsCatch(axiosInstance, error),
+      );
   }
 
   /**
@@ -201,7 +204,7 @@ export class GAxios {
 
     const { requestOptions } = this.options;
 
-    const opt: RequestOptions = Object.assign({}, requestOptions, options);
+    const opt: RequestOptions = { ...requestOptions, ...options };
 
     const { beforeRequestHook, requestCatchHook, transformResponseHook } = transform || {};
     if (beforeRequestHook && isFunction(beforeRequestHook)) {
