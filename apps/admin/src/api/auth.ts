@@ -48,17 +48,6 @@ export const loginApi = (data: LoginParams): Promise<SignRes> => {
   });
 };
 
-// Get User info
-export function getUserInfo(): Promise<any> {
-  // return service({
-  //   url: '/getUserInfo',
-  //   method: 'get',
-  // });
-  return defHttp.get({
-    url: '/getUserInfo',
-  });
-}
-
 // User logout api
 export function logoutApi() {
   // return service({
@@ -80,19 +69,6 @@ export function getTableList(params: any) {
   return defHttp.get({
     url: '/table/getTableList',
     params,
-  });
-}
-
-// juejin api
-export function getJueJinList(params) {
-  // return service({
-  //   url: 'article/queryList',
-  //   method: 'post',
-  //   data: params,
-  // });
-  return defHttp.post({
-    url: '/article/queryList',
-    data: params,
   });
 }
 

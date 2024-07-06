@@ -22,7 +22,7 @@ export function formatRequestDate(params: Recordable) {
       const value = params[key];
       if (value) {
         // eslint-disable-next-line no-param-reassign
-        params[key] = isString(value) ? value.trim() : JSON.stringify(value);
+        params[key] = isString(value) ? value.trim() : value;
       }
     }
     if (isObject(params[key])) {

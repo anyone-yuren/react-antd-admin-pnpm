@@ -1,11 +1,13 @@
 import { GSearchTable, type GSearchTableField } from 'gbeata';
 
+import { GetPageInventoryCostl } from '@/api/summary';
+
 import { listApi } from './api';
 
 const fields: Array<GSearchTableField> = [
   {
     title: '组织',
-    key: 'cn1',
+    key: 'orgCode',
     search: true,
     dialog: {
       required: true,
@@ -13,7 +15,7 @@ const fields: Array<GSearchTableField> = [
   },
   {
     title: '矿队',
-    key: 'index',
+    key: 'deptName',
     sort: true,
     search: true,
     dialog: {
@@ -22,14 +24,14 @@ const fields: Array<GSearchTableField> = [
   },
   {
     title: '消耗物资价值',
-    key: 'des4',
+    key: 'cost',
   },
 ];
 
 export default function Demo() {
   return (
     <GSearchTable
-      api={listApi}
+      api={GetPageInventoryCostl}
       // ctrl={ctrl}
       fields={fields}
       rowKey='sort_id'

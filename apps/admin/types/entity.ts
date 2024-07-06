@@ -67,3 +67,22 @@ export type UserPermission = {
   warehouseTreeList: WarehouseTreeList[];
   permission: string[];
 };
+
+export type PageListParams<T = any, Q = Record<string, any>> = {
+  pageIndex: number;
+  pageSize: number;
+  sortFiledList?: T[];
+  query?: Q;
+};
+
+export type PageListResult<T = any> = {
+  success: boolean;
+  message: string;
+  resultData: {
+    pageSize: number;
+    pageIndex: number;
+    totalCount: number;
+    pageData: T[];
+  };
+  statusCode: number;
+};
