@@ -1,8 +1,9 @@
-import { useUserPermissions } from '@gbeata/store';
 import { GAction, GCtrl, GSearchTable, type GSearchTableField, type GTableCtrlField } from 'gbeata';
 import { t } from 'i18next';
 
 import AuthAction from '../component/auth';
+
+// import { ADMIN_ROLE } from '#/mock/_assets';
 
 const fields: Array<GSearchTableField> = [
   {
@@ -76,7 +77,7 @@ const ctrl: GTableCtrlField = {
 };
 
 export default function User() {
-  const permissions = useUserPermissions();
+  // const permissions = ADMIN_ROLE.permission;
   return (
     <GSearchTable
       rowKey={(record) => record.id}
@@ -84,8 +85,8 @@ export default function User() {
         return new Promise((resolve) => {
           setTimeout(() => {
             resolve({
-              content: permissions,
-              totalCount: permissions?.length,
+              content: [],
+              totalCount: 0,
             });
           }, 1000);
         });
