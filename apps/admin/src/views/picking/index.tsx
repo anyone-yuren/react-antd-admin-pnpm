@@ -1,20 +1,22 @@
 import { GSearchTable, type GSearchTableField } from 'gbeata';
+import { GetPageInventoryPickl } from '@/api/summary';
 
 import { listApi } from './api';
 
 const fields: Array<GSearchTableField> = [
   {
     title: '领料单位',
-    key: 'cn1',
+    key: 'deptName',
     search: true,
-    dialog: {
-      required: true,
-    },
+  },
+  {
+    title: '领料人',
+    key: 'userName',
+    search: true,
   },
   {
     title: '物料编码',
-    key: 'index',
-    sort: true,
+    key: 'materialCode',
     search: true,
     dialog: {
       required: true,
@@ -22,44 +24,41 @@ const fields: Array<GSearchTableField> = [
   },
   {
     title: '物料描述',
-    key: 'index',
-    sort: true,
+    key: 'materialSize',
     search: true,
-    dialog: {
-      required: true,
-    },
   },
   {
     title: '物料类别',
-    key: 'des1',
+    key: 'materialName',
     type: 'textarea',
-    dialog: true,
   },
   {
     title: '单位',
-    key: 'des2',
+    key: 'packageName',
   },
   {
     title: '数量',
-    key: 'des4',
+    key: 'quantity',
   },
   {
     title: '领料日期',
-    key: 'des5',
+    key: 'pickData',
   },
   {
     title: '领料单号',
-    key: 'des6',
+    key: 'invoiceCode',
   },
 ];
 
 export default function Demo() {
   return (
     <GSearchTable
-      api={listApi}
+      api={GetPageInventoryPickl}
       // ctrl={ctrl}
       fields={fields}
-      rowKey='sort_id'
+      rowKey={(record: any) => {
+        return record.userName + record.materialCode + record.quantity + Math.random();
+      }}
       dialogFormExtend={{
         fields,
       }}

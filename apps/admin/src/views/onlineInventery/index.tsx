@@ -1,4 +1,5 @@
 import { GAction, GCtrl, GSearchTable, type GSearchTableField, type GTableCtrlField, type Record } from 'gbeata';
+import { GetPageOnlineInventory } from '@/api/summary';
 
 import { listApi } from './api';
 
@@ -6,7 +7,7 @@ const fields: Array<GSearchTableField> = [
   {
     title: '组织',
     key: 'cn1',
-    search: true,
+    // search: true,
     dialog: {
       required: true,
     },
@@ -15,7 +16,7 @@ const fields: Array<GSearchTableField> = [
     title: '仓库',
     key: 'index',
     sort: true,
-    search: true,
+    // search: true,
     dialog: {
       required: true,
     },
@@ -60,7 +61,7 @@ const ctrl: GTableCtrlField = {
 export default function Demo() {
   return (
     <GSearchTable
-      api={listApi}
+      api={GetPageOnlineInventory}
       // ctrl={ctrl}
       fields={fields}
       rowKey='sort_id'
