@@ -9,20 +9,13 @@ import { listApi } from './api';
 const fields: Array<GSearchTableField> = [
   {
     title: '组织',
-    key: 'orgCode',
+    key: 'orgName',
     search: true,
-    dialog: {
-      required: true,
-    },
   },
   {
     title: '仓库',
-    key: 'warehouseCode',
-    sort: true,
+    key: 'warehouseName',
     search: true,
-    dialog: {
-      required: true,
-    },
   },
   {
     title: '物料编号',
@@ -39,6 +32,10 @@ const fields: Array<GSearchTableField> = [
   {
     title: '容器号',
     key: 'containerId',
+  },
+  {
+    title: '创建时间',
+    key: 'createTime',
   },
 ];
 
