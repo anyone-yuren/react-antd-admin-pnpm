@@ -6,7 +6,7 @@ import { listApi } from './api';
 const fields: Array<GSearchTableField> = [
   {
     title: '组织',
-    key: 'orgCode',
+    key: 'orgName',
     search: true,
     dialog: {
       required: true,
@@ -14,7 +14,7 @@ const fields: Array<GSearchTableField> = [
   },
   {
     title: '仓库',
-    key: 'warehouseCode',
+    key: 'warehouseName',
     sort: true,
     search: true,
     dialog: {
