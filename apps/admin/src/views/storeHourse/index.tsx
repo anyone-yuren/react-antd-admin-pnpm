@@ -2,8 +2,6 @@ import { GAction, GCtrl, GSearchTable, type GSearchTableField, type GTableCtrlFi
 
 import { getWarehouseList } from '@/api/warehouse';
 
-import { listApi } from './api';
-
 const fields: Array<GSearchTableField> = [
   {
     title: '所属组织',
@@ -31,7 +29,7 @@ const fields: Array<GSearchTableField> = [
   },
 ];
 
-export default function Demo() {
+export default function StoreHourse() {
   const ctrl: GTableCtrlField = {
     width: 200,
     render: (_, record: Record<string, any>) => (

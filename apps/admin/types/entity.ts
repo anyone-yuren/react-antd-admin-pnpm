@@ -75,14 +75,22 @@ export type PageListParams<T = any, Q = Record<string, any>> = {
   query?: Q;
 };
 
-export type PageListResult<T = any> = {
+type DefaultQueryType = Record<string, any>[];
+
+type IfDefined<T, TrueType, FalseType> = [T] extends [DefaultQueryType] ? TrueType : FalseType;
+
+export type PageListResult<T = any, Q = DefaultQueryType> = {
   success: boolean;
   message: string;
-  resultData: {
-    pageSize: number;
-    pageIndex: number;
-    totalCount: number;
-    pageData: T[];
-  };
+  resultData: IfDefined<
+    Q,
+    Q,
+    {
+      pageSize: number;
+      pageIndex: number;
+      totalCount: number;
+      pageData: T[];
+    }
+  >;
   statusCode: number;
 };

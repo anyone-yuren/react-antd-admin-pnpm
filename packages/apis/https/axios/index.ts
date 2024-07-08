@@ -20,7 +20,6 @@ const transform: AxiosTransform = {
    * @description: 处理响应数据，如果数据不是预期格式，则直接抛出错误
    */
   transformResponseHook: (res: AxiosResponse<Result>, options: RequestOptions) => {
-    debugger;
     const { isReturnNativeResponse, isTransformResponse } = options;
     // 如果不返回原生响应头 比如：需要获取响应头时使用该属性
     if (isReturnNativeResponse) {

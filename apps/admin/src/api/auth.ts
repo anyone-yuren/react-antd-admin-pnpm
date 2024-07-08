@@ -96,3 +96,16 @@ export const getUserList = (data: PageListParams): Promise<PageListResult> => {
     data,
   });
 };
+
+export const getOrganizationAndWarehouseTree = (): Promise<PageListResult<any, WarehouseTreeList[]>> => {
+  return defHttp.get({
+    url: '/Warehouse/GetOrganizationAndWarehouseTree',
+  });
+};
+
+export const setWarehouse = (data: { userId: string; warehouseCodes: string[] }): Promise<PageListResult> => {
+  return defHttp.post({
+    url: '/User/SetWarehouses',
+    data,
+  });
+};
