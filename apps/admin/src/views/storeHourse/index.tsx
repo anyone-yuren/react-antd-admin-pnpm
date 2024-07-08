@@ -5,9 +5,7 @@ import { getWarehouseList } from '@/api/warehouse';
 const fields: Array<GSearchTableField> = [
   {
     title: '所属组织',
-    key: 'orgCode',
-    type: 'select',
-    options: [],
+    key: 'orgName',
     sort: true,
     search: true,
     dialog: {
