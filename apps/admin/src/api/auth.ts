@@ -1,6 +1,6 @@
 import { defHttp } from 'apis';
 
-import type { UserInfo, UserToken } from '#/entity';
+import type { PageListParams, PageListResult, UserInfo, UserToken } from '#/entity';
 
 export interface LoginParams {
   username: string;
@@ -86,5 +86,13 @@ export function getUsersList<T>() {
 export const getLoginUserPermission = (): Promise<Permission> => {
   return defHttp.get<Permission>({
     url: '/Auth/GetLoginUserPermission',
+  });
+};
+// ---------------- 用户管理 --------------------
+
+export const getUserList = (data: PageListParams): Promise<PageListResult> => {
+  return defHttp.post({
+    url: '/User/GetPageData',
+    data,
   });
 };

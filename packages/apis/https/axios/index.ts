@@ -1,16 +1,16 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
+import { useAuthStore } from '@gbeata/store';
 import { deepMerge, formatRequestDate, getItem, joinTimestamp, setObjToUrlParams } from '@gbeata/utils';
+import axios from 'axios';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { clone, isString } from 'lodash-es';
 
 import { ContentTypeEnum, RequestEnum, ResultEnum, StorageEnum } from '../enums/httpEnum';
 import { GAxios } from './Axios';
-import axios from 'axios';
 
 import type { RequestOptions, Result } from '../types/axios';
 import type { AxiosTransform, CreateAxiosOptions } from './axiosTransform';
 import type { AxiosInstance, AxiosResponse } from 'axios';
-import { useAuthStore } from '@gbeata/store';
 
 /**
  * @description: 数据处理，方便区分多种处理方式
@@ -20,6 +20,7 @@ const transform: AxiosTransform = {
    * @description: 处理响应数据，如果数据不是预期格式，则直接抛出错误
    */
   transformResponseHook: (res: AxiosResponse<Result>, options: RequestOptions) => {
+    debugger;
     const { isReturnNativeResponse, isTransformResponse } = options;
     // 如果不返回原生响应头 比如：需要获取响应头时使用该属性
     if (isReturnNativeResponse) {
@@ -36,19 +37,21 @@ const transform: AxiosTransform = {
       throw new Error('请求接口错误');
     }
     //  这里 code，result，message为 后台统一的字段，需要在 types.ts内修改为项目自己的接口返回格式
-    const { code, message } = data;
+    const { statusCode, message } = data;
 
     // 这里逻辑可以根据项目进行修改
-    const hasSuccess = data && Reflect.has(data, 'code') && code === ResultEnum.SUCCESS;
+    const hasSuccess = data && Reflect.has(data, 'statusCode') && statusCode === ResultEnum.SUCCESS;
     if (hasSuccess) {
-      return data.data;
+      return data;
     }
     // 在此处根据自己项目的实际情况对不同的code执行不同的操作
     // 如果不希望中断当前请求，请return数据，否则直接抛出异常即可
     let timeoutMsg = '';
-    switch (code) {
+    switch (statusCode) {
       case ResultEnum.TIMEOUT:
         timeoutMsg = '登录超时,请重新登录';
+        useAuthStore.getState().clearUserInfoAndToken();
+        window.location.href = '/login';
         // TODO 登出操作 带上redirect地址
         break;
       default:
@@ -122,32 +125,30 @@ const transform: AxiosTransform = {
         config.params = Object.assign(params || {}, joinTimestamp(joinTime, false));
       } else {
         // 兼容restful风格
-        config.url = config.url + params + `${joinTimestamp(joinTime, true)}`;
+        config.url = `${config.url + params}${joinTimestamp(joinTime, true)}`;
         config.params = undefined;
+      }
+    } else if (!isString(params)) {
+      formatDate && formatRequestDate(params);
+      if (
+        Reflect.has(config, 'data') &&
+        config.data &&
+        (Object.keys(config.data).length > 0 || config.data instanceof FormData)
+      ) {
+        config.data = data;
+        config.params = params;
+      } else {
+        // 非GET请求如果没有提供data，则将params视为data
+        config.data = params;
+        config.params = undefined;
+      }
+      if (joinParamsToUrl) {
+        config.url = setObjToUrlParams(config.url as string, { ...config.params, ...config.data });
       }
     } else {
-      if (!isString(params)) {
-        formatDate && formatRequestDate(params);
-        if (
-          Reflect.has(config, 'data') &&
-          config.data &&
-          (Object.keys(config.data).length > 0 || config.data instanceof FormData)
-        ) {
-          config.data = data;
-          config.params = params;
-        } else {
-          // 非GET请求如果没有提供data，则将params视为data
-          config.data = params;
-          config.params = undefined;
-        }
-        if (joinParamsToUrl) {
-          config.url = setObjToUrlParams(config.url as string, Object.assign({}, config.params, config.data));
-        }
-      } else {
-        // 兼容restful风格
-        config.url = config.url + params;
-        config.params = undefined;
-      }
+      // 兼容restful风格
+      config.url += params;
+      config.params = undefined;
     }
 
     return config;
@@ -195,6 +196,7 @@ function createAxios(options?: Partial<CreateAxiosOptions>) {
           urlPrefix: import.meta.env.VITE_PREFIX_URL,
           // 格式化提交参数时间
           formatDate: true,
+          isTransformResponse: true,
         },
       },
       options || {},

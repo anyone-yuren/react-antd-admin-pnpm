@@ -71,7 +71,7 @@ export type UserPermission = {
 export type PageListParams<T = any, Q = Record<string, any>> = {
   pageIndex: number;
   pageSize: number;
-  sortFiledList?: T[];
+  sortFieldList?: T[];
   query?: Q;
 };
 

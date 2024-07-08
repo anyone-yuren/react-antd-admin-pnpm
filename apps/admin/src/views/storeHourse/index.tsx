@@ -1,11 +1,13 @@
 import { GAction, GCtrl, GSearchTable, type GSearchTableField, type GTableCtrlField } from 'gbeata';
 
+import { getWarehouseList } from '@/api/warehouse';
+
 import { listApi } from './api';
 
 const fields: Array<GSearchTableField> = [
   {
     title: '所属组织',
-    key: 'index',
+    key: 'orgCode',
     type: 'select',
     options: [],
     sort: true,
@@ -16,7 +18,7 @@ const fields: Array<GSearchTableField> = [
   },
   {
     title: '仓库名称',
-    key: 'cn1',
+    key: 'warehouseName',
     search: true,
     dialog: {
       required: true,
@@ -24,19 +26,8 @@ const fields: Array<GSearchTableField> = [
   },
   {
     title: '仓库编号',
-    key: 'des4',
+    key: 'warehouseCode',
     dialog: true,
-  },
-  {
-    title: '管理员',
-    key: 'des1',
-    type: 'select',
-    options: [],
-    dialog: true,
-  },
-  {
-    title: '创建时间',
-    key: 'des2',
   },
 ];
 
@@ -59,7 +50,7 @@ export default function Demo() {
   };
   return (
     <GSearchTable
-      api={listApi}
+      api={getWarehouseList}
       ctrl={ctrl}
       fields={fields}
       rowKey='sort_id'

@@ -1,20 +1,28 @@
 import { GAction, GCtrl, GSearchTable, type GSearchTableField, type GTableCtrlField } from 'gbeata';
 
+import { getUserList } from '@/api/auth';
+
 import AuthAction from '../component/auth';
-import { listApi } from '../data/api';
 
 const fields: Array<GSearchTableField> = [
   {
     title: '用户名称',
-    key: 'cn1',
+    key: 'realName',
     search: true,
     dialog: {
       required: true,
     },
   },
   {
+    title: '角色',
+    key: 'roleName',
+    dialog: {
+      required: true,
+    },
+  },
+  {
     title: '所属组织',
-    key: 'index',
+    key: 'orgName',
     sort: true,
     search: true,
     dialog: {
@@ -28,6 +36,10 @@ const fields: Array<GSearchTableField> = [
     dialog: {
       required: true,
     },
+  },
+  {
+    title: '仓库权限',
+    key: 'warehouseMaster',
   },
 ];
 const ctrl: GTableCtrlField = {
@@ -48,7 +60,7 @@ const ctrl: GTableCtrlField = {
 export default function User() {
   return (
     <GSearchTable
-      api={listApi}
+      api={getUserList}
       ctrl={ctrl}
       fields={fields}
       rowKey='sort_id'
