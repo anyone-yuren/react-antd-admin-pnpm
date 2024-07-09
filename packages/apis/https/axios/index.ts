@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { useAuthStore } from '@gbeata/store';
+// import { useAuthStore } from '@gbeata/store';
 import { deepMerge, formatRequestDate, getItem, joinTimestamp, setObjToUrlParams } from '@gbeata/utils';
 import axios from 'axios';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -49,7 +49,7 @@ const transform: AxiosTransform = {
     switch (statusCode) {
       case ResultEnum.TIMEOUT:
         timeoutMsg = '登录超时,请重新登录';
-        useAuthStore.getState().clearUserInfoAndToken();
+        // useAuthStore.getState().clearUserInfoAndToken();
         window.location.href = '/login';
         // TODO 登出操作 带上redirect地址
         break;
@@ -154,7 +154,8 @@ const transform: AxiosTransform = {
   },
   // 请求拦截器处理
   requestInterceptors: (config, options) => {
-    const token = useAuthStore.getState().userToken;
+    // const token = useAuthStore.getState().userToken;
+    const token = getItem('user-storage').state.userToken;
     if (token && (config as Recordable).requestOptions?.withToken !== false) {
       // 是否携带token
       (config as Recordable).headers.Authorization = options.authenticationScheme

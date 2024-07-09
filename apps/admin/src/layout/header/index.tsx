@@ -1,6 +1,7 @@
 import { Layout } from 'antd';
 import classNames from 'classnames';
-import { useGlobalStore } from '@gbeata/store';
+
+import { useGlobalStore } from '@/stores/admin';
 
 import LayoutFeature from '../feature';
 import MultiTabs from '../multi-tab';

@@ -1,4 +1,4 @@
-import { useGlobalStore } from '@gbeata/store';
+import { useGlobalStore } from '@/stores/admin';
 import { ThemeProvider } from 'antd-style';
 import { useEffect, useState } from 'react';
 import { HashRouter, RouterProvider } from 'react-router-dom';
@@ -12,7 +12,11 @@ import CustomGlobal from '@/styles/GlobalPager';
 import LoadingPage from './components/LoadingPage';
 
 function App() {
-  const preset = useGlobalStore((state) => state.preset);
+  const { preset } = useGlobalStore((state) => {
+    return {
+      preset: state.preset,
+    };
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

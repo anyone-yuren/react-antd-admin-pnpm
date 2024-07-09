@@ -1,5 +1,4 @@
 import { LockOutlined, PoweroffOutlined } from '@ant-design/icons';
-import { useAuthStore } from '@gbeata/store';
 import { Dropdown, Space } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +7,7 @@ import { useMessage } from '@/hooks/web/useMessage';
 
 import { logoutApi } from '@/api';
 import headerImg from '@/assets/images/avatar.jpeg';
+import { useAuthStore } from '@/stores/admin';
 
 import type { MenuProps } from 'antd';
 

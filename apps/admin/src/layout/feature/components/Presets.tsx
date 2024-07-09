@@ -1,8 +1,8 @@
 import { Badge, Button, Col, Row } from 'antd';
 import React, { useMemo } from 'react';
-import { useGlobalStore } from '@gbeata/store';
 
 import { APP_THEME_COLOR_LIST } from '@/settings/designSetting';
+import { useGlobalStore } from '@/stores/admin';
 
 const Presets = () => {
   const { preset, setPreset } = useGlobalStore();

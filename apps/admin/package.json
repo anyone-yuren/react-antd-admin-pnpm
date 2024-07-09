@@ -60,7 +60,6 @@
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
     "sortablejs": "^1.15.0",
-    "@gbeata/store": "workspace:^",
     "tailwindcss": "^3.4.4",
     "ui": "workspace:^",
     "use-immer": "^0.9.0",

@@ -4,7 +4,8 @@ import ErrorBoundary from 'antd/es/alert/ErrorBoundary';
 import { t } from 'i18next';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useGlobalStore } from '@gbeata/store';
+
+import { useGlobalStore } from '@/stores/admin';
 
 import FullScreen from './FullScreen';
 import LayoutSettings from './Layout';

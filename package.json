@@ -9,7 +9,7 @@
     "postinstall": "turbo run stub",
     "build": "turbo build",
     "docs:build": "turbo docs:build --filter gbeata",
-    "build:admin": "pnpm run build --filter gbeata-admin",
+    "build:admin": "pnpm run build --filter gbeata-admin --force",
     "dev": "turbo dev --parallel --no-cache",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",

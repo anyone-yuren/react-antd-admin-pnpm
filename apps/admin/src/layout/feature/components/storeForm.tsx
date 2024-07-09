@@ -1,6 +1,7 @@
-import { useAuthStore } from '@gbeata/store';
 import { Cascader, Form } from 'antd';
 import React, { useState } from 'react';
+
+import { useAuthStore } from '@/stores/admin';
 
 type LayoutType = Parameters<typeof Form>[0]['layout'];
 

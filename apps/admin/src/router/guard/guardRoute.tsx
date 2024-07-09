@@ -1,8 +1,8 @@
 // import { usePermissions, useUserToken } from '@gbeata/store';
-import { useAuthStore } from '@gbeata/store';
 import { type ReactNode, useEffect } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
+import { useAuthStore } from '@/stores/admin';
 import { usePermissions } from '@/stores/modules/userStore';
 
 export const GuardRoute = ({ children }: { children: ReactNode }) => {

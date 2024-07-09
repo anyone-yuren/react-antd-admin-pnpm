@@ -1,5 +1,5 @@
-import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
+import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
 interface State {
   theme: string;
@@ -16,11 +16,11 @@ export const useGlobalStore = create<State>()(
   persist(
     (set, get) => {
       return {
-        theme: "light",
+        theme: 'light',
         setTheme: (theme: string) => {
           set({ theme });
         },
-        preset: "#00A76F",
+        preset: '#00A76F',
         setPreset: (preset: string) => {
           set({ preset });
         },
@@ -35,8 +35,8 @@ export const useGlobalStore = create<State>()(
       };
     },
     {
-      name: "global-storage",
+      name: 'global-storage',
       storage: createJSONStorage(() => localStorage),
-    }
-  )
+    },
+  ),
 );
