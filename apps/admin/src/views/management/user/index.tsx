@@ -22,7 +22,7 @@ export default function User() {
     if (res) {
       setList(res);
     }
-  });
+  }, []);
 
   const fields: Array<GSearchTableField> = [
     {
