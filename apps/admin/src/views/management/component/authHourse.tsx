@@ -3,12 +3,14 @@ import { Modal, Tabs, Tree } from 'antd';
 import { Empty } from 'antd/lib';
 import { GButton } from 'gbeata';
 import { useEffect, useMemo, useState } from 'react';
+import useStyles from './style';
 
 import { getOrganizationAndWarehouseTree, setWarehouse, type WarehouseTreeList } from '@/api/auth';
 
 const AuthHourseAction = ({ record, refreshTable }: any) => {
   const [open, setOpen] = useState(false);
   const [, setActiveKey] = useState('1');
+  const { styles } = useStyles();
   const [authData, setAuthData] = useState<WarehouseTreeList[]>([]);
   const { run } = useRequest(getOrganizationAndWarehouseTree, {
     onSuccess: (data) => {
@@ -43,8 +45,6 @@ const AuthHourseAction = ({ record, refreshTable }: any) => {
         checkStrictly
         defaultCheckedKeys={CheckedKeys}
         onCheck={(checkedKeys, node) => {
-          console.log(CheckedKeys);
-
           setCheckedKeys(checkedKeys?.checked as any);
         }}
       ></Tree>
@@ -79,8 +79,16 @@ const AuthHourseAction = ({ record, refreshTable }: any) => {
           });
         }}
       >
-        <div className='h-[400px] overflow-auto'>
-          {open && <Tabs tabPosition='left' defaultActiveKey='1' items={tabsItems()} onChange={setActiveKey} />}
+        <div className='h-[400px]'>
+          {open && (
+            <Tabs
+              tabPosition='left'
+              defaultActiveKey='1'
+              className={`${styles['my-modal-body']} h-[400px] `}
+              items={tabsItems()}
+              onChange={setActiveKey}
+            />
+          )}
         </div>
       </Modal>
     </>
