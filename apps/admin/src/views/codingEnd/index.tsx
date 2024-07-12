@@ -8,11 +8,16 @@ import {
   type Record,
   setDefaultDataFilter,
 } from 'gbeata';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import G6Modal from './components/g6Modal';
 
 export default function Demo() {
+  const [requestPage, setRequestPage] = useState({
+    maxResultCount: 10,
+    skipCount: 1,
+  });
+  const requestRef = useRef<any>();
   setDefaultDataFilter((res: any) => {
     return {
       content: res.items,
@@ -32,7 +37,6 @@ export default function Demo() {
       title: '组织',
       key: 'organizationName',
       sort: true,
-      search: true,
       dialog: {
         required: true,
       },
@@ -46,6 +50,7 @@ export default function Demo() {
     {
       title: '物料编码',
       key: 'materialCode',
+      search: true,
     },
     {
       title: '物料名称',
@@ -62,14 +67,6 @@ export default function Demo() {
     {
       title: '规格型号',
       key: 'packageName',
-    },
-    {
-      title: '创建时间',
-      key: 'des7',
-    },
-    {
-      title: '创建人',
-      key: 'des8',
     },
     {
       title: '剩余数量',
@@ -97,13 +94,23 @@ export default function Demo() {
     <>
       <GSearchTable
         api={() => {
-          return coddingEndList({ No: '4' });
+          return coddingEndList(requestRef.current);
         }}
         ctrl={ctrl}
         fields={fields}
         rowKey='id'
         dialogFormExtend={{
           fields,
+        }}
+        beforeSearch={(params) => {
+          return { ...requestRef.current };
+        }}
+        onParamsChange={({ pagination, search }) => {
+          requestRef.current = {
+            maxResultCount: pagination.pageSize,
+            skipCount: (pagination.current - 1) * pagination.pageSize,
+            ...search,
+          };
         }}
         // pagination={false}
       ></GSearchTable>
