@@ -106,7 +106,6 @@ export class GAxios {
       }
       return res;
     }, undefined);
-    debugger;
     // 响应拦截器错误捕获
     responseInterceptorsCatch &&
       isFunction(responseInterceptorsCatch) &&

@@ -4,7 +4,7 @@ import { loadEnv } from 'vite';
 
 const root = process.cwd();
 
-const { VITE_APP_BASE_API } = loadEnv(process.env.NODE_ENV as string, root);
+const { VITE_APP_BASE_API, VITE_APP_UNIQUE_API } = loadEnv(process.env.NODE_ENV as string, root);
 
 export default defineApplicationConfig({
   overrides: {
@@ -15,10 +15,22 @@ export default defineApplicationConfig({
       // Listening on all local ips
       host: true,
       proxy: {
-        '/api': {
+        // '/api': {
+        //   target: VITE_APP_BASE_API,
+        //   changeOrigin: true,
+        //   secure: true,
+        // },
+        '/api/unique-code': {
+          target: VITE_APP_UNIQUE_API,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api\/unique-code/, '/api/unique-code'),
+        },
+        // 配置第二个代理地址
+        '^/api(?!/unique-code)': {
           target: VITE_APP_BASE_API,
           changeOrigin: true,
           secure: true,
+          rewrite: (path) => path.replace(/^\/api/, '/api'),
         },
       },
     },

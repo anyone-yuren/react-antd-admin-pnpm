@@ -1,11 +1,24 @@
 import { coddingEndList } from 'apis';
-import { GAction, GCtrl, GSearchTable, type GSearchTableField, type GTableCtrlField, type Record } from 'gbeata';
+import {
+  GAction,
+  GCtrl,
+  GSearchTable,
+  type GSearchTableField,
+  type GTableCtrlField,
+  type Record,
+  setDefaultDataFilter,
+} from 'gbeata';
 import { useState } from 'react';
 
-import { listApi } from './api';
 import G6Modal from './components/g6Modal';
 
 export default function Demo() {
+  setDefaultDataFilter((res: any) => {
+    return {
+      content: res.items,
+      totalCount: res.totalCount,
+    };
+  });
   const fields: Array<GSearchTableField> = [
     {
       title: '唯一编码',
@@ -88,7 +101,7 @@ export default function Demo() {
         }}
         ctrl={ctrl}
         fields={fields}
-        rowKey='sort_id'
+        rowKey='id'
         dialogFormExtend={{
           fields,
         }}

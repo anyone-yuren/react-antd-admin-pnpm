@@ -126,9 +126,9 @@ const G6Modal = ({ open, onClose, record }: { open: boolean; onClose: () => void
   function transformOrderNoToLabel(tree: TreeNode): TreeNode {
     return {
       ...tree,
-      label: tree.orderNo,
+      label: tree.code.materialName,
       id: String(tree.id),
-      children: tree.children ? tree.children.map(transformOrderNoToLabel) : [],
+      children: tree.children?.length ? tree.children.map(transformOrderNoToLabel) : [],
     };
   }
   useEffect(() => {
@@ -195,17 +195,19 @@ const G6Modal = ({ open, onClose, record }: { open: boolean; onClose: () => void
   // 处理Descriptions展示的数据
   const items = React.useMemo(() => {
     if (!node) return [];
-    const keys = Object.keys(node);
+    const keys = Object.keys(node.code);
     return keys
       .filter((key) => key !== 'children')
       .map((key) => {
         return {
           label: Description[key],
-          children: node[key] as string,
+          children: node.code[key] as string,
         };
       })
       .filter((item) => item.label !== undefined);
   }, [node]);
+
+  console.log(items);
 
   return (
     <ErrorBoundary>

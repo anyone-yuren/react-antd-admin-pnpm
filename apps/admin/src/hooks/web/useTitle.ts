@@ -1,4 +1,5 @@
 import { useTitle as usePageTitle } from 'ahooks';
+import { setDefaultDataFilter } from 'gbeata';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -14,6 +15,14 @@ export function useTitle() {
   useEffect(() => {
     const currRoute = searchRoute(pathname, basicRoutes);
     setPageTitle(currRoute?.meta.title);
+    setDefaultDataFilter((res) => {
+      return {
+        content: res.resultData.pageData,
+        // 数据总共 n 条
+        totalCount: res.resultData.totalCount,
+        ...res,
+      };
+    });
   }, [pathname]);
 
   usePageTitle(pageTitle);
