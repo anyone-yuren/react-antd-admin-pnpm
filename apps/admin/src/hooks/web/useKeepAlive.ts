@@ -12,7 +12,7 @@ export default function useKeepAlive() {
   const { VITE_APP_HOME: HOMEPAGE } = import.meta.env;
   const { push } = useRouter();
   const [tabs, setTabs] = useState<KeepAliveTab[]>([]);
-  const [activeTabRoutePath, setActiveTabRoutePath] = useState<string>();
+  const [activeTabRoutePath, setActiveTabRoutePath] = useState<string>('');
   const currentRouteMeta = useMatchRouteMeta();
 
   const closeTab = useCallback(
@@ -74,6 +74,7 @@ export default function useKeepAlive() {
     },
     [activeTabRoutePath],
   );
+
   /**
    *  检测是否已经存在，如果不存在就添加
    */

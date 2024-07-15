@@ -1,17 +1,18 @@
 import { GAction, GCtrl, GSearchTable, type GSearchTableField, type GTableCtrlField } from 'gbeata';
 
 import { getWarehouseList } from '@/api/warehouse';
+import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
 
 const fields: Array<GSearchTableField> = [
-  {
-    title: '所属组织',
-    key: 'orgName',
-    sort: true,
-    search: true,
-    dialog: {
-      required: true,
-    },
-  },
+  // {
+  //   title: '所属组织',
+  //   key: 'orgName',
+  //   sort: true,
+  //   search: true,
+  //   dialog: {
+  //     required: true,
+  //   },
+  // },
   {
     title: '仓库名称',
     key: 'warehouseName',
@@ -44,12 +45,14 @@ export default function StoreHourse() {
       </GCtrl>
     ),
   };
+  const { activeOrgCode } = useWarehouseOptions();
   return (
     <GSearchTable
       api={getWarehouseList}
       ctrl={ctrl}
       fields={fields}
       rowKey='sort_id'
+      extendSearchParams={{ orgCode: activeOrgCode }}
       dialogFormExtend={{
         fields,
       }}

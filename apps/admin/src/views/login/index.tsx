@@ -57,9 +57,9 @@ const LoginPage: FC = () => {
       <div className={styles['login-form']}>
         <div className='login-info'>
           <Title className='title' level={3}>
-            {t('登录 Gbeata Admin')}
+            {t('登录数据汇总平台')}
           </Title>
-          <Text type='secondary'>
+          {/* <Text type='secondary'>
             {' '}
             {t('新用户？')}
             <Button
@@ -72,7 +72,7 @@ const LoginPage: FC = () => {
               {t('立即注册')}
             </Button>
           </Text>
-          <Alert message={t('登录信息： 用户名：admin 密码：admin')} type='info' showIcon />
+          <Alert message={t('登录信息： 用户名：admin 密码：admin')} type='info' showIcon /> */}
         </div>
         <Form
           ref={loginFormRef}
@@ -100,14 +100,14 @@ const LoginPage: FC = () => {
               prefix={<LockOutlined style={{ color: 'rgba(0, 0, 0, 0.25)' }} rev={undefined} />}
             />
           </Form.Item>
-          <Form.Item>
+          {/* <Form.Item>
             <Form.Item name='remember' className={classNames('fl', 'no-margin')} valuePropName='checked'>
               <Checkbox>{t('记住我')}</Checkbox>
             </Form.Item>
             <Form.Item className={classNames('fr', 'no-margin')}>
               <a href=''>{t('忘记密码？')}</a>
             </Form.Item>
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item>
             <Button type='primary' block htmlType='submit' size='large' className='login-btn' loading={loading}>
               {t('登 录')}

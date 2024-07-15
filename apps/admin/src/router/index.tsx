@@ -19,7 +19,6 @@ import type { AppRouteObject } from './types';
 const metaRoutes = import.meta.glob('./routes/*.tsx', { eager: true }) as Recordable;
 
 const routeList: AppRouteObject[] = [];
-
 Object.keys(metaRoutes).forEach((key) => {
   const module = metaRoutes[key].default || {};
   const moduleList = Array.isArray(module) ? [...module] : [module];

@@ -104,6 +104,7 @@ const getTableFields = (
         hidden: true,
       };
     }
+    field && !field.align && (field.align = 'center');
 
     let tableField: GTableField = {
       ...omitObj(field, 'table'),

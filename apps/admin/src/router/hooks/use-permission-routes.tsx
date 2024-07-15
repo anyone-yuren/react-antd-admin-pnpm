@@ -6,6 +6,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 import LoadingPage from '@/components/LoadingPage';
 
 import { useUserPermissions } from '@/stores/admin';
+// import { useUserPermissions } from '@gbeata/store';
 
 import type { Permission } from '#/entity';
 import type { AppRouteObject } from '#/router';
@@ -23,12 +24,14 @@ function resolveComponent(path: string) {
  * return routes about permission
  */
 export function usePermissionRoutes() {
-  const permissions = useUserPermissions();
+  // const permissions = useUserPermissions();
   return useMemo(() => {
-    const flattenedPermissions = flattenTree(permissions!);
-    const permissionRoutes = transformPermissionToMenuRoutes(permissions || [], flattenedPermissions);
-    return [...permissionRoutes];
-  }, [permissions]);
+    // const flattenedPermissions = flattenTree(permissions!);
+    // const permissionRoutes = transformPermissionToMenuRoutes(permissions || [], flattenedPermissions);
+    // return [...permissionRoutes];
+    return [];
+    // }, [permissions]);
+  }, []);
 }
 
 /**
