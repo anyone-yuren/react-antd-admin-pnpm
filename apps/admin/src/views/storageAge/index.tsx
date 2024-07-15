@@ -46,6 +46,7 @@ export default function Demo() {
     {
       title: '当前库龄',
       key: 'inventoryYear',
+      render: (text, record, index) => <span>{`${text} /天`}</span>,
     },
   ];
 

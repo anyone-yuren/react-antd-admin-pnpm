@@ -30,22 +30,22 @@ const response = {
     {
       itemId: 1,
       itemValue: 'Inbound',
-      itemName: 'Inbound',
+      itemName: '入库',
     },
     {
       itemId: 2,
       itemValue: 'Outbound',
-      itemName: 'Outbound',
+      itemName: '出库',
     },
     {
       itemId: 3,
       itemValue: 'Profit',
-      itemName: 'Inventory surplus',
+      itemName: '盘盈',
     },
     {
       itemId: 4,
       itemValue: 'Loss',
-      itemName: 'Inventory deficit',
+      itemName: '盘亏',
     },
   ],
   statusCode: 200,
@@ -94,6 +94,7 @@ export default function Demo() {
     {
       title: '物料编号',
       key: 'materialCode',
+      search: true,
       width: 200,
     },
     {
@@ -122,6 +123,7 @@ export default function Demo() {
     {
       title: '批次号',
       key: 'batchNumber',
+      search: true,
       width: 200,
     },
     {

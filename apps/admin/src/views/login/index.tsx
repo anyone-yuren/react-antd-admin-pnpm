@@ -77,11 +77,13 @@ const LoginPage: FC = () => {
         <Form
           ref={loginFormRef}
           form={form}
-          initialValues={{
-            username: 'admin',
-            password: 'admin',
-            remember: true,
-          }}
+          initialValues={
+            {
+              // username: 'admin',
+              // password: 'admin',
+              // remember: true,
+            }
+          }
           className='login-box-form'
           onFinish={handleLogin}
         >

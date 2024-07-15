@@ -5,7 +5,7 @@ import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
 import { listApi } from './api';
 
 export default function Demo() {
-  const { activeOrgCode } = useWarehouseOptions();
+  const { activeOrgCode, warehouseOptions } = useWarehouseOptions();
   const fields: Array<GSearchTableField> = [
     {
       title: '组织',
@@ -14,6 +14,14 @@ export default function Demo() {
     {
       title: '领料仓库',
       key: 'warehouseName',
+    },
+    {
+      title: '仓库',
+      key: 'warehouseCode',
+      type: 'select-search',
+      options: warehouseOptions,
+      search: true,
+      table: false,
     },
     {
       title: '领料单位',
@@ -26,14 +34,18 @@ export default function Demo() {
       search: true,
     },
     {
-      title: '物料编码',
+      title: '物料名称',
+      key: 'materialName',
+    },
+    {
+      title: '物料编号',
       key: 'materialCode',
       search: true,
-      dialog: {
-        required: true,
-      },
     },
-
+    {
+      title: '规格',
+      key: 'materialSize',
+    },
     {
       title: '数量',
       key: 'quantity',
@@ -45,6 +57,7 @@ export default function Demo() {
     {
       title: '领料单号',
       key: 'invoiceCode',
+      search: true,
     },
   ];
   return (

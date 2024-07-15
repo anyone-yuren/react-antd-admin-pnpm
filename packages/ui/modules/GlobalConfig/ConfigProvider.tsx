@@ -1,4 +1,6 @@
 import { App as AntApp, ConfigProvider } from 'antd';
+import enUS from 'antd/locale/en_US';
+import zhCN from 'antd/locale/zh_CN';
 
 import SvgIcon from '../SvgIcon';
 import useStyles from './style';
@@ -72,8 +74,10 @@ const GlobalConfig: FC<GlobalConfigProps> = ({ children, ...rest }) => {
       <p>暂无数据</p>
     </div>
   );
+  const locale = zhCN;
   return (
     <ConfigProvider
+      locale={locale}
       wave={{ showEffect: showInsetEffect }}
       card={{ className: styles['custom-card'] }}
       renderEmpty={customizeRenderEmpty}
