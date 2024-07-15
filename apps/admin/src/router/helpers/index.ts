@@ -51,7 +51,7 @@ export function genFullPath(routes: RouteObject[], parentPath = '') {
   for (let index = 0; index < routes.length; index++) {
     const route = routes[index];
 
-    if (route.path!.startsWith('/')) {
+    if (route?.path!.startsWith('/')) {
       route.fullPath = route.path;
     } else {
       route.fullPath = `${parentPath}/${route.path}`;

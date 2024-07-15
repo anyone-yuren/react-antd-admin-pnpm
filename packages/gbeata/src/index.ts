@@ -19,6 +19,7 @@ import GTable, {
   setDefaultSearchFilter,
   setTableDefaultProps,
 } from './GTable';
+import useOptions from './hooks/useOptions';
 
 import { default as GTagGroup } from './GTagGroup';
 export {
@@ -53,5 +54,6 @@ export {
   setSearchTableDefaultValue,
   setTableDefaultProps,
   success,
+  useOptions,
   warning,
 };

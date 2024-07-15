@@ -12,6 +12,10 @@ type UserStore = {
   setUserInfo: (userInfo: Permission) => void;
   setUserToken: (token: string) => void;
   clearUserInfoAndToken: () => void;
+  orgAndWarehouseInfo: Record<string, any>;
+  setOrgAndWarehouseInfo: (info) => void;
+  activeOrgCode: string | undefined;
+  setActiveCode: (code: string) => void;
 };
 
 export const useAuthStore = create<UserStore>()(
@@ -27,6 +31,14 @@ export const useAuthStore = create<UserStore>()(
       },
       clearUserInfoAndToken: () => {
         set({ userInfo: {}, userToken: '' });
+      },
+      orgAndWarehouseInfo: {},
+      setOrgAndWarehouseInfo: (info) => {
+        set({ orgAndWarehouseInfo: info });
+      },
+      activeOrgCode: undefined,
+      setActiveCode: (code: string) => {
+        set({ activeOrgCode: code });
       },
     }),
     {

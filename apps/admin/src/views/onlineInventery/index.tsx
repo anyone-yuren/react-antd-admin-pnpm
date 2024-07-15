@@ -1,41 +1,8 @@
 import { GAction, GCtrl, GSearchTable, type GSearchTableField, type GTableCtrlField, type Record } from 'gbeata';
 import { GetPageOnlineInventory } from '@/api/summary';
+import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
 
 import { listApi } from './api';
-
-const fields: Array<GSearchTableField> = [
-  {
-    title: '组织',
-    key: 'orgName',
-    search: true,
-  },
-  {
-    title: '仓库',
-    key: 'warehouseName',
-    search: true,
-  },
-  {
-    title: '物料名称',
-    key: 'materialName',
-    type: 'textarea',
-  },
-  {
-    title: '规格',
-    key: 'materialSize',
-  },
-  {
-    title: '数量',
-    key: 'quantity',
-  },
-  {
-    title: '批次',
-    key: 'batchNumber',
-  },
-  {
-    title: '入库时间',
-    key: 'des4',
-  },
-];
 
 const ctrl: GTableCtrlField = {
   render: (_, record: Record) => (
@@ -51,10 +18,52 @@ const ctrl: GTableCtrlField = {
 };
 
 export default function Demo() {
+  const { activeOrgCode, warehouseOptions } = useWarehouseOptions();
+  const fields: Array<GSearchTableField> = [
+    {
+      title: '组织',
+      key: 'orgName',
+    },
+    {
+      title: '仓库',
+      key: 'warehouseName',
+      search: false,
+    },
+    {
+      title: '仓库',
+      key: 'warehouseCode',
+      type: 'select-search',
+      options: warehouseOptions,
+      search: true,
+      table: false,
+    },
+    {
+      title: '物料名称',
+      key: 'materialName',
+    },
+    {
+      title: '物料编码',
+      key: 'materialCode',
+      search: true,
+    },
+    {
+      title: '规格',
+      key: 'materialSize',
+    },
+    {
+      title: '数量',
+      key: 'quantity',
+    },
+    {
+      title: '批次',
+      key: 'batchNumber',
+      search: true,
+    },
+  ];
   return (
     <GSearchTable
       api={GetPageOnlineInventory}
-      // ctrl={ctrl}
+      extendSearchParams={{ orgCode: activeOrgCode }}
       fields={fields}
       rowKey='sort_id'
       dialogFormExtend={{
