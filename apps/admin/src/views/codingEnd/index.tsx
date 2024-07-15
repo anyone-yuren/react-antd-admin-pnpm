@@ -35,7 +35,7 @@ export default function Demo() {
     },
     {
       title: '组织',
-      key: 'organizationName',
+      key: 'tenantName',
       sort: true,
       dialog: {
         required: true,
