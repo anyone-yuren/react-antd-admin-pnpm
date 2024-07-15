@@ -134,7 +134,7 @@ const G6Modal = ({ open, onClose, record }: { open: boolean; onClose: () => void
   useEffect(() => {
     if (!open) return;
     const fetchData = async () => {
-      const res = await coddingTree(record.id);
+      const res = await coddingTree(record.rootId);
       if (res) {
         setG6Data(transformOrderNoToLabel(res));
       }
