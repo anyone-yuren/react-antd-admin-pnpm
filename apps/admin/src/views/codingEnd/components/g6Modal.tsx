@@ -126,8 +126,8 @@ const G6Modal = ({ open, onClose, record }: { open: boolean; onClose: () => void
   function transformOrderNoToLabel(tree: TreeNode): TreeNode {
     return {
       ...tree,
-      label: tree.code.materialName,
-      id: String(tree.id),
+      label: `${tree.code.materialName}；当前数量:${tree.qty}，剩余数量:${tree.code.qty}`,
+      id: String(tree?.code?.no || ''),
       children: tree.children?.length ? tree.children.map(transformOrderNoToLabel) : [],
     };
   }
@@ -154,7 +154,7 @@ const G6Modal = ({ open, onClose, record }: { open: boolean; onClose: () => void
         },
         defaultNode: {
           type: 'card-node',
-          size: [100, 40],
+          size: [240, 40],
         },
         defaultEdge: {
           type: 'cubic-horizontal',
@@ -166,7 +166,7 @@ const G6Modal = ({ open, onClose, record }: { open: boolean; onClose: () => void
           type: 'indented',
           direction: 'LR',
           dropCap: false,
-          indent: 200,
+          indent: 280,
           getHeight: () => {
             return 60;
           },
