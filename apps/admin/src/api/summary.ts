@@ -41,3 +41,11 @@ export const GetPageInventoryFlowl = (data: PageListParams): Promise<any> => {
     data,
   });
 };
+
+// 总计
+export const GetSumDatal = (data: any): Promise<any> => {
+  return defHttp.get<PageListResult>({
+    url: '/Summary/GetSumDatal',
+    data,
+  });
+};

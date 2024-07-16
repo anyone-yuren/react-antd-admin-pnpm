@@ -46,6 +46,7 @@ const rootRoutes: AppRouteObject[] = [
     },
     loader: () => {
       if (getAuthCache<string>(TOKEN_KEY)) {
+        debugger;
         return redirect('/');
       }
       return null;
