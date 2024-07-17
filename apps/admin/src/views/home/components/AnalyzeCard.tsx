@@ -29,7 +29,7 @@ export const AnalyzeCard = () => {
   const token = useTheme();
 
   const getSumDataByKey = useCallback(
-    (key: keyof typeof sumData): number => {
+    (key: keyof typeof sumData.resultData): number => {
       return sumData?.resultData?.[key] || 0;
     },
     [sumData],

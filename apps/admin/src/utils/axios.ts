@@ -15,7 +15,7 @@ const service = axios.create({
 const handleError = (error: AxiosError): Promise<AxiosError> => {
   if (error.response?.status === 401 || error.response?.status === 504) {
     clearAuthCache();
-    location.href = '/login';
+    location.href = '#/login';
   }
   message.error(error.message || 'error');
   return Promise.reject(error);
