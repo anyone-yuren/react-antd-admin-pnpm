@@ -1,6 +1,6 @@
+import { useGlobalStore } from '@gbeata/store';
 import { ThemeProvider } from 'antd-style';
 import { useEffect } from 'react';
-import { useGlobalStore } from '@gbeata/store';
 import { GlobalConfig } from 'ui';
 
 import { useVcosole } from '@/hooks/useVonsole';
@@ -13,7 +13,7 @@ import './app.css';
 export default function App() {
   const [vc] = useVcosole();
   const preset = useGlobalStore((state) => state.preset);
-  console.log(preset);
+  // console.log(preset);
 
   useEffect(() => {
     console.log('VConsole ?', vc);
