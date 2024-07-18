@@ -50,7 +50,7 @@ const transform: AxiosTransform = {
       case ResultEnum.TIMEOUT:
         timeoutMsg = '登录超时,请重新登录';
         // useAuthStore.getState().clearUserInfoAndToken();
-        window.location.href = '/login';
+        window.location.href = '#/login';
         // TODO 登出操作 带上redirect地址
         break;
       default:

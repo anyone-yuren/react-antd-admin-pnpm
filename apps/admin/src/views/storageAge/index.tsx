@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { GAction, GCtrl, GSearchTable, type GSearchTableField, type GTableCtrlField, type Record } from 'gbeata';
 import { GetPageInventoryYear } from '@/api/summary';
 import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
@@ -62,6 +62,10 @@ export default function Demo() {
       </GCtrl>
     ),
   };
+
+  useEffect(() => {
+    // window.location.href = '/login';
+  }, []);
 
   return (
     <GSearchTable

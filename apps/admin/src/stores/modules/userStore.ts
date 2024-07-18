@@ -104,7 +104,7 @@ export const useSignOut = () => {
       const res = await logoutApi();
       if (res) {
         clearUserInfoAndToken();
-        goLogin && (window.location.href = '/login');
+        goLogin && (window.location.href = '#/login');
         return await Promise.resolve(res);
       }
       return await Promise.reject(res);
