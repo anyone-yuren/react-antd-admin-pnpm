@@ -3,8 +3,6 @@ import { Col, Flex, Layout, Row } from 'antd';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
-import { button } from '@/assets/motion/index';
-
 import OldChart from './components/oldChart';
 import TransferChart from './components/transferChart';
 import { consumeConfig, deliveryConfig, errorConfig, outConfig } from './data';
@@ -57,20 +55,20 @@ function Home() {
           {/* 左侧 */}
           <Col className='gutter-row' span={6}>
             <div className='gutter-box'>
-              <Row gutter={16} style={{ height: '100%' }}>
-                <Col span={24} style={{ height: '50%' }}>
-                  <div className='card' style={{ height: '100%' }}>
-                    <div className='card-title'>一码到底变更记录</div>
-                    <ScrollBoard config={consumeConfig} style={{ height: 'calc(100% - 50px' }} />
-                  </div>
-                </Col>
-                <Col span={24} style={{ height: '50%' }}>
-                  <div className='card' style={{ height: '100%' }}>
-                    <div className='card-title'>矿资物资消耗排行</div>
-                    <TransferChart style={{ height: 'calc(100% - 50px' }} />
-                  </div>
-                </Col>
-              </Row>
+              {/* <Row gutter={16} style={{ height: '100%' }}>
+                <Col span={24} style={{ height: '50%' }}> */}
+              <div className='card' style={{ height: '100%' }}>
+                <div className='card-title'>一码到底变更记录</div>
+                <ScrollBoard config={consumeConfig} style={{ height: 'calc(100% - 50px' }} />
+              </div>
+              {/* </Col> */}
+              {/* <Col span={24} style={{ height: '50%' }}> */}
+              <div className='card' style={{ height: '100%' }}>
+                <div className='card-title'>矿资物资消耗排行</div>
+                <TransferChart style={{ height: 'calc(100% - 50px' }} />
+              </div>
+              {/* </Col>
+              </Row> */}
             </div>
           </Col>
           {/* 中间 */}
