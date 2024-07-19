@@ -139,7 +139,7 @@ const useStyles = createStyles(({ token }) => {
       },
       '.card': {
         flex: 'auto',
-        minHeight: '50%',
+        // minHeight: '50%',
         '.card-title': {
           height: '50px',
           backgroundColor: '#1b7ef22e',
