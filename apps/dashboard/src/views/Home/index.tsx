@@ -1,4 +1,4 @@
-import { Decoration6, DigitalFlop, ScrollBoard } from '@jiaminghi/data-view-react';
+import { BorderBox8, BorderBox10, Decoration6, DigitalFlop, ScrollBoard } from '@jiaminghi/data-view-react';
 import { Col, Flex, Layout, Row } from 'antd';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -54,22 +54,24 @@ function Home() {
         <Row gutter={16} style={{ flex: 'auto' }}>
           {/* 左侧 */}
           <Col className='gutter-row' span={6}>
-            <div className='gutter-box'>
-              {/* <Row gutter={16} style={{ height: '100%' }}>
+            <BorderBox8 dur={10}>
+              <div className='gutter-box'>
+                {/* <Row gutter={16} style={{ height: '100%' }}>
                 <Col span={24} style={{ height: '50%' }}> */}
-              <div className='card' style={{ height: '100%' }}>
-                <div className='card-title'>一码到底变更记录</div>
-                <ScrollBoard config={consumeConfig} style={{ height: 'calc(100% - 50px' }} />
-              </div>
-              {/* </Col> */}
-              {/* <Col span={24} style={{ height: '50%' }}> */}
-              <div className='card' style={{ height: '100%' }}>
-                <div className='card-title'>矿资物资消耗排行</div>
-                <TransferChart style={{ height: 'calc(100% - 50px' }} />
-              </div>
-              {/* </Col>
+                <div className='card' style={{ height: '100%' }}>
+                  <div className='card-title'>一码到底变更记录</div>
+                  <ScrollBoard config={consumeConfig} style={{ height: 'calc(100% - 50px' }} />
+                </div>
+                {/* </Col> */}
+                {/* <Col span={24} style={{ height: '50%' }}> */}
+                <div className='card' style={{ height: '100%' }}>
+                  <div className='card-title'>矿资物资消耗排行</div>
+                  <TransferChart style={{ height: 'calc(100% - 50px' }} />
+                </div>
+                {/* </Col>
               </Row> */}
-            </div>
+              </div>
+            </BorderBox8>
           </Col>
           {/* 中间 */}
           <Col className='gutter-row' span={12}>
@@ -142,21 +144,25 @@ function Home() {
               <div className='buttom'>
                 <Row gutter={16} style={{ flex: 'auto' }}>
                   <Col className='gutter-row' span={12}>
-                    <div className='gutter-box'>
-                      <div className='card'>
-                        <div className='card-title'>出库订单统计</div>
-                        <ScrollBoard config={outConfig} style={{ height: 'calc( 100% - 50px)' }} />
+                    <BorderBox10>
+                      <div className='gutter-box'>
+                        <div className='card'>
+                          <div className='card-title'>出库订单统计</div>
+                          <ScrollBoard config={outConfig} style={{ height: 'calc( 100% - 50px)' }} />
+                        </div>
                       </div>
-                    </div>
+                    </BorderBox10>
                   </Col>
                   <Col className='gutter-row' span={12}>
-                    <div className='gutter-box'>
-                      <div className='card'>
-                        <div className='card-title'>交旧排行</div>
-                        <OldChart style={{ height: 'calc( 100% - 50px)' }} />
-                        {/* <ScrollBoard config={errorConfig} style={{ height: 'calc( 100% - 50px)' }} /> */}
+                    <BorderBox10>
+                      <div className='gutter-box'>
+                        <div className='card'>
+                          <div className='card-title'>实时库存</div>
+                          <OldChart style={{ height: 'calc( 100% - 50px)' }} />
+                          {/* <ScrollBoard config={errorConfig} style={{ height: 'calc( 100% - 50px)' }} /> */}
+                        </div>
                       </div>
-                    </div>
+                    </BorderBox10>
                   </Col>
                 </Row>
               </div>
@@ -164,16 +170,18 @@ function Home() {
           </Col>
           {/* 右侧 */}
           <Col className='gutter-row' span={6}>
-            <div className='gutter-box'>
-              <div className='card'>
-                <div className='card-title'>异常消耗情况</div>
-                <ScrollBoard config={errorConfig} style={{ height: 'calc( 100% - 50px)' }} />
+            <BorderBox8 dur={10} reverse>
+              <div className='gutter-box'>
+                <div className='card'>
+                  <div className='card-title'>异常消耗情况</div>
+                  <ScrollBoard config={errorConfig} style={{ height: 'calc( 100% - 50px)' }} />
+                </div>
+                <div className='card'>
+                  <div className='card-title'>待配送订单</div>
+                  <ScrollBoard config={deliveryConfig} style={{ height: 'calc( 100% - 50px)' }} />
+                </div>
               </div>
-              <div className='card'>
-                <div className='card-title'>待配送订单</div>
-                <ScrollBoard config={deliveryConfig} style={{ height: 'calc( 100% - 50px)' }} />
-              </div>
-            </div>
+            </BorderBox8>
           </Col>
         </Row>
       </Content>

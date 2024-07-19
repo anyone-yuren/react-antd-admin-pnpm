@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- CSS -->
+<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<!-- jQuery and JavaScript Bundle with Popper -->
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.slim.js" ></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.2/js/bootstrap.bundle.min.js" ></script>
+</head>
+<body>
+  <input type="text" class="form-control" placeholder="输入内容" >
+  <button type="button" id="read" class="btn btn-primary">读</button>
+<button type="button" id="write" class="btn btn-secondary">写</button>
+<script>
+  $(function() {
+    $('#read').click(function() {
+      window.AndroidInterface.rfidCode()
+    })
+    $("#write").click(function() {
+      alert('2')
+    })
+  })
+</script>
+</body>
+</html>
