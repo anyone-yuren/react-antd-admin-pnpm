@@ -630,6 +630,9 @@ importers:
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
+      md5:
+        specifier: ^2.3.0
+        version: 2.3.0
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -10218,7 +10221,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.23.3(@babel/core@7.23.7)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.0
-      vite: 4.5.0(@types/node@20.11.3)(less@4.2.0)(terser@5.26.0)
+      vite: 4.5.0(@types/node@20.11.5)(less@4.2.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -13444,7 +13447,7 @@ packages:
     engines: {node: '>= 10'}
     dependencies:
       chalk: 2.4.2
-      commitizen: 4.3.0(@types/node@20.11.3)(typescript@5.3.3)
+      commitizen: 4.3.0(@types/node@20.11.5)(typescript@5.3.3)
       conventional-commit-types: 3.0.0
       lodash.map: 4.6.0
       longest: 2.0.1
@@ -13461,7 +13464,7 @@ packages:
     engines: {node: '>= 10'}
     dependencies:
       chalk: 2.4.2
-      commitizen: 4.3.0(@types/node@20.11.3)(typescript@5.3.3)
+      commitizen: 4.3.0(@types/node@20.11.5)(typescript@5.3.3)
       conventional-commit-types: 3.0.0
       lodash.map: 4.6.0
       longest: 2.0.1
@@ -28265,7 +28268,7 @@ packages:
       '@types/eslint': 8.56.2
       eslint: 8.56.0
       rollup: 2.79.1
-      vite: 4.5.0(@types/node@20.11.3)(less@4.2.0)(terser@5.26.0)
+      vite: 4.5.0(@types/node@20.11.5)(less@4.2.0)
     dev: true
 
   /vite-plugin-mock@2.9.6(mockjs@1.1.0)(rollup@4.9.5)(vite@4.5.0):
@@ -28303,7 +28306,7 @@ packages:
       pathe: 0.2.0
       svg-baker: 1.7.0
       svgo: 2.8.0
-      vite: 4.5.0(@types/node@20.11.3)(less@4.2.0)(terser@5.26.0)
+      vite: 4.5.0(@types/node@20.11.5)(less@4.2.0)
     transitivePeerDependencies:
       - supports-color
     dev: true

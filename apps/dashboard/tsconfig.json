@@ -6,7 +6,8 @@
     "types": ["vite/client", "vite-plugin-svg-icons/client"],
     "paths": {
       "@/*": ["src/*"],
-      "#/*": ["types/*"]
+      "#/*": ["types/*"],
+      "#/mock/*": ["mock/*"]
     }
   },
   "include": [
@@ -17,9 +18,10 @@
     "typings/**/*.ts",
     "build/**/*.ts",
     "build/**/*.d.ts",
-    "mock/*.ts",
+    "mock/**/*.ts",
     "vite.config.ts",
-    "types/*.ts"
+    "types/*.ts",
+    "tailwind.config.ts"
   ],
   "exclude": ["node_modules", "dist", "**/*.js"]
 }

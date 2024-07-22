@@ -66,6 +66,7 @@ export const deliveryConfig = {
 export const outConfig = {
   headerBGC: 'transparent',
   oddRowBGC: 'transparent',
+  columnWidth: [300],
   header: [
     '<span style="color:#6FBAFF">矿区名称</span>',
     '<span style="color:#6FBAFF">订单数量</span>',

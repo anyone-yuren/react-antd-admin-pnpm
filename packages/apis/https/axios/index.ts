@@ -155,7 +155,7 @@ const transform: AxiosTransform = {
   // 请求拦截器处理
   requestInterceptors: (config, options) => {
     // const token = useAuthStore.getState().userToken;
-    const token = getItem('user-storage').state.userToken;
+    const token = getItem('user-storage')?.state.userToken;
     if (token && (config as Recordable).requestOptions?.withToken !== false) {
       // 是否携带token
       (config as Recordable).headers.Authorization = options.authenticationScheme
