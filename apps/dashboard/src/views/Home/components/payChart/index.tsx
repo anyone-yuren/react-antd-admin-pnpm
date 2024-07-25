@@ -40,7 +40,7 @@ export default function PayChart(props) {
         type: 'pie',
         roseType: 'area', // 玫瑰图
         center: ['50%', '50%'],
-        radius: ['50%', '70%'],
+        radius: ['50%', '80%'],
         color: colorA,
         itemStyle: {
           normal: {
