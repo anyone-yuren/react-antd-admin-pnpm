@@ -41,6 +41,7 @@ function Home() {
 
   const { data, run, loading } = useRequest(GetSumScanDatal, {
     manual: true,
+    pollingInterval: 50000,
     onSuccess: (res) => {
       setTatalData(res.resultData || {});
     },
