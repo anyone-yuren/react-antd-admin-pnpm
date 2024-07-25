@@ -5,12 +5,10 @@
 <img height="120" src="https://raw.githubusercontent.com/anyone-yuren/multiway/master/favicon.ico">
 
 <h1>Gbeata Admin</h1>
-<p>最新代码请查看 release-admin 分支</p>
+
 Gbeata Admin是一套用于快速构建后台管理系统模板
 
-文档地址：[https://docs.gbeata.cn/](https://docs.gbeata.cn/)
-
-组件库地址：[https://component.gbeata.cn/](https://component.gbeata.cn/)
+文档地址：[https://anyone-yuren.github.io/gbeata-admin-docs](https://anyone-yuren.github.io/gbeata-admin-docs)
 
 [English](./README.md) ・ 简体中文 ・ [更新日志](./CHANGELOG.md) · [报告问题][github-issues-link] · [请求功能][github-issues-link]
 
@@ -28,8 +26,14 @@ Gbeata Admin是一套用于快速构建后台管理系统模板
 
 ![][banner]
 
-</div>
+<h3>新增大屏面板:分支 wk-admin-dashboard</h3>
 
+![][dashboard]
+
+</div>
+<div align="center">
+
+</div>
 <details open>
 <summary><kbd>目录</kbd></summary>
 
@@ -181,6 +185,7 @@ npx @chenshuai2144/less2cssinjs less2js -i src
 
 [back-to-top]: https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square
 [banner]: https://github.com/anyone-yuren/multiway/blob/master/iShot_2024-01-05_17.05.52.gif?raw=true
+[dashboard]: https://github.com/anyone-yuren/multiway/blob/master/iShot_2024-07-25_19.52.09.gif?raw=true
 [bun-link]: https://bun.sh
 [bun-shield]: https://img.shields.io/badge/-speedup%20with%20bun-black?logo=bun&style=for-the-badge
 [codespaces-link]: https://codespaces.new/anyone-yuren/react-antd-admin-pnpm
