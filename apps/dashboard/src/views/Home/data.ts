@@ -25,7 +25,7 @@ export const errorConfig = {
   oddRowBGC: 'transparent',
   header: [
     '<span style="color:#6FBAFF">矿区供应站</span>',
-    '<span style="color:#6FBAFF">异常消耗总值</span>',
+    '<span style="color:#6FBAFF">总值</span>',
     '<span style="color:#6FBAFF">总值占比</span>',
   ],
   data: [
@@ -66,10 +66,11 @@ export const deliveryConfig = {
 export const outConfig = {
   headerBGC: 'transparent',
   oddRowBGC: 'transparent',
-  columnWidth: [300],
+  columnWidth: [200],
   header: [
     '<span style="color:#6FBAFF">矿区名称</span>',
     '<span style="color:#6FBAFF">订单数量</span>',
+    '<span style="color:#6FBAFF">完成订单</span>',
     '<span style="color:#6FBAFF">完成比例</span>',
   ],
   data: [
@@ -106,4 +107,11 @@ export const oldConfig = {
     ['行9列1', '行9列2', '行9列3'],
     ['行10列1', '行10列2', '行10列3'],
   ],
+};
+
+export const amountConfig = {
+  headerBGC: 'transparent',
+  oddRowBGC: 'transparent',
+  header: ['<span style="color:#6FBAFF">供应商</span>', '<span style="color:#6FBAFF">订单金额</span>'],
+  data: [[' AAAA', '12123.22']],
 };

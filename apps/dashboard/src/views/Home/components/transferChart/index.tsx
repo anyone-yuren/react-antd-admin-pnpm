@@ -1,21 +1,40 @@
+import { map } from 'lodash-es';
+import { useEffect, useState } from 'react';
+
 import BaseCharts from '@/components/baseCharts';
 
-import { transferConfig } from './data';
+// import { transferConfig } from './data';
 
 const TransferChart = (props) => {
+  const { data } = props;
+  const [transferConfig, setTransferConfig] = useState({});
+  useEffect(() => {
+    if (!data?.length) return;
+    const serviceData = {};
+    serviceData.areas = map(data, 'orgName');
+    serviceData.jdData = map(data, (item) => {
+      return map(item.items, 'materialName');
+    });
+    serviceData.data = map(data, (item) => {
+      return map(item.items, 'cost');
+    });
+
+    setTransferConfig(serviceData);
+  }, [data]);
+
   const option = {
     baseOption: {
       backgroundColor: '#012248', // 背景颜色
       timeline: {
-        data: transferConfig.areas,
+        data: transferConfig?.areas,
         axisType: 'category',
         autoPlay: true,
-        playInterval: 2500, // 播放速度
+        playInterval: 5500, // 播放速度
 
-        left: '5%',
-        right: '5%',
+        left: '2%',
+        right: '2%',
         bottom: '0%',
-        width: '90%',
+        width: '96%',
         //  height: null,
         label: {
           normal: {
@@ -52,10 +71,10 @@ const TransferChart = (props) => {
       },
       title: {
         text: '',
-        right: '2%',
+        left: '2%',
         bottom: '8%',
         textStyle: {
-          fontSize: 50,
+          fontSize: 30,
           color: 'black', // 标题字体颜色
         },
       },
@@ -64,10 +83,10 @@ const TransferChart = (props) => {
       },
       calculable: true,
       grid: {
-        left: '20%',
+        left: '15%',
         right: '8%',
-        bottom: '6%',
-        top: '0%',
+        bottom: '12%',
+        top: '10%',
         containLabel: true,
       },
       label: {
@@ -124,7 +143,7 @@ const TransferChart = (props) => {
 
                 // console.log("111", Index, colorarrays[Index],params); //打印序列
 
-                return colorarrays[transferConfig.jdData[0].indexOf(params)];
+                return colorarrays[transferConfig?.jdData[0]?.indexOf(params)];
               },
             }, // rotate:45,
             interval: 50,
@@ -217,10 +236,9 @@ const TransferChart = (props) => {
                   '#749f83',
                   '#ca8622',
                 ];
-                // return colorList[params.dataIndex]
+                return colorList[params.dataIndex];
 
-                console.log('111', params.name); // 打印序列
-                return colorList[transferConfig.jdData[0].indexOf(params.name)];
+                // return colorList[transferConfig?.jdData[0]?.indexOf(params.name)];
               },
             },
           },
@@ -280,10 +298,10 @@ const TransferChart = (props) => {
                   '#749f83',
                   '#ca8622',
                 ];
-                // return colorList[params.dataIndex]
+                return colorList[params.dataIndex];
 
                 // console.log("111", params.name); //打印序列
-                return colorList[transferConfig.jdData[0].indexOf(params.name)];
+                // return colorList[transferConfig?.jdData[0]?.indexOf(params.name)];
               },
             },
           },
@@ -297,14 +315,14 @@ const TransferChart = (props) => {
     options: [] as any,
   };
   // eslint-disable-next-line no-plusplus
-  for (let n = 0; n < transferConfig.areas.length; n++) {
+  for (let n = 0; n < transferConfig?.areas?.length; n++) {
     const res = [];
     // alert(jdData.length);
     // eslint-disable-next-line no-plusplus
-    for (let j = 0; j < transferConfig.data[n].length; j++) {
+    for (let j = 0; j < transferConfig?.data[n]?.length; j++) {
       res.push({
-        name: transferConfig.jdData[n][j],
-        value: transferConfig.data[n][j],
+        name: transferConfig?.jdData[n][j],
+        value: transferConfig?.data[n][j],
       });
     }
 
@@ -325,10 +343,11 @@ const TransferChart = (props) => {
       res1[t] = res[t].name;
       res2[t] = res[t].value;
     }
+
     option.options.push({
       title: {
-        text: `${transferConfig.areas[n]}`,
-        bottom: '12%',
+        text: `${transferConfig?.areas[n]}`,
+        top: '2%',
         textStyle: {
           color: '#66FFFF',
         },
@@ -346,6 +365,9 @@ const TransferChart = (props) => {
       ],
     });
   }
+
+  console.log(option);
+
   return <BaseCharts option={option} {...props} />;
 };
 

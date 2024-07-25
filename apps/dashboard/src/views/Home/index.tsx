@@ -10,8 +10,9 @@ import { GetCode, GetSumScanDatal, type TotalSumScanDTO } from '@/api/auth';
 import { useAuthStore } from '@/store/Auth';
 
 import OldChart from './components/oldChart';
+import PayChart from './components/payChart';
 import TransferChart from './components/transferChart';
-import { consumeConfig, deliveryConfig, errorConfig, outConfig } from './data';
+import { amountConfig, consumeConfig, deliveryConfig, errorConfig, outConfig } from './data';
 import useStyles from './index.style';
 
 const { Header, Content } = Layout;
@@ -89,7 +90,16 @@ function Home() {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Header className={styles['home-header']}>
+      <Header
+        className={styles['home-header']}
+        onClick={() => {
+          if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+          } else if (document.exitFullscreen) {
+            document.exitFullscreen();
+          }
+        }}
+      >
         <Flex align='center' justify='space-around' style={{ width: '100%' }}>
           <div className={'home-header__title'}>仓储汇总大屏</div>
         </Flex>
@@ -103,7 +113,7 @@ function Home() {
               <div className='gutter-box'>
                 {/* <Row gutter={16} style={{ height: '100%' }}>
                 <Col span={24} style={{ height: '50%' }}> */}
-                <div className='card' style={{ height: '100%' }}>
+                {/* <div className='card' style={{ height: '100%' }}>
                   <div className='card-title'>一码到底变更记录</div>
                   <ScrollBoard
                     config={{
@@ -115,15 +125,28 @@ function Home() {
                     }}
                     style={{ height: 'calc(100% - 50px' }}
                   />
+                </div> */}
+                <div className='card' style={{ height: '100%' }}>
+                  <div className='card-title'>异常消耗情况</div>
+                  <ScrollBoard
+                    config={{
+                      ...errorConfig,
+                      data: tatalData?.orgTotalPriceList?.map((item) => {
+                        const datas = values(item);
+                        datas[1] = parseFloat(datas[1].toFixed(2));
+                        datas[2] = parseFloat(datas[2].toFixed(2));
+                        return datas;
+                      }),
+                    }}
+                    style={{ height: 'calc( 100% - 50px)' }}
+                  />
                 </div>
-                <BorderBox10>
-                  <div className='gutter-box'>
-                    <div className='card'>
-                      <div className='card-title'>实时库存</div>
-                      {/* <OldChart style={{ height: 'calc( 100% - 50px)' }} /> */}
-                    </div>
+                <div className='gutter-box'>
+                  <div className='card'>
+                    <div className='card-title'>实时库存</div>
+                    <OldChart style={{ height: 'calc( 100% - 50px)' }} data={tatalData.materialSummaryList} />
                   </div>
-                </BorderBox10>
+                </div>
                 {/* </Col> */}
                 {/* <Col span={24} style={{ height: '50%' }}> */}
                 {/* <div className='card' style={{ height: '100%' }}>
@@ -216,10 +239,18 @@ function Home() {
               <div className='buttom'>
                 <Row gutter={16} style={{ flex: 'auto' }}>
                   <Col span={24} className='gutter-row'>
-                    <div className='card' style={{ height: '100%' }}>
+                    <BorderBox10>
+                      <div className='gutter-box'>
+                        <div className='card'>
+                          <div className='card-title'>矿资物资消耗排行</div>
+                          <TransferChart style={{ height: 'calc(100% - 50px' }} data={tatalData.outOrgTotal} />
+                        </div>
+                      </div>
+                    </BorderBox10>
+                    {/* <div className='card' style={{ height: '100%' }}>
                       <div className='card-title'>矿资物资消耗排行</div>
-                      {/* <TransferChart style={{ height: 'calc(100% - 50px' }} /> */}
-                    </div>
+                      <TransferChart style={{ height: 'calc(100% - 50px' }} />
+                    </div> */}
                   </Col>
                   {/* <Col className='gutter-row' span={12}>
                     <BorderBox10>
@@ -256,24 +287,40 @@ function Home() {
           <Col className='gutter-row' span={6}>
             <BorderBox8 dur={10} reverse>
               <div className='gutter-box'>
-                <div className='card'>
-                  <div className='card-title'>异常消耗情况</div>
+                <div className='card' style={{ height: '100%' }}>
+                  <div className='card-title'>物资价值排行</div>
                   <ScrollBoard
-                    config={{ ...errorConfig, data: tatalData?.orgTotalPriceList?.map((item) => values(item)) }}
+                    config={{
+                      ...errorConfig,
+                      data: tatalData?.orgTotalPriceList?.map((item) => {
+                        const datas = values(item);
+                        datas[1] = parseFloat(datas[1].toFixed(2));
+                        datas[2] = parseFloat(datas[2].toFixed(2));
+                        return datas;
+                      }),
+                    }}
                     style={{ height: 'calc( 100% - 50px)' }}
                   />
                 </div>
-                <div className='card'>
+                <div className='card' style={{ height: '100%' }}>
+                  <div className='card-title'>到货金额排行</div>
+                  <PayChart style={{ height: 'calc( 100% - 50px)' }} data={tatalData?.supplierSummaryList} />
+                  {/* <ScrollBoard config={{ ...amountConfig }} style={{ height: 'calc( 100% - 50px)' }} /> */}
+                </div>
+                <div className='card' style={{ height: '100%' }}>
                   <div className='card-title'>出库订单统计</div>
                   <ScrollBoard
-                    config={{ ...outConfig, data: tatalData?.outOrderList?.map((item) => values(item)) }}
+                    config={{
+                      ...outConfig,
+                      data: tatalData?.outOrderList?.map((item) => {
+                        const datas = values(item);
+                        datas[3] = parseFloat((datas[2] / datas[1]).toFixed(2)) || 0;
+                        return datas;
+                      }),
+                    }}
                     style={{ height: 'calc( 100% - 50px)' }}
                   />
                 </div>
-                {/* <div className='card'>
-                  <div className='card-title'>待配送订单</div>
-                  <ScrollBoard config={deliveryConfig} style={{ height: 'calc( 100% - 50px)' }} />
-                </div> */}
               </div>
             </BorderBox8>
           </Col>

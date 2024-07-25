@@ -1,9 +1,35 @@
+import { map } from 'lodash-es';
+import { useEffect, useState } from 'react';
+
 import BaseCharts from '@/components/baseCharts';
 
 import { oldConfig } from './data';
 
 const TransferChart = (props) => {
-  const listData = oldConfig.sort((a, b) => {
+  const { data = [], ...rest } = props;
+
+  const [myData1, setMyData1] = useState(
+    map(data, (item) => {
+      return {
+        name: item.supplierName,
+        value: item.orderAmount,
+      };
+    }),
+  );
+  useEffect(() => {
+    if (data.length) {
+      setMyData1(
+        map(data, (item) => {
+          return {
+            name: item.materialName,
+            value: item.quantity,
+          };
+        }),
+      );
+    }
+  }, [data]);
+
+  const listData = myData1.sort((a, b) => {
     return a.value - b.value;
   });
 
@@ -43,6 +69,7 @@ const TransferChart = (props) => {
       type: 'value',
       axisLabel: {
         color: '#fff',
+        rotate: 20,
       },
       splitLine: {
         show: false,
@@ -51,7 +78,7 @@ const TransferChart = (props) => {
     },
     yAxis: {
       type: 'category',
-      offset: 20,
+      offset: 10,
       axisLabel: {
         margin: -10,
         padding: [0, 5, 0, 0],
@@ -63,7 +90,9 @@ const TransferChart = (props) => {
             2: '03',
           };
           const label = obj[10 - index] || '00';
-          return `{a${label}|${name}}{b|} {span${label}|}`;
+          // return `{a${label}|${name}}{b|} {span${label}|}`;
+          const formattedName = name.length > 8 ? `${name.slice(0, 8)}\n${name.slice(8)}` : name;
+          return `{a${label}|${formattedName}}{b|} {span${label}|}`;
         },
         rich: {
           b: {
@@ -101,9 +130,11 @@ const TransferChart = (props) => {
             textStyle: {
               color: '#F5F5F5',
               fontWeight: 'bold',
-              fontSize: 12,
+              fontSize: 10,
             },
-            formatter: '40%',
+            formatter: (p) => {
+              return p.data.value;
+            },
           },
         },
         data: listData.map((r, i) => {
@@ -151,7 +182,7 @@ const TransferChart = (props) => {
           borderColor: '#13B5B1',
         },
         label: {
-          show: true,
+          show: false,
           position: 'right',
           color: '#13B5B1',
           fontSize: 12,
