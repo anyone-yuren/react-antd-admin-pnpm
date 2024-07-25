@@ -68,3 +68,14 @@ export const GetSumScanDatal = (): Promise<SingleResult<TotalSumScanDTO>> => {
     url: '/Summary/GetSumScanDatal',
   });
 };
+
+export const GetCode = (): Promise<SingleResult<UserInfo>> => {
+  return defHttp.get(
+    {
+      url: '/unique-code/code/lately-trajectories',
+    },
+    {
+      isReturnNativeResponse: true,
+    },
+  );
+};

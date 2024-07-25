@@ -6,7 +6,8 @@ import { values } from 'lodash-es';
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { GetSumScanDatal, type TotalSumScanDTO } from '@/api/auth';
+import { GetCode, GetSumScanDatal, type TotalSumScanDTO } from '@/api/auth';
+import { useAuthStore } from '@/store/Auth';
 
 import OldChart from './components/oldChart';
 import TransferChart from './components/transferChart';
@@ -20,6 +21,23 @@ function Home() {
   const { styles } = useStyles();
   const [tatalData, setTatalData] = useState<TotalSumScanDTO>({});
 
+  const [batchCodeList, setBatchCodeList] = useState<any>([]);
+
+  const { userToken } = useAuthStore((state) => {
+    return {
+      userToken: state.userToken,
+    };
+  });
+
+  const { data: batchCodes, run: getBatchCode } = useRequest(GetCode, {
+    manual: true,
+    onSuccess: (res) => {
+      console.log(res?.data?.map((item) => values(item)));
+
+      setBatchCodeList(res.data || {});
+    },
+  });
+
   const { data, run, loading } = useRequest(GetSumScanDatal, {
     manual: true,
     onSuccess: (res) => {
@@ -28,8 +46,11 @@ function Home() {
   });
 
   useEffect(() => {
-    run();
-  }, []);
+    if (userToken) {
+      run();
+      getBatchCode();
+    }
+  }, [userToken]);
 
   useEffect(() => {
     if (data) {
@@ -84,13 +105,22 @@ function Home() {
                 <Col span={24} style={{ height: '50%' }}> */}
                 <div className='card' style={{ height: '100%' }}>
                   <div className='card-title'>一码到底变更记录</div>
-                  <ScrollBoard config={consumeConfig} style={{ height: 'calc(100% - 50px' }} />
+                  <ScrollBoard
+                    config={{
+                      ...consumeConfig,
+                      data: batchCodeList?.map((item) => {
+                        const { id, ...rest } = item;
+                        return values(rest);
+                      }),
+                    }}
+                    style={{ height: 'calc(100% - 50px' }}
+                  />
                 </div>
                 <BorderBox10>
                   <div className='gutter-box'>
                     <div className='card'>
                       <div className='card-title'>实时库存</div>
-                      <OldChart style={{ height: 'calc( 100% - 50px)' }} />
+                      {/* <OldChart style={{ height: 'calc( 100% - 50px)' }} /> */}
                     </div>
                   </div>
                 </BorderBox10>
@@ -188,7 +218,7 @@ function Home() {
                   <Col span={24} className='gutter-row'>
                     <div className='card' style={{ height: '100%' }}>
                       <div className='card-title'>矿资物资消耗排行</div>
-                      <TransferChart style={{ height: 'calc(100% - 50px' }} />
+                      {/* <TransferChart style={{ height: 'calc(100% - 50px' }} /> */}
                     </div>
                   </Col>
                   {/* <Col className='gutter-row' span={12}>
