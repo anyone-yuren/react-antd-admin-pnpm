@@ -15,17 +15,13 @@ export default defineApplicationConfig({
       // Listening on all local ips
       host: true,
       proxy: {
-        // '/api': {
-        //   target: VITE_APP_BASE_API,
-        //   changeOrigin: true,
-        //   secure: true,
-        // },
+        // VITE_APP_UNIQUE_API: http://unique-code-test.wk-manual.logistics.multiway-cloud.com:7216
         '/api/unique-code': {
           target: VITE_APP_UNIQUE_API,
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api\/unique-code/, '/api/unique-code'),
         },
-        // 配置第二个代理地址
+        // VITE_APP_BASE_API: http://wms-test-swagger.wk-manual.logistics.multiway-cloud.com:7216
         '^/api(?!/unique-code)': {
           target: VITE_APP_BASE_API,
           changeOrigin: true,
