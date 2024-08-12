@@ -1,9 +1,9 @@
 import { Space } from 'antd';
 
 import {
-  // DocLink,
   // GithubLink,
   GlobalSearch,
+  OnlineNotification,
   // Selectlangulage,
   Settings,
   // SlideTheme,
@@ -15,6 +15,7 @@ export default function LayoutFeature() {
   return (
     <Space size={'middle'}>
       <StoreForm />
+      <OnlineNotification />
       <GlobalSearch />
       {/* <Selectlangulage />
       <DocLink />

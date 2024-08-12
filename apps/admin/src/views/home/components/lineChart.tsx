@@ -4,20 +4,11 @@ import * as echarts from 'echarts/core';
 import BaseCharts from '@/components/BaseChart';
 
 export const option = {
-  // backgroundColor: '#0c2d55',
   tooltip: {
-    trigger: 'axis', // 触发类型；轴触发，axis则鼠标hover到一条柱状图显示全部数据，item则鼠标hover到折线点显示相应数据，
+    trigger: 'axis',
     axisPointer: {
-      // 坐标轴指示器，坐标轴触发有效
-      type: 'cross', // 默认为直线，可选为：'line' | 'shadow' | 'cross' , shadow表示阴影，cross为十字准星
+      type: 'shadow',
     },
-    // formatter: function (params) {
-    //     //params[0].marker,marker参数为提示语前面的小圆点
-    //     return params[0].name +
-    //         "<br>" + params[0].marker + "货量" + params[0].value + '吨' +
-    //         "<br>" + params[4].marker + "进港装载率" + params[4].value + '%' +
-    //         "<br>" + params[5].marker + "出港装载率" + params[5].value + '%'
-    // }
   },
   grid: {
     top: '25%',
@@ -160,6 +151,36 @@ export const option = {
         },
         formatter: '{value} ',
       },
+    },
+  ],
+  dataZoom: [
+    {
+      type: 'slider',
+      show: true,
+      height: 30,
+      xAxisIndex: [0],
+      bottom: 10,
+      start: 10,
+      end: 80,
+      handleIcon:
+        'path://M306.1,413c0,2.2-1.8,4-4,4h-59.8c-2.2,0-4-1.8-4-4V200.8c0-2.2,1.8-4,4-4h59.8c2.2,0,4,1.8,4,4V413z',
+      handleSize: '110%',
+      handleStyle: {
+        color: '#d3dee5',
+        pointer: 'cursor',
+      },
+      textStyle: {
+        color: '#fff',
+      },
+      borderColor: '#90979c',
+      brushSelect: false,
+    },
+    {
+      type: 'inside',
+      show: true,
+      height: 15,
+      start: 1,
+      end: 35,
     },
   ],
   series: [
@@ -317,7 +338,7 @@ export const option = {
 const LineChart = () => {
   return (
     <Card title={'各矿消耗占比'}>
-      <BaseCharts option={option} />
+      <BaseCharts option={option} height={420} />
     </Card>
   );
 };

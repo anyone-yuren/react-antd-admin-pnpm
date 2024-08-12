@@ -1,15 +1,18 @@
+import { useRequest } from 'ahooks';
 import { Col, Flex, Typography } from 'antd';
 import { useTheme } from 'antd-style';
 import classNames from 'classnames';
 import { t } from 'i18next';
-import { useEffect, useState, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import CountUp from 'react-countup';
 import { useTranslation } from 'react-i18next';
 import { BaseCard } from 'ui';
-import { useRequest } from 'ahooks';
-import { GetSumDatal } from '@/api/summary';
-import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
+
 import SvgIcon from '@/components/SvgIcon';
+
+import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
+
+import { GetSumDatal } from '@/api/summary';
 
 import ChartsCard from './ChartsCard';
 import useStyles from './styles';
@@ -41,10 +44,10 @@ export const AnalyzeCard = () => {
         <BaseCard loading={ajaxLoading}>
           <div className={classNames(styles.flex)}>
             <div className='card-left'>
-              <Text strong>{t('入库总资产')}</Text>
+              <Text strong>{t('入库总金额')}</Text>
               <Title className='count' level={5} style={{ margin: '8px 0' }}>
-                <SvgIcon size={20} style={{ marginRight: '4px', color: token.colorPrimary }} name='solar'></SvgIcon>
-                +2.6%
+                {/* <SvgIcon size={20} style={{ marginRight: '4px', color: token.colorPrimary }} name='solar'></SvgIcon>
+                +2.6% */}
               </Title>
               <Title ellipsis level={2} style={{ margin: 0, maxWidth: '100%' }}>
                 <CountUp start={0} end={getSumDataByKey('inTotal')} duration={3} />
@@ -71,10 +74,10 @@ export const AnalyzeCard = () => {
         <BaseCard loading={ajaxLoading}>
           <div className={classNames(styles.flex)}>
             <div className='card-left'>
-              <Text strong>{t('当前总资产')}</Text>
+              <Text strong>{t('当前总金额')}</Text>
               <Title className='count' level={5} style={{ margin: '8px 0' }}>
-                <SvgIcon size={20} style={{ marginRight: '4px', color: token.colorPrimary }} name='solar'></SvgIcon>
-                +5.6%
+                {/* <SvgIcon size={20} style={{ marginRight: '4px', color: token.colorPrimary }} name='solar'></SvgIcon>
+                +5.6% */}
               </Title>
               <Title level={2} style={{ margin: 0, wordBreak: 'keep-all' }}>
                 <CountUp start={0} end={getSumDataByKey('currentTotal')} duration={3} />
@@ -87,14 +90,14 @@ export const AnalyzeCard = () => {
         <BaseCard loading={ajaxLoading}>
           <div className={classNames(styles.flex)}>
             <div className='card-left'>
-              <Text strong>{t('出库总资产')}</Text>
+              <Text strong>{t('出库总金额')}</Text>
               <Title className='count' level={5} style={{ margin: '8px 0' }}>
-                <SvgIcon
+                {/* <SvgIcon
                   size={20}
                   style={{ marginRight: '4px', color: token.colorError, transform: 'rotate(180deg)' }}
                   name='solar'
                 ></SvgIcon>
-                -2.6%
+                -2.6% */}
               </Title>
               <Title ellipsis level={2} style={{ margin: 0 }}>
                 <CountUp start={0} end={getSumDataByKey('outTotal')} duration={3} />
