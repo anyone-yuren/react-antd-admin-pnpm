@@ -1,14 +1,15 @@
-import { Cascader, Form, Select, message } from 'antd';
-import React, { useEffect, useState, useMemo } from 'react';
+import { useRequest } from 'ahooks';
+import { Cascader, Form, message, Select } from 'antd';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { useAuthStore } from '@/stores/admin';
 import useKeepAlive from '@/hooks/web/useKeepAlive';
-import { getOrganizationAndWarehouseTree, setWarehouse, type WarehouseTreeList } from '@/api/auth';
-import { useRequest } from 'ahooks';
+
 import { searchRoute } from '@/utils';
 
+import { getOrganizationAndWarehouseTree, setWarehouse, type WarehouseTreeList } from '@/api/auth';
 import { basicRoutes } from '@/router';
+import { useAuthStore } from '@/stores/admin';
 
 type LayoutType = Parameters<typeof Form>[0]['layout'];
 
