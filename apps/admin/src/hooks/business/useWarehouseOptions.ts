@@ -10,12 +10,25 @@ function useWarehouseOptions() {
     };
   });
 
+  const orgOptions = useMemo(() => {
+    const isExist = !!orgAndWarehouseInfo?.length;
+    return isExist
+      ? orgAndWarehouseInfo?.map((item: any) => {
+          return {
+            key: item.warehouseCode,
+            value: item.warehouseCode,
+            label: item.warehouseName,
+          };
+        })
+      : [];
+  }, [orgAndWarehouseInfo]);
+
   const warehouseOptions = useMemo(() => {
     const isExist = !!orgAndWarehouseInfo.length;
     return isExist
       ? orgAndWarehouseInfo
           .filter((item: any) => item.warehouseCode === activeOrgCode)
-          .map((item: any) => item['warehouseInfoList'])
+          .map((item: any) => item.warehouseInfoList)
           .flat()
           .map((item: any) => {
             return {
@@ -30,6 +43,7 @@ function useWarehouseOptions() {
   return {
     activeOrgCode,
     warehouseOptions,
+    orgOptions,
   };
 }
 export default useWarehouseOptions;

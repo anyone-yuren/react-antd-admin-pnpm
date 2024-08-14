@@ -126,8 +126,8 @@ const G6Modal = ({ open, onClose, record }: { open: boolean; onClose: () => void
   function transformOrderNoToLabel(tree: TreeNode): TreeNode {
     return {
       ...tree,
-      label: `${tree.code.materialName}；当前数量:${tree.qty}，剩余数量:${tree.code.qty}`,
-      id: String(tree?.code?.no || ''),
+      label: `${tree.code?.materialName || '-'}；初始数量:${tree.qty}，剩余数量:${tree.code?.qty || '0'}`,
+      id: String(tree?.id || ''),
       children: tree.children?.length ? tree.children.map(transformOrderNoToLabel) : [],
     };
   }
@@ -194,7 +194,7 @@ const G6Modal = ({ open, onClose, record }: { open: boolean; onClose: () => void
 
   // 处理Descriptions展示的数据
   const items = React.useMemo(() => {
-    if (!node) return [];
+    if (!node?.code) return [];
     const keys = Object.keys(node.code);
     return keys
       .filter((key) => key !== 'children')
