@@ -43,9 +43,17 @@ export const GetPageInventoryFlowl = (data: PageListParams): Promise<any> => {
 };
 
 // 总计
-export const GetSumDatal = (data: any): Promise<any> => {
+export const GetSumDatal = (params: any): Promise<any> => {
   return defHttp.get<PageListResult>({
     url: '/Summary/GetSumDatal',
-    data,
+    params,
+  });
+};
+
+// 预警通知
+export const GetNotificationList = (params?: any): Promise<any> => {
+  return defHttp.get<PageListResult>({
+    url: '/Notification/GetNotificationList',
+    params,
   });
 };

@@ -19,15 +19,16 @@ import useStyles from './styles';
 
 const { Text, Title } = Typography;
 
-export const AnalyzeCard = () => {
-  const { activeOrgCode } = useWarehouseOptions();
-  const {
-    data: sumData,
-    error,
-    loading: ajaxLoading,
-  } = useRequest(() => {
-    return GetSumDatal({ orgCode: activeOrgCode });
-  });
+export const AnalyzeCard = (props: any) => {
+  const { sumData, ajaxLoading } = props;
+  // const { activeOrgCode } = useWarehouseOptions();
+  // const {
+  //   data: sumData,
+  //   error,
+  //   loading: ajaxLoading,
+  // } = useRequest(() => {
+  //   return GetSumDatal({ orgCode: activeOrgCode });
+  // });
   const { styles } = useStyles();
   const token = useTheme();
 

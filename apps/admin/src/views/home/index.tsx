@@ -1,20 +1,31 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+import { useRequest } from 'ahooks';
 import { Col, Row } from 'antd';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
+
+import { GetSumDatal } from '@/api/summary';
 
 import { AnalyzeCard } from './components/AnalyzeCard';
 import InlineChart from './components/lineChart';
 import useStyles from './index.style';
 
-import type { FC } from 'react';
-
-const HomePage: FC = () => {
+const HomePage: any = () => {
   const { styles } = useStyles();
   const { t } = useTranslation();
+  const { activeOrgCode } = useWarehouseOptions();
+  const { data: sumData, loading: ajaxLoading } = useRequest(() => {
+    console.log('获取数据的时候的组织', activeOrgCode);
+    return GetSumDatal({ orgCode: activeOrgCode });
+  });
+  // useEffect(() => {
+  //   console.log('activeOrgCode', activeOrgCode);
+  // }, [activeOrgCode]);
   return (
     <div className={styles['home-container']}>
       <Row gutter={[16, 16]}>
-        <AnalyzeCard />
+        <AnalyzeCard sumData={sumData} ajaxLoading={ajaxLoading} />
         {/* <Col span={12}>
           <BarChart />
         </Col>
@@ -22,7 +33,7 @@ const HomePage: FC = () => {
           <CategoryChart />
         </Col> */}
         <Col span={24}>
-          <InlineChart />
+          <InlineChart sumOption={sumData?.resultData?.outboundSummary ?? []} />
         </Col>
       </Row>
     </div>

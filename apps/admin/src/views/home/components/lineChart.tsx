@@ -1,8 +1,89 @@
 import { Card } from 'antd';
 import * as echarts from 'echarts/core';
+import React, { useEffect } from 'react';
 
 import BaseCharts from '@/components/BaseChart';
 
+interface IParams {
+  legendAry: any[];
+  xAxisAry: any[];
+  seriesAry: any[];
+}
+export const getOption = (params: IParams) => {
+  const { legendAry, xAxisAry, seriesAry } = params;
+  return {
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow',
+      },
+    },
+    grid: {
+      top: '10%',
+      left: '2%',
+      right: '2%',
+      bottom: '12%', // 网格图（柱状图、折线图、气泡图等）离底部的距离，也可以用像素比如10px
+      containLabel: true, // grid 区域是否包含坐标轴的刻度标签。false可能溢出，默认为false
+    },
+    legend: {
+      // textStyle: {
+      //   color: '#000',
+      //   fontSize: 16,
+      // },
+      // itemGap: 40,
+      // itemWidth: 18,
+      // itemHeight: 5,
+      // data: legendAry,
+      // right: 'center', // 组件离容器左侧的距离，可以是left,center,right，也可以是像素px和百分比10%
+      // top: '5px',
+    },
+    animation: true,
+
+    dataZoom: [
+      {
+        type: 'slider',
+        show: true,
+        height: 30,
+        xAxisIndex: [0],
+        bottom: 10,
+        start: 50,
+        end: 100,
+        handleIcon:
+          'path://M306.1,413c0,2.2-1.8,4-4,4h-59.8c-2.2,0-4-1.8-4-4V200.8c0-2.2,1.8-4,4-4h59.8c2.2,0,4,1.8,4,4V413z',
+        handleSize: '110%',
+        handleStyle: {
+          color: '#d3dee5',
+          pointer: 'cursor',
+        },
+        textStyle: {
+          color: '#fff',
+        },
+        borderColor: '#90979c',
+        brushSelect: false,
+      },
+      {
+        type: 'inside',
+        show: true,
+        height: 15,
+        start: 1,
+        end: 35,
+      },
+    ],
+    xAxis: [
+      {
+        type: 'category',
+        boundaryGap: false,
+        data: xAxisAry,
+      },
+    ],
+    yAxis: [
+      {
+        type: 'value',
+      },
+    ],
+    series: seriesAry || [],
+  };
+};
 export const option = {
   tooltip: {
     trigger: 'axis',
@@ -11,7 +92,7 @@ export const option = {
     },
   },
   grid: {
-    top: '25%',
+    top: '2%',
     left: '2%',
     right: '2%',
     bottom: '12%', // 网格图（柱状图、折线图、气泡图等）离底部的距离，也可以用像素比如10px
@@ -25,134 +106,12 @@ export const option = {
     itemGap: 40,
     itemWidth: 18,
     itemHeight: 5,
-    data: ['矿1', '矿2', '矿3'],
+    data: ['矿1', '矿2', '矿3', '矿3', '矿3'],
     right: 'center', // 组件离容器左侧的距离，可以是left,center,right，也可以是像素px和百分比10%
     top: '5px',
   },
   animation: true,
 
-  xAxis: [
-    {
-      type: 'category',
-      data: ['2021年1月', '2021年2月', '2021年3月', '2021年4月', '2021年5月', '2021年6月'],
-      axisLine: {
-        show: true,
-        onZero: true,
-        symbol: 'none',
-        lineStyle: {
-          color: '#264981',
-        },
-      },
-      boundaryGap: true,
-      axisLabel: {
-        textStyle: {
-          color: 'rgba(0, 0, 0, 1)',
-          fontWeight: 500,
-          fontSize: '16',
-        },
-      },
-      axisTick: {
-        show: false,
-      },
-    },
-    {
-      type: 'category',
-      data: ['2021年1月', '2021年2月', '2021年3月', '2021年4月', '2021年5月', '2021年6月'],
-      axisLine: {
-        show: false,
-        onZero: true,
-        symbol: 'none',
-        lineStyle: {
-          color: 'rgb(21,93,174)',
-        },
-      },
-      boundaryGap: false,
-      axisLabel: {
-        show: false,
-        textStyle: {
-          color: 'rgba(233, 240, 255, 1)',
-          fontWeight: 500,
-          fontSize: '16',
-        },
-      },
-      axisTick: {
-        show: false,
-      },
-    },
-  ],
-  yAxis: [
-    {
-      name: '总量',
-      nameTextStyle: {
-        color: 'rgb(0, 0, 0)',
-        fontSize: 22,
-        padding: 10,
-      },
-      min: 0, // 最小
-      max: 350, // 最大
-      interval: 50, // 相差
-      type: 'value',
-      splitLine: {
-        show: true,
-        lineStyle: {
-          type: 'dashed',
-          color: 'rgb(21,93,174)',
-        },
-      },
-      axisTick: {
-        show: false,
-        inside: true,
-        length: 7,
-      },
-      axisLine: {
-        show: false,
-        lineStyle: {
-          color: 'rgb(21,93,174)',
-        },
-      },
-      // 坐标值标注
-      axisLabel: {
-        show: true,
-        textStyle: {
-          color: 'rgba(0,0,0, 1)',
-          fontSize: 18,
-        },
-      },
-    },
-    {
-      name: '单量',
-      nameTextStyle: {
-        color: 'rgb(0,0,0)',
-        fontSize: 22,
-        padding: 10,
-      },
-      min: 0, // 最小
-      max: 35, // 最大
-      interval: 5, // 相差
-      type: 'value',
-      splitLine: {
-        show: true,
-      },
-      axisTick: {
-        show: true,
-      },
-      axisLine: {
-        show: true,
-        lineStyle: {
-          color: 'rgb(21,93,174)',
-        },
-      },
-      // 坐标值标注
-      axisLabel: {
-        show: true,
-        textStyle: {
-          color: 'rgba(0,0,0, 1)',
-          fontSize: 18,
-        },
-        formatter: '{value} ',
-      },
-    },
-  ],
   dataZoom: [
     {
       type: 'slider',
@@ -183,162 +142,111 @@ export const option = {
       end: 35,
     },
   ],
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    },
+  ],
+  yAxis: [
+    {
+      type: 'value',
+    },
+  ],
   series: [
     {
-      name: '矿1',
+      name: 'Email',
       type: 'line',
-      showAllSymbol: true, // 显示所有图形。
-      yAxisIndex: 1,
-      xAxisIndex: 1,
-      symbol: 'none', // 标记的图形为实心圆
-      symbolSize: 6, // 标记的大小
-      z: 150,
-      zlevel: 25,
-      itemStyle: {
-        color: 'rgba(0, 0, 0, 1)',
-        borderWidth: '2',
-        borderColor: 'rgba(142, 76, 184, 1)',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series',
       },
-      lineStyle: {
-        color: '#287CE8',
-      },
-      smooth: true,
-      areaStyle: {
-        // 线性渐变，前4个参数分别是x0,y0,x2,y2(范围0~1);相当于图形包围盒中的百分比。如果最后一个参数是‘true’，则该四个值是绝对像素位置。
-        color: new echarts.graphic.LinearGradient(
-          0,
-          0,
-          0,
-          1,
-          [
-            {
-              offset: 0,
-              // color: 'rgba(65, 197, 95, 0.4)',
-              color: 'rgba(142, 76, 184, 0.4)',
-            },
-            {
-              offset: 0.6,
-              // color: 'rgba(65, 197, 95, 0.4)',
-              color: 'rgba(142, 76, 184, 0.2)',
-            },
-            {
-              offset: 1,
-              // color: 'rgba(255,255,255, 0)',
-              color: 'rgba(142, 76, 184, 0)',
-            },
-          ],
-          false,
-        ),
-      },
-      data: [21, 24, 8, 22, 16, 19],
+      data: [120, 132, 101, 134, 90, 230, 210],
     },
     {
-      name: '矿2',
+      name: 'Union Ads',
       type: 'line',
-      showAllSymbol: true, // 显示所有图形。
-      yAxisIndex: 1,
-      xAxisIndex: 1,
-      symbol: 'none', // 标记的图形为实心圆
-      symbolSize: 6, // 标记的大小
-      z: 150,
-      zlevel: 25,
-      itemStyle: {
-        color: '#333', // 拐点颜色
-        // borderColor: '#fff600',//拐点边框颜色
-        // color: 'rgba(0, 0, 0, 1)',
-        borderWidth: 2,
-        borderColor: 'rgba(27,204,102)',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series',
       },
-      lineStyle: {
-        color: '#F2C347',
-      },
-      smooth: true,
-      areaStyle: {
-        // 线性渐变，前4个参数分别是x0,y0,x2,y2(范围0~1);相当于图形包围盒中的百分比。如果最后一个参数是‘true’，则该四个值是绝对像素位置。
-        color: new echarts.graphic.LinearGradient(
-          0,
-          0,
-          0,
-          1,
-          [
-            {
-              offset: 0,
-              color: 'rgba(27,204,102,0.4)',
-              // color: 'rgba(137,32,200, 0.4)',
-            },
-            {
-              offset: 0.6,
-              color: 'rgba(27,204,102,0.2)',
-              // color: 'rgba(137,32,200, 0.4)',
-            },
-            {
-              offset: 1,
-              // color: 'rgba(137,32,200, 0)',
-              color: 'rgba(27,204,102,0)',
-            },
-          ],
-          false,
-        ),
-      },
-      data: [23, 20, 18, 12, 16, 17],
+      data: [220, 182, 191, 234, 290, 330, 310],
     },
     {
-      name: '矿3',
+      name: 'Video Ads',
       type: 'line',
-      showAllSymbol: true, // 显示所有图形。
-      yAxisIndex: 1,
-      xAxisIndex: 1,
-      symbol: 'none', // 标记的图形为实心圆
-      symbolSize: 6, // 标记的大小
-      z: 150,
-      zlevel: 25,
-      itemStyle: {
-        color: '#333', // 拐点颜色
-        // borderColor: '#fff600',//拐点边框颜色
-        // color: 'rgba(0, 0, 0, 1)',
-        borderWidth: 2,
-        borderColor: 'rgba(127,24,10)',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series',
       },
-      lineStyle: {
-        color: '#C2A111',
+      data: [150, 232, 201, 154, 190, 330, 410],
+    },
+    {
+      name: 'Direct',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series',
       },
-      smooth: true,
-      areaStyle: {
-        // 线性渐变，前4个参数分别是x0,y0,x2,y2(范围0~1);相当于图形包围盒中的百分比。如果最后一个参数是‘true’，则该四个值是绝对像素位置。
-        color: new echarts.graphic.LinearGradient(
-          0,
-          0,
-          0,
-          1,
-          [
-            {
-              offset: 0,
-              color: 'rgba(27,204,102,0.4)',
-              // color: 'rgba(137,32,200, 0.4)',
-            },
-            {
-              offset: 0.6,
-              color: 'rgba(27,204,102,0.2)',
-              // color: 'rgba(137,32,200, 0.4)',
-            },
-            {
-              offset: 1,
-              // color: 'rgba(137,32,200, 0)',
-              color: 'rgba(27,204,102,0)',
-            },
-          ],
-          false,
-        ),
+      data: [320, 332, 301, 334, 390, 330, 320],
+    },
+    {
+      name: 'Search Engine',
+      type: 'line',
+      stack: 'Total',
+      label: {
+        show: true,
+        position: 'top',
       },
-      data: [23, 20, 32, 12, 26, 12],
+      areaStyle: {},
+      emphasis: {
+        focus: 'series',
+      },
+      data: [820, 932, 901, 934, 1290, 1330, 1320],
     },
   ],
 };
 
-const LineChart = () => {
+const LineChart = (props: any) => {
+  const { sumOption } = props;
+  useEffect(() => {
+    console.log('[lineChart]: sumOption => ', sumOption);
+  }, [sumOption]);
+
+  const echartsOption = React.useMemo(() => {
+    const legendAry: any = [];
+    const xAxisAry: any = [];
+    const seriesAry: any = [];
+    sumOption?.warehouses?.forEach((item: any) => {
+      legendAry.push(item.warehouseName);
+      seriesAry.push({
+        name: item.warehouseName,
+        type: 'line',
+        stack: 'Total',
+        areaStyle: {},
+        emphasis: {
+          focus: 'series',
+        },
+        smooth: true,
+        data: item.items.map((it: any) => {
+          return it.value;
+        }),
+      });
+    });
+    sumOption?.warehouses?.[0]?.items.forEach((item: any) => {
+      xAxisAry.push(item.month);
+    });
+    return { legendAry, xAxisAry, seriesAry };
+  }, [sumOption]);
+
   return (
     <Card title={'各矿消耗占比'}>
-      <BaseCharts option={option} height={420} />
+      <BaseCharts option={getOption(echartsOption)} height={420} />
     </Card>
   );
 };
