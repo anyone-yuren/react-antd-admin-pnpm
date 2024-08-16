@@ -25,7 +25,7 @@ export interface TotalSumScanDTO {
    */
   inOrderTotal?: number;
   /**
-   * 矿区组织当前总值排行
+   * 矿区组织当前总值
    */
   orgTotalPriceList?: null;
   /**

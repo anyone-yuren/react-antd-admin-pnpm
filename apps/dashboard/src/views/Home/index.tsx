@@ -1,6 +1,6 @@
 import { BorderBox8, BorderBox10, Decoration6, DigitalFlop, ScrollBoard } from '@jiaminghi/data-view-react';
 import { useRequest } from 'ahooks';
-import { Col, Flex, Layout, Row, Skeleton } from 'antd';
+import { Col, Empty, Flex, Layout, Row, Skeleton } from 'antd';
 import { motion } from 'framer-motion';
 import { values } from 'lodash-es';
 import { useCallback, useEffect, useState } from 'react';
@@ -33,8 +33,6 @@ function Home() {
   const { data: batchCodes, run: getBatchCode } = useRequest(GetCode, {
     manual: true,
     onSuccess: (res) => {
-      console.log(res?.data?.map((item) => values(item)));
-
       setBatchCodeList(res.data || {});
     },
   });
@@ -73,7 +71,7 @@ function Home() {
 
   const config = useCallback(() => {
     return {
-      number: [tatalData.totalCost || 0],
+      number: [Math.round((tatalData?.totalCost / 10000) * 100) / 100 || 0],
       content: '{nt}万',
       formatter,
       style: {
@@ -129,29 +127,41 @@ function Home() {
                 </div> */}
                 <div className='card' style={{ height: '100%' }}>
                   <div className='card-title'>异常消耗情况</div>
-                  <ScrollBoard
+                  <div
+                    style={{
+                      height: 'calc( 100% - 50px)',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <Empty description={<span style={{ color: '#fff' }}>暂无数据</span>} />
+                  </div>
+
+                  {/* <ScrollBoard
                     config={{
                       ...errorConfig,
                       data: tatalData?.orgTotalPriceList?.map((item) => {
                         const datas = values(item);
-                        datas[1] = parseFloat(datas[1].toFixed(2));
+                        datas[1] = `${parseFloat(datas[1].toFixed(2))}万元`;
                         datas[2] = parseFloat(datas[2].toFixed(2));
-                        return datas;
+                        // 去除datas最后一项
+                        return datas.slice(0, -1);
                       }),
                     }}
                     style={{ height: 'calc( 100% - 50px)' }}
-                  />
+                  /> */}
                 </div>
                 <div className='gutter-box'>
                   <div className='card'>
-                    <div className='card-title'>实时库存</div>
-                    <OldChart style={{ height: 'calc( 100% - 50px)' }} data={tatalData.materialSummaryList} />
+                    <div className='card-title'>供应商物资领用价值</div>
+                    <OldChart style={{ height: 'calc( 100% - 50px)' }} data={tatalData.invoiceSupplierSummaryList} />
                   </div>
                 </div>
                 {/* </Col> */}
                 {/* <Col span={24} style={{ height: '50%' }}> */}
                 {/* <div className='card' style={{ height: '100%' }}>
-                  <div className='card-title'>矿资物资消耗排行</div>
+                  <div className='card-title'>矿资物资消耗</div>
                   <TransferChart style={{ height: 'calc(100% - 50px' }} />
                 </div> */}
                 {/* </Col>
@@ -197,7 +207,7 @@ function Home() {
                       </Row>
                     </Col>
                     <Col span={10} className='total-box'>
-                      <div className='total'>{tatalData?.currentTotal}</div>
+                      <div className='total'>{Math.round((tatalData?.currentTotal / 10000) * 100) / 100}万</div>
                       <div className='total-dec'>物资总价值</div>
                     </Col>
                     <Col span={7} style={{ padding: '24px 8px' }}>
@@ -243,13 +253,13 @@ function Home() {
                     <BorderBox10>
                       <div className='gutter-box'>
                         <div className='card'>
-                          <div className='card-title'>矿资物资消耗排行</div>
+                          <div className='card-title'>区队领用消耗</div>
                           <TransferChart style={{ height: 'calc(100% - 50px' }} data={tatalData.outOrgTotal} />
                         </div>
                       </div>
                     </BorderBox10>
                     {/* <div className='card' style={{ height: '100%' }}>
-                      <div className='card-title'>矿资物资消耗排行</div>
+                      <div className='card-title'>矿资物资消耗</div>
                       <TransferChart style={{ height: 'calc(100% - 50px' }} />
                     </div> */}
                   </Col>
@@ -289,33 +299,34 @@ function Home() {
             <BorderBox8 dur={10} reverse>
               <div className='gutter-box'>
                 <div className='card' style={{ height: '100%' }}>
-                  <div className='card-title'>物资价值排行</div>
+                  <div className='card-title'>库存金额</div>
                   <ScrollBoard
                     config={{
                       ...errorConfig,
                       data: tatalData?.orgTotalPriceList?.map((item) => {
                         const datas = values(item);
-                        datas[1] = parseFloat(datas[1].toFixed(2));
+                        datas[1] = `${Math.round((datas[1] / 10000) * 100) / 100}万元`;
                         datas[2] = parseFloat(datas[2].toFixed(2));
-                        return datas;
+                        return datas.slice(0, -1);
                       }),
                     }}
                     style={{ height: 'calc( 100% - 50px)' }}
                   />
                 </div>
                 <div className='card' style={{ height: '100%' }}>
-                  <div className='card-title'>到货金额排行</div>
+                  <div className='card-title'>到货金额</div>
                   <PayChart style={{ height: 'calc( 100% - 50px)' }} data={tatalData?.supplierSummaryList} />
                   {/* <ScrollBoard config={{ ...amountConfig }} style={{ height: 'calc( 100% - 50px)' }} /> */}
                 </div>
                 <div className='card' style={{ height: '100%' }}>
-                  <div className='card-title'>出库订单统计</div>
+                  <div className='card-title'>供货商入库价值</div>
                   <ScrollBoard
                     config={{
                       ...outConfig,
-                      data: tatalData?.outOrderList?.map((item) => {
+                      data: tatalData?.orgTotalPriceList?.map((item) => {
                         const datas = values(item);
-                        datas[3] = parseFloat((datas[2] / datas[1]).toFixed(2)) || 0;
+                        datas[1] = `${Math.round((datas[1] / 10000) * 100) / 100}万元`;
+                        datas[2] = `${parseFloat(datas[2].toFixed(2))}%`;
                         return datas;
                       }),
                     }}

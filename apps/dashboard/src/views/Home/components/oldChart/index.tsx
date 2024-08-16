@@ -21,8 +21,9 @@ const TransferChart = (props) => {
       setMyData1(
         map(data, (item) => {
           return {
-            name: item.materialName,
-            value: item.quantity,
+            name: item.supplierName,
+            // 值保留两位小数
+            value: Math.round((item.orderAmount / 10000) * 100) / 100,
           };
         }),
       );
@@ -60,8 +61,8 @@ const TransferChart = (props) => {
     },
     grid: {
       top: '1%',
-      left: '10%',
-      right: '10%',
+      left: '5%',
+      right: '5%',
       bottom: '1%',
       containLabel: true,
     },
@@ -91,12 +92,14 @@ const TransferChart = (props) => {
           };
           const label = obj[10 - index] || '00';
           // return `{a${label}|${name}}{b|} {span${label}|}`;
-          const formattedName = name.length > 8 ? `${name.slice(0, 8)}\n${name.slice(8)}` : name;
+          // const formattedName = name.length > 8 ? `${name.slice(0, 8)}\n${name.slice(8)}` : name;
+          // name超出15替换为...
+          const formattedName = name.length > 15 ? `${name.slice(0, 15)}...` : name;
           return `{a${label}|${formattedName}}{b|} {span${label}|}`;
         },
         rich: {
           b: {
-            width: 5,
+            width: 1,
           },
           ...spanStyles,
         },
@@ -117,7 +120,7 @@ const TransferChart = (props) => {
     },
     series: [
       {
-        name: '交旧率排行',
+        name: '交旧率',
         type: 'bar',
         barWidth: 14,
         // Y轴数字显示部分
@@ -126,7 +129,7 @@ const TransferChart = (props) => {
             show: true,
             position: 'inside',
             valueAnimation: true,
-            offset: [5, -1],
+            offset: [20, -1],
             textStyle: {
               color: '#F5F5F5',
               fontWeight: 'bold',

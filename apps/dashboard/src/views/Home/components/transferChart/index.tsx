@@ -15,8 +15,19 @@ const TransferChart = (props) => {
     serviceData.jdData = map(data, (item) => {
       return map(item.items, 'materialName');
     });
-    serviceData.data = map(data, (item) => {
-      return map(item.items, 'cost');
+    // serviceData.yearAmount = map(data, (item) => {
+    //   return map(item.items, 'yearAmount');
+    // });
+
+    // serviceData.monthAmount = map(data, (item) => {
+    //   return map(item.items, 'monthAmount');
+    // });
+    serviceData.yearAmount = map(data, (item) => {
+      return map(item.items, 'yearAmount').map((amount) => Math.floor((amount / 10000) * 100) / 100);
+    });
+
+    serviceData.monthAmount = map(data, (item) => {
+      return map(item.items, 'monthAmount').map((amount) => Math.floor((amount / 10000) * 100) / 100);
     });
 
     setTransferConfig(serviceData);
@@ -203,13 +214,29 @@ const TransferChart = (props) => {
               },
             },
           },
+          barWidth: '50%',
+          barGap: '-100%',
           label: {
             normal: {
               show: true,
-              position: 'right', // 数值显示在右侧
-              formatter: '{c}',
+              fontSize: 14, // 标签国家字体大小
+              position: 'left', // 数值显示在右侧
+
+              formatter: '{b}',
             },
           },
+          // label: {
+          //   normal: {
+          //     show: true,
+          //     fontSize: 14,
+          //     // offset: [0, 16],
+          //     position: 'insideRight', // 标签位置设置为靠右
+          //     align: 'right',
+          //     verticalAlign: 'middle',
+          //     // position: 'right', // 数值显示在右侧
+          //     formatter: '{c}万',
+          //   },
+          // },
           itemStyle: {
             normal: {
               color(params) {
@@ -245,12 +272,12 @@ const TransferChart = (props) => {
         },
 
         {
-          name: '',
+          name: '年',
           type: 'bar',
           markLine: {
             label: {
               normal: {
-                show: false,
+                show: true,
               },
             },
             lineStyle: {
@@ -266,10 +293,8 @@ const TransferChart = (props) => {
             normal: {
               show: true,
               fontSize: 14, // 标签国家字体大小
-              position: 'left', // 数值显示在右侧
-              formatter(p) {
-                return p.name;
-              },
+              position: 'right', // 数值显示在右侧
+              formatter: '{c}万',
             },
           },
           itemStyle: {
@@ -306,6 +331,67 @@ const TransferChart = (props) => {
             },
           },
         },
+        {
+          name: '月',
+          type: 'bar',
+          z: 10,
+          markLine: {
+            label: {
+              normal: {
+                show: false,
+              },
+            },
+            lineStyle: {
+              normal: {
+                color: 'red',
+                width: 3,
+              },
+            },
+          },
+          barWidth: '50%',
+          barGap: '-100%',
+          label: {
+            normal: {
+              show: true,
+              fontSize: 14, // 标签国家字体大小
+              position: 'right', // 数值显示在右侧
+              formatter: '{c}万',
+            },
+          },
+          itemStyle: {
+            normal: {
+              color(params) {
+                // build a color map as your need.
+                // color:function(d){return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);//随机生成颜色
+                const colorList = [
+                  '#aa96da',
+                  '#fcbad3',
+                  '#ffffd2',
+                  '#f38181',
+                  '#fce38a',
+                  '#eaffd0',
+                  '#95e1d3',
+                  '#e3fdfd',
+                  '#749f83',
+                  '#ca8622',
+                  '#6bc0fb',
+                  '#7fec9d',
+                  '#fedd8b',
+                  '#ffa597',
+                  '#84e4dd',
+                  '#749f83',
+                  '#ca8622',
+                  '#bda29a',
+                  '#a8d8ea',
+                ];
+                return colorList[params.dataIndex];
+
+                // console.log("111", params.name); //打印序列
+                // return colorList[transferConfig?.jdData[0]?.indexOf(params.name)];
+              },
+            },
+          },
+        },
       ],
 
       animationEasingUpdate: 'quinticInOut',
@@ -319,29 +405,28 @@ const TransferChart = (props) => {
     const res = [];
     // alert(jdData.length);
     // eslint-disable-next-line no-plusplus
-    for (let j = 0; j < transferConfig?.data[n]?.length; j++) {
+    for (let j = 0; j < transferConfig?.yearAmount[n]?.length; j++) {
       res.push({
         name: transferConfig?.jdData[n][j],
-        value: transferConfig?.data[n][j],
+        value: transferConfig?.yearAmount[n][j],
+      });
+    }
+    const monthAmount = [];
+    for (let j = 0; j < transferConfig?.monthAmount[n]?.length; j++) {
+      monthAmount.push({
+        name: transferConfig?.jdData[n][j],
+        value: transferConfig?.monthAmount[n][j],
       });
     }
 
-    res
-      .sort(function (a, b) {
-        return b.value - a.value;
-      })
-      .slice(0, 6);
-
-    res.sort(function (a, b) {
-      return a.value - b.value;
-    });
-
     const res1 = [];
     const res2 = [];
+    const res3 = [];
     // console.log(res);
     for (let t = 0; t < res.length; t++) {
       res1[t] = res[t].name;
       res2[t] = res[t].value;
+      res3[t] = monthAmount[t].value;
     }
 
     option.options.push({
@@ -362,11 +447,12 @@ const TransferChart = (props) => {
         {
           data: res2,
         },
+        {
+          data: res3,
+        },
       ],
     });
   }
-
-  console.log(option);
 
   return <BaseCharts option={option} {...props} />;
 };

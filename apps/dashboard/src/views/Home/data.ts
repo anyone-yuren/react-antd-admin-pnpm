@@ -24,9 +24,9 @@ export const errorConfig = {
   headerBGC: 'transparent',
   oddRowBGC: 'transparent',
   header: [
-    '<span style="color:#6FBAFF">矿区供应站</span>',
+    '<span style="color:#6FBAFF">组织单位</span>',
     '<span style="color:#6FBAFF">总值</span>',
-    '<span style="color:#6FBAFF">总值占比</span>',
+    // '<span style="color:#6FBAFF">总值占比</span>',
   ],
   data: [
     ['行1列1', '行1列2', '行1列3'],
@@ -68,10 +68,9 @@ export const outConfig = {
   oddRowBGC: 'transparent',
   columnWidth: [200],
   header: [
-    '<span style="color:#6FBAFF">矿区名称</span>',
-    '<span style="color:#6FBAFF">订单数量</span>',
-    '<span style="color:#6FBAFF">完成订单</span>',
-    '<span style="color:#6FBAFF">完成比例</span>',
+    '<span style="color:#6FBAFF">供应商</span>',
+    '<span style="color:#6FBAFF">总值</span>',
+    '<span style="color:#6FBAFF">比例</span>',
   ],
   data: [
     ['行1列1', '行1列2', '行1列3'],

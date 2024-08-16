@@ -20,7 +20,9 @@ export default function PayChart(props) {
         map(data, (item) => {
           return {
             name: item.supplierName,
-            value: item.orderAmount,
+            // 转换成万
+            value: Math.round((item.orderAmount / 10000) * 100) / 100,
+            // value:item.orderAmount,
           };
         }),
       );
@@ -51,7 +53,7 @@ export default function PayChart(props) {
         label: {
           normal: {
             // formatter: '{b}\n{d}%\t{c}',
-            formatter: '{b|{b}}\n{d|{d}%\t{c}}',
+            formatter: '{b|{b}}\n{d|{d}%\t{c}}\t{f|万}',
             rich: {
               icon: {
                 fontSize: 12,
@@ -65,6 +67,11 @@ export default function PayChart(props) {
                 fontSize: 10,
                 padding: [0, 0, 0, 0],
                 color: '#fff',
+              },
+              f: {
+                fontSize: 10,
+                padding: [0, 0, 0, -3],
+                color: 'red',
               },
             },
           },

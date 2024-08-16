@@ -1,6 +1,6 @@
 import { useGlobalStore } from '@gbeata/store';
 import { useRequest } from 'ahooks';
-import { ThemeProvider } from 'antd-style';
+import { ThemeProvider, useThemeMode } from 'antd-style';
 import md5 from 'md5';
 import { useEffect } from 'react';
 import { GlobalConfig } from 'ui';
@@ -15,6 +15,8 @@ import './app.css';
 // 这个是全局的页面 还可以做一些其他的操作
 
 export default function App() {
+  const { setThemeMode } = useThemeMode();
+  setThemeMode('dark');
   const [vc] = useVcosole();
   const { setUserToken } = useAuthStore((state) => {
     return {
@@ -33,7 +35,7 @@ export default function App() {
   useEffect(() => {
     login({
       username: 'admin',
-      password: md5('admin'),
+      password: md5('1q2w3E*'),
     });
   }, []);
   // console.log(preset);
