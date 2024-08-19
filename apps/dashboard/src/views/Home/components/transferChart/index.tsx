@@ -13,7 +13,7 @@ const TransferChart = (props) => {
     const serviceData = {};
     serviceData.areas = map(data, 'orgName');
     serviceData.jdData = map(data, (item) => {
-      return map(item.items, 'materialName');
+      return map(item.items, 'deptName');
     });
     // serviceData.yearAmount = map(data, (item) => {
     //   return map(item.items, 'yearAmount');
