@@ -323,10 +323,10 @@ function Home() {
                   <ScrollBoard
                     config={{
                       ...outConfig,
-                      data: tatalData?.orgTotalPriceList?.map((item) => {
+                      data: tatalData?.supplierSummaryList?.map((item) => {
                         const datas = values(item);
                         datas[1] = `${Math.round((datas[1] / 10000) * 100) / 100}万元`;
-                        datas[2] = `${parseFloat(datas[2].toFixed(2))}%`;
+                        // datas[2] = `${parseFloat(datas[2].toFixed(2))}%`;
                         return datas;
                       }),
                     }}

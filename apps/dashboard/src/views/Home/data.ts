@@ -66,11 +66,11 @@ export const deliveryConfig = {
 export const outConfig = {
   headerBGC: 'transparent',
   oddRowBGC: 'transparent',
-  columnWidth: [200],
+  columnWidth: [250],
   header: [
     '<span style="color:#6FBAFF">供应商</span>',
     '<span style="color:#6FBAFF">总值</span>',
-    '<span style="color:#6FBAFF">比例</span>',
+    // '<span style="color:#6FBAFF">比例</span>',
   ],
   data: [
     ['行1列1', '行1列2', '行1列3'],
