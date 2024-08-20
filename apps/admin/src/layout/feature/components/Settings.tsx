@@ -78,6 +78,12 @@ export default function Settings() {
                     {t('面包屑导航')}
                   </List.Item>
                   <List.Item actions={[<Switch defaultChecked onChange={() => {}} />]}>{t('系统名称')}</List.Item>
+                  <List.Item>
+                    <div className='flex justify-between w-full'>
+                      <span>{t('版本号')}</span>
+                      <span>{'v1.0.1'}</span>
+                    </div>
+                  </List.Item>
                 </List>
               }
             />

@@ -8,9 +8,10 @@ interface IParams {
   legendAry: any[];
   xAxisAry: any[];
   seriesAry: any[];
+  selectedHashMap: Record<string, any>;
 }
 export const getOption = (params: IParams) => {
-  const { legendAry, xAxisAry, seriesAry } = params;
+  const { legendAry, xAxisAry, seriesAry, selectedHashMap } = params;
   return {
     tooltip: {
       trigger: 'axis',
@@ -19,22 +20,31 @@ export const getOption = (params: IParams) => {
       },
     },
     grid: {
-      top: '10%',
+      top: '15%',
       left: '2%',
       right: '2%',
       bottom: '12%', // 网格图（柱状图、折线图、气泡图等）离底部的距离，也可以用像素比如10px
       containLabel: true, // grid 区域是否包含坐标轴的刻度标签。false可能溢出，默认为false
     },
     legend: {
-      // textStyle: {
-      //   color: '#000',
-      //   fontSize: 16,
-      // },
-      // itemGap: 40,
-      // itemWidth: 18,
-      // itemHeight: 5,
+      // type: 'scroll',
+      icon: 'roundRect',
+      selected: selectedHashMap,
+      textStyle: {
+        // color: '#000',
+        fontSize: 12,
+        lineHeight: 20,
+        rich: {
+          a: {
+            verticalAlign: 'bottom',
+          },
+        },
+      },
+      // itemGap: 20,
+      itemWidth: 20,
+      // itemHeight: 1,
       // data: legendAry,
-      // right: 'center', // 组件离容器左侧的距离，可以是left,center,right，也可以是像素px和百分比10%
+      // right: 'left', // 组件离容器左侧的距离，可以是left,center,right，也可以是像素px和百分比10%
       // top: '5px',
     },
     animation: true,
@@ -221,32 +231,74 @@ const LineChart = (props: any) => {
   const echartsOption = React.useMemo(() => {
     const legendAry: any = [];
     const xAxisAry: any = [];
-    const seriesAry: any = [];
-    sumOption?.warehouses?.forEach((item: any) => {
-      legendAry.push(item.warehouseName);
+    let seriesAry: any = [];
+    const monthHashMap = {};
+    const selectedHashMap = {};
+    const totalCountAry: any = [];
+    sumOption?.orgs?.forEach((item: any) => {
+      // eslint-disable-next-line
+      item.orgName.indexOf('\r\n') > -1 && (item.orgName = item.orgName.replace('\r\n', ''));
+      selectedHashMap[item.orgName] = false;
+      let count = 0;
       seriesAry.push({
-        name: item.warehouseName,
-        type: 'line',
+        name: item.orgName,
+        type: 'bar',
         stack: 'Total',
         areaStyle: {},
+        barWidth: 40,
         emphasis: {
           focus: 'series',
         },
         smooth: true,
         data: item.items.map((it: any) => {
+          !monthHashMap[it.month] ? (monthHashMap[it.month] = it.value) : (monthHashMap[it.month] += it.value);
+          count += it.value;
           return it.value;
         }),
       });
+      totalCountAry.push({ name: item.orgName, count });
     });
-    sumOption?.warehouses?.[0]?.items.forEach((item: any) => {
+    sumOption?.orgs?.[0]?.items.forEach((item: any) => {
       xAxisAry.push(item.month);
     });
-    return { legendAry, xAxisAry, seriesAry };
+    totalCountAry
+      .sort((per: any, next: any) => {
+        return next.count - per.count;
+      })
+      .slice(0, 5)
+      .forEach((selectObj: any) => {
+        selectedHashMap[selectObj.name] = true;
+      });
+
+    console.log('monthHashMap', monthHashMap, totalCountAry);
+
+    if (seriesAry.length) {
+      seriesAry = [
+        ...seriesAry,
+        ...[
+          {
+            name: '折线图汇总',
+            type: 'line',
+            data: Object.values(monthHashMap),
+          },
+          {
+            name: '柱状图汇总',
+            type: 'bar',
+            barWidth: 40,
+            data: Object.values(monthHashMap),
+          },
+        ],
+      ];
+      console.log('seriesAry', seriesAry);
+    }
+
+    console.log({ legendAry, xAxisAry, seriesAry });
+    return { legendAry, xAxisAry, seriesAry, selectedHashMap };
   }, [sumOption]);
 
   return (
     <Card title={'各矿消耗占比'}>
-      <BaseCharts option={getOption(echartsOption)} height={420} />
+      <BaseCharts option={getOption(echartsOption)} height={620} />
     </Card>
   );
 };

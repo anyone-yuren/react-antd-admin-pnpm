@@ -40,14 +40,7 @@ export default function OnlineNotification() {
   return (
     <Popover title={t('消息通知')} trigger={'click'} content={<RenderNotification></RenderNotification>}>
       <Badge count={notificationList?.length}>
-        <Button
-          shape='circle'
-          size='small'
-          onClick={() => {
-            //
-          }}
-          icon={<NotificationOutlined />}
-        />
+        <Button shape='circle' size='small' icon={<NotificationOutlined />} />
       </Badge>
     </Popover>
   );
