@@ -1,15 +1,17 @@
-import { useAsyncEffect } from 'ahooks';
+import { useAsyncEffect, useRequest } from 'ahooks';
 import { Flex, Tag } from 'antd';
 import { GAction, GCtrl, GSearchTable, type GSearchTableField, type GTableCtrlField } from 'gbeata';
 import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { getUserList } from '@/api/auth';
+import { addUser, getRolePageList, getUserList } from '@/api/auth';
 import useCommonsStore from '@/stores/modules/commons';
 
 import AuthAction from '../component/auth';
 import AuthHourseAction from '../component/authHourse';
 
 export default function User() {
+  const { t } = useTranslation();
   const tableRef = useRef<any>();
   const [list, setList] = useState([]);
   const { getHourseList } = useCommonsStore((state) => {
@@ -17,6 +19,10 @@ export default function User() {
       getHourseList: state.getHourseList,
     };
   });
+
+  const { data: roleList } = useRequest(getRolePageList);
+  console.log('roleList => ', roleList);
+
   useAsyncEffect(async () => {
     const res = await getHourseList();
     if (res) {
@@ -48,22 +54,126 @@ export default function User() {
       title: '角色',
       key: 'roleName',
       width: 120,
+      type: 'select',
+      options: roleList?.resultData?.pageData?.map((item) => {
+        console.log(item);
+
+        return { label: item.roleName, value: item.id };
+      }),
       dialog: {
         required: true,
+        key: 'roleId',
       },
     },
+    // {
+    //   title: '所属组织',
+    //   key: 'orgName',
+    //   width: 220,
+    //   search: true,
+    //   dialog: {
+    //     required: true,
+    //   },
+    // },
     {
-      title: '所属组织',
-      key: 'orgName',
-      width: 220,
-      search: true,
-      dialog: {
-        required: true,
-      },
+      title: t('用户头像'),
+      key: 'avator',
+      align: 'center',
+      width: 100,
+      table: false,
+      dialog: {},
     },
 
     {
+      title: t('性别'),
+      align: 'center',
+      width: 80,
+      key: 'userSex',
+      type: 'radio-group',
+      options: [
+        {
+          label: t('男'),
+          value: 1,
+        },
+        {
+          label: t('女'),
+          value: 2,
+        },
+      ],
+
+      dialog: {
+        required: true,
+        defaultValue: 1,
+      },
+    },
+    {
+      ellipsis: true,
+      title: t('出生日期'),
+      align: 'center',
+      width: 200,
+      key: 'birthday',
+      type: 'date',
+      table: false,
+      dialog: {},
+    },
+    {
+      title: t('工号'),
+      align: 'center',
+      width: 100,
+      key: 'jobNumber',
+      search: true,
+      dialog: {},
+    },
+    {
+      title: t('电话'),
+      align: 'center',
+      width: 200,
+      key: 'phoneNumber',
+      search: true,
+      dialog: {
+        formItemProps: {
+          rules: [
+            {
+              validator: (_, val: string) => {
+                if (!val) {
+                  return Promise.resolve();
+                }
+                if (!/^1[3-9]\d{9}$/.test(val)) {
+                  return Promise.reject('手机号格式不正确！');
+                }
+                return Promise.resolve();
+              },
+            },
+          ],
+        },
+      },
+    },
+    {
+      title: 'email',
+      align: 'center',
+      width: 200,
+      key: 'userEmail',
+      table: false,
+      dialog: {
+        formItemProps: {
+          rules: [
+            {
+              validator: (_, val: string) => {
+                if (!val) {
+                  return Promise.resolve();
+                }
+                if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(val)) {
+                  return Promise.reject('邮箱格式不正确！');
+                }
+                return Promise.resolve();
+              },
+            },
+          ],
+        },
+      },
+    },
+    {
       title: '仓库权限',
+      width: 220,
       key: 'warehouseNames',
       render: (_, record) => {
         return (
@@ -75,9 +185,17 @@ export default function User() {
         );
       },
     },
+    {
+      title: t('部门名称'),
+      align: 'center',
+      width: 250,
+      key: 'orgName',
+      dialog: {},
+    },
   ];
   const ctrl: GTableCtrlField = {
     width: 200,
+    fixed: 'right',
     render: (_, record) => (
       <GCtrl>
         <GAction record={record} action='view'>
@@ -102,6 +220,19 @@ export default function User() {
       rowKey='sort_id'
       dialogFormExtend={{
         fields,
+        addApi: addUser,
+        formExtend: {
+          layout: {
+            labelCol: { flex: '180px' }, // label 宽度
+            wrapperCol: { flex: '1' }, // content 宽度
+          },
+        },
+        span: 12,
+        width: '50%',
+      }}
+      tableExtend={{
+        bordered: true,
+        scroll: { x: 1200 },
       }}
     >
       <GAction action='add'>新增</GAction>

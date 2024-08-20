@@ -116,3 +116,10 @@ export const getRolePageList = (data: { pageIndex: 1; pageSize: 100000 }) => {
     data,
   });
 };
+
+export const addUser = (data: any): Promise<any> => {
+  return defHttp.post({
+    url: '/User/Add',
+    data,
+  });
+};
