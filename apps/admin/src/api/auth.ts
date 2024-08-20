@@ -109,3 +109,10 @@ export const setWarehouse = (data: { userId: string; warehouseCodes: string[] })
     data,
   });
 };
+
+export const getRolePageList = (data: { pageIndex: 1; pageSize: 100000 }) => {
+  return defHttp.post({
+    url: '/Role/GetPageData',
+    data,
+  });
+};

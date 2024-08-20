@@ -1,37 +1,25 @@
 import { GAction, GCtrl, GSearchTable, type GSearchTableField, type GTableCtrlField } from 'gbeata';
 
+import { getRolePageList } from '@/api/auth';
+
 import AuthAction from '../component/auth';
 import { listApi } from '../data/api';
 
 const fields: Array<GSearchTableField> = [
   {
     title: '角色名称',
-    key: 'cn1',
+    key: 'roleName',
     search: true,
-    dialog: {
-      required: true,
-    },
-  },
-  {
-    title: '状态',
-    key: 'index',
-    sort: true,
-    type: 'radio-group',
-    defaultValue: 1,
-    options: [
-      { label: '启用', value: 1 },
-      { label: '禁用', value: 2 },
-    ],
     dialog: {
       required: true,
     },
   },
 ];
 const ctrl: GTableCtrlField = {
-  width: 200,
+  width: 120,
   render: (_, record) => (
     <GCtrl>
-      <AuthAction record={record}>授权</AuthAction>
+      {/* <AuthAction record={record}>授权</AuthAction> */}
       <GAction record={record} action='update'>
         编辑
       </GAction>
@@ -45,7 +33,7 @@ const ctrl: GTableCtrlField = {
 export default function Role() {
   return (
     <GSearchTable
-      api={listApi}
+      api={getRolePageList}
       ctrl={ctrl}
       fields={fields}
       rowKey='sort_id'

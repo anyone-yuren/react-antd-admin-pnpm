@@ -1,5 +1,7 @@
 import { GAction, GCtrl, GSearchTable, type GSearchTableField, type GTableCtrlField } from 'gbeata';
 
+import { getRolePageList } from '@/api/auth';
+
 import AuthAction from '../components/auth';
 import { listApi } from './api';
 
@@ -45,7 +47,7 @@ const ctrl: GTableCtrlField = {
 export default function Role() {
   return (
     <GSearchTable
-      api={listApi}
+      api={getRolePageList}
       ctrl={ctrl}
       fields={fields}
       rowKey='sort_id'

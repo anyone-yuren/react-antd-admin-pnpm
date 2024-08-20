@@ -3,9 +3,10 @@ import { Modal, Tabs, Tree } from 'antd';
 import { Empty } from 'antd/lib';
 import { GButton } from 'gbeata';
 import { useEffect, useMemo, useState } from 'react';
-import useStyles from './style';
 
 import { getOrganizationAndWarehouseTree, setWarehouse, type WarehouseTreeList } from '@/api/auth';
+
+import useStyles from './style';
 
 const AuthHourseAction = ({ record, refreshTable }: any) => {
   const [open, setOpen] = useState(false);
@@ -43,6 +44,11 @@ const AuthHourseAction = ({ record, refreshTable }: any) => {
         fieldNames={{ title: 'warehouseName', key: 'warehouseCode' }}
         defaultExpandAll
         checkStrictly
+        titleRender={(node) => {
+          console.log(node);
+
+          return node.warehouseName + node.warehouseCode;
+        }}
         defaultCheckedKeys={CheckedKeys}
         onCheck={(checkedKeys, node) => {
           setCheckedKeys(checkedKeys?.checked as any);
