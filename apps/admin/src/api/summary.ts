@@ -57,3 +57,10 @@ export const GetNotificationList = (params?: any): Promise<any> => {
     params,
   });
 };
+
+export const GetRealtimeInventories = (data: any): Promise<any> => {
+  return defHttp.post<PageListResult>({
+    url: '/DataCenter/GetRealtimeInventories',
+    data,
+  });
+};

@@ -19,7 +19,7 @@ export const createWarehouse = (data: any): Promise<PageListResult> => {
 };
 
 export const updateWarehouse = (data: any): Promise<PageListResult> => {
-  return defHttp.put({
+  return defHttp.post({
     url: '/Warehouse/Update',
     data,
   });
