@@ -1,5 +1,34 @@
+// import { get, post } from '../http/request';
+import { defHttp } from 'apis';
+
 import { openWindow } from '.';
 import { base64toBlob, urlToBase64 } from './image';
+
+interface IdownloadParams {
+  fileUrl: string;
+  fileName: string;
+  requestType?: Function;
+  postData?: any;
+}
+
+export const downloadFile = async ({ fileUrl, fileName, postData = {} }: IdownloadParams) => {
+  const res = await defHttp.post({
+    url: fileUrl,
+    data: postData,
+    responseType: 'blob',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  const link = document.createElement('a');
+  const blob = res;
+  const _fileName = fileName; // 文件名，中文无法解析的时候会显示 _(下划线),生产环境获取不到   res.headers['content-disposition'].split(';')[1].split('=')[1]
+  link.style.display = 'none';
+  // 兼容不同浏览器的URL对象
+  const url = window.URL || window.webkitURL || window.moxURL;
+  link.href = url.createObjectURL(new Blob([blob]));
+  link.download = _fileName;
+  link.click();
+  window.URL.revokeObjectURL(url);
+};
 
 /**
  * Download image by url
@@ -8,12 +37,7 @@ import { base64toBlob, urlToBase64 } from './image';
  * @param mineType
  * @param bom
  */
-export function downloadImgByUrl(
-  url: string,
-  filename: string,
-  mineType?: string,
-  bom?: BlobPart,
-) {
+export function downloadImgByUrl(url: string, filename: string, mineType?: string, bom?: BlobPart) {
   urlToBase64(url).then((base64) => {
     downloadImgByBase64(base64, filename, mineType, bom);
   });
@@ -26,12 +50,7 @@ export function downloadImgByUrl(
  * @param mineType
  * @param bom
  */
-export function downloadImgByBase64(
-  buf: string,
-  filename: string,
-  mineType?: string,
-  bom?: BlobPart,
-) {
+export function downloadImgByBase64(buf: string, filename: string, mineType?: string, bom?: BlobPart) {
   const base64Buf = base64toBlob(buf);
   downloadByData(base64Buf, filename, mineType, bom);
 }
@@ -43,12 +62,7 @@ export function downloadImgByBase64(
  * @param {*} mineType
  * @param {*} bom
  */
-export function downloadByData(
-  data: BlobPart,
-  filename: string,
-  mineType?: string,
-  bom?: BlobPart,
-) {
+export function downloadByData(data: BlobPart, filename: string, mineType?: string, bom?: BlobPart) {
   const blobData = typeof bom !== 'undefined' ? [bom, data] : [data];
   const blob = new Blob(blobData, { type: mineType || 'application/octet-stream' });
 
@@ -75,9 +89,9 @@ export function downloadByUrl({
   target = '_blank',
   fileName,
 }: {
-  url: string
-  target?: TargetContext
-  fileName?: string
+  url: string;
+  target?: TargetContext;
+  fileName?: string;
 }): boolean {
   const isChrome = window.navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
   const isSafari = window.navigator.userAgent.toLowerCase().indexOf('safari') > -1;

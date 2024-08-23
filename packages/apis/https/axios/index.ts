@@ -26,6 +26,10 @@ const transform: AxiosTransform = {
     if (isReturnNativeResponse) {
       return res;
     }
+
+    if (res.data.type === 'application/octet-stream') {
+      return res.data;
+    }
     // 不进行任何处理，直接返回
     // 用于页面代码可能需要直接获取code，data，message这些信息时开启
     if (!isTransformResponse) {

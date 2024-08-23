@@ -7,8 +7,11 @@ import {
   type GTableCtrlField,
   type Record,
 } from 'gbeata';
+import { useState } from 'react';
 
 import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
+
+import { downloadFile } from '@/utils/download';
 
 import { GetRealtimeInventories } from '@/api/summary';
 
@@ -28,7 +31,8 @@ const ctrl: GTableCtrlField = {
 };
 
 export default function Stock() {
-  const { activeOrgCode, warehouseOptions } = useWarehouseOptions();
+  const [warehouseCode, setWarehouseCode] = useState('');
+  const { activeOrgCode, warehouseOptions, orgOptions } = useWarehouseOptions();
   console.log(warehouseOptions);
 
   const fields: Array<GSearchTableField> = [
@@ -46,7 +50,11 @@ export default function Stock() {
       key: 'warehouseCode',
       type: 'select-search',
       options: warehouseOptions,
-      search: true,
+      search: {
+        onChange: (value, _) => {
+          setWarehouseCode(value);
+        },
+      },
       table: false,
     },
     {
@@ -77,16 +85,18 @@ export default function Stock() {
   ];
 
   const handleDownload = () => {
-    // download({
-    //   fileUrl: '/Storage/ExportData',
-    //   fileName: isAll
-    //     ? `${selectedArea?.warehouseName}.xls`
-    //     : `${
-    //         selectedArea.warehouseInfoList.find((item) => item.warehouseCode === warehouseCode[1])?.warehouseName
-    //       }.xls`,
-    //   requestType: post,
-    //   postData: { isAll },
-    // });
+    let fileName = '全部';
+    if (activeOrgCode && !warehouseCode) {
+      fileName = orgOptions.find((item) => item.value === activeOrgCode)?.label;
+    } else if (activeOrgCode && warehouseCode) {
+      fileName = `${orgOptions.find((item) => item.value === activeOrgCode)?.label}-${warehouseOptions.find((item) => item.value === warehouseCode)?.label}`;
+    }
+    downloadFile({
+      fileUrl: '/DataCenter/ExportRealtimeInventories',
+      fileName: `${fileName}.xls`,
+      // eslint-disable-next-line no-nested-ternary
+      postData: { orgCode: activeOrgCode, warehouseCode: '' },
+    });
   };
   return (
     <GSearchTable
