@@ -67,8 +67,12 @@ export default function Stock() {
       search: true,
     },
     {
-      title: '规格',
+      title: '型号',
       key: 'materialModel',
+    },
+    {
+      title: '规格',
+      key: 'materialSize',
     },
     {
       title: '数量',
