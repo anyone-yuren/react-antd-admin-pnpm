@@ -11,6 +11,7 @@ import { GAxios } from './Axios';
 import type { RequestOptions, Result } from '../types/axios';
 import type { AxiosTransform, CreateAxiosOptions } from './axiosTransform';
 import type { AxiosInstance, AxiosResponse } from 'axios';
+import { useAuthStore } from '@gbeata/store';
 
 /**
  * @description: 数据处理，方便区分多种处理方式
@@ -84,6 +85,9 @@ const transform: AxiosTransform = {
     switch (response?.status) {
       case 401:
         errMessage = '登录失效';
+        // 清除缓存跳转登录
+        useAuthStore.getState().clearUserInfoAndToken();
+        window.location.href = '#/login';
         break;
       case 403:
         errMessage = '拒绝访问';
