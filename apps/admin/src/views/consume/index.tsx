@@ -1,7 +1,8 @@
 import { GSearchTable, type GSearchTableField } from 'gbeata';
 
-import { GetPageInventoryCostl } from '@/api/summary';
 import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
+
+import { GetPageInventoryCostl } from '@/api/summary';
 
 import { listApi } from './api';
 
@@ -11,13 +12,13 @@ const fields: Array<GSearchTableField> = [
     key: 'orgName',
   },
   {
-    title: '矿队',
+    title: '区队',
     key: 'deptName',
     sort: true,
     search: true,
   },
   {
-    title: '消耗物资价值',
+    title: '消耗物资金额',
     key: 'cost',
   },
 ];

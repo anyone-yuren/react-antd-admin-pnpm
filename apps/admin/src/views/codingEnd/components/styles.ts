@@ -1,8 +1,6 @@
 import { createStyles } from 'antd-style';
 
 const useStyles = createStyles(({ token, isDarkMode }) => {
-  console.log(token);
-
   return {
     driwer: {
       backdropFilter: 'blur(2px) !important',
@@ -11,6 +9,12 @@ const useStyles = createStyles(({ token, isDarkMode }) => {
       backgroundRepeat: 'no-repeat !important',
       backgroundImage: `url(${token.paperCyanImg}), url(${token.paperRedImg}) !important`,
       backgroundPosition: 'right top, left bottom !important',
+      '.ant-tree-treenode': {
+        width: '100%',
+        '.ant-tree-node-content-wrapper': {
+          flex: 1,
+        },
+      },
     },
   };
 });

@@ -1,110 +1,93 @@
 export const data = {
-  id: 'Modeling Methods',
-  label: 'Modeling Methods',
+  tenantName: '80118',
+  warehouseName: '驻朝川供应站综配库',
+  orderNo: null,
+  batchNo: null,
+  remark: '',
+  placeCode: '',
+  locationCode: '80118-17-A3-01-01',
+  qty: 30,
+  imagePaths: [],
+  code: {
+    no: '4340842534730338304',
+    materialCode: '559907030000040',
+    materialName: '矿用圆环链用扁平接链环',
+    packageName: '',
+    orderNo: 'FR20240910001595-02',
+    batchNo: '202408160002CG1002624040900053',
+    model: null,
+    qty: -10,
+    supplierNo: null,
+    supplierName: null,
+  },
   children: [
     {
-      id: 'Classification',
-      label: 'Classification',
+      tenantName: '80118',
+      warehouseName: '驻朝川供应站综配库',
+      orderNo: null,
+      batchNo: null,
+      remark: '',
+      placeCode: '',
+      locationCode: '80118-17-A3-01-01',
+      qty: 30,
+      imagePaths: [],
+      code: null,
       children: [
         {
-          id: 'Logistic regression',
-        },
-        {
-          id: 'Linear discriminant analysis',
-          text: 'Linear discriminant analysis',
-        },
-        {
-          id: 'Rules',
-        },
-        {
-          id: 'Decision trees',
-        },
-        {
-          id: 'Naive Bayes',
-        },
-        {
-          id: 'K nearest neighbor',
-        },
-        {
-          id: 'Probabilistic neural network',
-        },
-        {
-          id: 'Support vector machine',
-        },
-      ],
-    },
-    {
-      id: 'Consensus',
-      children: [
-        {
-          id: 'Models diversity',
+          tenantName: '80118',
+          warehouseName: '驻朝川供应站综配库',
+          orderNo: null,
+          batchNo: null,
+          remark: '',
+          placeCode: '',
+          locationCode: '80118-17-A3-01-01',
+          qty: 10,
+          imagePaths: [],
+          code: null,
           children: [
             {
-              id: 'Different initializations',
-            },
-            {
-              id: 'Different parameter choices',
-            },
-            {
-              id: 'Different architectures',
-            },
-            {
-              id: 'Different modeling methods',
-            },
-            {
-              id: 'Different training sets',
-            },
-            {
-              id: 'Different feature sets',
-            },
-          ],
-        },
-        {
-          id: 'Methods',
-          children: [
-            {
-              id: 'Classifier selection',
-            },
-            {
-              id: 'Classifier fusion',
-            },
-          ],
-        },
-        {
-          id: 'Common',
-          children: [
-            {
-              id: 'Bagging',
-            },
-            {
-              id: 'Boosting',
-            },
-            {
-              id: 'AdaBoost',
+              tenantName: '80118',
+              warehouseName: '驻朝川供应站综配库',
+              orderNo: null,
+              batchNo: null,
+              remark: null,
+              placeCode: null,
+              locationCode: null,
+              qty: 10,
+              imagePaths: ['http://210.76.1.47:5000/Upload/dd208ec140f9470da5c2e7222d9a7ac1.jpeg'],
+              code: {
+                no: '4340842747553517568',
+                materialCode: '559907030000040',
+                materialName: '矿用圆环链用扁平接链环',
+                packageName: '',
+                orderNo: 'FR20240910001595-02',
+                batchNo: '202408160002CG1002624040900053',
+                model: null,
+                qty: 10,
+                supplierNo: null,
+                supplierName: null,
+              },
+              children: [],
+              creationTime: '2024-09-12T10:39:53.10355',
+              scrapRecords: [],
+              returnRecords: [],
+              id: 562374,
             },
           ],
+          creationTime: '2024-09-12T10:39:19.983496',
+          scrapRecords: [],
+          returnRecords: [],
+          id: 562365,
         },
       ],
-    },
-    {
-      id: 'Regression',
-      children: [
-        {
-          id: 'Multiple linear regression',
-        },
-        {
-          id: 'Partial least squares',
-        },
-        {
-          id: 'Multi-layer feedforward neural network',
-        },
-        {
-          id: 'General regression neural network',
-        },
-        {
-          id: 'Support vector regression',
-        },
-      ],
+      creationTime: '2024-09-12T10:38:30.554063',
+      scrapRecords: [],
+      returnRecords: [],
+      id: 562342,
     },
   ],
+  creationTime: '2024-09-12T10:38:29.242427',
+  scrapRecords: [],
+  returnRecords: [],
+  id: 562341,
 };

@@ -11,6 +11,7 @@ import {
 import { useRef, useState } from 'react';
 
 import G6Modal from './components/g6Modal';
+import TreeModal from './components/treeModal';
 
 export default function Demo() {
   const [requestPage, setRequestPage] = useState({
@@ -132,6 +133,7 @@ export default function Demo() {
       ></GSearchTable>
 
       <G6Modal open={open} record={singleCode} onClose={() => setOpen(false)} />
+      {/* <TreeModal open={open} record={singleCode} onClose={() => setOpen(false)} /> */}
     </>
   );
 }

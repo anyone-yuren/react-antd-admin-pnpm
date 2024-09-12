@@ -53,7 +53,7 @@ export default function Settings() {
               title={<Text type='secondary'>{t('内容区域')}</Text>}
               description={
                 <List>
-                  <List.Item
+                  {/* <List.Item
                     actions={[
                       <Switch
                         checked={hasTabs}
@@ -64,7 +64,7 @@ export default function Settings() {
                     ]}
                   >
                     {t('页签')}
-                  </List.Item>
+                  </List.Item> */}
                   <List.Item
                     actions={[
                       <Switch

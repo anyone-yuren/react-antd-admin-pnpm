@@ -24,7 +24,7 @@ export const useGlobalStore = create<State>()(
         setPreset: (preset: string) => {
           set({ preset });
         },
-        hasTabs: true,
+        hasTabs: false,
         setHasTabs: (hasTabs: boolean) => {
           set({ hasTabs });
         },
