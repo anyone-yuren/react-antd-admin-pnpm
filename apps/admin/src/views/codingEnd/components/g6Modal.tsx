@@ -1,6 +1,6 @@
 import G6, { type IGraph, type TreeGraphData } from '@antv/g6';
 import { useSize } from 'ahooks';
-import { Descriptions, Drawer, Flex, Image, Layout, Spin, Typography } from 'antd';
+import { Descriptions, Drawer, Empty, Flex, Image, Layout, Spin, Typography } from 'antd';
 import ErrorBoundary from 'antd/es/alert/ErrorBoundary';
 import { coddingTree } from 'apis';
 import { t } from 'i18next';
@@ -228,7 +228,9 @@ const G6Modal = ({ open, onClose, record }: { open: boolean; onClose: () => void
           <Image.PreviewGroup items={node.imagePaths}>
             <Image width={60} src={'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'} />
           </Image.PreviewGroup>
-        ) : null,
+        ) : (
+          <Empty description='暂无数据' />
+        ),
       },
     ];
   }, [node]);
@@ -259,7 +261,7 @@ const G6Modal = ({ open, onClose, record }: { open: boolean; onClose: () => void
             {/* <Title level={5} style={{ minWidth: '100px' }}>
                     详细描述:
                   </Title> */}
-            <Descriptions title='详细描述' layout='vertical' items={items} />
+            <Descriptions title='详细描述' bordered size='small' column={2} layout='vertical' items={items} />
             {/* <Text type='secondary'>{JSON.stringify(node, null, 2)}</Text> */}
           </div>
         </div>
