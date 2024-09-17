@@ -1,11 +1,53 @@
-import { useEffect, useMemo } from 'react';
-import { GAction, GCtrl, GSearchTable, type GSearchTableField, type GTableCtrlField, type Record } from 'gbeata';
-import { GetPageInventoryYear } from '@/api/summary';
+import { Badge, Divider } from 'antd';
+import dayjs from 'dayjs';
+import {
+  GAction,
+  GButton,
+  GCtrl,
+  GSearchTable,
+  type GSearchTableField,
+  type GTableCtrlField,
+  type Record,
+} from 'gbeata';
+import { useEffect, useMemo, useState } from 'react';
+
 import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
 
+import { downloadFile } from '@/utils/download';
+
+import { GetPageInventoryYear } from '@/api/summary';
+
 export default function Demo() {
-  const { activeOrgCode, warehouseOptions } = useWarehouseOptions();
+  const { activeOrgCode, warehouseOptions, orgOptions } = useWarehouseOptions();
+  const [warehouseCode, setWarehouseCode] = useState('');
+  // 当前时间
+  const currentDate = dayjs();
   const fields: Array<GSearchTableField> = [
+    {
+      title: '物料名称',
+      key: 'materialName',
+      render: (text, record, index) => {
+        const { receivingData } = record;
+        const parsedEntryDate = dayjs(receivingData);
+        const mouth = currentDate.diff(parsedEntryDate, 'month');
+        let color;
+        if (mouth > 3 && mouth < 6) {
+          color = 'yellow';
+        } else if (mouth > 6 && mouth < 12) {
+          color = 'red';
+        } else if (mouth > 12) {
+          color = 'purple';
+        } else {
+          color = '';
+        }
+        return (
+          <span>
+            {color ? <Badge color={color} /> : null}
+            {text}
+          </span>
+        );
+      },
+    },
     {
       title: '组织',
       key: 'orgName',
@@ -19,12 +61,12 @@ export default function Demo() {
       key: 'warehouseCode',
       type: 'select-search',
       options: warehouseOptions,
-      search: true,
+      search: {
+        onChange: (value, _) => {
+          setWarehouseCode(value);
+        },
+      },
       table: false,
-    },
-    {
-      title: '物料名称',
-      key: 'materialName',
     },
     {
       title: '物料编号',
@@ -63,6 +105,21 @@ export default function Demo() {
     ),
   };
 
+  const handleDownload = () => {
+    let fileName = '全部';
+    if (activeOrgCode && !warehouseCode) {
+      fileName = orgOptions.find((item) => item.value === activeOrgCode)?.label;
+    } else if (activeOrgCode && warehouseCode) {
+      fileName = `${orgOptions.find((item) => item.value === activeOrgCode)?.label}-${warehouseOptions.find((item) => item.value === warehouseCode)?.label}`;
+    }
+    downloadFile({
+      fileUrl: '/Summary/ExportInventoryYear',
+      fileName: `${fileName}.xls`,
+      // eslint-disable-next-line no-nested-ternary
+      postData: { orgCode: activeOrgCode, warehouseCode: '' },
+    });
+  };
+
   useEffect(() => {
     // window.location.href = '/login';
   }, []);
@@ -76,6 +133,19 @@ export default function Demo() {
       dialogFormExtend={{
         fields,
       }}
-    ></GSearchTable>
+      title={
+        <>
+          库龄图例：<Badge color='yellow' text={<span>三月</span>}></Badge>
+          <Divider type='vertical' />
+          <Badge color='red' text={<span>半年</span>}></Badge>
+          <Divider type='vertical' />
+          <Badge color='purple' text={<span>一年</span>}></Badge>
+        </>
+      }
+    >
+      <GButton type='primary' onClick={handleDownload}>
+        {'导出'}
+      </GButton>
+    </GSearchTable>
   );
 }
