@@ -8,6 +8,26 @@ export const GetPageInventoryCostl = (data: PageListParams): Promise<any> => {
     data,
   });
 };
+export const GetPageInventoryMonthlyCost = (data: any): Promise<any> => {
+  return defHttp.post<any>({
+    url: '/Summary/GetPageInventoryMonthlyCost',
+    data,
+  });
+};
+
+export const GetInventoryTotalCost = (data: any): Promise<any> => {
+  return defHttp.post<PageListResult>({
+    url: '/Summary/GetInventoryTotalCost',
+    data,
+  });
+};
+
+export const GetDeptList = (params: any): Promise<any> => {
+  return defHttp.get<PageListResult>({
+    url: '/Summary/GetDeptList',
+    params,
+  });
+};
 
 // 领料明细统计
 
@@ -30,6 +50,13 @@ export const GetPageOnlineInventory = (data: PageListParams): Promise<any> => {
 export const GetPageInventoryYear = (data: PageListParams): Promise<any> => {
   return defHttp.post<PageListResult>({
     url: '/Summary/GetPageInventoryYear',
+    data,
+  });
+};
+
+export const GetInventoryStatisticsByDate = (data: any): Promise<any> => {
+  return defHttp.post<PageListResult>({
+    url: '/Summary/GetInventoryStatisticsByDate',
     data,
   });
 };

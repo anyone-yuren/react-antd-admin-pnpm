@@ -223,6 +223,10 @@ const G6Modal = ({ open, onClose, record }: { open: boolean; onClose: () => void
     return [
       ...nodes,
       {
+        label: '去向',
+        children: node?.warehouseName,
+      },
+      {
         label: '图片',
         children: node?.imagePaths?.length ? (
           <Image.PreviewGroup items={node.imagePaths}>
