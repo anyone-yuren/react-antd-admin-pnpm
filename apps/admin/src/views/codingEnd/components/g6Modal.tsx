@@ -78,7 +78,7 @@ const G6Modal = ({ open, onClose, record }: { open: boolean; onClose: () => void
           x: -w / 2 + 8,
           y: -h / 2 + 2,
           lineHeight: 20,
-          text: cfg.id,
+          text: cfg.warehouseName + cfg.id,
           fill: '#fff',
         },
         // must be assigned in G6 3.3 and later versions. it can be any string you want, but should be unique in a custom item type

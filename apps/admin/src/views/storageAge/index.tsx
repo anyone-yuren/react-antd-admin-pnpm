@@ -100,7 +100,7 @@ export default function Demo() {
       table: false,
       search: true,
       options: [
-        { label: '3个月', value: threeMonthsAgo },
+        { label: '三个月', value: threeMonthsAgo },
         { label: '半年', value: sixMonthsAgo },
         { label: '一年', value: yearAgo },
         { label: '三年', value: threeYearsAgo },
@@ -236,19 +236,19 @@ export default function Demo() {
         fields,
       }}
       onLoad={(res) => {
-        countApi({ orgCode: activeOrgCode, ...params.query });
+        // countApi({ orgCode: activeOrgCode, ...params.query });
       }}
       title={
         <div className='flex flex-col'>
           <div className='flex'>
-            统计数据：
+            超龄物资总数：
             <div className='flex items-center'>
               {countData?.resultData?.map((item) => {
                 if (!item.count) return null;
                 return (
                   <>
                     <div className='flex items-center'>
-                      {item.date} : {(item.count / 10000).toFixed(2)} 万元
+                      {item.date} : {item.count}
                     </div>
                     <Divider type='vertical' />
                   </>
