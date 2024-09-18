@@ -240,16 +240,17 @@ export default function Demo() {
       }}
       title={
         <div className='flex flex-col'>
+          超龄物资总数：
           <div className='flex'>
-            超龄物资总数：
-            <div className='flex items-center'>
+            <div className='flex items-center flex-wrap'>
               {countData?.resultData?.map((item) => {
                 if (!item.count) return null;
                 return (
                   <>
                     <div className='flex items-center'>
-                      {item.date} : {item.count}
+                      {item.date} : {item.count}条，总价值 : {(item.amount / 1000).toFixed(2)}万
                     </div>
+                    {/* <span></span> */}
                     <Divider type='vertical' />
                   </>
                 );

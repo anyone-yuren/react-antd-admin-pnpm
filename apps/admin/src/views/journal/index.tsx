@@ -7,8 +7,10 @@ import {
   type Record,
   useOptions,
 } from 'gbeata';
-import { GetPageInventoryFlowl } from '@/api/summary';
+
 import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
+
+import { GetPageInventoryFlowl } from '@/api/summary';
 
 const ctrl: GTableCtrlField = {
   render: (_, record: Record) => (
@@ -100,6 +102,11 @@ export default function Demo() {
     {
       title: '物料规格',
       key: 'materialSize',
+      width: 200,
+    },
+    {
+      title: '订单类型',
+      key: 'orderType',
       width: 200,
     },
     {
