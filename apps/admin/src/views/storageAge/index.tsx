@@ -23,52 +23,49 @@ export default function Demo() {
   const [warehouseCode, setWarehouseCode] = useState('');
   const [params, setParams] = useState({});
   const table = useRef(null);
-  // 根据day.js 获取今天往前3个月的日期和半年的日期
-  // 获取今天往前3个月的日期
+
+  // 获取日期相关数据
   const today = dayjs();
-  const threeMonthsAgo = today.subtract(3, 'month').format('YYYY-MM-DD');
-
-  // 获取今天往前半年的日期
-  const sixMonthsAgo = today.subtract(6, 'month').format('YYYY-MM-DD');
-
-  // 获取今天往前一年的日期
-  const yearAgo = today.subtract(12, 'month').format('YYYY-MM-DD');
-
-  // 获取今天往前三年的日期
-  const threeYearsAgo = today.subtract(36, 'month').format('YYYY-MM-DD');
-
-  // 获取今天往前五年的日期
-  const fiveYearsAgo = today.subtract(60, 'month').format('YYYY-MM-DD');
+  const dateRanges = {
+    threeMonthsAgo: today.subtract(3, 'month').format('YYYY-MM-DD'),
+    sixMonthsAgo: today.subtract(6, 'month').format('YYYY-MM-DD'),
+    yearAgo: today.subtract(12, 'month').format('YYYY-MM-DD'),
+    threeYearsAgo: today.subtract(36, 'month').format('YYYY-MM-DD'),
+    fiveYearsAgo: today.subtract(60, 'month').format('YYYY-MM-DD'),
+  };
 
   // 当前时间
   const currentDate = dayjs();
+
+  // 颜色配置映射
+  const colorConfig = [
+    { rangeStart: dateRanges.sixMonthsAgo, rangeEnd: dateRanges.threeMonthsAgo, color: 'yellow' },
+    { rangeStart: dateRanges.yearAgo, rangeEnd: dateRanges.sixMonthsAgo, color: 'red' },
+    { rangeStart: dateRanges.threeYearsAgo, rangeEnd: dateRanges.yearAgo, color: 'purple' },
+    { rangeStart: dateRanges.fiveYearsAgo, rangeEnd: dateRanges.threeYearsAgo, color: 'blue' },
+    { rangeStart: '2000-01-01', rangeEnd: dateRanges.fiveYearsAgo, color: 'gray' },
+  ];
+
+  // 提取颜色逻辑为函数
+  const getColorForDate = (parsedDate) => {
+    const matchingColor = colorConfig.find(({ rangeStart, rangeEnd }) => {
+      return parsedDate.isBefore(rangeEnd) && (parsedDate.isAfter(rangeStart) || parsedDate.isSame(rangeStart));
+    });
+    return matchingColor ? matchingColor.color : '';
+  };
+
   const fields: Array<GSearchTableField> = [
     {
       title: '物料名称',
       key: 'materialName',
       align: 'left',
-      render: (text, record, index) => {
+      render: (text, record) => {
         const { receivingData } = record;
         const parsedEntryDate = dayjs(receivingData);
-        const mouth = currentDate.diff(parsedEntryDate, 'month');
-        let color;
-
-        if (mouth >= 3 && mouth < 6) {
-          color = 'yellow';
-        } else if (mouth >= 6 && mouth < 12) {
-          color = 'red';
-        } else if (mouth >= 12 && mouth < 36) {
-          color = 'purple';
-        } else if (mouth >= 36 && mouth < 60) {
-          color = 'blue';
-        } else if (mouth >= 60) {
-          color = 'gray';
-        } else {
-          color = '';
-        }
+        const color = getColorForDate(parsedEntryDate);
         return (
           <span>
-            {color ? <Badge color={color} style={{ marginRight: 5, transform: 'scale(1.4)' }} /> : null}
+            {color && <Badge color={color} style={{ marginRight: 5, transform: 'scale(1.4)' }} />}
             {text}
           </span>
         );
@@ -87,7 +84,6 @@ export default function Demo() {
       key: 'date-range',
       type: 'date-range',
       search: {
-        // defaultValue: [dayjs(), dayjs()],
         startKey: 'dateRangeStart',
         endKey: 'dateRangeEnd',
       },
@@ -100,11 +96,11 @@ export default function Demo() {
       table: false,
       search: true,
       options: [
-        { label: '三个月', value: threeMonthsAgo },
-        { label: '半年', value: sixMonthsAgo },
-        { label: '一年', value: yearAgo },
-        { label: '三年', value: threeYearsAgo },
-        { label: '五年', value: fiveYearsAgo },
+        { label: '三个月', value: dateRanges.threeMonthsAgo },
+        { label: '半年', value: dateRanges.sixMonthsAgo },
+        { label: '一年', value: dateRanges.yearAgo },
+        { label: '三年', value: dateRanges.threeYearsAgo },
+        { label: '五年', value: dateRanges.fiveYearsAgo },
       ],
     },
     {
@@ -113,9 +109,7 @@ export default function Demo() {
       type: 'select-search',
       options: warehouseOptions,
       search: {
-        onChange: (value, _) => {
-          setWarehouseCode(value);
-        },
+        onChange: (value) => setWarehouseCode(value),
       },
       table: false,
     },
@@ -139,12 +133,12 @@ export default function Demo() {
     {
       title: '当前库龄',
       key: 'inventoryYear',
-      render: (text, record, index) => <span>{`${text} /天`}</span>,
+      render: (text) => <span>{`${text} /天`}</span>,
     },
   ];
 
   const ctrl: GTableCtrlField = {
-    render: (_, record: Record) => (
+    render: (_, record) => (
       <GCtrl>
         <GAction record={record} action='view'>
           详情
@@ -156,21 +150,18 @@ export default function Demo() {
     ),
   };
 
-  const { data: countData, run: countApi } = useRequest(GetInventoryStatisticsByDate, {
+  const { data: countData } = useRequest(GetInventoryStatisticsByDate, {
     defaultParams: [{ orgCode: activeOrgCode }],
   });
 
   const handleDownload = () => {
-    let fileName = '全部';
-    if (activeOrgCode && !warehouseCode) {
-      fileName = orgOptions.find((item) => item.value === activeOrgCode)?.label;
-    } else if (activeOrgCode && warehouseCode) {
-      fileName = `${orgOptions.find((item) => item.value === activeOrgCode)?.label}-${warehouseOptions.find((item) => item.value === warehouseCode)?.label}`;
-    }
+    const orgLabel = orgOptions.find((item) => item.value === activeOrgCode)?.label || '全部';
+    const warehouseLabel = warehouseOptions.find((item) => item.value === warehouseCode)?.label || '';
+    const fileName = warehouseCode ? `${orgLabel}-${warehouseLabel}` : orgLabel;
+
     downloadFile({
       fileUrl: '/Summary/ExportInventoryYear',
       fileName: `${fileName}.xls`,
-      // eslint-disable-next-line no-nested-ternary
       postData: {
         orgCode: activeOrgCode,
         warehouseCode: '',
@@ -181,6 +172,7 @@ export default function Demo() {
   };
 
   useEffect(() => {
+    // 默认行为或重定向逻辑
     // window.location.href = '/login';
   }, []);
 
@@ -191,21 +183,19 @@ export default function Demo() {
       ref={table}
       rowKey='sort_id'
       beforeSearch={(res) => {
+        // 日期范围逻辑调整
         if (res.query.dateRangeStart && !res.query.endDate) {
           res.query.beginDate = res.query.dateRangeStart;
           res.query.endDate = res.query.dateRangeEnd;
         } else if (res.query.endDate) {
-          if (res.query.endDate === threeMonthsAgo) {
-            res.query.beginDate = sixMonthsAgo;
-          } else if (res.query.endDate === sixMonthsAgo) {
-            res.query.beginDate = yearAgo;
-          } else if (res.query.endDate === yearAgo) {
-            res.query.beginDate = threeYearsAgo;
-          } else if (res.query.endDate === threeYearsAgo) {
-            res.query.beginDate = fiveYearsAgo;
-          } else if (res.query.endDate === fiveYearsAgo) {
-            res.query.beginDate = '2000-01-01';
-          }
+          const endDateMap = {
+            [dateRanges.threeMonthsAgo]: dateRanges.sixMonthsAgo,
+            [dateRanges.sixMonthsAgo]: dateRanges.yearAgo,
+            [dateRanges.yearAgo]: dateRanges.threeYearsAgo,
+            [dateRanges.threeYearsAgo]: dateRanges.fiveYearsAgo,
+            [dateRanges.fiveYearsAgo]: '2000-01-01',
+          };
+          res.query.beginDate = endDateMap[res.query.endDate];
         }
         setParams(res);
         return res;
@@ -214,25 +204,8 @@ export default function Demo() {
         rowClassName: (record) => {
           const { receivingData } = record;
           const parsedEntryDate = dayjs(receivingData);
-          const mouth = currentDate.diff(parsedEntryDate, 'month');
-          if (mouth >= 3 && mouth < 6) {
-            return 'bg-yellow-100';
-          }
-          if (mouth >= 6 && mouth < 12) {
-            return 'bg-red-100';
-          }
-          if (mouth >= 12 && mouth < 36) {
-            return 'bg-purple-100';
-          }
-          if (mouth >= 36 && mouth < 60) {
-            // 灰色
-            return 'bg-blue-100';
-          }
-          if (mouth >= 60) {
-            // 灰色
-            return 'bg-gray-100';
-          }
-          return '';
+          const color = getColorForDate(parsedEntryDate);
+          return color ? `bg-${color}-100` : '';
         },
       }}
       onParamsChange={(params) => {}}
@@ -276,7 +249,7 @@ export default function Demo() {
       }
     >
       <GButton type='primary' onClick={handleDownload}>
-        {'导出'}
+        导出
       </GButton>
     </GSearchTable>
   );
