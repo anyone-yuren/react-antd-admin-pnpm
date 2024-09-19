@@ -136,8 +136,22 @@ export default function Demo() {
     {
       title: '流水时间',
       key: 'createTime',
+      renderType: 'date',
       width: 200,
       ellipsis: 'true',
+    },
+    {
+      title: '时间段',
+      key: 'time-range',
+      type: 'date-range',
+      width: 150,
+      table: false,
+      search: {
+        className: 'w-full',
+        startKey: 'beginDate',
+        endKey: 'endDate',
+        order: true,
+      },
     },
   ];
 
