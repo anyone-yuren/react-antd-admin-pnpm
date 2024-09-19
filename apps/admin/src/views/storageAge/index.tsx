@@ -5,11 +5,15 @@ import {
   GAction,
   GButton,
   GCtrl,
+  GDialogForm,
+  GField,
+  GFields,
   GSearchTable,
   type GSearchTableField,
   type GTableCtrlField,
   type Record,
 } from 'gbeata';
+import { difference } from 'ramda';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
@@ -23,6 +27,31 @@ export default function Demo() {
   const [warehouseCode, setWarehouseCode] = useState('');
   const [params, setParams] = useState({});
   const table = useRef(null);
+  const [open, setOpen] = useState(false);
+  const [activeOrg, setActiveOrg] = useState([]);
+  const [countList, setCountList] = useState({});
+
+  const renderCounts = useMemo(() => {
+    return Object.keys(countList).map((key) => {
+      return (
+        <div className='flex gap-2' key={key}>
+          <div className='w-100'>{orgOptions.find((item) => item.key === key)?.label}</div>
+          <div className='flex flex-1 items-center flex-wrap'>
+            {countList[key]?.map((item) => {
+              return (
+                <>
+                  <div className='flex items-center'>
+                    {item.date} : {item.count}条，总价值 : {(item.amount / 10000).toFixed(2)}万
+                  </div>
+                  <Divider type='vertical' />
+                </>
+              );
+            })}
+          </div>
+        </div>
+      );
+    });
+  }, [countList]);
 
   // 获取日期相关数据
   const today = dayjs();
@@ -154,21 +183,26 @@ export default function Demo() {
     defaultParams: [{ orgCode: activeOrgCode }],
   });
 
-  const handleDownload = () => {
-    const orgLabel = orgOptions.find((item) => item.value === activeOrgCode)?.label || '全部';
-    const warehouseLabel = warehouseOptions.find((item) => item.value === warehouseCode)?.label || '';
-    const fileName = warehouseCode ? `${orgLabel}-${warehouseLabel}` : orgLabel;
+  const handleDownload = async (obj) => {
+    const orgLabel = orgOptions
+      .filter((item) => obj?.orgCode?.includes(item.value))
+      .map((item) => {
+        return item.label;
+      });
 
-    downloadFile({
+    await downloadFile({
       fileUrl: '/Summary/ExportInventoryYear',
-      fileName: `${fileName}.xls`,
+      fileName: `${orgLabel.join('-')}.xls`,
+      // fileName: `汇总.xls`,
       postData: {
-        orgCode: activeOrgCode,
+        // orgCode: activeOrgCode,
+        orgCodes: obj.orgCode,
         warehouseCode: '',
-        beginDate: params?.query?.beginDate,
-        endDate: params?.query?.endDate,
+        beginDate: obj?.beginDate,
+        endDate: obj?.endDate,
       },
     });
+    setOpen(false);
   };
 
   useEffect(() => {
@@ -177,80 +211,172 @@ export default function Demo() {
   }, []);
 
   return (
-    <GSearchTable
-      api={GetPageInventoryYear}
-      fields={fields}
-      ref={table}
-      rowKey='sort_id'
-      beforeSearch={(res) => {
-        // 日期范围逻辑调整
-        if (res.query.dateRangeStart && !res.query.endDate) {
-          res.query.beginDate = res.query.dateRangeStart;
-          res.query.endDate = res.query.dateRangeEnd;
-        } else if (res.query.endDate) {
-          const endDateMap = {
-            [dateRanges.threeMonthsAgo]: dateRanges.sixMonthsAgo,
-            [dateRanges.sixMonthsAgo]: dateRanges.yearAgo,
-            [dateRanges.yearAgo]: dateRanges.threeYearsAgo,
-            [dateRanges.threeYearsAgo]: dateRanges.fiveYearsAgo,
-            [dateRanges.fiveYearsAgo]: '2000-01-01',
-          };
-          res.query.beginDate = endDateMap[res.query.endDate];
-        }
-        setParams(res);
-        return res;
-      }}
-      tableExtend={{
-        rowClassName: (record) => {
-          const { receivingData } = record;
-          const parsedEntryDate = dayjs(receivingData);
-          const color = getColorForDate(parsedEntryDate);
-          return color ? `bg-${color}-100` : '';
-        },
-      }}
-      onParamsChange={(params) => {}}
-      extendSearchParams={{ orgCode: activeOrgCode }}
-      dialogFormExtend={{
-        fields,
-      }}
-      onLoad={(res) => {
-        // countApi({ orgCode: activeOrgCode, ...params.query });
-      }}
-      title={
-        <div className='flex flex-col'>
-          超龄物资总数：
-          <div className='flex'>
-            <div className='flex items-center flex-wrap'>
-              {countData?.resultData?.map((item) => {
-                if (!item.count) return null;
-                return (
-                  <>
-                    <div className='flex items-center'>
-                      {item.date} : {item.count}条，总价值 : {(item.amount / 10000).toFixed(2)}万
-                    </div>
-                    <Divider type='vertical' />
-                  </>
-                );
-              })}
+    <>
+      <GSearchTable
+        api={GetPageInventoryYear}
+        fields={fields}
+        ref={table}
+        rowKey='sort_id'
+        beforeSearch={(res) => {
+          // 日期范围逻辑调整
+          if (res.query.dateRangeStart && !res.query.endDate) {
+            res.query.beginDate = res.query.dateRangeStart;
+            res.query.endDate = res.query.dateRangeEnd;
+          } else if (res.query.endDate) {
+            const endDateMap = {
+              [dateRanges.threeMonthsAgo]: dateRanges.sixMonthsAgo,
+              [dateRanges.sixMonthsAgo]: dateRanges.yearAgo,
+              [dateRanges.yearAgo]: dateRanges.threeYearsAgo,
+              [dateRanges.threeYearsAgo]: dateRanges.fiveYearsAgo,
+              [dateRanges.fiveYearsAgo]: '2000-01-01',
+            };
+            res.query.beginDate = endDateMap[res.query.endDate];
+          }
+          setParams(res);
+          return res;
+        }}
+        tableExtend={{
+          rowClassName: (record) => {
+            const { receivingData } = record;
+            const parsedEntryDate = dayjs(receivingData);
+            const color = getColorForDate(parsedEntryDate);
+            return color ? `bg-${color}-100` : '';
+          },
+        }}
+        onParamsChange={(params) => {}}
+        extendSearchParams={{ orgCode: activeOrgCode }}
+        dialogFormExtend={{
+          fields,
+        }}
+        onLoad={(res) => {
+          // countApi({ orgCode: activeOrgCode, ...params.query });
+        }}
+        title={
+          <div className='flex flex-col'>
+            超龄物资总数：
+            <div className='flex'>
+              <div className='flex items-center flex-wrap'>
+                {countData?.resultData?.map((item) => {
+                  if (!item.count) return null;
+                  return (
+                    <>
+                      <div className='flex items-center'>
+                        {item.date} : {item.count}条，总价值 : {(item.amount / 10000).toFixed(2)}万
+                      </div>
+                      <Divider type='vertical' />
+                    </>
+                  );
+                })}
+              </div>
+            </div>
+            <div>
+              库龄图例：<Badge color='yellow' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>三月
+              <Divider type='vertical' />
+              <Badge color='red' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>半年
+              <Divider type='vertical' />
+              <Badge color='purple' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>一年
+              <Divider type='vertical' />
+              <Badge color='blue' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>三年
+              <Divider type='vertical' />
+              <Badge color='gray' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>五年
             </div>
           </div>
-          <div>
-            库龄图例：<Badge color='yellow' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>三月
-            <Divider type='vertical' />
-            <Badge color='red' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>半年
-            <Divider type='vertical' />
-            <Badge color='purple' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>一年
-            <Divider type='vertical' />
-            <Badge color='blue' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>三年
-            <Divider type='vertical' />
-            <Badge color='gray' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>五年
-          </div>
-        </div>
-      }
-    >
-      <GButton type='primary' onClick={handleDownload}>
-        导出
-      </GButton>
-    </GSearchTable>
+        }
+      >
+        {/* <GButton type='primary' onClick={handleDownload}>
+          导出
+        </GButton> */}
+        <GButton type='primary' onClick={() => setOpen(true)}>
+          导出
+        </GButton>
+        <GAction type='primary' tableFooterExtraOnly onClick={() => {}}>
+          {'批量激活'}
+        </GAction>
+      </GSearchTable>
+      <GDialogForm
+        open={open}
+        width={'70%'}
+        mode='add'
+        onClose={() => setOpen(false)}
+        title='导出'
+        addApi={handleDownload}
+        onCancel={() => {
+          setCountList({});
+        }}
+        beforeSubmit={(res: any) => {
+          if (res.dateRangeStart && !res.endDate) {
+            res.beginDate = res.dateRangeStart;
+            res.endDate = res.dateRangeEnd;
+          } else if (res.endDate) {
+            const endDateMap = {
+              [dateRanges.threeMonthsAgo]: dateRanges.sixMonthsAgo,
+              [dateRanges.sixMonthsAgo]: dateRanges.yearAgo,
+              [dateRanges.yearAgo]: dateRanges.threeYearsAgo,
+              [dateRanges.threeYearsAgo]: dateRanges.fiveYearsAgo,
+              [dateRanges.fiveYearsAgo]: '2000-01-01',
+            };
+            res.beginDate = endDateMap[res.endDate];
+          }
+          setParams(res);
+          return res;
+        }}
+        fields={[
+          {
+            title: '组织',
+            key: 'orgCode',
+            type: 'checkbox-group',
+            required: true,
+            options: orgOptions,
+
+            onChange: async (value) => {
+              // 将calue与ActiveOrg对比，获取不同的orgCode
+              const added = difference(value, activeOrg);
+              const removed = difference(activeOrg, value);
+
+              setActiveOrg(value);
+              if (added.length) {
+                // 添加
+                const res = await GetInventoryStatisticsByDate({ orgCode: added[0] });
+                setCountList({ ...countList, [added[0]]: res?.resultData });
+              }
+              if (removed.length) {
+                // 从countList删除
+                setCountList((prev) => {
+                  const newData = { ...prev };
+                  removed.forEach((org) => {
+                    delete newData[org];
+                  });
+                  return newData;
+                });
+              }
+            },
+          },
+          {
+            title: '时间段',
+            key: 'date-range',
+            type: 'date-range',
+            startKey: 'dateRangeStart',
+            endKey: 'dateRangeEnd',
+          },
+          {
+            title: '固定时间',
+            key: 'endDate',
+            type: 'radio-group',
+            options: [
+              { label: '三个月', value: dateRanges.threeMonthsAgo },
+              { label: '半年', value: dateRanges.sixMonthsAgo },
+              { label: '一年', value: dateRanges.yearAgo },
+              { label: '三年', value: dateRanges.threeYearsAgo },
+              { label: '五年', value: dateRanges.fiveYearsAgo },
+            ],
+          },
+          {
+            title: '超龄汇总',
+            type: 'custom',
+            renderContent: () => <div>{renderCounts}</div>,
+          },
+        ]}
+      ></GDialogForm>
+    </>
   );
 }
