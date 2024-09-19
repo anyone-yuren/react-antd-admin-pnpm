@@ -2,6 +2,7 @@ import {
   GAction,
   GButton,
   GCtrl,
+  GDialogForm,
   GSearchTable,
   type GSearchTableField,
   type GTableCtrlField,
@@ -33,6 +34,7 @@ const ctrl: GTableCtrlField = {
 export default function Stock() {
   const [warehouseCode, setWarehouseCode] = useState('');
   const { activeOrgCode, warehouseOptions, orgOptions } = useWarehouseOptions();
+  const [open, setOpen] = useState(false);
   console.log(warehouseOptions);
 
   const fields: Array<GSearchTableField> = [
@@ -88,37 +90,56 @@ export default function Stock() {
     },
   ];
 
-  const handleDownload = () => {
+  const handleDownload = async (obj) => {
     let fileName = '全部';
     if (activeOrgCode && !warehouseCode) {
       fileName = orgOptions.find((item) => item.value === activeOrgCode)?.label;
     } else if (activeOrgCode && warehouseCode) {
       fileName = `${orgOptions.find((item) => item.value === activeOrgCode)?.label}-${warehouseOptions.find((item) => item.value === warehouseCode)?.label}`;
     }
-    downloadFile({
+    await downloadFile({
       fileUrl: '/DataCenter/ExportRealtimeInventories',
       fileName: `${fileName}.xls`,
       // eslint-disable-next-line no-nested-ternary
-      postData: { orgCode: activeOrgCode, warehouseCode: '' },
+      postData: { orgCodes: obj.orgCode, warehouseCode: '' },
     });
   };
   return (
-    <GSearchTable
-      api={GetRealtimeInventories}
-      extendSearchParams={{ orgCode: activeOrgCode }}
-      fields={fields}
-      rowKey='sort_id'
-      dialogFormExtend={{
-        fields,
-      }}
-      tableExtend={{
-        bordered: true,
-        scroll: { x: 1200 },
-      }}
-    >
-      <GButton type='primary' onClick={handleDownload}>
-        {'导出'}
-      </GButton>
-    </GSearchTable>
+    <>
+      <GSearchTable
+        api={GetRealtimeInventories}
+        extendSearchParams={{ orgCode: activeOrgCode }}
+        fields={fields}
+        rowKey='sort_id'
+        dialogFormExtend={{
+          fields,
+        }}
+        tableExtend={{
+          bordered: true,
+          scroll: { x: 1200 },
+        }}
+      >
+        <GButton type='primary' onClick={() => setOpen(true)}>
+          {'导出'}
+        </GButton>
+      </GSearchTable>
+      <GDialogForm
+        open={open}
+        width={'70%'}
+        mode='add'
+        onClose={() => setOpen(false)}
+        title='导出'
+        addApi={handleDownload}
+        fields={[
+          {
+            title: '组织',
+            key: 'orgCode',
+            type: 'checkbox-group',
+            required: true,
+            options: orgOptions,
+          },
+        ]}
+      ></GDialogForm>
+    </>
   );
 }
