@@ -248,7 +248,7 @@ export default function Demo() {
                 return (
                   <>
                     <div className='flex items-center'>
-                      {item.date} : {item.count}条，总价值 : {(item.amount / 1000).toFixed(2)}万
+                      {item.date} : {item.count}条，总价值 : {(item.amount / 10000).toFixed(2)}万
                     </div>
                     {/* <span></span> */}
                     <Divider type='vertical' />
