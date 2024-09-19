@@ -240,9 +240,9 @@ export default function Demo() {
       }}
       title={
         <div className='flex flex-col'>
+          超龄物资总数：
           <div className='flex'>
-            超龄物资总数：
-            <div className='flex items-center'>
+            <div className='flex items-center flex-wrap'>
               {countData?.resultData?.map((item) => {
                 if (!item.count) return null;
                 return (
