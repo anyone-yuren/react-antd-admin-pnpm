@@ -53,15 +53,15 @@ export default function Demo() {
         const mouth = currentDate.diff(parsedEntryDate, 'month');
         let color;
 
-        if (mouth >= 3 && mouth < 6) {
+        if (mouth > 3 && mouth <= 6) {
           color = 'yellow';
-        } else if (mouth >= 6 && mouth < 12) {
+        } else if (mouth > 6 && mouth <= 12) {
           color = 'red';
-        } else if (mouth >= 12 && mouth < 36) {
+        } else if (mouth > 12 && mouth <= 36) {
           color = 'purple';
-        } else if (mouth >= 36 && mouth < 60) {
+        } else if (mouth > 36 && mouth <= 60) {
           color = 'blue';
-        } else if (mouth >= 60) {
+        } else if (mouth > 60) {
           color = 'gray';
         } else {
           color = '';
@@ -210,20 +210,20 @@ export default function Demo() {
           const { receivingData } = record;
           const parsedEntryDate = dayjs(receivingData);
           const mouth = currentDate.diff(parsedEntryDate, 'month');
-          if (mouth >= 3 && mouth < 6) {
+          if (mouth > 3 && mouth <= 6) {
             return 'bg-yellow-100';
           }
-          if (mouth >= 6 && mouth < 12) {
+          if (mouth > 6 && mouth <= 12) {
             return 'bg-red-100';
           }
-          if (mouth >= 12 && mouth < 36) {
+          if (mouth > 12 && mouth <= 36) {
             return 'bg-purple-100';
           }
-          if (mouth >= 36 && mouth < 60) {
+          if (mouth > 36 && mouth <= 60) {
             // 灰色
             return 'bg-blue-100';
           }
-          if (mouth >= 60) {
+          if (mouth > 60) {
             // 灰色
             return 'bg-gray-100';
           }
@@ -240,17 +240,16 @@ export default function Demo() {
       }}
       title={
         <div className='flex flex-col'>
-          超龄物资总数：
           <div className='flex'>
-            <div className='flex items-center flex-wrap'>
+            超龄物资总数：
+            <div className='flex items-center'>
               {countData?.resultData?.map((item) => {
                 if (!item.count) return null;
                 return (
                   <>
                     <div className='flex items-center'>
-                      {item.date} : {item.count}条，总价值 : {(item.amount / 1000).toFixed(2)}万
+                      {item.date} : {item.count}
                     </div>
-                    {/* <span></span> */}
                     <Divider type='vertical' />
                   </>
                 );
