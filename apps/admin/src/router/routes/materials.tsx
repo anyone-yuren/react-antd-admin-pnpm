@@ -14,7 +14,7 @@ const UserRoute: RouteObject = {
   path: '/materials',
   meta: {
     title: '物料进出存',
-    icon: 'ic_user',
+    icon: 'gbeata-ic:round-recycling',
     orderNo: 7,
     iconSize: 20,
     hideChildrenInMenu: true,

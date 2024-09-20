@@ -14,7 +14,7 @@ const UserRoute: RouteObject = {
   path: '/picking',
   meta: {
     title: '领料明细统计',
-    icon: 'ic_user',
+    icon: 'gbeata-pajamas:details-block',
     orderNo: 8,
     iconSize: 20,
     hideChildrenInMenu: true,

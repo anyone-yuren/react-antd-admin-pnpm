@@ -14,7 +14,7 @@ const UserRoute: RouteObject = {
   path: '/consume',
   meta: {
     title: '消耗统计',
-    icon: 'work',
+    icon: 'gbeata-iwwa:consumption-o',
     orderNo: 6,
     iconSize: 20,
     hideChildrenInMenu: true,

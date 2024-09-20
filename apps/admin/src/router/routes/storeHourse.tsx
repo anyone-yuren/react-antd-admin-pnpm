@@ -14,7 +14,7 @@ const UserRoute: RouteObject = {
   path: '/storeHourse',
   meta: {
     title: '仓库管理',
-    icon: 'ic_user',
+    icon: 'gbeata-material-symbols:home-work-outline',
     orderNo: 12,
     iconSize: 20,
     hideChildrenInMenu: true,

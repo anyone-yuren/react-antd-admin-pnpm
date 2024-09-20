@@ -14,7 +14,7 @@ const UserRoute: RouteObject = {
   path: '/coddingEnd',
   meta: {
     title: '一码到底管理',
-    icon: 'ic_user',
+    icon: 'gbeata-material-symbols:qr-code',
     orderNo: 9,
     iconSize: 20,
     hideChildrenInMenu: true,

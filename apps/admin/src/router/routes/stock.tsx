@@ -14,7 +14,7 @@ const UserRoute: RouteObject = {
   path: '/stock',
   meta: {
     title: '现存量',
-    icon: 'gallery',
+    icon: 'gbeata-material-symbols:delete-sweep-outline-sharp',
     orderNo: 3,
     iconSize: 20,
     hideChildrenInMenu: true,

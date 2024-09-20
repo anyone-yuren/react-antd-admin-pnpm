@@ -14,7 +14,7 @@ const UserRoute: RouteObject = {
   path: '/journal',
   meta: {
     title: '出入库流水',
-    icon: 'hints',
+    icon: 'gbeata-ant-design:account-book-outlined',
     orderNo: 4,
     iconSize: 20,
     hideChildrenInMenu: true,

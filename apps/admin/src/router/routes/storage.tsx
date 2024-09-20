@@ -14,7 +14,7 @@ const UserRoute: RouteObject = {
   path: '/storage',
   meta: {
     title: '库龄管理',
-    icon: 'ic_user',
+    icon: 'gbeata-mdi:shop-time-outline',
     orderNo: 2,
     iconSize: 20,
     hideChildrenInMenu: true,

@@ -190,7 +190,7 @@ export default function User() {
       align: 'center',
       width: 250,
       key: 'orgName',
-      dialog: {},
+      dialog: false,
     },
   ];
   const ctrl: GTableCtrlField = {
@@ -220,7 +220,9 @@ export default function User() {
       rowKey='sort_id'
       dialogFormExtend={{
         fields,
-        addApi: addUser,
+        addApi: async (res) => {
+          await addUser({ ...res, departmentName: '' });
+        },
         formExtend: {
           layout: {
             labelCol: { flex: '180px' }, // label 宽度

@@ -14,7 +14,7 @@ const UserRoute: RouteObject = {
   path: '/onlineInventery',
   meta: {
     title: '在线库存',
-    icon: 'gallery',
+    icon: 'gbeata-material-symbols:online-prediction',
     orderNo: 3,
     iconSize: 20,
     hideChildrenInMenu: true,
