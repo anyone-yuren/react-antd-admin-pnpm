@@ -230,7 +230,7 @@ const G6Modal = ({ open, onClose, record }: { open: boolean; onClose: () => void
         label: '图片',
         children: node?.imagePaths?.length ? (
           <Image.PreviewGroup items={node.imagePaths}>
-            <Image width={60} src={'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'} />
+            <Image width={60} src={node?.imagePaths[0]} />
           </Image.PreviewGroup>
         ) : (
           <Empty description='暂无数据' />
