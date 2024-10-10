@@ -35,7 +35,7 @@ export default function Stock() {
   const [warehouseCode, setWarehouseCode] = useState('');
   const { activeOrgCode, warehouseOptions, orgOptions } = useWarehouseOptions();
   const [open, setOpen] = useState(false);
-  console.log(warehouseOptions);
+  const [initialValues, setInitialValues] = useState({});
 
   const fields: Array<GSearchTableField> = [
     {
@@ -129,6 +129,7 @@ export default function Stock() {
         mode='add'
         onClose={() => setOpen(false)}
         title='导出'
+        initialValues={initialValues}
         addApi={handleDownload}
         fields={[
           {
@@ -137,6 +138,31 @@ export default function Stock() {
             type: 'checkbox-group',
             required: true,
             options: orgOptions,
+          },
+          {
+            type: 'checkbox',
+            key: 'remember',
+            style: {
+              marginLeft: 120,
+            },
+            onChange: (value) => {
+              if (typeof value === 'boolean') {
+                if (value) {
+                  setInitialValues({
+                    ...initialValues,
+                    remember: true,
+                    orgCode: orgOptions.map((item) => item.key),
+                  });
+                } else {
+                  setInitialValues({
+                    ...initialValues,
+                    remember: false,
+                    orgCode: [],
+                  });
+                }
+              }
+            },
+            children: '全选',
           },
         ]}
       ></GDialogForm>

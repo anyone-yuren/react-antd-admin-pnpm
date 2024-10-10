@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { matchRoutes, useLocation } from 'react-router-dom';
 
+import IconifyIcon from '@/components/iconify-icon';
 import SvgIcon from '@/components/SvgIcon';
 
 import { useMenus } from '@/stores/modules/menu';
@@ -23,12 +24,14 @@ export default function LayoutBreadcrumb() {
     const breadcrumbList = matchRouteList.map((item: any) => {
       // eslint-disable-next-line no-unsafe-optional-chaining
       const { name, icon = '' } = item?.route;
+      if (!icon) return null;
+      // gbeata-标识的为自定义图标 出自iconify
       return {
         title: (
-          <>
-            {icon && <SvgIcon name={icon} style={{ marginRight: 8 }} />}
+          <span className='flex items-center gap-1'>
+            {icon && <IconifyIcon icon={icon.replace('gbeata-', '')} size={16} />}
             <span>{t(name)}</span>
-          </>
+          </span>
         ),
       };
     });

@@ -1,6 +1,5 @@
 import { useRequest } from 'ahooks';
 import { Badge, Divider } from 'antd';
-import classNames from 'classnames';
 import dayjs from 'dayjs';
 import {
   GAction,
@@ -21,7 +20,7 @@ import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
 
 import { downloadFile } from '@/utils/download';
 
-import { GetInventoryStatisticsByDate, GetPageInventoryYear } from '@/api/summary';
+import { GetInventoryStatisticsByDate, GetNoChangeInventories } from '@/api/summary';
 
 export default function Demo() {
   const { activeOrgCode, warehouseOptions, orgOptions } = useWarehouseOptions();
@@ -31,8 +30,6 @@ export default function Demo() {
   const [open, setOpen] = useState(false);
   const [activeOrg, setActiveOrg] = useState([]);
   const [countList, setCountList] = useState({});
-
-  const [initialValues, setInitialValues] = useState({});
 
   const renderCounts = useMemo(() => {
     return Object.keys(countList).map((key) => {
@@ -110,16 +107,6 @@ export default function Demo() {
     {
       title: '仓库',
       key: 'warehouseName',
-    },
-    {
-      title: '时间段',
-      key: 'date-range',
-      type: 'date-range',
-      search: {
-        startKey: 'dateRangeStart',
-        endKey: 'dateRangeEnd',
-      },
-      table: false,
     },
     {
       title: '固定时间',
@@ -216,7 +203,7 @@ export default function Demo() {
   return (
     <>
       <GSearchTable
-        api={GetPageInventoryYear}
+        api={GetNoChangeInventories}
         fields={fields}
         ref={table}
         rowKey='sort_id'
@@ -245,6 +232,8 @@ export default function Demo() {
             const color = getColorForDate(parsedEntryDate);
             return color ? `bg-${color}-100` : '';
           },
+          bordered: true,
+          scroll: { x: 1200 },
         }}
         onParamsChange={(params) => {}}
         extendSearchParams={{ orgCode: activeOrgCode }}
@@ -254,37 +243,37 @@ export default function Demo() {
         onLoad={(res) => {
           // countApi({ orgCode: activeOrgCode, ...params.query });
         }}
-        title={
-          <div className='flex flex-col'>
-            超龄物资总数：
-            <div className='flex'>
-              <div className='flex items-center flex-wrap'>
-                {countData?.resultData?.map((item) => {
-                  if (!item.count) return null;
-                  return (
-                    <>
-                      <div className='flex items-center'>
-                        {item.date} : {item.count}条，总价值 : {(item.amount / 10000).toFixed(2)}万
-                      </div>
-                      <Divider type='vertical' />
-                    </>
-                  );
-                })}
-              </div>
-            </div>
-            <div>
-              库龄图例：<Badge color='yellow' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>三月
-              <Divider type='vertical' />
-              <Badge color='red' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>半年
-              <Divider type='vertical' />
-              <Badge color='purple' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>一年
-              <Divider type='vertical' />
-              <Badge color='blue' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>三年
-              <Divider type='vertical' />
-              <Badge color='gray' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>五年
-            </div>
-          </div>
-        }
+        // title={
+        //   <div className='flex flex-col'>
+        //     超龄物资总数：
+        //     <div className='flex'>
+        //       <div className='flex items-center flex-wrap'>
+        //         {countData?.resultData?.map((item) => {
+        //           if (!item.count) return null;
+        //           return (
+        //             <>
+        //               <div className='flex items-center'>
+        //                 {item.date} : {item.count}条，总价值 : {(item.amount / 10000).toFixed(2)}万
+        //               </div>
+        //               <Divider type='vertical' />
+        //             </>
+        //           );
+        //         })}
+        //       </div>
+        //     </div>
+        //     <div>
+        //       库龄图例：<Badge color='yellow' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>三月
+        //       <Divider type='vertical' />
+        //       <Badge color='red' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>半年
+        //       <Divider type='vertical' />
+        //       <Badge color='purple' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>一年
+        //       <Divider type='vertical' />
+        //       <Badge color='blue' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>三年
+        //       <Divider type='vertical' />
+        //       <Badge color='gray' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>五年
+        //     </div>
+        //   </div>
+        // }
       >
         {/* <GButton type='primary' onClick={handleDownload}>
           导出
@@ -328,9 +317,6 @@ export default function Demo() {
             title: '组织',
             key: 'orgCode',
             type: 'checkbox-group',
-            style: {
-              marginTop: '5px',
-            },
             required: true,
             options: orgOptions,
 
@@ -341,10 +327,6 @@ export default function Demo() {
 
               setActiveOrg(value);
               if (added.length) {
-                setInitialValues({
-                  ...initialValues,
-                  orgCode: value,
-                });
                 // 添加
                 const res = await GetInventoryStatisticsByDate({ orgCode: added[0] });
                 setCountList({ ...countList, [added[0]]: res?.resultData });
@@ -358,56 +340,8 @@ export default function Demo() {
                   });
                   return newData;
                 });
-                setInitialValues({
-                  ...initialValues,
-                  orgCode: value,
-                  remember: false,
-                });
               }
             },
-          },
-          {
-            type: 'checkbox',
-            key: 'remember',
-            style: {
-              marginLeft: 120,
-            },
-            onChange: async (value) => {
-              if (typeof value === 'boolean') {
-                if (value) {
-                  const allOrgs = orgOptions.map((item) => item.key);
-                  setInitialValues({
-                    ...initialValues,
-                    remember: true,
-                    orgCode: allOrgs,
-                  });
-                  // 比较全选数据与activeOrg差异，循环请求
-                  const added = difference(allOrgs, activeOrg);
-                  const promises = added.map(async (org) => {
-                    const result = await GetInventoryStatisticsByDate({ orgCode: org });
-                    return { [org]: result?.resultData };
-                  });
-                  const results = await Promise.all(promises);
-                  setCountList({ ...countList, ...results.reduce((acc, cur) => ({ ...acc, ...cur }), {}) });
-                } else {
-                  setInitialValues({
-                    ...initialValues,
-                    remember: false,
-                    orgCode: [],
-                  });
-                  setActiveOrg([]);
-                  setCountList({});
-                }
-              }
-            },
-            children: '全选',
-          },
-          {
-            title: '时间段',
-            key: 'date-range',
-            type: 'date-range',
-            startKey: 'dateRangeStart',
-            endKey: 'dateRangeEnd',
           },
           {
             title: '固定时间',
@@ -427,12 +361,6 @@ export default function Demo() {
             renderContent: () => <div>{renderCounts}</div>,
           },
         ]}
-        initialValues={initialValues}
-        dialogExtend={{
-          classNames: {
-            body: 'h-[400px] overflow-y-auto',
-          },
-        }}
       ></GDialogForm>
     </>
   );

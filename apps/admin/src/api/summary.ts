@@ -54,6 +54,13 @@ export const GetPageInventoryYear = (data: PageListParams): Promise<any> => {
   });
 };
 
+export const GetNoChangeInventories = (data: any): Promise<any> => {
+  return defHttp.post<PageListResult>({
+    url: '/Summary/GetNoChangeInventories',
+    data,
+  });
+};
+
 export const GetInventoryStatisticsByDate = (data: any): Promise<any> => {
   return defHttp.post<PageListResult>({
     url: '/Summary/GetInventoryStatisticsByDate',
