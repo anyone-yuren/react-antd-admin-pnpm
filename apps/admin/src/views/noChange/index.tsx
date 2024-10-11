@@ -221,6 +221,7 @@ export default function Demo() {
               [dateRanges.fiveYearsAgo]: '2000-01-01',
             };
             res.query.beginDate = endDateMap[res.query.endDate];
+            res.query.noChangeDate = res.query.endDate;
           }
           setParams(res);
           return res;

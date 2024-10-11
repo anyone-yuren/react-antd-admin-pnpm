@@ -238,7 +238,7 @@ export default function Demo() {
             res.query.beginDate = endDateMap[res.query.endDate];
           }
           setParams(res);
-          countApi({ endDate: res.query.endDate });
+          countApi({ endDate: res.query.endDate, beginDate: res.query.beginDate });
           return res;
         }}
         tableExtend={{
