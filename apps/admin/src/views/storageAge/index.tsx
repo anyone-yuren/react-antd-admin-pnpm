@@ -182,8 +182,9 @@ export default function Demo() {
     ),
   };
 
-  const { data: countData } = useRequest(GetInventoryStatisticsByDate, {
+  const { data: countData, run: countApi } = useRequest(GetInventoryStatisticsByDate, {
     defaultParams: [{ orgCode: activeOrgCode }],
+    manual: true,
   });
 
   const handleDownload = async (obj) => {
@@ -210,6 +211,7 @@ export default function Demo() {
 
   useEffect(() => {
     // 默认行为或重定向逻辑
+    countApi({});
     // window.location.href = '/login';
   }, []);
 
@@ -236,6 +238,7 @@ export default function Demo() {
             res.query.beginDate = endDateMap[res.query.endDate];
           }
           setParams(res);
+          countApi({ endDate: res.query.endDate });
           return res;
         }}
         tableExtend={{
