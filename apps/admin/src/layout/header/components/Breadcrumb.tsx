@@ -21,20 +21,22 @@ export default function LayoutBreadcrumb() {
 
   useEffect(() => {
     const matchRouteList = matchRoutes(menuList, pathname) || [];
-    const breadcrumbList = matchRouteList.map((item: any) => {
-      // eslint-disable-next-line no-unsafe-optional-chaining
-      const { name, icon = '' } = item?.route;
-      if (!icon) return null;
-      // gbeata-标识的为自定义图标 出自iconify
-      return {
-        title: (
-          <span className='flex items-center gap-1'>
-            {icon && <IconifyIcon icon={icon.replace('gbeata-', '')} size={16} />}
-            <span>{t(name)}</span>
-          </span>
-        ),
-      };
-    });
+    const breadcrumbList = matchRouteList
+      .map((item: any) => {
+        // eslint-disable-next-line no-unsafe-optional-chaining
+        const { name, icon = '' } = item?.route;
+        if (!icon && !name) return null;
+        // gbeata-标识的为自定义图标 出自iconify
+        return {
+          title: (
+            <span className='flex items-center gap-1'>
+              {icon && <IconifyIcon icon={icon.replace('gbeata-', '')} size={16} />}
+              <span>{t(name)}</span>
+            </span>
+          ),
+        };
+      })
+      .filter((item) => !!item);
     setBreadcrumbs(breadcrumbList);
   }, [pathname, i18n.language]);
 
