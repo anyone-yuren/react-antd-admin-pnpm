@@ -33,8 +33,8 @@ const AuthHourseAction = ({ record, refreshTable }: any) => {
       run();
     }
   }, [record, open]);
-
   const [CheckedKeys, setCheckedKeys] = useState<any[]>(record?.warehouseMaster?.split(',') || []);
+  console.log(CheckedKeys);
 
   const cacheTree = (data: WarehouseTreeList[]) => {
     return (
@@ -45,8 +45,6 @@ const AuthHourseAction = ({ record, refreshTable }: any) => {
         defaultExpandAll
         checkStrictly
         titleRender={(node) => {
-          console.log(node);
-
           return node.warehouseName + node.warehouseCode;
         }}
         defaultCheckedKeys={CheckedKeys}
@@ -77,6 +75,7 @@ const AuthHourseAction = ({ record, refreshTable }: any) => {
         title='授权仓库'
         open={open}
         width={'50%'}
+        destroyOnClose
         onCancel={() => setOpen(false)}
         onOk={async () => {
           await setWarehouseApi({
