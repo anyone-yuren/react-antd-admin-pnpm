@@ -115,9 +115,24 @@ export default function Demo() {
       width: 200,
     },
     {
-      title: '流水水量',
+      title: '流水量',
       key: 'changeQuantity',
       width: 200,
+    },
+    {
+      title: '单价 （元）',
+      key: 'unitPriceStr',
+      width: '120px',
+    },
+    {
+      title: '数量',
+      key: 'quantity',
+      width: '120px',
+    },
+    {
+      title: '金额 (元)',
+      key: 'amountStr',
+      width: '120px',
     },
     {
       title: '流水类型',

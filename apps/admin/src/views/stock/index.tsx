@@ -40,11 +40,13 @@ export default function Stock() {
   const fields: Array<GSearchTableField> = [
     {
       title: '组织',
+      width: '120px',
       key: 'orgName',
     },
     {
       title: '仓库',
       key: 'warehouseName',
+      width: '120px',
       search: false,
     },
     {
@@ -61,11 +63,13 @@ export default function Stock() {
     },
     {
       title: '物料名称',
+      width: '120px',
       key: 'materialName',
     },
     {
       title: '库位编码',
       key: 'locationCode',
+      width: '220px',
       search: true,
     },
     {
@@ -74,18 +78,32 @@ export default function Stock() {
     },
     {
       title: '规格',
+      width: '120px',
       key: 'materialSize',
+    },
+    {
+      title: '单价 （元）',
+      key: 'unitPriceStr',
+      width: '120px',
     },
     {
       title: '数量',
       key: 'quantity',
+      width: '120px',
+    },
+    {
+      title: '金额 (元)',
+      key: 'amountStr',
+      width: '120px',
     },
     {
       title: '供应商',
+      width: '220px',
       key: 'supplierName',
     },
     {
       title: '收货日期',
+      width: '220px',
       key: 'receivedDate',
     },
   ];
@@ -116,7 +134,7 @@ export default function Stock() {
         }}
         tableExtend={{
           bordered: true,
-          scroll: { x: 1200 },
+          scroll: { x: 1500 },
         }}
       >
         <GButton type='primary' onClick={() => setOpen(true)}>

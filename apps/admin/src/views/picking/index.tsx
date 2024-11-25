@@ -44,16 +44,16 @@ export default function Demo() {
       key: 'materialName',
       width: 200,
     },
-    {
-      title: '金额',
-      key: 'total',
-      width: 200,
-      render: (text, record) => {
-        const { total } = record;
-        // 转换成万元 保留后两位小数
-        return `${(total / 10000).toFixed(2)}万元`;
-      },
-    },
+    // {
+    //   title: '金额',
+    //   key: 'total',
+    //   width: 200,
+    //   render: (text, record) => {
+    //     const { total } = record;
+    //     // 转换成万元 保留后两位小数
+    //     return `${(total / 10000).toFixed(2)}万元`;
+    //   },
+    // },
     {
       title: '物料编号',
       key: 'materialCode',
@@ -66,9 +66,19 @@ export default function Demo() {
       width: 200,
     },
     {
+      title: '单价 （元）',
+      key: 'unitPriceStr',
+      width: '120px',
+    },
+    {
       title: '数量',
       key: 'quantity',
-      width: 200,
+      width: '120px',
+    },
+    {
+      title: '金额 (元)',
+      key: 'amountStr',
+      width: '120px',
     },
     {
       title: '领料日期',
