@@ -3,6 +3,7 @@ import { createStyles } from 'antd-style';
 const useStyles = createStyles(({ token }) => ({
   flex: {
     display: 'flex',
+    flexDirection: 'column',
     '.flex-title': {
       color: token.colorPrimary,
     },

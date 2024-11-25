@@ -84,6 +84,12 @@ export const GetSumDatal = (params: any): Promise<any> => {
   });
 };
 
+export const getTotalAmountSummary = (params: any): Promise<any> => {
+  return defHttp.get<PageListResult>({
+    url: '/Summary/GetTotalAmountSummary',
+    params,
+  });
+};
 // 预警通知
 export const GetNotificationList = (params?: any): Promise<any> => {
   return defHttp.get<PageListResult>({

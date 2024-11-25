@@ -10,6 +10,13 @@ interface IParams {
   seriesAry: any[];
   selectedHashMap: Record<string, any>;
 }
+const convertToWan = (yuan: number) => {
+  const num = Number(yuan);
+  if (num === 0) return 0;
+  if (num < 10000) return num;
+
+  return (num / 10000).toFixed(2);
+};
 export const getOption = (params: IParams) => {
   const { legendAry, xAxisAry, seriesAry, selectedHashMap } = params;
   return {
@@ -253,7 +260,7 @@ const LineChart = (props: any) => {
         data: item.items.map((it: any) => {
           !monthHashMap[it.month] ? (monthHashMap[it.month] = it.value) : (monthHashMap[it.month] += it.value);
           count += it.value;
-          return it.value;
+          return convertToWan(it.value);
         }),
       });
       totalCountAry.push({ name: item.orgName, count });
@@ -270,8 +277,6 @@ const LineChart = (props: any) => {
         selectedHashMap[selectObj.name] = true;
       });
 
-    console.log('monthHashMap', monthHashMap, totalCountAry);
-
     if (seriesAry.length) {
       seriesAry = [
         ...seriesAry,
@@ -279,25 +284,23 @@ const LineChart = (props: any) => {
           {
             name: '折线图汇总',
             type: 'line',
-            data: Object.values(monthHashMap),
+            data: Object.values(monthHashMap).map((item: any) => convertToWan(item)),
           },
           {
             name: '柱状图汇总',
             type: 'bar',
             barWidth: 40,
-            data: Object.values(monthHashMap),
+            data: Object.values(monthHashMap).map((item: any) => convertToWan(item)),
           },
         ],
       ];
-      console.log('seriesAry', seriesAry);
     }
 
-    console.log({ legendAry, xAxisAry, seriesAry });
     return { legendAry, xAxisAry, seriesAry, selectedHashMap };
   }, [sumOption]);
 
   return (
-    <Card title={'各矿消耗占比'}>
+    <Card title={'各矿消耗占比（万）'}>
       <BaseCharts option={getOption(echartsOption)} height={620} />
     </Card>
   );

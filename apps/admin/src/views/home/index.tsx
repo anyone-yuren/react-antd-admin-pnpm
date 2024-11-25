@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
 
-import { GetSumDatal } from '@/api/summary';
+import { GetSumDatal, getTotalAmountSummary } from '@/api/summary';
 
 import { AnalyzeCard } from './components/AnalyzeCard';
 import InlineChart from './components/lineChart';
@@ -26,13 +26,18 @@ const HomePage: any = () => {
   } = useRequest(GetSumDatal, {
     manual: true,
   });
+
+  const { data: totalAmountSummary, run: getTotalAmount } = useRequest(getTotalAmountSummary, {
+    manual: true,
+  });
   useEffect(() => {
     run({ orgCode: activeOrgCode });
+    getTotalAmount({ orgCode: activeOrgCode });
   }, [activeOrgCode]);
   return (
     <div className={styles['home-container']}>
       <Row gutter={[16, 16]}>
-        <AnalyzeCard sumData={sumData} ajaxLoading={ajaxLoading} />
+        <AnalyzeCard sumData={sumData} ajaxLoading={ajaxLoading} totalAmountSummary={totalAmountSummary} />
         {/* <Col span={12}>
           <BarChart />
         </Col>
