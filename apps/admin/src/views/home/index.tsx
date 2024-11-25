@@ -15,13 +15,20 @@ const HomePage: any = () => {
   const { styles } = useStyles();
   const { t } = useTranslation();
   const { activeOrgCode } = useWarehouseOptions();
-  const { data: sumData, loading: ajaxLoading } = useRequest(() => {
-    console.log('获取数据的时候的组织', activeOrgCode);
-    return GetSumDatal({ orgCode: activeOrgCode });
+  // const { data: sumData, loading: ajaxLoading } = useRequest(() => {
+  //   console.log('获取数据的时候的组织', activeOrgCode);
+  //   return GetSumDatal({ orgCode: activeOrgCode });
+  // });
+  const {
+    data: sumData,
+    loading: ajaxLoading,
+    run,
+  } = useRequest(GetSumDatal, {
+    manual: true,
   });
-  // useEffect(() => {
-  //   console.log('activeOrgCode', activeOrgCode);
-  // }, [activeOrgCode]);
+  useEffect(() => {
+    run({ orgCode: activeOrgCode });
+  }, [activeOrgCode]);
   return (
     <div className={styles['home-container']}>
       <Row gutter={[16, 16]}>

@@ -150,7 +150,7 @@ export default function Demo() {
       key: 'receivingData',
     },
     {
-      title: '当前库龄',
+      title: '入库天数',
       key: 'inventoryYear',
       render: (text) => <span>{`${text} /天`}</span>,
     },

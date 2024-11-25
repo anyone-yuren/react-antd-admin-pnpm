@@ -59,6 +59,8 @@ export default function Demo() {
   // 获取日期相关数据
   const today = dayjs();
   const dateRanges = {
+    // 三个月内
+    today: today.format('YYYY-MM-DD'),
     threeMonthsAgo: today.subtract(3, 'month').format('YYYY-MM-DD'),
     sixMonthsAgo: today.subtract(6, 'month').format('YYYY-MM-DD'),
     yearAgo: today.subtract(12, 'month').format('YYYY-MM-DD'),
@@ -128,6 +130,7 @@ export default function Demo() {
       table: false,
       search: true,
       options: [
+        { label: '三个月内', value: dateRanges.today },
         { label: '三个月', value: dateRanges.threeMonthsAgo },
         { label: '半年', value: dateRanges.sixMonthsAgo },
         { label: '一年', value: dateRanges.yearAgo },
@@ -163,7 +166,7 @@ export default function Demo() {
       key: 'receivingData',
     },
     {
-      title: '当前库龄',
+      title: '入库天数',
       key: 'inventoryYear',
       render: (text) => <span>{`${text} /天`}</span>,
     },
@@ -229,6 +232,7 @@ export default function Demo() {
             res.query.endDate = res.query.dateRangeEnd;
           } else if (res.query.endDate) {
             const endDateMap = {
+              [dateRanges.today]: dateRanges.threeMonthsAgo,
               [dateRanges.threeMonthsAgo]: dateRanges.sixMonthsAgo,
               [dateRanges.sixMonthsAgo]: dateRanges.yearAgo,
               [dateRanges.yearAgo]: dateRanges.threeYearsAgo,
@@ -315,6 +319,7 @@ export default function Demo() {
             res.endDate = res.dateRangeEnd;
           } else if (res.endDate) {
             const endDateMap = {
+              [dateRanges.today]: dateRanges.threeMonthsAgo,
               [dateRanges.threeMonthsAgo]: dateRanges.sixMonthsAgo,
               [dateRanges.sixMonthsAgo]: dateRanges.yearAgo,
               [dateRanges.yearAgo]: dateRanges.threeYearsAgo,
@@ -417,6 +422,7 @@ export default function Demo() {
             key: 'endDate',
             type: 'radio-group',
             options: [
+              { label: '三个月内', value: dateRanges.today },
               { label: '三个月', value: dateRanges.threeMonthsAgo },
               { label: '半年', value: dateRanges.sixMonthsAgo },
               { label: '一年', value: dateRanges.yearAgo },
