@@ -4,10 +4,20 @@ import ReactECharts from 'echarts-for-react';
 export interface ChartsProp {
   option: any;
   height?: number;
+  click?: (params: any) => void;
 }
 
 const BaseCharts = (prop: ChartsProp) => (
-  <ReactECharts opts={{ renderer: 'svg' }} style={{ height: prop.height || '300px' }} option={prop.option} />
+  <ReactECharts
+    opts={{ renderer: 'svg' }}
+    style={{ height: prop.height || '300px' }}
+    onEvents={{
+      click: (params: any) => {
+        prop.click && prop.click(params);
+      },
+    }}
+    option={prop.option}
+  />
 );
 
 export default BaseCharts;

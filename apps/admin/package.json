@@ -29,7 +29,7 @@
     "@uiw/react-md-editor": "^3.25.6",
     "@wangeditor/editor": "^5.1.23",
     "ahooks": "^3.7.8",
-    "antd": "^5.11.2",
+    "antd": "^5.22.2",
     "antd-style": "^3.6.1",
     "apis": "workspace:*",
     "axios": "^1.6.2",

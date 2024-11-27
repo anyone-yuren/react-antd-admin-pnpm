@@ -90,6 +90,13 @@ export const getTotalAmountSummary = (params: any): Promise<any> => {
     params,
   });
 };
+
+export const getWarehouseAmountSummary = (params: any): Promise<any> => {
+  return defHttp.get<PageListResult>({
+    url: '/Summary/GetWarehouseAmountSummary',
+    params,
+  });
+};
 // 预警通知
 export const GetNotificationList = (params?: any): Promise<any> => {
   return defHttp.get<PageListResult>({

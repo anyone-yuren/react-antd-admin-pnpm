@@ -1,14 +1,8 @@
-import { useRequest } from 'ahooks';
-import { Card, Modal, Skeleton } from 'antd';
+import { Card, Modal } from 'antd';
 import * as echarts from 'echarts/core';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import BaseCharts from '@/components/BaseChart';
-
-import { getWarehouseAmountSummary } from '@/api/summary';
-import { useAuthStore } from '@/stores/admin';
-
-import FactoryBar from './factoryBar';
 
 interface IParams {
   legendAry: any[];
@@ -235,14 +229,8 @@ export const option = {
   ],
 };
 
-const LineChart = (props: any) => {
-  const { orgAndWarehouseInfo } = useAuthStore((state) => {
-    return {
-      orgAndWarehouseInfo: state.orgAndWarehouseInfo,
-    };
-  });
+const FactoryBar = (props: any) => {
   const { sumOption } = props;
-  const chartRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     console.log('[lineChart]: sumOption => ', sumOption);
   }, [sumOption]);
@@ -256,11 +244,11 @@ const LineChart = (props: any) => {
     const totalCountAry: any = [];
     sumOption?.orgs?.forEach((item: any) => {
       // eslint-disable-next-line
-      item.orgName.indexOf('\r\n') > -1 && (item.orgName = item.orgName.replace('\r\n', ''));
-      selectedHashMap[item.orgName] = false;
+      item.name.indexOf('\r\n') > -1 && (item.name = item.name.replace('\r\n', ''));
+      selectedHashMap[item.name] = false;
       let count = 0;
       seriesAry.push({
-        name: item.orgName,
+        name: item.name,
         type: 'bar',
         stack: 'Total',
         areaStyle: {},
@@ -275,7 +263,7 @@ const LineChart = (props: any) => {
           return convertToWan(it.value);
         }),
       });
-      totalCountAry.push({ name: item.orgName, count });
+      totalCountAry.push({ name: item.name, count });
     });
     sumOption?.orgs?.[0]?.items.forEach((item: any) => {
       xAxisAry.push(item.month);
@@ -311,48 +299,12 @@ const LineChart = (props: any) => {
     return { legendAry, xAxisAry, seriesAry, selectedHashMap };
   }, [sumOption]);
 
-  // 弹窗内容
-  const [title, setTitle] = useState('');
-  const [visible, setVisible] = useState(false);
-  const {
-    runAsync: getHouseData,
-    loading,
-    data,
-  } = useRequest(getWarehouseAmountSummary, {
-    manual: true,
-  });
-  const barClick = (params: any) => {
-    const { seriesName } = params;
-    setTitle(seriesName);
-    debugger;
-    // 根据seriesName从orgAndWarehouseInfo中找出对应的orgCode
-    const warehouseCode = orgAndWarehouseInfo?.find((item: any) => item.warehouseName === seriesName)?.warehouseCode;
-    if (warehouseCode) {
-      // alert(`orgCode: ${warehouseCode}`);
-      getHouseData({ orgCode: warehouseCode });
-      setVisible(true);
-    }
-  };
-
   return (
     <>
-      <Card title={'各矿消耗占比（万）'}>
-        <BaseCharts option={getOption(echartsOption)} height={620} click={barClick} />
+      <Card title={'各仓库消耗占比（万）'}>
+        <BaseCharts option={getOption(echartsOption)} height={620} />
       </Card>
-      <Modal
-        title={title}
-        loading={loading}
-        open={visible}
-        destroyOnClose
-        width={'80%'}
-        onOk={() => {}}
-        onCancel={() => {
-          setVisible(false);
-        }}
-      >
-        {loading ? <Skeleton /> : <FactoryBar sumOption={{ orgs: (data && data.resultData) || [] }} />}
-      </Modal>
     </>
   );
 };
-export default LineChart;
+export default FactoryBar;
