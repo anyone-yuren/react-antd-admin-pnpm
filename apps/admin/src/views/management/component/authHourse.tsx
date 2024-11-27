@@ -34,7 +34,9 @@ const AuthHourseAction = ({ record, refreshTable }: any) => {
     }
   }, [record, open]);
   const [CheckedKeys, setCheckedKeys] = useState<any[]>(record?.warehouseMaster?.split(',') || []);
-  console.log(CheckedKeys);
+  useEffect(() => {
+    setCheckedKeys(record?.warehouseMaster?.split(',') || []);
+  }, [record?.warehouseMaster]);
 
   const cacheTree = (data: WarehouseTreeList[]) => {
     return (
@@ -71,31 +73,33 @@ const AuthHourseAction = ({ record, refreshTable }: any) => {
       <GButton sub type='link' onClick={() => setOpen(true)}>
         授权仓库
       </GButton>
-      <Modal
-        title='授权仓库'
-        open={open}
-        width={'50%'}
-        destroyOnClose
-        onCancel={() => setOpen(false)}
-        onOk={async () => {
-          await setWarehouseApi({
-            userId: record.id,
-            warehouseCodes: CheckedKeys,
-          });
-        }}
-      >
-        <div className='h-[400px]'>
-          {open && (
-            <Tabs
-              tabPosition='left'
-              defaultActiveKey='1'
-              className={`${styles['my-modal-body']} h-[400px] `}
-              items={tabsItems()}
-              onChange={setActiveKey}
-            />
-          )}
-        </div>
-      </Modal>
+      {open && (
+        <Modal
+          title='授权仓库'
+          open={open}
+          width={'50%'}
+          destroyOnClose
+          onCancel={() => setOpen(false)}
+          onOk={async () => {
+            await setWarehouseApi({
+              userId: record.id,
+              warehouseCodes: CheckedKeys,
+            });
+          }}
+        >
+          <div className='h-[400px]'>
+            {open && (
+              <Tabs
+                tabPosition='left'
+                defaultActiveKey='1'
+                className={`${styles['my-modal-body']} h-[400px] `}
+                items={tabsItems()}
+                onChange={setActiveKey}
+              />
+            )}
+          </div>
+        </Modal>
+      )}
     </>
   );
 };

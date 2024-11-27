@@ -35,6 +35,7 @@ const AuthAction = ({ record }: any) => {
   };
 
   const tabsItems = useMemo(() => {
+    debugger;
     const checkedKeys = [];
     const items = api.map((item) => {
       const node = treeToList(item.permissions)
@@ -59,6 +60,7 @@ const AuthAction = ({ record }: any) => {
       <Modal
         title='授权'
         open={open}
+        destroyOnClose
         onCancel={() => setOpen(false)}
         onOk={() => {
           console.log(CheckedKeys);
