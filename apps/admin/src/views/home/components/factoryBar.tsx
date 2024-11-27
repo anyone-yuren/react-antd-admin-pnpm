@@ -1,6 +1,6 @@
-import { Card, Modal } from 'antd';
+import { Card, Modal, Segmented } from 'antd';
 import * as echarts from 'echarts/core';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import BaseCharts from '@/components/BaseChart';
 
@@ -230,10 +230,9 @@ export const option = {
 };
 
 const FactoryBar = (props: any) => {
-  const { sumOption } = props;
-  useEffect(() => {
-    console.log('[lineChart]: sumOption => ', sumOption);
-  }, [sumOption]);
+  const { sumOption, depOption } = props;
+
+  const [renderOption, setRenderOption] = useState(sumOption); // renderOption
 
   const echartsOption = React.useMemo(() => {
     const legendAry: any = [];
@@ -242,7 +241,7 @@ const FactoryBar = (props: any) => {
     const monthHashMap = {};
     const selectedHashMap = {};
     const totalCountAry: any = [];
-    sumOption?.orgs?.forEach((item: any) => {
+    renderOption?.orgs?.forEach((item: any) => {
       // eslint-disable-next-line
       item.name.indexOf('\r\n') > -1 && (item.name = item.name.replace('\r\n', ''));
       selectedHashMap[item.name] = false;
@@ -265,7 +264,7 @@ const FactoryBar = (props: any) => {
       });
       totalCountAry.push({ name: item.name, count });
     });
-    sumOption?.orgs?.[0]?.items.forEach((item: any) => {
+    renderOption?.orgs?.[0]?.items.forEach((item: any) => {
       xAxisAry.push(item.month);
     });
     totalCountAry
@@ -297,11 +296,25 @@ const FactoryBar = (props: any) => {
     }
 
     return { legendAry, xAxisAry, seriesAry, selectedHashMap };
-  }, [sumOption]);
+  }, [renderOption]);
 
   return (
     <>
-      <Card title={'各仓库消耗占比（万）'}>
+      <Card
+        title={'各仓库/区队消耗占比（元）'}
+        extra={
+          <Segmented
+            options={['仓库', '区队']}
+            onChange={(value) => {
+              if (value === '仓库') {
+                setRenderOption(sumOption);
+              } else {
+                setRenderOption(depOption);
+              }
+            }}
+          />
+        }
+      >
         <BaseCharts option={getOption(echartsOption)} height={620} />
       </Card>
     </>

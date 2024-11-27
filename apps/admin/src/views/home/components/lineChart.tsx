@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import BaseCharts from '@/components/BaseChart';
 
-import { getWarehouseAmountSummary } from '@/api/summary';
+import { getDeptAmountSummary, getWarehouseAmountSummary } from '@/api/summary';
 import { useAuthStore } from '@/stores/admin';
 
 import FactoryBar from './factoryBar';
@@ -321,16 +321,29 @@ const LineChart = (props: any) => {
   } = useRequest(getWarehouseAmountSummary, {
     manual: true,
   });
-  const barClick = (params: any) => {
+  const {
+    runAsync: getDeptData,
+    loading: depLoading,
+    data: deptData,
+  } = useRequest(getDeptAmountSummary, {
+    manual: true,
+  });
+  const barClick = async (params: any) => {
     const { seriesName } = params;
     setTitle(seriesName);
-    debugger;
     // 根据seriesName从orgAndWarehouseInfo中找出对应的orgCode
     const warehouseCode = orgAndWarehouseInfo?.find((item: any) => item.warehouseName === seriesName)?.warehouseCode;
     if (warehouseCode) {
-      // alert(`orgCode: ${warehouseCode}`);
-      getHouseData({ orgCode: warehouseCode });
-      setVisible(true);
+      try {
+        setVisible(true);
+        // 使用 Promise.all 等待两个请求完成
+        await Promise.all([getHouseData({ orgCode: warehouseCode }), getDeptData({ orgCode: warehouseCode })]);
+
+        // 请求完成后设置 visible
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        // 这里可以添加错误处理逻辑，比如提示用户请求失败
+      }
     }
   };
 
@@ -341,7 +354,7 @@ const LineChart = (props: any) => {
       </Card>
       <Modal
         title={title}
-        loading={loading}
+        loading={loading && depLoading}
         open={visible}
         destroyOnClose
         width={'80%'}
@@ -350,7 +363,14 @@ const LineChart = (props: any) => {
           setVisible(false);
         }}
       >
-        {loading ? <Skeleton /> : <FactoryBar sumOption={{ orgs: (data && data.resultData) || [] }} />}
+        {loading ? (
+          <Skeleton />
+        ) : (
+          <FactoryBar
+            sumOption={{ orgs: (data && data.resultData) || [] }}
+            depOption={{ orgs: (deptData && deptData.resultData) || [] }}
+          />
+        )}
       </Modal>
     </>
   );
