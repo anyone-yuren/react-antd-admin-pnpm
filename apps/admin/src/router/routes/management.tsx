@@ -5,12 +5,14 @@ import { t } from 'i18next';
 import LazyLoad from '@/components/LazyLoad';
 
 import { LayoutGuard } from '../guard';
+import AuthenticatedRoute from '../hooks/permission';
 
 import type { RouteObject } from '../types';
 
 // user module page
 const UserRoute: RouteObject = {
   path: '/system',
+  element: <AuthenticatedRoute requiresAuth={'/system'} />,
   meta: {
     title: t('系统设置'),
     icon: 'gbeata-ant-design:setting-outlined',
@@ -32,14 +34,6 @@ const UserRoute: RouteObject = {
       meta: {
         title: t('用户管理'),
         key: 'user',
-      },
-    },
-    {
-      path: 'permission',
-      element: LazyLoad(lazy(() => import('@/views/management/permission'))),
-      meta: {
-        title: t('权限管理'),
-        key: 'permission',
       },
     },
   ],

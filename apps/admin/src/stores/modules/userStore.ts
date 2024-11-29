@@ -1,11 +1,11 @@
 // import { getItem } from '@gbeata/utils';
 // import { useMutation } from '@tanstack/react-query';
-import { useAuthStore } from '@/stores/admin';
 import { App } from 'antd';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { getLoginUserPermission, loginApi, type LoginParams, logoutApi } from '@/api/auth';
+import { useAuthStore } from '@/stores/admin';
 
 // import { getItem, removeItem, setItem } from '@/utils/storage';
 // 由于无法在异步函数中使用 persist, 所以这里无法使用，使用其他的持久化管理方式
@@ -69,16 +69,10 @@ export const useSignIn = () => {
  */
 export const usePermissions = () => {
   const { message } = App.useApp();
-  const { setUserInfo } = useAuthStore((state) => {
-    return {
-      setUserInfo: state.setUserInfo,
-    };
-  });
 
   const getUserPermissions = async () => {
     try {
       const res = await getLoginUserPermission();
-      setUserInfo(res);
       return await Promise.resolve(res);
     } catch (error: any) {
       message.error({

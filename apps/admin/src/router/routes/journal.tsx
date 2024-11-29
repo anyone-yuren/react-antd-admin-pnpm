@@ -6,12 +6,14 @@ import { useTranslation } from 'react-i18next';
 import LazyLoad from '@/components/LazyLoad';
 
 import { LayoutGuard } from '../guard';
+import AuthenticatedRoute from '../hooks/permission';
 
 import type { RouteObject } from '../types';
 
 // user module page
 const UserRoute: RouteObject = {
   path: '/journal',
+  element: <AuthenticatedRoute requiresAuth={'/journal'} />,
   meta: {
     title: '出入库流水',
     icon: 'gbeata-ant-design:account-book-outlined',

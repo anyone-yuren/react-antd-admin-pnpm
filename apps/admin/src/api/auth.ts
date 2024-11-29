@@ -117,6 +117,27 @@ export const getRolePageList = (data: { pageIndex: 1; pageSize: 100000 }) => {
   });
 };
 
+export const addRole = (data: any): Promise<PageListResult> => {
+  return defHttp.post({
+    url: '/Role/Add',
+    data,
+  });
+};
+
+export const updateRole = (data: any): Promise<PageListResult> => {
+  return defHttp.post({
+    url: '/Role/Update',
+    data,
+  });
+};
+
+export const deleteRole = (data: any): Promise<PageListResult> => {
+  return defHttp.delete({
+    url: '/Role/Delete',
+    data,
+  });
+};
+
 export const addUser = (data: any): Promise<any> => {
   return defHttp.post({
     url: '/User/Add',

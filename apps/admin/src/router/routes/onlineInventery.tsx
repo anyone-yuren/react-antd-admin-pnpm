@@ -6,12 +6,14 @@ import { useTranslation } from 'react-i18next';
 import LazyLoad from '@/components/LazyLoad';
 
 import { LayoutGuard } from '../guard';
+import AuthenticatedRoute from '../hooks/permission';
 
 import type { RouteObject } from '../types';
 
 // user module page
 const UserRoute: RouteObject = {
   path: '/onlineInventery',
+  element: <AuthenticatedRoute requiresAuth={'/onlineInventery'} />,
   meta: {
     title: '在线库存',
     icon: 'gbeata-material-symbols:online-prediction',

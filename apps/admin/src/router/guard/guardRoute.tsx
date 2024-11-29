@@ -1,4 +1,5 @@
 // import { usePermissions, useUserToken } from '@gbeata/store';
+import { message } from 'antd';
 import { type ReactNode, useEffect } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
@@ -18,6 +19,15 @@ export const GuardRoute = ({ children }: { children: ReactNode }) => {
 
   const getPermission = async () => {
     const res = await permissions();
+    const { menus } = res?.resultData || {};
+    if (!menus) {
+      // 无权限，跳转到登录页
+      if (menus.length === 0) {
+        // 提示无权限
+        message.error('无权限');
+        // window.location.href = '#/login';
+      }
+    }
     if (res) {
       setUserInfo(res.resultData);
     }

@@ -26,6 +26,8 @@ Object.keys(metaRoutes).forEach((key) => {
   routeList.push(...moduleList);
 });
 
+export const staticRoutes: AppRouteObject[] = routeList;
+
 const rootRoutes: AppRouteObject[] = [
   {
     path: '/',
@@ -46,7 +48,6 @@ const rootRoutes: AppRouteObject[] = [
     },
     loader: () => {
       if (getAuthCache<string>(TOKEN_KEY)) {
-        debugger;
         return redirect('/');
       }
       return null;

@@ -1,9 +1,10 @@
 /* eslint-disable consistent-return */
 /* eslint-disable implicit-arrow-linebreak */
 import { Menu, Spin } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useShallow } from 'zustand/react/shallow';
 
 import IconifyIcon from '@/components/iconify-icon';
 import SvgIcon from '@/components/SvgIcon';
@@ -11,6 +12,7 @@ import SvgIcon from '@/components/SvgIcon';
 import { getOpenKeys } from '@/utils/helper/menuHelper';
 
 import { getAsyncMenus } from '@/router/menus';
+import { useAuthStore } from '@/stores/admin';
 import { useMenuActions } from '@/stores/modules/menu';
 
 // import { setMenuList as setMenuListAction } from '@/stores/modules/menu';
@@ -34,7 +36,19 @@ const getItem = (
     type,
   }) as MenuItem;
 
-const LayoutMenu = (props: any) => {
+const LayoutMenu = () => {
+  const { userInfo } = useAuthStore(
+    useShallow((state) => {
+      return {
+        userInfo: state.userInfo,
+      };
+    }),
+  );
+
+  const { menus: permissionMenus } = userInfo || {};
+
+  const menusAtt = permissionMenus?.split(',') || [];
+
   const { pathname } = useLocation();
   const [loading, setLoading] = useState(false);
   const [menuList, setMenuList] = useState<MenuItem[]>([]);
@@ -68,10 +82,12 @@ const LayoutMenu = (props: any) => {
 
   const getMenuItem = (data: AppMenu[], list: MenuItem[] = []) => {
     data.forEach((item: AppMenu) => {
-      if (!item?.children?.length) {
+      if (!item?.children?.length && menusAtt?.includes(item.path)) {
         return list.push(getItem(t(item.name), item.path, addIcon(item.icon, item.iconSize)));
       }
-      list.push(getItem(t(item.name), item.path, addIcon(item.icon, item.iconSize), getMenuItem(item.children)));
+      if (menusAtt?.includes(item.path)) {
+        list.push(getItem(t(item.name), item.path, addIcon(item.icon, item.iconSize), getMenuItem(item.children)));
+      }
     });
     return list;
   };
@@ -88,8 +104,19 @@ const LayoutMenu = (props: any) => {
   };
 
   useEffect(() => {
+    if (!permissionMenus?.length) {
+      // 跳转403页面
+      // navigate('/403');
+      return;
+    }
     getMenuList();
-  }, [i18n.language]);
+  }, [i18n.language, permissionMenus]);
+
+  useEffect(() => {
+    if (!menuList.length) return;
+    // 跳转到第一个菜单
+    navigate(menuList[0].key);
+  }, [menuList]);
 
   const handleOpenChange: MenuProps['onOpenChange'] = (keys: string[]) => {
     if (keys.length === 0 || keys.length === 1) return setOpenKeys(keys);
@@ -102,8 +129,6 @@ const LayoutMenu = (props: any) => {
   const handleMenuClick: MenuProps['onClick'] = ({ key }: { key: string }) => {
     navigate(key);
   };
-  const a = 1;
-  console.log(a);
 
   return (
     <div className='layout_menu'>
@@ -128,4 +153,4 @@ const LayoutMenu = (props: any) => {
   );
 };
 
-export default LayoutMenu;
+export default memo(LayoutMenu);

@@ -6,12 +6,14 @@ import { useTranslation } from 'react-i18next';
 import LazyLoad from '@/components/LazyLoad';
 
 import { LayoutGuard } from '../guard';
+import AuthenticatedRoute from '../hooks/permission';
 
 import type { RouteObject } from '../types';
 
 // user module page
 const UserRoute: RouteObject = {
   path: '/storage',
+  element: <AuthenticatedRoute requiresAuth={'/storage'} />,
   meta: {
     title: '库龄管理',
     icon: 'gbeata-mdi:shop-time-outline',

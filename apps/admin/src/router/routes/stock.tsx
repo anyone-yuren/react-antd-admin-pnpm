@@ -6,12 +6,14 @@ import { useTranslation } from 'react-i18next';
 import LazyLoad from '@/components/LazyLoad';
 
 import { LayoutGuard } from '../guard';
+import AuthenticatedRoute from '../hooks/permission';
 
 import type { RouteObject } from '../types';
 
 // user module page
 const UserRoute: RouteObject = {
   path: '/stock',
+  element: <AuthenticatedRoute requiresAuth={'/stock'} />,
   meta: {
     title: '现存量',
     icon: 'gbeata-material-symbols:delete-sweep-outline-sharp',

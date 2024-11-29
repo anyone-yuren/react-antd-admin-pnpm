@@ -1,11 +1,14 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { lazy } from '@loadable/component';
+import { Button, Result } from 'antd';
 import { t } from 'i18next';
 import { useTranslation } from 'react-i18next';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import LazyLoad from '@/components/LazyLoad';
 
 import { LayoutGuard } from '../guard';
+import AuthenticatedRoute from '../hooks/permission';
 
 import type { RouteObject } from '../types';
 
@@ -17,6 +20,7 @@ const HomeRoute: RouteObject = {
   path: '/home',
   // errorElement: <ErrorBoundary />,
   loader: () => null,
+  element: <AuthenticatedRoute requiresAuth={'/home'} />,
   meta: {
     title: '首页',
     icon: 'home',

@@ -6,12 +6,14 @@ import { useTranslation } from 'react-i18next';
 import LazyLoad from '@/components/LazyLoad';
 
 import { LayoutGuard } from '../guard';
+import AuthenticatedRoute from '../hooks/permission';
 
 import type { RouteObject } from '../types';
 
 // user module page
 const UserRoute: RouteObject = {
   path: '/materials',
+  element: <AuthenticatedRoute requiresAuth={'/materials'} />,
   meta: {
     title: '物料进出存',
     icon: 'gbeata-ic:round-recycling',

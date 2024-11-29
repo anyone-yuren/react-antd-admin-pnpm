@@ -6,12 +6,14 @@ import { useTranslation } from 'react-i18next';
 import LazyLoad from '@/components/LazyLoad';
 
 import { LayoutGuard } from '../guard';
+import AuthenticatedRoute from '../hooks/permission';
 
 import type { RouteObject } from '../types';
 
 // user module page
 const UserRoute: RouteObject = {
   path: '/no-change',
+  element: <AuthenticatedRoute requiresAuth={'/no-change'} />,
   meta: {
     title: '无动态物资',
     icon: 'gbeata-material-symbols:info-outline-rounded',

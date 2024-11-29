@@ -19,7 +19,7 @@ const PageException: FC = () => {
   const { status, withCard } = useLoaderData() as { status: any; withCard: boolean };
 
   const goHome = () => {
-    navigate('/home');
+    navigate('/');
   };
 
   const WithCard = ({ children }: { children: ReactNode }) => {
@@ -42,7 +42,7 @@ const PageException: FC = () => {
         subTitle={subTitleMap.get(status)}
         extra={
           <Button type='primary' onClick={goHome}>
-            {t('返回首页')}
+            {t('返回')}
           </Button>
         }
       />

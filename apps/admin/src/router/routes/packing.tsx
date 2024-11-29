@@ -6,12 +6,14 @@ import { useTranslation } from 'react-i18next';
 import LazyLoad from '@/components/LazyLoad';
 
 import { LayoutGuard } from '../guard';
+import AuthenticatedRoute from '../hooks/permission';
 
 import type { RouteObject } from '../types';
 
 // user module page
 const UserRoute: RouteObject = {
   path: '/picking',
+  element: <AuthenticatedRoute requiresAuth={'/picking'} />,
   meta: {
     title: '领料明细统计',
     icon: 'gbeata-pajamas:details-block',

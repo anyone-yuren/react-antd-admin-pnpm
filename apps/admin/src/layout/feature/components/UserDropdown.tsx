@@ -64,6 +64,7 @@ export default function UserDropdown() {
       content: <span>{t('是否确认退出系统?')}</span>,
       onOk: async () => {
         await logoutAction(true);
+        useAuthStore.persist.clearStorage();
       },
     });
   };
