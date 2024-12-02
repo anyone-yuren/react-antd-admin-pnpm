@@ -3,6 +3,7 @@ import { Col, Flex, Table, Typography } from 'antd';
 import { useTheme } from 'antd-style';
 import classNames from 'classnames';
 import { t } from 'i18next';
+import { cloneDeep } from 'lodash-es';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import CountUp from 'react-countup';
 import { useTranslation } from 'react-i18next';
@@ -30,9 +31,14 @@ export const AnalyzeCard = (props: any) => {
     return (num / 10000).toFixed(2);
   };
   const { sumData, ajaxLoading, totalAmountSummary } = props;
+
+  const sumData1 = cloneDeep(sumData);
+
+  console.log(sumData1, '子');
+
   // const { activeOrgCode } = useWarehouseOptions();
   // const {
-  //   data: sumData,
+  //   data: sumData1,
   //   error,
   //   loading: ajaxLoading,
   // } = useRequest(() => {
@@ -42,10 +48,10 @@ export const AnalyzeCard = (props: any) => {
   const token = useTheme();
 
   const getSumDataByKey = useCallback(
-    (key: keyof typeof sumData.resultData): number => {
-      return ((sumData?.resultData?.[key] || 0) / 10000).toFixed(2);
+    (key: keyof typeof sumData1.resultData): number => {
+      return ((sumData1?.resultData?.[key] || 0) / 10000).toFixed(2);
     },
-    [sumData],
+    [sumData1],
   );
 
   const columns = [
@@ -72,20 +78,25 @@ export const AnalyzeCard = (props: any) => {
   ];
 
   const memoRender = useCallback(() => {
-    if (!sumData) {
+    if (!sumData1) {
       return {};
     }
-    const { resultData = {} } = sumData;
+    const { resultData = {} } = sumData1;
     const { receiptSummary = [], invoiceSummary = [] } = resultData;
+
+    const receiptSummary1 = cloneDeep(receiptSummary);
+
+    const invoiceSummary1 = cloneDeep(invoiceSummary);
+
     // 遍历receiptSummary将数据转换为万
-    receiptSummary.forEach((item: any) => {
+    receiptSummary1.forEach((item: any) => {
       item.year = convertToWan(item.year);
       item.month = convertToWan(item.month);
       item.day = convertToWan(item.day);
     });
 
-    // 遍历invoiceSummary将数据转换为万
-    invoiceSummary.forEach((item: any) => {
+    // // 遍历invoiceSummary将数据转换为万
+    invoiceSummary1.forEach((item: any) => {
       item.year = convertToWan(item.year);
       item.month = convertToWan(item.month);
       item.day = convertToWan(item.day);
@@ -93,16 +104,16 @@ export const AnalyzeCard = (props: any) => {
 
     // const arrayReceiptSummary = Object.keys(receiptSummary);
     const renderReceiptSummary = () => {
-      return <Table size='small' pagination={false} dataSource={receiptSummary} columns={columns} />;
+      return <Table size='small' pagination={false} dataSource={receiptSummary1} columns={columns} />;
     };
     const renderInvoiceSummary = () => {
-      return <Table size='small' pagination={false} dataSource={invoiceSummary} columns={columns} />;
+      return <Table size='small' pagination={false} dataSource={invoiceSummary1} columns={columns} />;
     };
     return {
       renderReceiptSummary,
       renderInvoiceSummary,
     };
-  }, [sumData]);
+  }, [sumData1]);
 
   const totalOptions = useCallback(() => {
     if (!totalAmountSummary) {
@@ -173,7 +184,7 @@ export const AnalyzeCard = (props: any) => {
                 {getSumDataByKey('totalReceiptAmount')} 万元
               </Title>
             </div>
-            <div>{sumData && memoRender()?.renderReceiptSummary()}</div>
+            <div>{sumData1 && memoRender()?.renderReceiptSummary()}</div>
           </div>
         </BaseCard>
       </Col>
@@ -187,7 +198,7 @@ export const AnalyzeCard = (props: any) => {
                 {getSumDataByKey('currentTotal')} 万元
               </Title>
             </div>
-            <div>{sumData && memoRender()?.renderInvoiceSummary()}</div>
+            <div>{sumData1 && memoRender()?.renderInvoiceSummary()}</div>
           </div>
         </BaseCard>
       </Col>

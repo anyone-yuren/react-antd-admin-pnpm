@@ -37,7 +37,7 @@ const HomePage: any = () => {
   return (
     <div className={styles['home-container']}>
       <Row gutter={[16, 16]}>
-        <AnalyzeCard sumData={sumData} ajaxLoading={ajaxLoading} totalAmountSummary={totalAmountSummary} />
+        <AnalyzeCard sumData={{ ...sumData }} ajaxLoading={ajaxLoading} totalAmountSummary={totalAmountSummary} />
         {/* <Col span={12}>
           <BarChart />
         </Col>
