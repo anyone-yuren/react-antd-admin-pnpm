@@ -154,7 +154,7 @@ function Home() {
                 </div>
                 <div className='gutter-box'>
                   <div className='card'>
-                    <div className='card-title'>供应商物资领用价值</div>
+                    <div className='card-title'>物资累计领用金额</div>
                     <OldChart style={{ height: 'calc( 100% - 50px)' }} data={tatalData.invoiceSupplierSummaryList} />
                   </div>
                 </div>
@@ -314,12 +314,12 @@ function Home() {
                   />
                 </div>
                 <div className='card' style={{ height: '100%' }}>
-                  <div className='card-title'>到货金额</div>
+                  <div className='card-title'>供货商累计到货金额</div>
                   <PayChart style={{ height: 'calc( 100% - 50px)' }} data={tatalData?.supplierSummaryList} />
                   {/* <ScrollBoard config={{ ...amountConfig }} style={{ height: 'calc( 100% - 50px)' }} /> */}
                 </div>
                 <div className='card' style={{ height: '100%' }}>
-                  <div className='card-title'>供货商入库价值</div>
+                  <div className='card-title'>供货商库存金额</div>
                   <ScrollBoard
                     config={{
                       ...outConfig,
