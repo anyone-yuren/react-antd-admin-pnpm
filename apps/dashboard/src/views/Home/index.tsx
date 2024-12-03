@@ -152,10 +152,14 @@ function Home() {
                     style={{ height: 'calc( 100% - 50px)' }}
                   /> */}
                 </div>
-                <div className='gutter-box'>
+                <div className='gutter-box' style={{ padding: '0px' }}>
                   <div className='card'>
                     <div className='card-title'>物资累计领用金额</div>
-                    <OldChart style={{ height: 'calc( 100% - 50px)' }} data={tatalData.invoiceSupplierSummaryList} />
+                    {tatalData.invoiceSupplierSummaryList ? (
+                      <OldChart style={{ height: 'calc( 100% - 50px)' }} data={tatalData.invoiceSupplierSummaryList} />
+                    ) : (
+                      <Skeleton active />
+                    )}
                   </div>
                 </div>
                 {/* </Col> */}
@@ -196,10 +200,7 @@ function Home() {
                         <Col span={12}>
                           <div className='box'>
                             <div className='count'>
-                              {(
-                                tatalData?.inOrderTotal / (tatalData?.inOrderTotal + tatalData?.inOrderNotTotal) || 1
-                              ).toFixed(2) * 100}
-                              %
+                              {(1 - tatalData?.inOrderNotTotal / tatalData?.inOrderTotal || 1).toFixed(2) * 100}%
                             </div>
                             <div className='dec'>入库完成率</div>
                           </div>
@@ -227,10 +228,7 @@ function Home() {
                         <Col span={12}>
                           <div className='box'>
                             <div className='count'>
-                              {(
-                                tatalData?.outOrderTotal / (tatalData?.outOrderTotal + tatalData?.outOrderNotTotal) || 1
-                              ).toFixed(2) * 100}
-                              %
+                              {(1 - tatalData?.outOrderNotTotal / tatalData?.outOrderTotal || 1).toFixed(2) * 100}%
                             </div>
                             <div className='dec'>出库完成率</div>
                           </div>
@@ -254,7 +252,11 @@ function Home() {
                       <div className='gutter-box'>
                         <div className='card'>
                           <div className='card-title'>区队领用消耗</div>
-                          <TransferChart style={{ height: 'calc(100% - 50px' }} data={tatalData.outOrgTotal} />
+                          {tatalData.outOrgTotal ? (
+                            <TransferChart style={{ height: 'calc(100% - 50px' }} data={tatalData.outOrgTotal} />
+                          ) : (
+                            <Skeleton active />
+                          )}
                         </div>
                       </div>
                     </BorderBox10>
@@ -315,7 +317,11 @@ function Home() {
                 </div>
                 <div className='card' style={{ height: '100%' }}>
                   <div className='card-title'>供货商累计到货金额</div>
-                  <PayChart style={{ height: 'calc( 100% - 50px)' }} data={tatalData?.supplierSummaryList} />
+                  {tatalData?.supplierSummaryList ? (
+                    <PayChart style={{ height: 'calc( 100% - 50px)' }} data={tatalData?.supplierSummaryList} />
+                  ) : (
+                    <Skeleton active />
+                  )}
                   {/* <ScrollBoard config={{ ...amountConfig }} style={{ height: 'calc( 100% - 50px)' }} /> */}
                 </div>
                 <div className='card' style={{ height: '100%' }}>
@@ -323,7 +329,7 @@ function Home() {
                   <ScrollBoard
                     config={{
                       ...outConfig,
-                      data: tatalData?.supplierSummaryList?.map((item) => {
+                      data: tatalData?.supplierInventoryList?.map((item) => {
                         const datas = values(item);
                         datas[1] = `${Math.round((datas[1] / 10000) * 100) / 100}万元`;
                         // datas[2] = `${parseFloat(datas[2].toFixed(2))}%`;

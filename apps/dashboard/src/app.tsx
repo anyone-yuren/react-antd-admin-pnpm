@@ -48,7 +48,7 @@ export default function App() {
   return (
     <GlobalConfig>
       <ThemeProvider
-        defaultThemeMode='light'
+        defaultThemeMode='dark'
         theme={{
           token: {
             colorPrimary: preset,
