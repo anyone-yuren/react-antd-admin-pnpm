@@ -12,7 +12,7 @@ import { useAuthStore } from '@/store/Auth';
 import OldChart from './components/oldChart';
 import PayChart from './components/payChart';
 import TransferChart from './components/transferChart';
-import { amountConfig, consumeConfig, deliveryConfig, errorConfig, outConfig } from './data';
+import { amountConfig, consumeConfig, deliveryConfig, errorConfig, errorConfig1, outConfig } from './data';
 import useStyles from './index.style';
 
 const { Header, Content } = Layout;
@@ -130,7 +130,7 @@ function Home() {
                   {tatalData?.materialMonthlyChangeList ? (
                     <ScrollBoard
                       config={{
-                        ...errorConfig,
+                        ...errorConfig1,
                         data: tatalData?.materialMonthlyChangeList?.map((item) => {
                           const datas = values(item);
                           datas[3] = `<div style="color:${datas[2] > 0 ? 'green' : 'red'};display: flex; align-items: center; gap: 4px"><span style="width:4px;height:4px;border-radius:50%;display:inline-block;background:${datas[2] > 0 ? 'green' : 'red'}"></span>${parseFloat(datas[2].toFixed(2))}%</div>`;
