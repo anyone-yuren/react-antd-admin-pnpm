@@ -26,6 +26,7 @@ export const errorConfig = {
   header: [
     '<span style="color:#6FBAFF">单位</span>',
     '<span style="color:#6FBAFF">物料名称</span>',
+    '<span style="color:#6FBAFF">上月/本月</span>',
     '<span style="color:#6FBAFF">占比</span>',
   ],
   data: [

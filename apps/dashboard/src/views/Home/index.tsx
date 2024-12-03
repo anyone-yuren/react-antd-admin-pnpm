@@ -133,7 +133,8 @@ function Home() {
                         ...errorConfig,
                         data: tatalData?.materialMonthlyChangeList?.map((item) => {
                           const datas = values(item);
-                          datas[2] = `${parseFloat(datas[2].toFixed(2))}%`;
+                          datas[3] = `<div style="color:${datas[2] > 0 ? 'green' : 'red'};display: flex; align-items: center; gap: 4px"><span style="width:4px;height:4px;border-radius:50%;display:inline-block;background:${datas[2] > 0 ? 'green' : 'red'}"></span>${parseFloat(datas[2].toFixed(2))}%</div>`;
+
                           // 去除datas最后一项
                           return datas;
                         }),

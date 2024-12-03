@@ -433,8 +433,6 @@ const TransferChart = (props) => {
       res3[t] = monthAmount[t].value;
     }
 
-    console.log(transferConfig);
-
     option.options.push({
       title: {
         text: `${transferConfig?.areas[n]}`,
