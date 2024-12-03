@@ -127,30 +127,22 @@ function Home() {
                 </div> */}
                 <div className='card' style={{ height: '100%' }}>
                   <div className='card-title'>异常消耗情况</div>
-                  <div
-                    style={{
-                      height: 'calc( 100% - 50px)',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <Empty description={<span style={{ color: '#fff' }}>暂无数据</span>} />
-                  </div>
-
-                  {/* <ScrollBoard
-                    config={{
-                      ...errorConfig,
-                      data: tatalData?.orgTotalPriceList?.map((item) => {
-                        const datas = values(item);
-                        datas[1] = `${parseFloat(datas[1].toFixed(2))}万元`;
-                        datas[2] = parseFloat(datas[2].toFixed(2));
-                        // 去除datas最后一项
-                        return datas.slice(0, -1);
-                      }),
-                    }}
-                    style={{ height: 'calc( 100% - 50px)' }}
-                  /> */}
+                  {tatalData?.materialMonthlyChangeList ? (
+                    <ScrollBoard
+                      config={{
+                        ...errorConfig,
+                        data: tatalData?.materialMonthlyChangeList?.map((item) => {
+                          const datas = values(item);
+                          datas[2] = `${parseFloat(datas[2].toFixed(2))}%`;
+                          // 去除datas最后一项
+                          return datas;
+                        }),
+                      }}
+                      style={{ height: 'calc( 100% - 50px)' }}
+                    />
+                  ) : (
+                    <Skeleton active />
+                  )}
                 </div>
                 <div className='gutter-box' style={{ padding: '0px' }}>
                   <div className='card'>

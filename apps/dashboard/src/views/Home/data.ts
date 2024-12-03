@@ -24,9 +24,9 @@ export const errorConfig = {
   headerBGC: 'transparent',
   oddRowBGC: 'transparent',
   header: [
-    '<span style="color:#6FBAFF">组织单位</span>',
-    '<span style="color:#6FBAFF">总值</span>',
-    // '<span style="color:#6FBAFF">总值占比</span>',
+    '<span style="color:#6FBAFF">单位</span>',
+    '<span style="color:#6FBAFF">物料名称</span>',
+    '<span style="color:#6FBAFF">占比</span>',
   ],
   data: [
     ['行1列1', '行1列2', '行1列3'],

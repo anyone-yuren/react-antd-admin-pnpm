@@ -11,7 +11,11 @@ const TransferChart = (props) => {
   useEffect(() => {
     if (!data?.length) return;
     const serviceData = {};
-    serviceData.areas = map(data, 'orgName');
+    serviceData.areas = map(
+      data,
+      ({ orgName, yearAmount, monthAmount }) =>
+        `${orgName}(${(parseFloat(yearAmount) / 10000).toFixed(2)}万/年-/${(parseFloat(monthAmount) / 10000).toFixed(2)}万/月)`,
+    );
     serviceData.jdData = map(data, (item) => {
       return map(item.items, 'deptName');
     });
@@ -429,12 +433,15 @@ const TransferChart = (props) => {
       res3[t] = monthAmount[t].value;
     }
 
+    console.log(transferConfig);
+
     option.options.push({
       title: {
         text: `${transferConfig?.areas[n]}`,
         top: '2%',
         textStyle: {
           color: '#66FFFF',
+          fontSize: 20,
         },
       },
       yAxis: {
