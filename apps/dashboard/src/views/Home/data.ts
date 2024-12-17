@@ -47,8 +47,8 @@ export const errorConfig1 = {
   header: [
     '<span style="color:#6FBAFF">单位</span>',
     '<span style="color:#6FBAFF">物料名称</span>',
-    '<span style="color:#6FBAFF">上月/本月</span>',
-    '<span style="color:#6FBAFF">占比</span>',
+    '<span style="color:#6FBAFF">增减比</span>',
+    '<span style="color:#6FBAFF">平均/上月</span>',
   ],
   data: [
     ['行1列1', '行1列2', '行1列3'],

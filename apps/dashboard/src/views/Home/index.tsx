@@ -133,7 +133,9 @@ function Home() {
                         ...errorConfig1,
                         data: tatalData?.materialMonthlyChangeList?.map((item) => {
                           const datas = values(item);
-                          datas[3] = `<div style="color:${datas[2] > 0 ? 'green' : 'red'};display: flex; align-items: center; gap: 4px"><span style="width:4px;height:4px;border-radius:50%;display:inline-block;background:${datas[2] > 0 ? 'green' : 'red'}"></span>${parseFloat(datas[2].toFixed(2))}%</div>`;
+                          datas[3] = `${datas[3]} / ${datas[4]}`;
+                          datas[2] = `<div style="color:${datas[2] > 0 ? 'green' : 'red'};display: flex; align-items: center; gap: 4px"><span style="width:4px;height:4px;border-radius:50%;display:inline-block;background:${datas[2] > 0 ? 'green' : 'red'}"></span>${parseFloat(datas[2].toFixed(2))}%</div>`;
+                          datas.pop();
 
                           // 去除datas最后一项
                           return datas;
@@ -193,7 +195,11 @@ function Home() {
                         <Col span={12}>
                           <div className='box'>
                             <div className='count'>
-                              {(1 - tatalData?.inOrderNotTotal / tatalData?.inOrderTotal || 1).toFixed(2) * 100}%
+                              {(
+                                parseFloat((1 - tatalData?.inOrderNotTotal / tatalData?.inOrderTotal || 1).toFixed(2)) *
+                                100
+                              ).toFixed(0)}
+                              %
                             </div>
                             <div className='dec'>入库完成率</div>
                           </div>
@@ -221,7 +227,13 @@ function Home() {
                         <Col span={12}>
                           <div className='box'>
                             <div className='count'>
-                              {(1 - tatalData?.outOrderNotTotal / tatalData?.outOrderTotal || 1).toFixed(2) * 100}%
+                              {(
+                                parseFloat(
+                                  (1 - tatalData?.outOrderNotTotal / tatalData?.outOrderTotal || 1).toFixed(2),
+                                ) * 100
+                              ).toFixed(0)}
+                              %
+                              {/* {(1 - tatalData?.outOrderNotTotal / tatalData?.outOrderTotal || 1).toFixed(2) * 100}% */}
                             </div>
                             <div className='dec'>出库完成率</div>
                           </div>
