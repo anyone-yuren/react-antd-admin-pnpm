@@ -67,6 +67,11 @@ export default function Stock() {
       key: 'materialName',
     },
     {
+      title: '物料编码',
+      key: 'materialCode',
+      width: '220px',
+    },
+    {
       title: '库位编码',
       key: 'locationCode',
       width: '220px',
