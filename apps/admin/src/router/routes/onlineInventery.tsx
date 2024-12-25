@@ -15,8 +15,8 @@ const UserRoute: RouteObject = {
   path: '/onlineInventery',
   element: <AuthenticatedRoute requiresAuth={'/onlineInventery'} />,
   meta: {
-    title: '在线库存',
-    icon: 'gbeata-material-symbols:online-prediction',
+    title: '现存量',
+    icon: 'gbeata-material-symbols:delete-sweep-outline-sharp',
     orderNo: 3,
     iconSize: 20,
     hideChildrenInMenu: true,

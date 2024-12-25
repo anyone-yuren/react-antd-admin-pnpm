@@ -70,6 +70,7 @@ export default function Stock() {
       title: '物料编码',
       key: 'materialCode',
       width: '220px',
+      search: true,
     },
     {
       title: '库位编码',
@@ -105,6 +106,13 @@ export default function Stock() {
       title: '供应商',
       width: '220px',
       key: 'supplierName',
+      // search: true
+    },
+    {
+      title: '供应商编码',
+      width: '220px',
+      key: 'supplierCode',
+      search: true,
     },
     {
       title: '收货日期',
