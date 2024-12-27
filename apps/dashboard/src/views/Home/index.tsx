@@ -134,7 +134,7 @@ function Home() {
                         data: tatalData?.materialMonthlyChangeList?.map((item) => {
                           const datas = values(item);
                           datas[3] = `${datas[3]} / ${datas[4]}`;
-                          datas[2] = `<div style="color:${datas[2] > 0 ? 'green' : 'red'};display: flex; align-items: center; gap: 4px"><span style="width:4px;height:4px;border-radius:50%;display:inline-block;background:${datas[2] > 0 ? 'green' : 'red'}"></span>${parseFloat(datas[2].toFixed(2))}%</div>`;
+                          datas[2] = `<div style="color:${datas[2] > 0 ? 'green' : 'red'};display: flex; align-items: center; gap: 4px"><span style="width:4px;height:4px;border-radius:50%;display:inline-block;background:${datas[2] > 0 ? 'green' : 'red'}"></span>${parseFloat((datas[2] * 100).toFixed(2))}%</div>`;
                           datas.pop();
 
                           // 去除datas最后一项
