@@ -214,7 +214,7 @@ export default function Demo() {
 
   useEffect(() => {
     // 默认行为或重定向逻辑
-    countApi({});
+    countApi({ orgCode: activeOrgCode });
     // window.location.href = '/login';
   }, []);
 

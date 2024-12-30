@@ -169,9 +169,19 @@ export default function Demo() {
     ),
   };
 
-  const { data: countData } = useRequest(GetInventoryStatisticsByDate, {
+  // const { data: countData } = useRequest(GetInventoryStatisticsByDate, {
+  //   defaultParams: [{ orgCode: activeOrgCode }],
+  // });
+  const { data: countData, run: countApi } = useRequest(GetInventoryStatisticsByDate, {
     defaultParams: [{ orgCode: activeOrgCode }],
+    manual: true,
   });
+
+  useEffect(() => {
+    // 默认行为或重定向逻辑
+    countApi({});
+    // window.location.href = '/login';
+  }, []);
 
   const handleDownload = async (obj) => {
     const orgLabel = orgOptions

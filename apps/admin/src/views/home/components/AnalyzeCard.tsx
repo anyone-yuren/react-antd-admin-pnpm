@@ -195,7 +195,7 @@ export const AnalyzeCard = (props: any) => {
               <Text strong>{t('出库总金额')}:</Text>
               <Title ellipsis level={3} style={{ margin: 0 }}>
                 {/* <CountUp start={0} end={getSumDataByKey('totalInvoiceAmount')} duration={3} /> */}
-                {getSumDataByKey('currentTotal')} 万元
+                {getSumDataByKey('totalInvoiceAmount')} 万元
               </Title>
             </div>
             <div>{sumData1 && memoRender()?.renderInvoiceSummary()}</div>
