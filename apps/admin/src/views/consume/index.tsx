@@ -65,7 +65,7 @@ export default function Demo() {
   return (
     <GSearchTable
       api={GetPageInventoryCostl}
-      extendSearchParams={{ orgCode: activeOrgCode }}
+      extendSearchParams={{ orgCode: activeOrgCode || '' }}
       fields={fields}
       rowKey='id'
       onLoad={(res) => {

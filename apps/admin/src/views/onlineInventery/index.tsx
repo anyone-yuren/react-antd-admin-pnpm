@@ -80,6 +80,16 @@ export default function Demo() {
       key: 'batchNumber',
       search: true,
     },
+    {
+      title: '供应商名称',
+      key: 'supplierName',
+      search: true,
+    },
+    {
+      title: '供应商编码',
+      key: 'supplierCode',
+      search: true,
+    },
   ];
   const handleDownload = async (obj) => {
     let fileName = '全部';
@@ -105,6 +115,10 @@ export default function Demo() {
         rowKey='sort_id'
         dialogFormExtend={{
           fields,
+        }}
+        tableExtend={{
+          bordered: true,
+          scroll: { x: 1200 },
         }}
       >
         <GButton type='primary' onClick={() => setOpen(true)}>

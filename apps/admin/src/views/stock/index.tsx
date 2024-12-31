@@ -106,7 +106,7 @@ export default function Stock() {
       title: '供应商',
       width: '220px',
       key: 'supplierName',
-      // search: true
+      search: true,
     },
     {
       title: '供应商编码',

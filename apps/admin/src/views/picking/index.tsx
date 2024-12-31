@@ -91,6 +91,18 @@ export default function Demo() {
       width: 240,
       search: true,
     },
+    {
+      title: '供应商名称',
+      key: 'supplierName',
+      width: 240,
+      search: true,
+    },
+    {
+      title: '供应商编码',
+      key: 'supplierCode',
+      width: 240,
+      search: true,
+    },
   ];
   return (
     <GSearchTable

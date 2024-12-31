@@ -10,6 +10,8 @@ import {
 } from 'gbeata';
 import { useRef, useState } from 'react';
 
+import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
+
 import G6Modal from './components/g6Modal';
 import TreeModal from './components/treeModal';
 
@@ -18,6 +20,7 @@ export default function Demo() {
     maxResultCount: 10,
     skipCount: 1,
   });
+  const { activeOrgCode } = useWarehouseOptions();
   const requestRef = useRef<any>();
   setDefaultDataFilter((res: any) => {
     return {
@@ -107,7 +110,7 @@ export default function Demo() {
     <>
       <GSearchTable
         api={() => {
-          return coddingEndList(requestRef.current);
+          return coddingEndList({ ...requestRef.current, orgCode: activeOrgCode || '' });
         }}
         ctrl={ctrl}
         fields={fields}
@@ -116,12 +119,13 @@ export default function Demo() {
           fields,
         }}
         beforeSearch={(params) => {
-          return { ...requestRef.current };
+          return { ...requestRef.current, orgCode: activeOrgCode };
         }}
         onParamsChange={({ pagination, search }) => {
           requestRef.current = {
             maxResultCount: pagination.pageSize,
             skipCount: (pagination.current - 1) * pagination.pageSize,
+            orgCode: activeOrgCode,
             ...search,
           };
         }}
