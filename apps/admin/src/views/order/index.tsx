@@ -122,7 +122,7 @@ export default function Order() {
     },
     {
       title: '批次',
-      key: 'unitName',
+      key: 'batchNumber',
     },
     {
       title: '应收',
