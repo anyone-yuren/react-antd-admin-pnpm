@@ -4,6 +4,7 @@ import { useTheme } from 'antd-style';
 import classNames from 'classnames';
 import { t } from 'i18next';
 import { cloneDeep } from 'lodash-es';
+import { title } from 'process';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import CountUp from 'react-countup';
 import { useTranslation } from 'react-i18next';
@@ -125,12 +126,22 @@ export const AnalyzeCard = (props: any) => {
     const amountStrs = resultData.map((item: any) => convertToWan(item.amount));
 
     const option = {
-      tooltip: {},
-      legend: {
-        data: [''],
+      title: {
+        text: '组织库存金额',
+        left: 'left',
+        top: '0%',
       },
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'cross',
+        },
+      },
+      // legend: {
+      //   data: [''],
+      // },
       grid: {
-        top: '3%',
+        top: '15%',
         left: '2%',
         right: '2%',
         bottom: '0%',
@@ -150,6 +161,23 @@ export const AnalyzeCard = (props: any) => {
           name: '金额',
           type: 'bar',
           data: amountStrs,
+        },
+      ],
+      dataZoom: [
+        {
+          type: 'slider', // 滑动条
+          show: true, // 显示在图表底部
+          start: 0, // 显示数据起始百分比
+          end: 100, // 显示数据结束百分比
+          xAxisIndex: 0, // 关联到 X 轴
+          height: 10, // 滑动条高度
+          bottom: '0%', // 调整位置避免遮挡图例
+        },
+        {
+          type: 'inside', // 内部缩放
+          xAxisIndex: 0, // 关联到 X 轴
+          start: 0,
+          end: 100,
         },
       ],
     };

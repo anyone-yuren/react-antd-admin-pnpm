@@ -30,21 +30,6 @@ export default function Demo() {
   });
   const fields: Array<GSearchTableField> = [
     {
-      title: '物料名称',
-      width: 180,
-      key: 'materialName',
-      fixed: 'left',
-    },
-    {
-      title: '唯一编码',
-      key: 'no',
-      width: 200,
-      search: true,
-      dialog: {
-        required: true,
-      },
-    },
-    {
       title: '组织',
       key: 'tenantName',
       width: 200,
@@ -61,6 +46,21 @@ export default function Demo() {
       dialog: true,
     },
     {
+      title: '物料名称',
+      width: 180,
+      key: 'materialName',
+      fixed: 'left',
+    },
+    {
+      title: '唯一编码',
+      key: 'no',
+      width: 200,
+      search: true,
+      dialog: {
+        required: true,
+      },
+    },
+    {
       title: '物料编码',
       key: 'materialCode',
       width: 180,
@@ -70,11 +70,13 @@ export default function Demo() {
       title: '订单号',
       width: 180,
       key: 'orderNo',
+      search: true,
     },
     {
       title: '批次号',
       width: 180,
       key: 'batchNo',
+      search: true,
     },
     {
       title: '规格型号',

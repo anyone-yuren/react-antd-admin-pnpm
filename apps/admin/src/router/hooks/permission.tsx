@@ -17,8 +17,6 @@ const AuthenticatedRoute = ({ requiresAuth }) => {
 
   const { menus } = userInfo;
 
-  console.log(userInfo);
-
   const menusAtt = menus?.split(',') || [];
 
   return (

@@ -92,6 +92,7 @@ export default function Demo() {
       title: '物料名称',
       key: 'materialName',
       width: 200,
+      search: true,
     },
     {
       title: '物料编号',
@@ -107,6 +108,7 @@ export default function Demo() {
     {
       title: '订单类型',
       key: 'orderType',
+      search: true,
       width: 200,
     },
     {
@@ -144,6 +146,12 @@ export default function Demo() {
     },
     {
       title: '批次号',
+      key: 'batchNumber',
+      search: true,
+      width: 200,
+    },
+    {
+      title: '订单号',
       key: 'batchNumber',
       search: true,
       width: 200,

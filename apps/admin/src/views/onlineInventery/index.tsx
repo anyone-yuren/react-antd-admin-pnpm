@@ -61,6 +61,7 @@ export default function Demo() {
     {
       title: '物料名称',
       key: 'materialName',
+      search: true,
     },
     {
       title: '物料编码',
@@ -73,6 +74,14 @@ export default function Demo() {
     },
     {
       title: '数量',
+      key: 'quantity',
+    },
+    {
+      title: '单价',
+      key: 'quantity',
+    },
+    {
+      title: '总价',
       key: 'quantity',
     },
     {

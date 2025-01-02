@@ -17,6 +17,9 @@ import {
 import { difference } from 'ramda';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
+import BaseCharts from '@/components/BaseChart';
+import Loading from '@/components/LazyLoad/src/Loading';
+
 import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
 
 import { downloadFile } from '@/utils/download';
@@ -185,7 +188,11 @@ export default function Demo() {
     ),
   };
 
-  const { data: countData, run: countApi } = useRequest(GetInventoryStatisticsByDate, {
+  const {
+    data: countData,
+    run: countApi,
+    loading: countLoading,
+  } = useRequest(GetInventoryStatisticsByDate, {
     defaultParams: [{ orgCode: activeOrgCode }],
     manual: true,
   });
@@ -217,6 +224,83 @@ export default function Demo() {
     countApi({ orgCode: activeOrgCode });
     // window.location.href = '/login';
   }, []);
+
+  const renderChart = useMemo(() => {
+    const data = countData?.resultData;
+    const xAxisData = data?.map((item) => item.date);
+    const countDataRow = data?.map((item) => item.count);
+    const amountData = data?.map((item) => item.amount);
+    const option = {
+      title: {
+        text: '超龄汇总',
+        left: 'center',
+      },
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'cross',
+        },
+      },
+      legend: {
+        data: ['条数', '价值'],
+        top: '10%',
+      },
+      xAxis: {
+        type: 'category',
+        data: xAxisData,
+        axisLabel: {
+          rotate: 45, // 旋转标签以防止重叠
+        },
+      },
+      yAxis: [
+        {
+          type: 'value',
+          name: '条数',
+          position: 'left',
+          axisLine: {
+            lineStyle: {
+              color: '#5470C6',
+            },
+          },
+        },
+        {
+          type: 'value',
+          name: '价值',
+          position: 'right',
+          axisLine: {
+            lineStyle: {
+              color: '#91CC75',
+            },
+          },
+        },
+      ],
+      series: [
+        {
+          name: '条数',
+          type: 'bar',
+          data: countDataRow,
+          yAxisIndex: 0,
+          itemStyle: {
+            color: '#5470C6',
+          },
+        },
+        {
+          name: '价值',
+          type: 'line',
+          data: amountData,
+          yAxisIndex: 1,
+          lineStyle: {
+            color: '#91CC75',
+          },
+          itemStyle: {
+            color: '#91CC75',
+          },
+        },
+      ],
+    };
+
+    return <BaseCharts option={option} height={300} />;
+  }, [countData]);
 
   return (
     <>
@@ -261,37 +345,7 @@ export default function Demo() {
         onLoad={(res) => {
           // countApi({ orgCode: activeOrgCode, ...params.query });
         }}
-        title={
-          <div className='flex flex-col'>
-            超龄物资总数：
-            <div className='flex'>
-              <div className='flex items-center flex-wrap'>
-                {countData?.resultData?.map((item) => {
-                  if (!item.count) return null;
-                  return (
-                    <>
-                      <div className='flex items-center'>
-                        {item.date} : {item.count}条，总价值 : {(item.amount / 10000).toFixed(2)}万
-                      </div>
-                      <Divider type='vertical' />
-                    </>
-                  );
-                })}
-              </div>
-            </div>
-            <div>
-              库龄图例：<Badge color='yellow' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>三月
-              <Divider type='vertical' />
-              <Badge color='red' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>半年
-              <Divider type='vertical' />
-              <Badge color='purple' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>一年
-              <Divider type='vertical' />
-              <Badge color='blue' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>三年
-              <Divider type='vertical' />
-              <Badge color='gray' style={{ transform: 'scale(1.4)' }} text={<span></span>}></Badge>五年
-            </div>
-          </div>
-        }
+        tableHeader={<div>{countLoading ? <Loading /> : renderChart}</div>}
       >
         {/* <GButton type='primary' onClick={handleDownload}>
           导出

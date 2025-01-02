@@ -5,10 +5,14 @@ export interface ChartsProp {
   option: any;
   height?: number;
   click?: (params: any) => void;
+  ref?: any;
 }
 
 const BaseCharts = (prop: ChartsProp) => (
   <ReactECharts
+    onChartReady={(chart: any) => {
+      prop.ref && prop.ref(chart);
+    }}
     opts={{ renderer: 'svg' }}
     style={{ height: prop.height || '300px' }}
     onEvents={{

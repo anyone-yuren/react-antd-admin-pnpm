@@ -1,138 +1,86 @@
-import {
-  GAction,
-  GButton,
-  GCtrl,
-  GDialogForm,
-  GSearchTable,
-  type GSearchTableField,
-  type GTableCtrlField,
-  type Record,
-} from 'gbeata';
+import { GButton, GDialogForm, GSearchTable, type GSearchTableField } from 'gbeata';
 import { useState } from 'react';
 
 import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
 
 import { downloadFile } from '@/utils/download';
 
-import { GetRealtimeInventories } from '@/api/summary';
+import { GetMaterialMonthlyChangeDetail } from '@/api/summary';
 
-import { listApi } from './api';
-
-const ctrl: GTableCtrlField = {
-  render: (_, record: Record) => (
-    <GCtrl>
-      <GAction record={record} action='view'>
-        详情
-      </GAction>
-      <GAction record={record} action='update'>
-        编辑
-      </GAction>
-    </GCtrl>
-  ),
-};
-
-export default function Stock() {
-  const [warehouseCode, setWarehouseCode] = useState('');
+export default function Abnormal() {
   const { activeOrgCode, warehouseOptions, orgOptions } = useWarehouseOptions();
-  const [open, setOpen] = useState(false);
   const [initialValues, setInitialValues] = useState({});
-
+  const [warehouseCode, setWarehouseCode] = useState('');
+  const [open, setOpen] = useState(false);
   const fields: Array<GSearchTableField> = [
     {
       title: '组织',
-      width: '120px',
       key: 'orgName',
     },
-    {
-      title: '仓库',
-      key: 'warehouseName',
-      width: '120px',
-      search: false,
-    },
-    {
-      title: '仓库',
-      key: 'warehouseCode',
-      type: 'select-search',
-      options: warehouseOptions,
-      search: {
-        onChange: (value, _) => {
-          setWarehouseCode(value);
-        },
-      },
-      table: false,
-    },
+    // {
+    //   title: '仓库',
+    //   key: 'warehouseName',
+    //   search: false,
+    // },
+    // {
+    //   title: '仓库',
+    //   key: 'warehouseCode',
+    //   type: 'select-search',
+    //   options: warehouseOptions,
+    //   search: {
+    //     onChange: (value, _) => {
+    //       setWarehouseCode(value);
+    //     },
+    //   },
+    //   table: false,
+    // },
     {
       title: '物料名称',
-      width: '120px',
       key: 'materialName',
       search: true,
     },
     {
       title: '物料编码',
       key: 'materialCode',
-      width: '220px',
       search: true,
     },
     {
-      title: '库位编码',
-      key: 'locationCode',
-      width: '220px',
-      search: true,
+      title: '去年平均消耗',
+      key: 'average',
     },
     {
-      title: '型号',
-      key: 'materialModel',
-    },
-    {
-      title: '规格',
-      width: '120px',
-      key: 'materialSize',
-    },
-    {
-      title: '单价 （元）',
-      key: 'unitPriceStr',
-      width: '120px',
-    },
-    {
-      title: '数量',
+      title: '单月消耗',
       key: 'quantity',
-      width: '120px',
     },
     {
-      title: '金额 (元)',
-      key: 'amountStr',
-      width: '120px',
+      title: '增减比率',
+      key: 'value',
+      render: (text, record) => {
+        return `${(text * 100).toFixed(2)}%`;
+      },
     },
     {
-      title: '批次',
-      key: 'batch',
+      title: '增减状态',
+      key: 'status',
+      renderType: 'switch',
+      type: 'radio-group',
+      render: (text, record) => {
+        const { value } = record;
+        return value > 0 ? '增加' : '减少';
+      },
+      options: [
+        {
+          label: '增加',
+          value: 1,
+        },
+        {
+          label: '减少',
+          value: 2,
+        },
+      ],
       search: true,
-      width: '120px',
-    },
-    {
-      title: '总价',
-      key: 'amountStr',
-      width: '120px',
-    },
-    {
-      title: '供应商',
-      width: '220px',
-      key: 'supplierName',
-      search: true,
-    },
-    {
-      title: '供应商编码',
-      width: '220px',
-      key: 'supplierCode',
-      search: true,
-    },
-    {
-      title: '收货日期',
-      width: '220px',
-      key: 'receivedDate',
     },
   ];
-
   const handleDownload = async (obj) => {
     let fileName = '全部';
     if (activeOrgCode && !warehouseCode) {
@@ -141,16 +89,17 @@ export default function Stock() {
       fileName = `${orgOptions.find((item) => item.value === activeOrgCode)?.label}-${warehouseOptions.find((item) => item.value === warehouseCode)?.label}`;
     }
     await downloadFile({
-      fileUrl: '/DataCenter/ExportRealtimeInventories',
+      fileUrl: '/summary/ExportOnlineInventory',
       fileName: `${fileName}.xls`,
       // eslint-disable-next-line no-nested-ternary
       postData: { orgCodes: obj.orgCode, warehouseCode: '' },
     });
   };
+
   return (
     <>
       <GSearchTable
-        api={GetRealtimeInventories}
+        api={GetMaterialMonthlyChangeDetail}
         extendSearchParams={{ orgCode: activeOrgCode }}
         fields={fields}
         rowKey='sort_id'
@@ -159,7 +108,7 @@ export default function Stock() {
         }}
         tableExtend={{
           bordered: true,
-          scroll: { x: 1500 },
+          scroll: { x: 1200 },
         }}
       >
         <GButton type='primary' onClick={() => setOpen(true)}>

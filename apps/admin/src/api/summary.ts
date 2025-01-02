@@ -118,3 +118,11 @@ export const GetRealtimeInventories = (data: any): Promise<any> => {
     data,
   });
 };
+
+// 异常消耗列表
+export const GetMaterialMonthlyChangeDetail = (data: any): Promise<any> => {
+  return defHttp.post<PageListResult>({
+    url: '/Summary/GetMaterialMonthlyChangeDetail',
+    data,
+  });
+};

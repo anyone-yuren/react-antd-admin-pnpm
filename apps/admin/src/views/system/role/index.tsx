@@ -37,9 +37,9 @@ const ctrl: GTableCtrlField = {
       <GAction record={record} action='update'>
         编辑
       </GAction>
-      <GAction record={record} danger action='delete'>
+      {/* <GAction record={record} danger action='delete'>
         删除
-      </GAction>
+      </GAction> */}
     </GCtrl>
   ),
 };
