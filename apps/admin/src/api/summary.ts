@@ -126,3 +126,17 @@ export const GetMaterialMonthlyChangeDetail = (data: any): Promise<any> => {
     data,
   });
 };
+
+export const Getorders = (data: any): Promise<any> => {
+  return defHttp.post<PageListResult>({
+    url: '/Summary/Getorders',
+    data,
+  });
+};
+
+export const Getorderlines = (params: any): Promise<any> => {
+  return defHttp.get<PageListResult>({
+    url: '/Summary/Getorderlines',
+    params,
+  });
+};
