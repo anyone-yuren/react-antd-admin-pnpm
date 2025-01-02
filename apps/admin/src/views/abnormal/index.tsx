@@ -49,7 +49,7 @@ export default function Abnormal() {
       key: 'average',
     },
     {
-      title: '单月消耗',
+      title: '上月消耗',
       key: 'quantity',
     },
     {

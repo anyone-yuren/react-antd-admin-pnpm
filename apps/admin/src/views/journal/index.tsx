@@ -126,15 +126,19 @@ export default function Demo() {
       key: 'unitPriceStr',
       width: '120px',
     },
-    {
-      title: '数量',
-      key: 'quantity',
-      width: '120px',
-    },
+    // {
+    //   title: '数量',
+    //   key: 'quantity',
+    //   width: '120px',
+    // },
     {
       title: '金额 (元)',
       key: 'amountStr',
       width: '120px',
+      render: (text, record) => {
+        const { changeQuantity, unitPriceStr } = record;
+        return (Number(Math.abs(changeQuantity) || 0) * (Number(unitPriceStr) || 0)).toFixed(2);
+      },
     },
     {
       title: '流水类型',

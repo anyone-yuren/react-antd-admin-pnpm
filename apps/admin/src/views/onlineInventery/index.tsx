@@ -39,16 +39,19 @@ export default function Demo() {
   const fields: Array<GSearchTableField> = [
     {
       title: '组织',
+      width: 120,
       key: 'orgName',
     },
     {
       title: '仓库',
       key: 'warehouseName',
+      width: 120,
       search: false,
     },
     {
       title: '仓库',
       key: 'warehouseCode',
+      width: 120,
       type: 'select-search',
       options: warehouseOptions,
       search: {
@@ -60,43 +63,55 @@ export default function Demo() {
     },
     {
       title: '物料名称',
+      width: 120,
       key: 'materialName',
       search: true,
     },
     {
       title: '物料编码',
+      width: 120,
       key: 'materialCode',
       search: true,
     },
     {
       title: '规格',
+      width: 120,
       key: 'materialSize',
     },
     {
       title: '数量',
+      width: 120,
       key: 'quantity',
     },
     {
       title: '单价',
-      key: 'quantity',
+      width: 120,
+      key: 'unitPrice',
     },
     {
       title: '总价',
       key: 'quantity',
+      width: 120,
+      render: (_, record: Record) => {
+        return (Number(record.unitPrice) * Number(record.quantity)).toFixed(2);
+      },
     },
     {
       title: '批次',
       key: 'batchNumber',
+      width: 220,
       search: true,
     },
     {
       title: '供应商名称',
       key: 'supplierName',
+      width: 220,
       search: true,
     },
     {
       title: '供应商编码',
       key: 'supplierCode',
+      width: 200,
       search: true,
     },
   ];
@@ -127,7 +142,7 @@ export default function Demo() {
         }}
         tableExtend={{
           bordered: true,
-          scroll: { x: 1200 },
+          scroll: { x: 1800 },
         }}
       >
         <GButton type='primary' onClick={() => setOpen(true)}>

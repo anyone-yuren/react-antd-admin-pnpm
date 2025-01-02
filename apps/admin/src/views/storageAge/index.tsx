@@ -161,6 +161,11 @@ export default function Demo() {
       key: 'materialSize',
     },
     {
+      title: '批次号',
+      key: 'batchNumber',
+      search: true,
+    },
+    {
       title: '库存数量',
       key: 'quantity',
     },
@@ -227,79 +232,101 @@ export default function Demo() {
 
   const renderChart = useMemo(() => {
     const data = countData?.resultData;
-    const xAxisData = data?.map((item) => item.date);
-    const countDataRow = data?.map((item) => item.count);
-    const amountData = data?.map((item) => item.amount);
-    const option = {
+
+    // 处理饼图数据
+    const countDataPie = data?.map((item) => ({
+      name: item.date,
+      value: item.count,
+    }));
+    const amountDataPie = data?.map((item) => ({
+      name: item.date,
+      value: (item.amount / 10000).toFixed(2),
+    }));
+
+    // 配置数量饼图
+    const countOption = {
       title: {
-        text: '超龄汇总',
+        text: '超龄条数分布',
         left: 'center',
       },
       tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-          type: 'cross',
-        },
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c} ({d}%)',
       },
       legend: {
-        data: ['条数', '价值'],
         top: '10%',
+        left: 'center',
       },
-      xAxis: {
-        type: 'category',
-        data: xAxisData,
-        axisLabel: {
-          rotate: 45, // 旋转标签以防止重叠
-        },
-      },
-      yAxis: [
-        {
-          type: 'value',
-          name: '条数',
-          position: 'left',
-          axisLine: {
-            lineStyle: {
-              color: '#5470C6',
-            },
-          },
-        },
-        {
-          type: 'value',
-          name: '价值',
-          position: 'right',
-          axisLine: {
-            lineStyle: {
-              color: '#91CC75',
-            },
-          },
-        },
-      ],
       series: [
         {
           name: '条数',
-          type: 'bar',
-          data: countDataRow,
-          yAxisIndex: 0,
-          itemStyle: {
-            color: '#5470C6',
-          },
-        },
-        {
-          name: '价值',
-          type: 'line',
-          data: amountData,
-          yAxisIndex: 1,
-          lineStyle: {
-            color: '#91CC75',
+          type: 'pie',
+          radius: '50%',
+          data: countDataPie,
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
+            },
           },
           itemStyle: {
-            color: '#91CC75',
+            color: (params) => {
+              const colors = ['#91CC75', '#EE6666', '#5470C6', '#91aa75', '#aa6666', '#1170C6'];
+              return colors[params.dataIndex % colors.length];
+            },
           },
         },
       ],
     };
 
-    return <BaseCharts option={option} height={300} />;
+    // 配置金额饼图
+    const amountOption = {
+      title: {
+        text: '超龄价值分布',
+        left: 'center',
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c} 万 ({d}%)',
+      },
+      legend: {
+        top: '10%',
+        left: 'center',
+      },
+      series: [
+        {
+          name: '价值',
+          type: 'pie',
+          radius: '50%',
+          data: amountDataPie,
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
+            },
+          },
+          itemStyle: {
+            color: (params) => {
+              const colors = ['#91CC75', '#EE6666', '#5470C6', '#91aa75', '#aa6666', '#1170C6'];
+              return colors[params.dataIndex % colors.length];
+            },
+          },
+        },
+      ],
+    };
+
+    return (
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div className='w-1/2'>
+          <BaseCharts option={countOption} height={300} />
+        </div>
+        <div className='w-1/2'>
+          <BaseCharts option={amountOption} height={300} />
+        </div>
+      </div>
+    );
   }, [countData]);
 
   return (
@@ -326,7 +353,12 @@ export default function Demo() {
             res.query.beginDate = endDateMap[res.query.endDate];
           }
           setParams(res);
-          countApi({ endDate: res.query.endDate, beginDate: res.query.beginDate });
+          countApi({
+            endDate: res.query.endDate,
+            beginDate: res.query.beginDate,
+            orgCode: activeOrgCode,
+            warehouseCode,
+          });
           return res;
         }}
         tableExtend={{
@@ -336,6 +368,8 @@ export default function Demo() {
             const color = getColorForDate(parsedEntryDate);
             return color ? `bg-${color}-100` : '';
           },
+          bordered: true,
+          scroll: { x: 1200 },
         }}
         onParamsChange={(params) => {}}
         extendSearchParams={{ orgCode: activeOrgCode }}
