@@ -73,14 +73,14 @@ export default function Demo() {
 
   // 当前时间
   const currentDate = dayjs();
-
+  // const colors = ['#00a5a7', '#00a72d', '#a7a400', '#d8d400', '#ff6802', '#ce0000'];
   // 颜色配置映射
   const colorConfig = [
-    { rangeStart: dateRanges.sixMonthsAgo, rangeEnd: dateRanges.threeMonthsAgo, color: 'yellow' },
-    { rangeStart: dateRanges.yearAgo, rangeEnd: dateRanges.sixMonthsAgo, color: 'red' },
-    { rangeStart: dateRanges.threeYearsAgo, rangeEnd: dateRanges.yearAgo, color: 'purple' },
-    { rangeStart: dateRanges.fiveYearsAgo, rangeEnd: dateRanges.threeYearsAgo, color: 'blue' },
-    { rangeStart: '2000-01-01', rangeEnd: dateRanges.fiveYearsAgo, color: 'gray' },
+    { rangeStart: dateRanges.sixMonthsAgo, rangeEnd: dateRanges.threeMonthsAgo, color: '#00a72d' },
+    { rangeStart: dateRanges.yearAgo, rangeEnd: dateRanges.sixMonthsAgo, color: '#a7a400' },
+    { rangeStart: dateRanges.threeYearsAgo, rangeEnd: dateRanges.yearAgo, color: '#d8d400' },
+    { rangeStart: dateRanges.fiveYearsAgo, rangeEnd: dateRanges.threeYearsAgo, color: '#ff6802' },
+    { rangeStart: '2000-01-01', rangeEnd: dateRanges.fiveYearsAgo, color: '#ce0000' },
   ];
 
   // 提取颜色逻辑为函数
@@ -116,6 +116,7 @@ export default function Demo() {
       title: '仓库',
       key: 'warehouseName',
     },
+
     {
       title: '时间段',
       key: 'date-range',
@@ -272,7 +273,7 @@ export default function Demo() {
           },
           itemStyle: {
             color: (params) => {
-              const colors = ['#91CC75', '#EE6666', '#5470C6', '#91aa75', '#aa6666', '#1170C6'];
+              const colors = ['#00a5a7', '#00a72d', '#a7a400', '#d8d400', '#ff6802', '#ce0000'];
               return colors[params.dataIndex % colors.length];
             },
           },
@@ -309,7 +310,7 @@ export default function Demo() {
           },
           itemStyle: {
             color: (params) => {
-              const colors = ['#91CC75', '#EE6666', '#5470C6', '#91aa75', '#aa6666', '#1170C6'];
+              const colors = ['#00a5a7', '#00a72d', '#a7a400', '#d8d400', '#ff6802', '#ce0000'];
               return colors[params.dataIndex % colors.length];
             },
           },
