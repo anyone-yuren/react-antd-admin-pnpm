@@ -105,7 +105,7 @@ const useStyles = createStyles(({ token }) => {
           boxSizing: 'border-box',
           paddingTop: '48px',
           '.total': {
-            fontSize: '32px',
+            fontSize: '34px',
             color: '#66FFFF',
           },
           '.total-dec': {
