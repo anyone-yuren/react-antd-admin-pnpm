@@ -252,7 +252,7 @@ function Home() {
                   </Row>
                   <div className='tip-box'>
                     <p className='tip'>今日消耗物资金额</p>
-                    <DigitalFlop config={config()} style={{ width: '300px', height: '50px' }} />
+                    <DigitalFlop config={config()} style={{ height: '50px' }} />
                   </div>
                   <div className='tip-box' style={{ marginTop: 0 }}>
                     <Decoration6 color={['#66FFFF85', '#0066ff85']} style={{ width: '100%', height: '10px' }} />
