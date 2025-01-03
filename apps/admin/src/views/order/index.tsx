@@ -141,7 +141,7 @@ export default function Order() {
       fileName = `${orgOptions.find((item) => item.value === activeOrgCode)?.label}-${warehouseOptions.find((item) => item.value === warehouseCode)?.label}`;
     }
     await downloadFile({
-      fileUrl: '/summary/ExportOnlineInventory',
+      fileUrl: '/summary/ExportOrders',
       fileName: `${fileName}.xls`,
       // eslint-disable-next-line no-nested-ternary
       postData: { orgCodes: obj.orgCode, warehouseCode: '' },
