@@ -93,9 +93,9 @@ const TransferChart = (props) => {
           color: 'black', // 标题字体颜色
         },
       },
-      tooltip: {
-        trigger: 'axis',
-      },
+      // tooltip: {
+      //   trigger: 'axis',
+      // },
       calculable: true,
       grid: {
         left: '15%',

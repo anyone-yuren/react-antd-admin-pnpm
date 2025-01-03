@@ -23,11 +23,8 @@ export const consumeConfig = {
 export const errorConfig = {
   headerBGC: 'transparent',
   oddRowBGC: 'transparent',
-  header: [
-    '<span style="color:#6FBAFF">组织单位</span>',
-    '<span style="color:#6FBAFF">总值</span>',
-    // '<span style="color:#6FBAFF">总值占比</span>',
-  ],
+  columnWidth: [250],
+  header: ['<span style="color:#6FBAFF">组织单位</span>', '<span style="color:#6FBAFF">总值</span>'],
   data: [
     ['行1列1', '行1列2', '行1列3'],
     ['行2列1', '行2列2', '行2列3'],

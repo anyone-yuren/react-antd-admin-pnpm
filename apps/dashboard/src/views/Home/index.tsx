@@ -133,7 +133,7 @@ function Home() {
                         ...errorConfig1,
                         data: tatalData?.materialMonthlyChangeList?.map((item) => {
                           const datas = values(item);
-                          datas[3] = `${datas[3]} / ${datas[4]}`;
+                          datas[3] = `${Math.round((datas[3] * 100) / 100)} / ${Math.round((datas[4] * 100) / 100)}`;
                           datas[2] = `<div style="color:${datas[2] > 0 ? 'green' : 'red'};display: flex; align-items: center; gap: 4px"><span style="width:4px;height:4px;border-radius:50%;display:inline-block;background:${datas[2] > 0 ? 'green' : 'red'}"></span>${parseFloat((datas[2] * 100).toFixed(2))}%</div>`;
                           datas.pop();
 
@@ -149,7 +149,7 @@ function Home() {
                 </div>
                 <div className='gutter-box' style={{ padding: '0px' }}>
                   <div className='card'>
-                    <div className='card-title'>物资累计领用金额</div>
+                    <div className='card-title'>物资累计领用金额（万）</div>
                     {tatalData.invoiceSupplierSummaryList ? (
                       <OldChart style={{ height: 'calc( 100% - 50px)' }} data={tatalData.invoiceSupplierSummaryList} />
                     ) : (
@@ -207,8 +207,17 @@ function Home() {
                       </Row>
                     </Col>
                     <Col span={10} className='total-box'>
-                      <div className='total'>{Math.round((tatalData?.currentTotal / 10000) * 100) / 100}万</div>
+                      <div className='total'>{Math.round(tatalData?.currentTotal / 10000)}</div>
                       <div className='total-dec'>物资总价值</div>
+                      <p
+                        style={{
+                          color: '#fff',
+                          margin: 0,
+                          fontSize: '20px',
+                        }}
+                      >
+                        （万）
+                      </p>
                     </Col>
                     <Col span={7} style={{ padding: '24px 8px' }}>
                       <Row gutter={[24, 24]}>

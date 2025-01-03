@@ -29,12 +29,20 @@ export default function PayChart(props) {
     }
   }, [data]);
   const colorA = ['#F26C4F', '#F94FFF', '#F5335C', '#FFD200', '#00E1EF'];
+  // 格式化tooltip显示，超过10个字隐藏
+  const formatTooltip = (params) => {
+    let { name } = params;
+    if (name.length > 10) {
+      name = `${name.slice(0, 10)}...`; // 截断并添加省略号
+    }
+    return `: ${params.value} 万`;
+  };
   const option = {
     tooltip: {
       show: false,
       confine: true,
       trigger: 'item',
-      formatter: '{b} : {c}',
+      formatter: formatTooltip,
     },
     series: [
       {
@@ -53,7 +61,11 @@ export default function PayChart(props) {
         label: {
           normal: {
             // formatter: '{b}\n{d}%\t{c}',
-            formatter: '{b|{b}}\n{d|{d}%\t{c}}\t{f|万}',
+            formatter: (params) => {
+              const maxLength = 10;
+              const name = params.name.length > maxLength ? `${params.name.slice(0, maxLength)}...` : params.name;
+              return `{b|${name}}\n{d|${params.percent}%}\t{b|${params.value}}\t{f|万}`;
+            },
             rich: {
               icon: {
                 fontSize: 12,

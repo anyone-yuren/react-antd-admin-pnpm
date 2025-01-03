@@ -43,6 +43,7 @@ const useStyles = createStyles(({ token }) => {
         fontSize: '44px',
         color: '#fff',
         fontFamily: 'serif',
+        marginBottom: 20,
       },
     },
     'home-content': {
@@ -98,7 +99,7 @@ const useStyles = createStyles(({ token }) => {
           alignItems: 'center',
           justifyContent: 'center',
           backgroundImage: `url(${blockBg})`,
-          backgroundSize: '100%',
+          backgroundSize: '120%',
           backgroundPosition: 'center 35%',
           backgroundRepeat: 'no-repeat',
           boxSizing: 'border-box',
