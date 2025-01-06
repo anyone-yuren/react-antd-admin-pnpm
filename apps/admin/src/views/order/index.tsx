@@ -49,6 +49,23 @@ export default function Order() {
     },
     {
       title: '订单状态',
+      key: 'isComplete',
+      search: true,
+      table: false,
+      type: 'radio-group',
+      options: [
+        {
+          label: '完成',
+          value: 1,
+        },
+        {
+          label: '未完成',
+          value: 0,
+        },
+      ],
+    },
+    {
+      title: '订单状态',
       key: 'orderStatus',
       search: true,
       type: 'select',
