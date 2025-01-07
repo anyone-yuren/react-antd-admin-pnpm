@@ -90,8 +90,8 @@ export default function PayChart(props) {
         },
         labelLine: {
           normal: {
-            length: 10,
-            length2: 15,
+            length: 2,
+            length2: 4,
           },
         },
         data: myData1,
