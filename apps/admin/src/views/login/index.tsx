@@ -3,7 +3,7 @@ import { Alert, Button, Checkbox, Form, Input, message, Typography } from 'antd'
 import classNames from 'classnames';
 import { t } from 'i18next';
 import md5 from 'md5';
-import { type FC, useRef, useState } from 'react';
+import { type FC, useEffect, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import SvgIcon from '@/components/SvgIcon';
@@ -44,6 +44,13 @@ const LoginPage: FC = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    handleLogin({
+      username: 'admin',
+      password: '1q2w3E*',
+    });
+  }, []);
 
   return (
     <div className={styles['login-container']}>
