@@ -14,7 +14,7 @@ import PayChart from './components/payChart';
 import TransferChart from './components/transferChart';
 import { amountConfig, consumeConfig, deliveryConfig, errorConfig, errorConfig1, outConfig } from './data';
 import useStyles from './index.style';
-import { invoiceSupplierSummaryList, supplierInventoryList, supplierSummaryList } from './staticData';
+// import { invoiceSupplierSummaryList, supplierInventoryList, supplierSummaryList } from './staticData';
 
 const { Header, Content } = Layout;
 
@@ -151,11 +151,12 @@ function Home() {
                 <div className='gutter-box' style={{ padding: '0px' }}>
                   <div className='card'>
                     <div className='card-title'>物资累计领用金额（万）</div>
-                    {invoiceSupplierSummaryList ? (
+                    {/* {invoiceSupplierSummaryList ? (
                       <OldChart style={{ height: 'calc( 100% - 50px)' }} data={invoiceSupplierSummaryList} />
+                    ) : ( */}
+                    {tatalData.invoiceSupplierSummaryList ? (
+                      <OldChart style={{ height: 'calc( 100% - 50px)' }} data={tatalData.invoiceSupplierSummaryList} />
                     ) : (
-                      // {tatalData.invoiceSupplierSummaryList ? (
-                      //   <OldChart style={{ height: 'calc( 100% - 50px)' }} data={tatalData.invoiceSupplierSummaryList} />
                       <Skeleton active />
                     )}
                   </div>
@@ -334,10 +335,8 @@ function Home() {
                 </div>
                 <div className='card' style={{ height: '100%' }}>
                   <div className='card-title'>供货商累计到货金额</div>
-                  {/* {tatalData?.supplierSummaryList ? (
-                    <PayChart style={{ height: 'calc( 100% - 50px)' }} data={tatalData?.supplierSummaryList} /> */}
-                  {supplierSummaryList ? (
-                    <PayChart style={{ height: 'calc( 100% - 50px)' }} data={supplierSummaryList} />
+                  {tatalData?.supplierSummaryList ? (
+                    <PayChart style={{ height: 'calc( 100% - 50px)' }} data={tatalData?.supplierSummaryList} />
                   ) : (
                     <Skeleton active />
                   )}
@@ -348,8 +347,8 @@ function Home() {
                   <ScrollBoard
                     config={{
                       ...outConfig,
-                      // data: tatalData?.supplierInventoryList?.map((item) => {
-                      data: supplierInventoryList?.map((item) => {
+                      data: tatalData?.supplierInventoryList?.map((item) => {
+                        // data: supplierInventoryList?.map((item) => {
                         const datas = values(item);
                         datas[1] = `${Math.round((datas[1] / 10000) * 100) / 100}万元`;
                         // datas[2] = `${parseFloat(datas[2].toFixed(2))}%`;
