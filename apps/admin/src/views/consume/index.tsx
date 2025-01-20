@@ -95,7 +95,7 @@ export default function Demo() {
           expandedRowKeys, // 只展开当前行
         },
       }}
-      title={<span>总金额: {sumData?.resultData ? `${(sumData.resultData / 10000).toFixed(2)}万元` : '-'}</span>}
+      // title={<span>总金额: {sumData?.resultData ? `${(sumData.resultData / 10000).toFixed(2)}万元` : '-'}</span>}
       dialogFormExtend={{
         fields,
       }}

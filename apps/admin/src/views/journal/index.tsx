@@ -156,7 +156,7 @@ export default function Demo() {
     },
     {
       title: '订单号',
-      key: 'batchNumber',
+      key: 'orderCode',
       search: true,
       width: 200,
     },

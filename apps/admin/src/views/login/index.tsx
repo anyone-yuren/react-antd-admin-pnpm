@@ -45,12 +45,12 @@ const LoginPage: FC = () => {
     }
   };
 
-  useEffect(() => {
-    handleLogin({
-      username: 'admin',
-      password: '1q2w3E*',
-    });
-  }, []);
+  // useEffect(() => {
+  //   handleLogin({
+  //     username: 'admin',
+  //     password: '1q2w3E*',
+  //   });
+  // }, []);
 
   return (
     <div className={styles['login-container']}>

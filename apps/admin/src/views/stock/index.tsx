@@ -105,7 +105,7 @@ export default function Stock() {
     },
     {
       title: '批次',
-      key: 'batch',
+      key: 'batchNumber',
       search: true,
       width: '120px',
     },
