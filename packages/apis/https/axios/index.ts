@@ -2,6 +2,7 @@
 // import { useAuthStore } from '@gbeata/store';
 import { deepMerge, formatRequestDate, getItem, joinTimestamp, setObjToUrlParams } from '@gbeata/utils';
 import axios from 'axios';
+import { message as antMessage } from 'antd';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { clone, isString } from 'lodash-es';
 
@@ -57,6 +58,10 @@ const transform: AxiosTransform = {
         // useAuthStore.getState().clearUserInfoAndToken();
         window.location.href = '#/login';
         // TODO 登出操作 带上redirect地址
+        break;
+      case 610:
+        timeoutMsg = message;
+        antMessage.error(timeoutMsg);
         break;
       default:
         if (message) {
