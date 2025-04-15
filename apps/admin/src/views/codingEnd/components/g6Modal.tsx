@@ -210,20 +210,20 @@ const G6Modal = ({ open, onClose, record }: { open: boolean; onClose: () => void
   // 处理Descriptions展示的数据
   const items = React.useMemo(() => {
     if (!node?.code) return [];
-    const keys = Object.keys(node.code);
+    const keys = [...Object.keys(node.code), 'tenantName', 'userName'];
     const nodes = keys
       .filter((key) => key !== 'children')
       .map((key) => {
         return {
           label: Description[key],
-          children: node.code[key] as string,
+          children: node[key] ?? (node.code[key] as string),
         };
       })
       .filter((item) => item.label !== undefined);
     return [
       ...nodes,
       {
-        label: '去向',
+        label: '操作仓库',
         children: node?.warehouseName,
       },
       {

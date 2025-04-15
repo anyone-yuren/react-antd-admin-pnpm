@@ -5,6 +5,12 @@ export const coddingEndList = (data: any) =>
     method: 'post',
     data,
   });
-export const coddingTree = (id: any) => GRequest(`/unique-code/code/trajectory-tree/${id}`, {
+export const coddingTree = (id: any) =>
+  GRequest(`/unique-code/code/trajectory-tree/${id}`, {
+    method: 'get',
+  });
+
+export const codeTree = (id: any) =>
+  GRequest(`/unique-code/code/code-tree/${id}`, {
     method: 'get',
   });

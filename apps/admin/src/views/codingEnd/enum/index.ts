@@ -6,7 +6,9 @@ export enum Description {
   remark = '备注',
   placeCode = '货位',
   locationCode = '位置',
-  qty = '数量',
+  qty = '初始数量',
   imagePaths = '图片',
   code = '编码',
+  tenantName = '操作组织',
+  userName = '操作人',
 }

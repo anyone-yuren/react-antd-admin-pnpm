@@ -1,4 +1,4 @@
-import { coddingEndList } from 'apis';
+import { coddingEndList, codeTree } from 'apis';
 import {
   GAction,
   GCtrl,
@@ -8,20 +8,30 @@ import {
   type Record,
   setDefaultDataFilter,
 } from 'gbeata';
+import { Modal, Tree } from 'antd';
 import { useRef, useState } from 'react';
 
 import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
 
 import G6Modal from './components/g6Modal';
 import TreeModal from './components/treeModal';
+import { DownOutlined } from '@ant-design/icons';
+import { cloneDeep, forEach } from 'lodash-es';
 
 export default function Demo() {
   const [requestPage, setRequestPage] = useState({
     maxResultCount: 10,
     skipCount: 1,
   });
+  const [codeOpen, setCodeOpen] = useState(false);
   const { activeOrgCode } = useWarehouseOptions();
+  const [treeData, setTreeData] = useState<any>([]);
   const requestRef = useRef<any>();
+  const updateNoWidthQty = (node) => {
+    node.no = `${node.no} 数量: ${node.qty}`;
+    forEach(node.children, updateNoWidthQty);
+    return node;
+  };
   setDefaultDataFilter((res: any) => {
     return {
       content: res.items,
@@ -92,7 +102,7 @@ export default function Demo() {
   const [singleCode, setSingleCode] = useState({});
   const [open, setOpen] = useState(false);
   const ctrl: GTableCtrlField = {
-    width: 80,
+    width: 150,
     fixed: 'right',
     render: (_, record: Record) => (
       <GCtrl>
@@ -104,6 +114,19 @@ export default function Demo() {
           }}
         >
           详情
+        </GAction>
+        <GAction
+          record={record}
+          onClick={async () => {
+            const res = await codeTree(record.id);
+            if (res) {
+              const cloneRes = updateNoWidthQty(cloneDeep(res));
+              setTreeData([cloneRes]);
+              setCodeOpen(true);
+            }
+          }}
+        >
+          拆码明细
         </GAction>
       </GCtrl>
     ),
@@ -137,6 +160,20 @@ export default function Demo() {
         }}
         // pagination={false}
       ></GSearchTable>
+      <Modal title='码详情' open={codeOpen} onCancel={() => setCodeOpen(false)}>
+        <div className='max-h-[500px] overflow-auto'>
+          <Tree
+            showLine
+            switcherIcon={<DownOutlined />}
+            treeData={treeData}
+            defaultExpandAll
+            fieldNames={{
+              title: 'no',
+              children: 'children',
+            }}
+          />
+        </div>
+      </Modal>
 
       <G6Modal open={open} record={singleCode} onClose={() => setOpen(false)} />
       {/* <TreeModal open={open} record={singleCode} onClose={() => setOpen(false)} /> */}
