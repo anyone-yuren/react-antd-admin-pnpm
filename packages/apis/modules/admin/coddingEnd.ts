@@ -14,3 +14,8 @@ export const codeTree = (id: any) =>
   GRequest(`/unique-code/code/code-tree/${id}`, {
     method: 'get',
   });
+
+export const trajectories = (id: any) =>
+  GRequest(`/unique-code/code/trajectories/${id}`, {
+    method: 'get',
+  });

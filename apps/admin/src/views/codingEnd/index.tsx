@@ -1,4 +1,4 @@
-import { coddingEndList, codeTree } from 'apis';
+import { coddingEndList, codeTree, trajectories } from 'apis';
 import {
   GAction,
   GCtrl,
@@ -8,7 +8,7 @@ import {
   type Record,
   setDefaultDataFilter,
 } from 'gbeata';
-import { Modal, Tree } from 'antd';
+import { Empty, List, Modal, Timeline, Tree, Typography, Image } from 'antd';
 import { useRef, useState } from 'react';
 
 import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
@@ -17,6 +17,8 @@ import G6Modal from './components/g6Modal';
 import TreeModal from './components/treeModal';
 import { DownOutlined } from '@ant-design/icons';
 import { cloneDeep, forEach } from 'lodash-es';
+import dayjs from 'dayjs';
+import { useRequest } from 'ahooks';
 
 export default function Demo() {
   const [requestPage, setRequestPage] = useState({
@@ -26,6 +28,53 @@ export default function Demo() {
   const [codeOpen, setCodeOpen] = useState(false);
   const { activeOrgCode } = useWarehouseOptions();
   const [treeData, setTreeData] = useState<any>([]);
+  const [items, setItems] = useState([] as any);
+  const { run, loading } = useRequest(trajectories, {
+    manual: true,
+    onSuccess: (res) => {
+      if (res) {
+        setItems(
+          res.map((item) => {
+            return {
+              children: (
+                <>
+                  <Typography.Title level={5}>备注：{item.remark}</Typography.Title>
+
+                  <List itemLayout='horizontal' className=''>
+                    <List.Item className='!py-1' extra={item.warehouseName}>
+                      <List.Item.Meta title={`仓库:`} />
+                    </List.Item>
+                    <List.Item className='!py-1' extra={item.orderNo}>
+                      <List.Item.Meta title={`订单号:`} />
+                    </List.Item>
+                    <List.Item className='!py-1' extra={item.userName}>
+                      <List.Item.Meta title={`操作人:`} />
+                    </List.Item>
+                    <List.Item className='!py-1' extra={item.qty}>
+                      <List.Item.Meta title={`数量:`} />
+                    </List.Item>
+                    <List.Item
+                      className='!py-1'
+                      extra={
+                        item?.imagePaths?.length ? (
+                          <Image.PreviewGroup items={item?.imagePaths}>
+                            <Image width={60} src={item?.imagePaths[0]} />
+                          </Image.PreviewGroup>
+                        ) : null
+                      }
+                    >
+                      <List.Item.Meta title={`图片:`} />
+                    </List.Item>
+                  </List>
+                </>
+              ),
+              label: dayjs(item.creationTime).format('YYYY-MM-DD HH:mm:ss'),
+            };
+          }),
+        );
+      }
+    },
+  });
   const requestRef = useRef<any>();
   const updateNoWidthQty = (node) => {
     node.no = `${node.no} 数量: ${node.qty}`;
@@ -78,13 +127,13 @@ export default function Demo() {
     },
     {
       title: '订单号',
-      width: 180,
+      width: 210,
       key: 'orderNo',
       search: true,
     },
     {
       title: '批次号',
-      width: 180,
+      width: 300,
       key: 'batchNo',
       search: true,
     },
@@ -101,8 +150,9 @@ export default function Demo() {
   ];
   const [singleCode, setSingleCode] = useState({});
   const [open, setOpen] = useState(false);
+  const [trajectoryOpen, setTrajectoryOpen] = useState(false);
   const ctrl: GTableCtrlField = {
-    width: 150,
+    width: 210,
     fixed: 'right',
     render: (_, record: Record) => (
       <GCtrl>
@@ -127,6 +177,15 @@ export default function Demo() {
           }}
         >
           拆码明细
+        </GAction>
+        <GAction
+          record={record}
+          onClick={async () => {
+            setTrajectoryOpen(true);
+            const res = await run(record.id);
+          }}
+        >
+          轨迹详情
         </GAction>
       </GCtrl>
     ),
@@ -173,6 +232,21 @@ export default function Demo() {
             }}
           />
         </div>
+      </Modal>
+      <Modal
+        title='轨迹详情'
+        loading={loading}
+        width={'50%'}
+        open={trajectoryOpen}
+        onCancel={() => setTrajectoryOpen(false)}
+      >
+        {items?.length ? (
+          <div className='max-h-[300px] overflow-y-auto overflow-x-hidden p-4'>
+            <Timeline mode='left' items={items}></Timeline>
+          </div>
+        ) : (
+          <Empty description='暂无数据'></Empty>
+        )}
       </Modal>
 
       <G6Modal open={open} record={singleCode} onClose={() => setOpen(false)} />
