@@ -2,9 +2,21 @@ import { GAction, GCtrl, GSearchTable, type GSearchTableField, type GTableCtrlFi
 
 import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
 
-import { createWarehouse, getWarehouseList, updateWarehouse } from '@/api/warehouse';
+import { createWarehouse, getWarehouseList, updateWarehouse, syncWarehouse } from '@/api/warehouse';
+import { useRequest } from 'ahooks';
+import { message } from 'antd';
+import { useRef } from 'react';
 
 export default function StoreHourse() {
+  const { activeOrgCode, orgOptions } = useWarehouseOptions();
+  const tableRef = useRef(null);
+  const { runAsync: syncRunAsync, loading } = useRequest(syncWarehouse, {
+    manual: true,
+    onSuccess: () => {
+      message.success('同步仓库成功');
+      tableRef.current?.refresh();
+    },
+  });
   const ctrl: GTableCtrlField = {
     width: 120,
     render: (_, record: Record<string, any>) => (
@@ -21,7 +33,7 @@ export default function StoreHourse() {
       </GCtrl>
     ),
   };
-  const { activeOrgCode, orgOptions } = useWarehouseOptions();
+
   const fields: Array<GSearchTableField> = [
     // {
     //   title: '所属组织',
@@ -63,6 +75,7 @@ export default function StoreHourse() {
   return (
     <GSearchTable
       api={getWarehouseList}
+      ref={tableRef}
       ctrl={ctrl}
       fields={fields}
       rowKey='sort_id'
@@ -74,6 +87,10 @@ export default function StoreHourse() {
       }}
     >
       <GAction action='add'>新增</GAction>
+      <GAction loading={loading} onClick={() => syncRunAsync({ orgCode: activeOrgCode })}>
+        {/* <GAction loading={loading} onClick={() => tableRef.current?.refresh()}> */}
+        同步仓库
+      </GAction>
     </GSearchTable>
   );
 }

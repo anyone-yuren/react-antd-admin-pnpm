@@ -1,10 +1,10 @@
 import { useAsyncEffect, useRequest } from 'ahooks';
-import { Flex, Tag } from 'antd';
-import { GAction, GCtrl, GSearchTable, type GSearchTableField, type GTableCtrlField } from 'gbeata';
+import { Flex, message, Tag } from 'antd';
+import { GAction, GCtrl, GDialogForm, GSearchTable, type GSearchTableField, type GTableCtrlField } from 'gbeata';
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { addUser, getRolePageList, getUserList } from '@/api/auth';
+import { addUser, getRolePageList, getUserList, syncUser } from '@/api/auth';
 import useCommonsStore from '@/stores/modules/commons';
 
 import AuthAction from '../component/auth';
@@ -14,6 +14,7 @@ export default function User() {
   const { t } = useTranslation();
   const tableRef = useRef<any>();
   const [list, setList] = useState([]);
+  const [open, setOpen] = useState(false);
   const { getHourseList } = useCommonsStore((state) => {
     return {
       getHourseList: state.getHourseList,
@@ -21,8 +22,13 @@ export default function User() {
   });
 
   const { data: roleList } = useRequest(getRolePageList);
-  console.log('roleList => ', roleList);
-
+  const { runAsync: syncRunAsync, loading } = useRequest(syncUser, {
+    manual: true,
+    onSuccess: () => {
+      message.success('同步用户成功');
+      tableRef.current?.refresh();
+    },
+  });
   useAsyncEffect(async () => {
     const res = await getHourseList();
     if (res) {
@@ -212,32 +218,56 @@ export default function User() {
     ),
   };
   return (
-    <GSearchTable
-      ref={tableRef}
-      api={getUserList}
-      ctrl={ctrl}
-      fields={fields}
-      rowKey='sort_id'
-      dialogFormExtend={{
-        fields,
-        addApi: async (res) => {
-          await addUser({ ...res, departmentName: '' });
-        },
-        formExtend: {
-          layout: {
-            labelCol: { flex: '180px' }, // label 宽度
-            wrapperCol: { flex: '1' }, // content 宽度
+    <>
+      <GSearchTable
+        ref={tableRef}
+        api={getUserList}
+        ctrl={ctrl}
+        fields={fields}
+        rowKey='sort_id'
+        dialogFormExtend={{
+          fields,
+          addApi: async (res) => {
+            await addUser({ ...res, departmentName: '' });
           },
-        },
-        span: 12,
-        width: '50%',
-      }}
-      tableExtend={{
-        bordered: true,
-        scroll: { x: 1200 },
-      }}
-    >
-      <GAction action='add'>新增</GAction>
-    </GSearchTable>
+          formExtend: {
+            layout: {
+              labelCol: { flex: '180px' }, // label 宽度
+              wrapperCol: { flex: '1' }, // content 宽度
+            },
+          },
+          span: 12,
+          width: '50%',
+        }}
+        tableExtend={{
+          bordered: true,
+          scroll: { x: 1200 },
+        }}
+      >
+        <GAction action='add'>新增</GAction>
+        <GAction onClick={() => setOpen(true)} loading={loading}>
+          同步用户
+        </GAction>
+      </GSearchTable>
+      <GDialogForm
+        title='同步用户'
+        addApi={syncUser}
+        visible={open}
+        open={open}
+        onSuccess={() => {
+          tableRef.current?.refresh();
+        }}
+        onCancel={() => {
+          setOpen(false);
+        }}
+        fields={[
+          {
+            title: '用户名',
+            key: 'userName',
+            required: true,
+          },
+        ]}
+      />
+    </>
   );
 }

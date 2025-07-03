@@ -2,6 +2,10 @@ import { GAction, GCtrl, GSearchTable, type GSearchTableField, type GTableCtrlFi
 
 import AuthAction from '../components/auth';
 import { listApi } from './api';
+import { useRef } from 'react';
+import { useRequest } from 'ahooks';
+import { message } from 'antd';
+import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
 
 const fields: Array<GSearchTableField> = [
   {
@@ -46,8 +50,18 @@ const ctrl: GTableCtrlField = {
 };
 
 export default function User() {
+  const { activeOrgCode } = useWarehouseOptions();
+  const tableRef = useRef(null);
+  const { runAsync: syncRunAsync, loading } = useRequest(syncUser, {
+    manual: true,
+    onSuccess: () => {
+      message.success('同步用户成功');
+      tableRef.current?.refresh();
+    },
+  });
   return (
     <GSearchTable
+      ref={tableRef}
       api={listApi}
       ctrl={ctrl}
       fields={fields}
@@ -57,6 +71,13 @@ export default function User() {
       }}
     >
       <GAction action='add'>新增</GAction>
+      <GAction
+        onClick={async () => {
+          await syncRunAsync({ orgCode: activeOrgCode });
+        }}
+      >
+        刷新
+      </GAction>
     </GSearchTable>
   );
 }

@@ -144,3 +144,10 @@ export const addUser = (data: any): Promise<any> => {
     data,
   });
 };
+
+// 同步用户
+export const syncUser = (data: any): Promise<any> => {
+  return defHttp.post({
+    url: `/User/Synchronize?userName=${data.userName}`,
+  });
+};

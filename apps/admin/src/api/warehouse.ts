@@ -24,3 +24,10 @@ export const updateWarehouse = (data: any): Promise<PageListResult> => {
     data,
   });
 };
+
+// 同步仓库
+export const syncWarehouse = (data: any): Promise<PageListResult> => {
+  return defHttp.post({
+    url: `/Warehouse/Synchronize?orgCode=${data.orgCode}`,
+  });
+};
