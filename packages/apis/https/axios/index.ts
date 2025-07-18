@@ -184,7 +184,7 @@ function createAxios(options?: Partial<CreateAxiosOptions>) {
     deepMerge(
       {
         authenticationScheme: 'Bearer',
-        timeout: 30 * 1000,
+        timeout: 120 * 1000,
         header: { 'Content-Type': ContentTypeEnum.JSON },
         transform: clone(transform),
         // 配置项，下面的选项都可以在独立的接口请求中覆盖
