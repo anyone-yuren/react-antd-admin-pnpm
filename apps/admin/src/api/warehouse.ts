@@ -31,3 +31,21 @@ export const syncWarehouse = (data: any): Promise<PageListResult> => {
     url: `/Warehouse/Synchronize?orgCode=${data.orgCode}`,
   });
 };
+
+// export const getMaterialInfo = async (params: IgetMaterialInfoParams) => post("/Material/GetPageData", { ...params });
+
+// 获取物料列表
+export const getMaterialList = (data: PageListParams): Promise<PageListResult> => {
+  return defHttp.post({
+    url: '/Material/GetPageData',
+    data,
+  });
+};
+
+// 更新物料阈值
+export const updateMaterialRatio = (data: PageListParams): Promise<PageListResult> => {
+  return defHttp.post({
+    url: '/Material/UpdateProportion',
+    data,
+  });
+};
