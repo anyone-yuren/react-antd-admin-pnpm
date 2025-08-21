@@ -27,8 +27,8 @@ export default function MaterialMagement() {
           danger
           action='update'
           params={{
-            deliveryRatio: [record.minInvoiceProportion, record.maxInvoiceProportion],
-            receivingRatio: [record.minReceiptProportion, record.maxReceiptProportion],
+            deliveryRatio: [record.minInvoiceProportion * 100, record.maxInvoiceProportion * 100],
+            receivingRatio: [record.minReceiptProportion * 100, record.maxReceiptProportion * 100],
           }}
         >
           编辑
@@ -63,21 +63,25 @@ export default function MaterialMagement() {
       title: '最低收货比例',
       key: 'minReceiptProportion',
       width: 120,
+      render: (_, record: Record<string, any>) => record.minReceiptProportion * 100,
     },
     {
       title: '最高收货比例',
       key: 'maxReceiptProportion',
       width: 120,
+      render: (_, record: Record<string, any>) => record.maxReceiptProportion * 100,
     },
     {
       title: '最低发货比例',
       key: 'minInvoiceProportion',
       width: 120,
+      render: (_, record: Record<string, any>) => record.minInvoiceProportion * 100,
     },
     {
       title: '最高发货比例',
       key: 'maxInvoiceProportion',
       width: 120,
+      render: (_, record: Record<string, any>) => record.maxInvoiceProportion * 100,
     },
     {
       title: '描述信息',
@@ -145,13 +149,13 @@ export default function MaterialMagement() {
           const { receivingRatio, deliveryRatio } = params!;
           if (receivingRatio) {
             const [min, max] = receivingRatio;
-            params.minReceiptProportion = min;
-            params.maxReceiptProportion = max;
+            params.minReceiptProportion = min / 100;
+            params.maxReceiptProportion = max / 100;
           }
           if (deliveryRatio) {
             const [min, max] = deliveryRatio;
-            params.minInvoiceProportion = min;
-            params.maxInvoiceProportion = max;
+            params.minInvoiceProportion = min / 100;
+            params.maxInvoiceProportion = max / 100;
           }
           const res = {
             ...params,
