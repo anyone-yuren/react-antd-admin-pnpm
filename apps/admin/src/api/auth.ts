@@ -144,6 +144,13 @@ export const addUser = (data: any): Promise<any> => {
     data,
   });
 };
+export const updateUser = (data: any): Promise<any> => {
+  return defHttp.post({
+    url: '/User/Update',
+    data,
+  });
+};
+
 
 // 同步用户
 export const syncUser = (data: any): Promise<any> => {

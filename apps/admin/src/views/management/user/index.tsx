@@ -4,7 +4,7 @@ import { GAction, GCtrl, GDialogForm, GSearchTable, type GSearchTableField, type
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { addUser, getRolePageList, getUserList, syncUser } from '@/api/auth';
+import { addUser, getRolePageList, getUserList, syncUser, updateUser } from '@/api/auth';
 import useCommonsStore from '@/stores/modules/commons';
 
 import AuthAction from '../component/auth';
@@ -229,6 +229,9 @@ export default function User() {
           fields,
           addApi: async (res) => {
             await addUser({ ...res, departmentName: '' });
+          },
+          updateApi: async (res) => {
+            await updateUser({ ...res })
           },
           formExtend: {
             layout: {
