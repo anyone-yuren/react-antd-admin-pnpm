@@ -140,3 +140,13 @@ export const Getorderlines = (params: any): Promise<any> => {
     params,
   });
 };
+
+export const uploadStock = (data: any) => {
+  return defHttp.post<any>({
+    url: '/openapi/ERP/ImportFirstInventory',
+    data,
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  })
+}

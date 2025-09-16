@@ -25,6 +25,12 @@ export default defineApplicationConfig({
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api\/unique-code/, '/api/unique-code'),
         },
+        '/api/openapi': {
+          target: VITE_APP_BASE_API,
+          changeOrigin: true,
+          secure: true,
+          rewrite: (path) => path.replace(/^\/api/, ''),
+        },
         // 配置第二个代理地址
         '^/api(?!/unique-code)': {
           target: VITE_APP_BASE_API,

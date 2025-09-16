@@ -8,15 +8,24 @@ import {
   type GTableCtrlField,
   type Record,
 } from 'gbeata';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import useWarehouseOptions from '@/hooks/business/useWarehouseOptions';
 
 import { downloadFile } from '@/utils/download';
 
-import { GetRealtimeInventories } from '@/api/summary';
+import { GetRealtimeInventories, uploadStock } from '@/api/summary';
 
 import { listApi } from './api';
+import Dragger from 'antd/es/upload/Dragger';
+import { CloudUploadOutlined } from '@ant-design/icons';
+import { t } from 'i18next';
+import { UploadChangeParam } from 'antd/es/upload';
+import { message } from 'antd';
+import { useExcel } from '../excel/useExcel';
+import { ColumnType } from 'antd/es/table';
+import { Upload } from 'antd/lib';
+import dayjs from 'dayjs';
 
 const ctrl: GTableCtrlField = {
   render: (_, record: Record) => (
@@ -36,6 +45,7 @@ export default function Stock() {
   const { activeOrgCode, warehouseOptions, orgOptions } = useWarehouseOptions();
   const [open, setOpen] = useState(false);
   const [initialValues, setInitialValues] = useState({});
+  const tableRef = useRef<any>();
 
   const fields: Array<GSearchTableField> = [
     {
@@ -130,6 +140,7 @@ export default function Stock() {
       title: '收货日期',
       width: '220px',
       key: 'receivedDate',
+      render: (text: any) => (text ? dayjs(text).format('YYYY-MM-DD HH:mm:ss') : ''),
     },
   ];
 
@@ -147,11 +158,38 @@ export default function Stock() {
       postData: { orgCodes: obj.orgCode, warehouseCode: '' },
     });
   };
+  
+  const [uploading, setUploading] = useState(false);
+  function handleChange(fileParam: UploadChangeParam) {
+    const { file } = fileParam;
+    const rawFile = file.originFileObj;
+
+    if (!rawFile) return;
+    if (!/\.(xlsx|xls|csv)$/.test(rawFile.name)) {
+      message.warning(t('Excel文件只支持.xlsx, .xls, .csv格式!'));
+      return;
+    }
+
+    // const isLimit1M = rawFile.size / 1024 / 1024 < 1;
+    // if (!isLimit1M) {
+    //   message.warning(t('上传的Excel文件大小不能超过1M!'));
+    //   return;
+    // }
+
+    console.log('rawFile = ', rawFile, file, fileParam)
+
+    // readFile(rawFile);
+    if (file.status === 'done') {
+      message.success('上传成功!');
+      tableRef.current.refresh();
+    }
+  }
   return (
     <>
       <GSearchTable
         api={GetRealtimeInventories}
         extendSearchParams={{ orgCode: activeOrgCode }}
+        ref={tableRef}
         fields={fields}
         rowKey='sort_id'
         dialogFormExtend={{
@@ -159,9 +197,39 @@ export default function Stock() {
         }}
         tableExtend={{
           bordered: true,
-          scroll: { x: 1500 },
+          scroll: { x: 2200 },
         }}
       >
+        {/* <Dragger accept='.xlsx, .xls, .csv' showUploadList={false} maxCount={1} onChange={handleChange}>
+          <p className='ant-upload-drag-icon' style={{ marginBottom: 0 }}>
+            <CloudUploadOutlined rev={undefined} />
+          </p>
+          <p>
+            {t('将Excel文件拖到此处, 或')}
+            <span style={{ color: '#1890ff' }}>{t('点击上传')}</span>
+          </p>
+        </Dragger> */}
+        <Upload
+          accept='.xlsx, .xls, .csv'
+          showUploadList={false}
+          maxCount={1}
+          onChange={handleChange}
+          customRequest={async (e) => {
+            const { file } = e;
+            setUploading(true);
+            const formData = new FormData();
+            formData.append('formFile', file);
+            const r = await uploadStock(formData);
+            setUploading(false);
+            // console.log('customRequest = ', r)
+
+            message.success(r?.message || '导入成功');
+            tableRef.current.refresh();
+          }}
+          disabled={uploading}
+        >
+          <GButton loading={uploading}>导入</GButton>
+        </Upload>
         <GButton type='primary' onClick={() => setOpen(true)}>
           {'导出'}
         </GButton>

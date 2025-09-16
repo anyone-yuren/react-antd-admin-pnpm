@@ -59,13 +59,15 @@ const transform: AxiosTransform = {
         window.location.href = '#/login';
         // TODO 登出操作 带上redirect地址
         break;
-      case 610:
-        timeoutMsg = message;
-        antMessage.error(timeoutMsg);
-        break;
+      // case 600:
+      // case 610:
+      //   timeoutMsg = message;
+      //   antMessage.error(message);
+      //   break;
       default:
         if (message) {
           timeoutMsg = message;
+          antMessage.error(message);
         }
     }
     throw new Error(timeoutMsg);

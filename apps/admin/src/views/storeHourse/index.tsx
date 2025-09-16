@@ -55,7 +55,9 @@ export default function StoreHourse() {
     {
       title: '仓库编号',
       key: 'warehouseCode',
-      dialog: true,
+      dialog: {
+        required: true,
+      },
     },
     {
       title: '手动拣选',
@@ -69,7 +71,9 @@ export default function StoreHourse() {
       key: 'orgCode',
       type: 'select',
       options: orgOptions,
-      dialog: true,
+      dialog: {
+        required: true,
+      },
     },
   ];
   return (
