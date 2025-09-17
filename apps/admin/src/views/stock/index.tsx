@@ -21,7 +21,7 @@ import Dragger from 'antd/es/upload/Dragger';
 import { CloudUploadOutlined } from '@ant-design/icons';
 import { t } from 'i18next';
 import { UploadChangeParam } from 'antd/es/upload';
-import { message } from 'antd';
+import { Button, message } from 'antd';
 import { useExcel } from '../excel/useExcel';
 import { ColumnType } from 'antd/es/table';
 import { Upload } from 'antd/lib';
@@ -197,7 +197,7 @@ export default function Stock() {
         }}
         tableExtend={{
           bordered: true,
-          scroll: { x: 2200 },
+          scroll: { x: 2300 },
         }}
       >
         {/* <Dragger accept='.xlsx, .xls, .csv' showUploadList={false} maxCount={1} onChange={handleChange}>
@@ -209,6 +209,10 @@ export default function Stock() {
             <span style={{ color: '#1890ff' }}>{t('点击上传')}</span>
           </p>
         </Dragger> */}
+        <Button
+          download
+          href='//210.76.1.45/first-data.xls'
+        >下载模版</Button>
         <Upload
           accept='.xlsx, .xls, .csv'
           showUploadList={false}
