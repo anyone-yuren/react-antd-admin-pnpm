@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useMessage } from '@/hooks/web/useMessage';
 
-import { logoutApi } from '@/api';
+import { logoutApi } from '@/api/auth';
 import headerImg from '@/assets/images/avatar.jpeg';
 import { useAuthStore } from '@/stores/admin';
 
