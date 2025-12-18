@@ -6,7 +6,18 @@ import { values } from 'lodash-es';
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { GetCode, GetSumScanDatal, type TotalSumScanDTO } from '@/api/auth';
+import {
+  GetCode,
+  GetSumScanDatal,
+  type TotalSumScanDTO,
+  GetTodayCount,
+  GetOutOrgTotal,
+  GetSupplierInventoryAmount,
+  GetSupplierInvoiceAmount,
+  GetMaterialChange,
+  GetInventoryTotal,
+  GetSupplierReceivedAmount,
+} from '@/api/auth';
 import { useAuthStore } from '@/store/Auth';
 
 import OldChart from './components/oldChart';
@@ -21,8 +32,6 @@ const { Header, Content } = Layout;
 const publicPath = import.meta.env.VITE_PUBLIC_PATH;
 function Home() {
   const { styles } = useStyles();
-  const [tatalData, setTatalData] = useState<TotalSumScanDTO>({});
-
   const [batchCodeList, setBatchCodeList] = useState<any>([]);
 
   const { userToken } = useAuthStore((state) => {
@@ -38,28 +47,79 @@ function Home() {
     },
   });
 
-  const { data, run, loading } = useRequest(GetSumScanDatal, {
+  const {
+    data: todayCount,
+    loading: todayCountLoading,
+    run: getTodayCount,
+  } = useRequest(GetTodayCount, {
     manual: true,
-    pollingInterval: 50000,
-    onSuccess: (res) => {
-      setTatalData(res.resultData || {});
-    },
+  });
+
+  const {
+    data: outOrgTotal,
+    loading: outOrgTotalLoading,
+    run: getOutOrgTotal,
+  } = useRequest(GetOutOrgTotal, {
+    manual: true,
+  });
+
+  const {
+    data: supplierInventoryAmount,
+    loading: supplierInventoryAmountLoading,
+    run: getSupplierInventoryAmount,
+  } = useRequest(GetSupplierInventoryAmount, {
+    manual: true,
+  });
+
+  const {
+    data: supplierInvoiceAmount,
+    loading: supplierInvoiceAmountLoading,
+    run: getSupplierInvoiceAmount,
+  } = useRequest(GetSupplierInvoiceAmount, {
+    manual: true,
+  });
+  const {
+    data: materialChange,
+    loading: materialChangeLoading,
+    run: getMaterialChange,
+  } = useRequest(GetMaterialChange, {
+    manual: true,
+  });
+  const {
+    data: inventoryTotal,
+    loading: inventoryTotalLoading,
+    run: getInventoryTotal,
+  } = useRequest(GetInventoryTotal, {
+    manual: true,
+  });
+  const {
+    data: supplierReceivedAmount,
+    loading: supplierReceivedAmountLoading,
+    run: getSupplierReceivedAmount,
+  } = useRequest(GetSupplierReceivedAmount, {
+    manual: true,
   });
 
   useEffect(() => {
     if (userToken) {
-      run();
       getBatchCode();
+      getTodayCount();
+      getOutOrgTotal();
+      getSupplierInventoryAmount();
+      getSupplierInvoiceAmount();
+      getMaterialChange();
+      getInventoryTotal();
+      getSupplierReceivedAmount();
     }
   }, [userToken]);
 
   useEffect(() => {
-    if (data) {
-      outConfig.data = data?.outOrderList?.map((item) => {
+    if (supplierInventoryAmount?.resultData) {
+      outConfig.data = supplierInventoryAmount?.resultData?.map((item) => {
         return values(item);
       });
     }
-  }, [data]);
+  }, [supplierInventoryAmount]);
 
   const formatter = (value: number) => {
     const numbers = value.toString().split('').reverse();
@@ -72,7 +132,7 @@ function Home() {
 
   const config = useCallback(() => {
     return {
-      number: [Math.round((tatalData?.totalCost / 10000) * 100) / 100 || 0],
+      number: [Math.round((todayCount?.resultData?.totalCost / 10000) * 100) / 100 || 0],
       content: '{nt}万',
       formatter,
       style: {
@@ -86,7 +146,7 @@ function Home() {
         // stroke: [12, 34, 21, 0],
       },
     };
-  }, [tatalData]);
+  }, [todayCount]);
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -128,11 +188,13 @@ function Home() {
                 </div> */}
                 <div className='card' style={{ height: '100%' }}>
                   <div className='card-title'>异常消耗情况</div>
-                  {tatalData?.materialMonthlyChangeList ? (
+                  {materialChangeLoading ? (
+                    <Skeleton active />
+                  ) : (
                     <ScrollBoard
                       config={{
                         ...errorConfig1,
-                        data: tatalData?.materialMonthlyChangeList?.map((item) => {
+                        data: materialChange?.resultData?.map((item) => {
                           const datas = values(item);
                           datas[3] = `${Math.round((datas[3] * 100) / 100)} / ${Math.round((datas[4] * 100) / 100)}`;
                           datas[2] = `<div style="color:${datas[2] > 0 ? 'green' : 'red'};display: flex; align-items: center; gap: 4px"><span style="width:4px;height:4px;border-radius:50%;display:inline-block;background:${datas[2] > 0 ? 'green' : 'red'}"></span>${parseFloat((datas[2] * 100).toFixed(2))}%</div>`;
@@ -144,8 +206,6 @@ function Home() {
                       }}
                       style={{ height: 'calc( 100% - 50px)' }}
                     />
-                  ) : (
-                    <Skeleton active />
                   )}
                 </div>
                 <div className='gutter-box' style={{ padding: '0px' }}>
@@ -154,10 +214,13 @@ function Home() {
                     {/* {invoiceSupplierSummaryList ? (
                       <OldChart style={{ height: 'calc( 100% - 50px)' }} data={invoiceSupplierSummaryList} />
                     ) : ( */}
-                    {tatalData.invoiceSupplierSummaryList ? (
-                      <OldChart style={{ height: 'calc( 100% - 50px)' }} data={tatalData.invoiceSupplierSummaryList} />
-                    ) : (
+                    {supplierInvoiceAmountLoading ? (
                       <Skeleton active />
+                    ) : (
+                      <OldChart
+                        style={{ height: 'calc( 100% - 50px)' }}
+                        data={supplierInvoiceAmount?.resultData || []}
+                      />
                     )}
                   </div>
                 </div>
@@ -186,23 +249,34 @@ function Home() {
                       <Row gutter={[24, 24]}>
                         <Col span={24}>
                           <div className='box'>
-                            <div className='count'>{tatalData?.inOrderTotal || '-'}</div>
+                            <div className='count'>
+                              {todayCountLoading ? '-' : todayCount?.resultData?.inOrderTotal || '-'}
+                            </div>
                             <div className='dec'>单日入库订单数</div>
                           </div>
                         </Col>
                         <Col span={12}>
                           <div className='box'>
-                            <div className='count'>{tatalData?.inOrderNotTotal || '-'}</div>
+                            <div className='count'>
+                              {todayCountLoading ? '-' : todayCount?.resultData?.inOrderNotTotal || '-'}
+                            </div>
                             <div className='dec'>未完成订单</div>
                           </div>
                         </Col>
                         <Col span={12}>
                           <div className='box'>
                             <div className='count'>
-                              {(
-                                parseFloat((1 - tatalData?.inOrderNotTotal / tatalData?.inOrderTotal || 1).toFixed(2)) *
-                                100
-                              ).toFixed(0)}
+                              {todayCountLoading
+                                ? '-'
+                                : (
+                                    parseFloat(
+                                      (
+                                        1 -
+                                          todayCount?.resultData?.inOrderNotTotal /
+                                            todayCount?.resultData?.inOrderTotal || 1
+                                      ).toFixed(2),
+                                    ) * 100
+                                  ).toFixed(0)}
                               %
                             </div>
                             <div className='dec'>入库完成率</div>
@@ -211,7 +285,13 @@ function Home() {
                       </Row>
                     </Col>
                     <Col span={10} className='total-box'>
-                      <div className='total'>{Math.round(tatalData?.currentTotal / 10000)}</div>
+                      <div className='total'>
+                        {todayCountLoading ? (
+                          <Skeleton.Button active />
+                        ) : (
+                          Math.round(todayCount?.resultData?.currentTotal / 10000)
+                        )}
+                      </div>
                       <div className='total-dec'>物资总价值</div>
                       <p
                         style={{
@@ -227,24 +307,34 @@ function Home() {
                       <Row gutter={[24, 24]}>
                         <Col span={24}>
                           <div className='box'>
-                            <div className='count'>{tatalData?.outOrderTotal || '-'}</div>
+                            <div className='count'>
+                              {todayCountLoading ? '-' : todayCount?.resultData?.outOrderTotal || '-'}
+                            </div>
                             <div className='dec'>单日出库订单数</div>
                           </div>
                         </Col>
                         <Col span={12}>
                           <div className='box'>
-                            <div className='count'>{tatalData?.outOrderNotTotal || '-'}</div>
+                            <div className='count'>
+                              {todayCountLoading ? '-' : todayCount?.resultData?.outOrderNotTotal || '-'}
+                            </div>
                             <div className='dec'>未出订单</div>
                           </div>
                         </Col>
                         <Col span={12}>
                           <div className='box'>
                             <div className='count'>
-                              {(
-                                parseFloat(
-                                  (1 - tatalData?.outOrderNotTotal / tatalData?.outOrderTotal || 1).toFixed(2),
-                                ) * 100
-                              ).toFixed(0)}
+                              {todayCountLoading
+                                ? '-'
+                                : (
+                                    parseFloat(
+                                      (
+                                        1 -
+                                          todayCount?.resultData?.outOrderNotTotal /
+                                            todayCount?.resultData?.outOrderTotal || 1
+                                      ).toFixed(2),
+                                    ) * 100
+                                  ).toFixed(0)}
                               %
                               {/* {(1 - tatalData?.outOrderNotTotal / tatalData?.outOrderTotal || 1).toFixed(2) * 100}% */}
                             </div>
@@ -270,10 +360,13 @@ function Home() {
                       <div className='gutter-box'>
                         <div className='card'>
                           <div className='card-title'>区队领用消耗</div>
-                          {tatalData.outOrgTotal ? (
-                            <TransferChart style={{ height: 'calc(100% - 50px' }} data={tatalData.outOrgTotal} />
-                          ) : (
+                          {outOrgTotalLoading ? (
                             <Skeleton active />
+                          ) : (
+                            <TransferChart
+                              style={{ height: 'calc(100% - 50px' }}
+                              data={outOrgTotal?.resultData || []}
+                            />
                           )}
                         </div>
                       </div>
@@ -320,43 +413,56 @@ function Home() {
               <div className='gutter-box'>
                 <div className='card' style={{ height: '100%' }}>
                   <div className='card-title'>库存金额</div>
-                  <ScrollBoard
-                    config={{
-                      ...errorConfig,
-                      data: tatalData?.orgTotalPriceList?.map((item) => {
-                        const datas = values(item);
-                        datas[1] = `${Math.round((datas[1] / 10000) * 100) / 100}万元`;
-                        datas[2] = parseFloat(datas[2].toFixed(2));
-                        return datas.slice(0, -1);
-                      }),
-                    }}
-                    style={{ height: 'calc( 100% - 50px)' }}
-                  />
+                  {inventoryTotalLoading ? (
+                    <Skeleton active />
+                  ) : (
+                    <ScrollBoard
+                      config={{
+                        ...errorConfig,
+                        data:
+                          inventoryTotal?.resultData?.map((item) => {
+                            const datas = values(item);
+                            datas[1] = `${Math.round((datas[1] / 10000) * 100) / 100}万元`;
+                            datas[2] = parseFloat(datas[2].toFixed(2));
+                            return datas.slice(0, -1);
+                          }) || [],
+                      }}
+                      style={{ height: 'calc( 100% - 50px)' }}
+                    />
+                  )}
                 </div>
                 <div className='card' style={{ height: '100%' }}>
                   <div className='card-title'>供货商累计到货金额</div>
-                  {tatalData?.supplierSummaryList ? (
-                    <PayChart style={{ height: 'calc( 100% - 50px)' }} data={tatalData?.supplierSummaryList} />
-                  ) : (
+                  {supplierReceivedAmountLoading ? (
                     <Skeleton active />
+                  ) : (
+                    <PayChart
+                      style={{ height: 'calc( 100% - 50px)' }}
+                      data={supplierReceivedAmount?.resultData || []}
+                    />
                   )}
                   {/* <ScrollBoard config={{ ...amountConfig }} style={{ height: 'calc( 100% - 50px)' }} /> */}
                 </div>
                 <div className='card' style={{ height: '100%' }}>
                   <div className='card-title'>供货商库存金额</div>
-                  <ScrollBoard
-                    config={{
-                      ...outConfig,
-                      data: tatalData?.supplierInventoryList?.map((item) => {
-                        // data: supplierInventoryList?.map((item) => {
-                        const datas = values(item);
-                        datas[1] = `${Math.round((datas[1] / 10000) * 100) / 100}万元`;
-                        // datas[2] = `${parseFloat(datas[2].toFixed(2))}%`;
-                        return datas;
-                      }),
-                    }}
-                    style={{ height: 'calc( 100% - 50px)' }}
-                  />
+                  {supplierInventoryAmountLoading ? (
+                    <Skeleton active />
+                  ) : (
+                    <ScrollBoard
+                      config={{
+                        ...outConfig,
+                        data:
+                          supplierInventoryAmount?.resultData?.map((item) => {
+                            // data: supplierInventoryList?.map((item) => {
+                            const datas = values(item);
+                            datas[1] = `${Math.round((datas[1] / 10000) * 100) / 100}万元`;
+                            // datas[2] = `${parseFloat(datas[2].toFixed(2))}%`;
+                            return datas;
+                          }) || [],
+                      }}
+                      style={{ height: 'calc( 100% - 50px)' }}
+                    />
+                  )}
                 </div>
               </div>
             </BorderBox8>

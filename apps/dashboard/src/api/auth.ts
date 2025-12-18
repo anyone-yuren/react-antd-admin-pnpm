@@ -79,3 +79,45 @@ export const GetCode = (): Promise<SingleResult<UserInfo>> => {
     },
   );
 };
+
+export const GetTodayCount = (): Promise<SingleResult<TotalSumScanDTO>> => {
+  return defHttp.get({
+    url: '/Summary/GetTodayCount',
+  });
+};
+
+export const GetOutOrgTotal = (): Promise<SingleResult<TotalSumScanDTO>> => {
+  return defHttp.get({
+    url: '/Summary/GetOutOrgTotal',
+  });
+};
+
+export const GetSupplierReceivedAmount = (): Promise<SingleResult<TotalSumScanDTO>> => {
+  return defHttp.get({
+    url: '/Summary/GetSupplierReceivedAmount',
+  });
+};
+
+export const GetSupplierInventoryAmount = (): Promise<SingleResult<TotalSumScanDTO>> => {
+  return defHttp.get({
+    url: '/Summary/GetSupplierInventoryAmount',
+  });
+};
+
+export const GetSupplierInvoiceAmount = (): Promise<SingleResult<TotalSumScanDTO>> => {
+  return defHttp.get({
+    url: '/Summary/GetSupplierInvoiceAmount',
+  });
+};
+
+export const GetMaterialChange = (): Promise<SingleResult<TotalSumScanDTO>> => {
+  return defHttp.get({
+    url: '/Summary/GetMaterialChange',
+  });
+};
+
+export const GetInventoryTotal = (): Promise<SingleResult<TotalSumScanDTO>> => {
+  return defHttp.get({
+    url: '/Summary/GetInventoryTotal',
+  });
+};

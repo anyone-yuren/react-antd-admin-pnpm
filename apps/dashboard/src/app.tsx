@@ -35,7 +35,7 @@ export default function App() {
   useEffect(() => {
     login({
       username: 'admin',
-      password: md5('1q2w3E*'),
+      password: md5('123456'),
     });
   }, []);
   // console.log(preset);
