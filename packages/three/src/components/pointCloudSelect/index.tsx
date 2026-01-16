@@ -233,25 +233,19 @@ export default function PointCloudSelect() {
   }
 
   return (
-    <div
-      ref={containerRef}
-      style={{
-        width: '100%',
-        height: '100%',
-        position: 'relative',
-        userSelect: 'none',
-      }}
-    >
+    <div ref={containerRef} className='relative w-full h-full select-none'>
       <div
         ref={selectBoxRef}
-        style={{
-          position: 'absolute',
-          border: '1px dashed #4af',
-          background: 'rgba(100,150,255,0.15)',
-          display: 'none',
-          pointerEvents: 'none',
-          zIndex: 10,
-        }}
+        className='
+      absolute
+      hidden
+      z-10
+      border
+      border-dashed
+      border-sky-400
+      bg-[rgba(100,150,255,0.15)]
+      pointer-events-none
+    '
       />
     </div>
   );
