@@ -17,6 +17,7 @@
     "react": "^18.2.0",
     "react-konva": "^18.2.10",
     "react-slick": "^0.29.0",
+    "reactflow": "^11.10.1",
     "three": "^0.160.0",
     "@gbeata/three": "workspace:^"
   },

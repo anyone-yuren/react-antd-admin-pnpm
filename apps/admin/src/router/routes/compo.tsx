@@ -89,14 +89,22 @@ const CompoRoute: RouteObject = {
     {
       path: 'point-cloud',
       name: 'PointCloud',
-      element: LazyLoad(lazy(() => import('@/views/PointCloudDemo'))),
+      element: LazyLoad(lazy(() => import('@/views/compo/point-cloud-viewer'))),
       meta: {
         title: '点云渲染',
         key: 'pointCloud',
+      },
+    },
+    {
+      path: 'flow-editor',
+      name: 'FlowEditor',
+      element: LazyLoad(lazy(() => import('@/views/compo/flow-editor'))),
+      meta: {
+        title: '流程编辑器',
+        key: 'flowEditor',
       },
     },
   ],
 };
 
 export default CompoRoute;
-
