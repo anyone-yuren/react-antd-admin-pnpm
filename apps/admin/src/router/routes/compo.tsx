@@ -77,6 +77,15 @@ const CompoRoute: RouteObject = {
         key: 'countUp',
       },
     },
+    {
+      path: 'loading-test',
+      name: 'LoadingTest',
+      element: LazyLoad(lazy(() => import('@/views/compo/loading-test'))),
+      meta: {
+        title: '加载组件',
+        key: 'loadingTest',
+      },
+    },
   ],
 };
 
