@@ -11,7 +11,6 @@ const useStyles = createStyles(({ token }) => ({
     overflow: 'hidden',
     backgroundColor: token.colorBgContainer,
     borderRadius: token.borderRadius,
-    cursor: 'crosshair',
   },
   selectionBox: {
     position: 'absolute',
@@ -318,6 +317,7 @@ const PointCloudViewer: React.FC<PointCloudViewerProps> = ({
     <div
       ref={containerRef}
       className={styles.container}
+      style={{ cursor: isSelecting ? 'crosshair' : 'default' }}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}

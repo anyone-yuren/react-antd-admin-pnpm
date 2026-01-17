@@ -5,7 +5,7 @@ import { PointCloudViewer } from 'ui';
 
 import { Page } from '@/components/Page';
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 const useStyles = createStyles(({ token }) => ({
   container: {
