@@ -86,7 +86,17 @@ const CompoRoute: RouteObject = {
         key: 'loadingTest',
       },
     },
+    {
+      path: 'point-cloud',
+      name: 'PointCloud',
+      element: LazyLoad(lazy(() => import('@/views/PointCloudDemo'))),
+      meta: {
+        title: '点云渲染',
+        key: 'pointCloud',
+      },
+    },
   ],
 };
 
 export default CompoRoute;
+
