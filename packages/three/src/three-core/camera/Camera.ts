@@ -5,12 +5,12 @@ import type { Sizes } from '../sizes/Sizes';
 export class Camera {
   setting = {
     fov: 45,
-    near: 0.1,
+    near: 1,
     far: 1000,
     position: {
       x: 0,
       y: 0,
-      z: 5,
+      z: 100,
     },
   };
 

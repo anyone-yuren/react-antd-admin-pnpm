@@ -104,6 +104,15 @@ const CompoRoute: RouteObject = {
         key: 'flowEditor',
       },
     },
+    {
+      path: 'robot-viewer',
+      name: 'RobotViewer',
+      element: LazyLoad(lazy(() => import('@/views/compo/robot-viewer'))),
+      meta: {
+        title: '机器人查看器',
+        key: 'robotViewer',
+      },
+    },
   ],
 };
 

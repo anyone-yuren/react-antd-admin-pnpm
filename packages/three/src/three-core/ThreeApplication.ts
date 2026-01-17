@@ -104,3 +104,13 @@ export class ThreeApplication {
     this.containerElement = undefined;
   }
 }
+
+export * from './camera/Camera';
+export * from './camera/CameraControl';
+export * from './event-emitter/EventEmitter';
+export * from './light/Light';
+export * from './renderer/Renderer';
+export * from './resource-loader/ResourceLoader';
+export * from './scene/Scene';
+export * from './sizes/Sizes';
+export * from './ticker/Ticker';
