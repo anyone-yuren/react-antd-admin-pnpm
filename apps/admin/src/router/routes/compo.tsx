@@ -20,6 +20,15 @@ const CompoRoute: RouteObject = {
   },
   children: [
     {
+      path: 'point-cloud',
+      name: 'pointCloud',
+      element: LazyLoad(lazy(() => import('@/views/compo/point-cloud'))),
+      meta: {
+        title: '10w点云',
+        key: 'pointCloud',
+      },
+    },
+    {
       path: 'image-upload',
       name: 'ImageUpload',
       // element: <ImageUpload />,
