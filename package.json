@@ -10,7 +10,7 @@
     "build": "turbo build",
     "docs:build": "turbo docs:build --filter gbeata",
     "build:admin": "pnpm run build --filter gbeata-admin",
-    "dev": "turbo dev --parallel --no-cache",
+    "dev": "turbo dev --concurrency=20",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky install",

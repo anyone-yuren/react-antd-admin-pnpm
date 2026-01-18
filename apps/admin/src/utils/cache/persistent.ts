@@ -1,4 +1,4 @@
-import { createLocalStorage, createSessionStorage } from '@/utils/cache';
+import { clearItems, getItem, setItem } from '@gbeata/utils';
 
 import {
   type APP_CONFIG_KEY,
@@ -10,17 +10,18 @@ import {
 } from '@/enums/cacheEnum';
 import { DEFAULT_CACHE_TIME } from '@/settings/encryptionSetting';
 
-import { Memory } from './memory';
+import { type Cache, Memory } from './memory';
 
 import type { RouteObject } from '@/router/types';
 import type { UserInfo } from '@/types';
 import type { AppConfig } from '@/types/config';
+import type { CacheKey } from '@gbeata/utils/types/enum';
 
 interface BasicStore {
-  [TOKEN_KEY]: string | number | null | undefined
-  [USER_INFO_KEY]: UserInfo
-  [APP_CONFIG_KEY]: AppConfig
-  [APP_TAGS_KEY]: RouteObject[]
+  [TOKEN_KEY]: string | number | null | undefined;
+  [USER_INFO_KEY]: UserInfo;
+  [APP_CONFIG_KEY]: AppConfig;
+  [APP_TAGS_KEY]: RouteObject[];
 }
 
 type LocalStore = BasicStore;
@@ -30,15 +31,12 @@ export type BasicKeys = keyof BasicStore;
 type LocalKeys = keyof LocalStore;
 type SessionKeys = keyof SessionStore;
 
-const ls = createLocalStorage();
-const ss = createSessionStorage();
-
 const localMemory = new Memory(DEFAULT_CACHE_TIME);
 const sessionMemory = new Memory(DEFAULT_CACHE_TIME);
 
 function initPersistentMemory() {
-  const localCache = ls.get(APP_LOCAL_CACHE_KEY);
-  const sessionCache = ss.get(APP_SESSION_CACHE_KEY);
+  const localCache = getItem<Record<string, Cache>>(APP_LOCAL_CACHE_KEY as CacheKey);
+  const sessionCache = getItem<Record<string, Cache>>(APP_SESSION_CACHE_KEY as CacheKey);
   localCache && localMemory.resetCache(localCache);
   sessionCache && sessionMemory.resetCache(sessionCache);
 }
@@ -50,17 +48,17 @@ export class Persistent {
 
   static setLocal(key: LocalKeys, value: LocalStore[LocalKeys], immediate = false): void {
     localMemory.set(key, value);
-    immediate && ls.set(APP_LOCAL_CACHE_KEY, localMemory.getCache);
+    immediate && setItem(APP_LOCAL_CACHE_KEY as CacheKey, localMemory.getCache);
   }
 
   static removeLocal(key: LocalKeys, immediate = false): void {
     localMemory.remove(key);
-    immediate && ls.set(APP_LOCAL_CACHE_KEY, localMemory.getCache);
+    immediate && setItem(APP_LOCAL_CACHE_KEY as CacheKey, localMemory.getCache);
   }
 
   static clearLocal(immediate = false): void {
     localMemory.clear();
-    immediate && ls.clear();
+    immediate && clearItems();
   }
 
   static getSession<T>(key: SessionKeys) {
@@ -69,25 +67,24 @@ export class Persistent {
 
   static setSession(key: SessionKeys, value: SessionStore[SessionKeys], immediate = false): void {
     sessionMemory.set(key, value);
-    immediate && ss.set(APP_SESSION_CACHE_KEY, sessionMemory.getCache);
+    immediate && setItem(APP_SESSION_CACHE_KEY as CacheKey, sessionMemory.getCache);
   }
 
   static removeSession(key: SessionKeys, immediate = false): void {
     sessionMemory.remove(key);
-    immediate && ss.set(APP_SESSION_CACHE_KEY, sessionMemory.getCache);
+    immediate && setItem(APP_SESSION_CACHE_KEY as CacheKey, sessionMemory.getCache);
   }
 
   static clearSession(immediate = false): void {
     sessionMemory.clear();
-    immediate && ss.clear();
+    immediate && clearItems();
   }
 
   static clearAll(immediate = false) {
     sessionMemory.clear();
     localMemory.clear();
     if (immediate) {
-      ls.clear();
-      ss.clear();
+      clearItems();
     }
   }
 }
