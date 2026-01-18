@@ -20,6 +20,15 @@ const CompoRoute: RouteObject = {
   },
   children: [
     {
+      path: 'point-cloud',
+      name: 'pointCloud',
+      element: LazyLoad(lazy(() => import('@/views/compo/point-cloud'))),
+      meta: {
+        title: '10w点云',
+        key: 'pointCloud',
+      },
+    },
+    {
       path: 'image-upload',
       name: 'ImageUpload',
       // element: <ImageUpload />,
@@ -75,6 +84,42 @@ const CompoRoute: RouteObject = {
       meta: {
         title: '数字滚动',
         key: 'countUp',
+      },
+    },
+    {
+      path: 'loading-test',
+      name: 'LoadingTest',
+      element: LazyLoad(lazy(() => import('@/views/compo/loading-test'))),
+      meta: {
+        title: '加载组件',
+        key: 'loadingTest',
+      },
+    },
+    {
+      path: 'point-cloud-viewer',
+      name: 'PointCloudViewer',
+      element: LazyLoad(lazy(() => import('@/views/compo/point-cloud-viewer'))),
+      meta: {
+        title: '点云渲染',
+        key: 'pointCloudViewer',
+      },
+    },
+    {
+      path: 'flow-editor',
+      name: 'FlowEditor',
+      element: LazyLoad(lazy(() => import('@/views/compo/flow-editor'))),
+      meta: {
+        title: '流程编辑器',
+        key: 'flowEditor',
+      },
+    },
+    {
+      path: 'robot-viewer',
+      name: 'RobotViewer',
+      element: LazyLoad(lazy(() => import('@/views/compo/robot-viewer'))),
+      meta: {
+        title: '机器人查看器',
+        key: 'robotViewer',
       },
     },
   ],

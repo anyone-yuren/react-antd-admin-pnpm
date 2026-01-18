@@ -24,7 +24,6 @@ function resolveComponent(path: string) {
  */
 export function usePermissionRoutes() {
   const permissions = useUserPermissions();
-  debugger;
   return useMemo(() => {
     const flattenedPermissions = flattenTree(permissions!);
     const permissionRoutes = transformPermissionToMenuRoutes(permissions || [], flattenedPermissions);
