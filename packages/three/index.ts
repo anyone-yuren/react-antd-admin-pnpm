@@ -3,4 +3,4 @@ import PointCloudSelect from './src/components/pointCloudSelect';
 
 export * from './src/three-core/ThreeApplication';
 
-export { MacBook };
+export { MacBook, PointCloudSelect };

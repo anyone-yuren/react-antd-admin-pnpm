@@ -96,12 +96,12 @@ const CompoRoute: RouteObject = {
       },
     },
     {
-      path: 'point-cloud',
-      name: 'PointCloud',
+      path: 'point-cloud-viewer',
+      name: 'PointCloudViewer',
       element: LazyLoad(lazy(() => import('@/views/compo/point-cloud-viewer'))),
       meta: {
         title: '点云渲染',
-        key: 'pointCloud',
+        key: 'pointCloudViewer',
       },
     },
     {

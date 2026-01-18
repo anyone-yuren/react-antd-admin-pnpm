@@ -1,5 +1,5 @@
 import { EventEmitter, Resource, ResourceData, ThreeApplication } from '@gbeata/three';
-import { Box3, Color, Material, Mesh, MeshStandardMaterial, Raycaster, Vector2, Vector3 } from 'three';
+import { Box3, Color, Material, Mesh, MeshBasicMaterial, MeshLambertMaterial, MeshPhongMaterial, MeshStandardMaterial, Raycaster, Vector2, Vector3 } from 'three';
 import { GLTF } from 'three/examples/jsm/Addons';
 
 interface RobotEvents {
@@ -10,6 +10,7 @@ export class Robot extends EventEmitter<RobotEvents> {
   private robotScene: GLTF['scene'] | null = null;
   private selectedPart: Mesh | null = null;
   private originalEmissive = new Color(0x000000);
+  private originalColor = new Color(0xffffff);
   private originalOpacity = 1;
   private raycaster = new Raycaster();
   private mouse = new Vector2();
@@ -72,6 +73,8 @@ export class Robot extends EventEmitter<RobotEvents> {
       materials.forEach((material: Material) => {
         if (this.isMeshStandardMaterial(material)) {
           this.originalEmissive = material.emissive.clone();
+        } else if (this.isMeshBasicMaterial(material) || this.isMeshLambertMaterial(material) || this.isMeshPhongMaterial(material)) {
+          this.originalColor = material.color.clone();
         }
         this.originalOpacity = material.transparent ? material.opacity : 1;
       });
@@ -86,13 +89,28 @@ export class Robot extends EventEmitter<RobotEvents> {
     return material.type === 'MeshStandardMaterial';
   }
 
+  private isMeshBasicMaterial(material: Material): material is MeshBasicMaterial {
+    return material.type === 'MeshBasicMaterial';
+  }
+
+  private isMeshLambertMaterial(material: Material): material is MeshLambertMaterial {
+    return material.type === 'MeshLambertMaterial';
+  }
+
+  private isMeshPhongMaterial(material: Material): material is MeshPhongMaterial {
+    return material.type === 'MeshPhongMaterial';
+  }
+
   private highlightPart(mesh: Mesh) {
     const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
     materials.forEach((material: Material) => {
       if (this.isMeshStandardMaterial(material)) {
         material.emissive = new Color(0x00ff00);
         material.emissiveIntensity = 0.3;
+      } else if (this.isMeshBasicMaterial(material) || this.isMeshLambertMaterial(material) || this.isMeshPhongMaterial(material)) {
+        material.color = new Color(0x00ff00);
       }
+      material.needsUpdate = true;
     });
   }
 
@@ -102,7 +120,10 @@ export class Robot extends EventEmitter<RobotEvents> {
       if (this.isMeshStandardMaterial(material)) {
         material.emissive = this.originalEmissive;
         material.emissiveIntensity = 0;
+      } else if (this.isMeshBasicMaterial(material) || this.isMeshLambertMaterial(material) || this.isMeshPhongMaterial(material)) {
+        material.color = this.originalColor;
       }
+      material.needsUpdate = true;
     });
   }
 
