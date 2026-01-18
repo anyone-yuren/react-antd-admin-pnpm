@@ -13,9 +13,12 @@ import { getOpenKeys } from '@/utils/helper/menuHelper';
 
 import { getAsyncMenus } from '@/router/menus';
 import { setMenuList } from '@/stores/modules/menu';
+import { useSettings } from '@/stores/modules/settingStore';
 
 import type { AppMenu } from '@/router/types';
 import type { MenuProps } from 'antd';
+
+import { ThemeLayout } from '#/enum';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -37,6 +40,7 @@ const getItem = (
 const LayoutMenu = (props: any) => {
   const { pathname } = useLocation();
   const { setMenuList: setMenuListAction } = props;
+  const { themeLayout } = useSettings();
   const [loading, setLoading] = useState(false);
   const [menuList, setMenuList] = useState<MenuItem[]>([]);
   const [openKeys, setOpenKeys] = useState<string[]>([]);
@@ -107,6 +111,9 @@ const LayoutMenu = (props: any) => {
   const a = 1;
   console.log(a);
 
+  // 根据布局模式决定菜单的显示方式
+  const menuMode = themeLayout === ThemeLayout.Mini ? 'horizontal' : 'inline';
+
   return (
     <div className='layout_menu'>
       <Spin spinning={loading} tip='Loading...'>
@@ -115,7 +122,7 @@ const LayoutMenu = (props: any) => {
           style={{
             border: 'none',
           }}
-          mode='inline'
+          mode={menuMode}
           triggerSubMenuAction='click'
           inlineIndent={20}
           subMenuOpenDelay={0.2}

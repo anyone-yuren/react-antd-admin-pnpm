@@ -77,7 +77,7 @@ const getCtrlList = (
 
   // 多余的按钮会变成下拉菜单
   if (children.length > max + 1) {
-    const menuList = [];
+    const menuItems = [];
 
     for (let i = max; i < children.length; i++) {
       let node = children[i];
@@ -88,17 +88,14 @@ const getCtrlList = (
       // 正常节点
       CtrlItem = getCtrlItem(node, i, { __simple: true, type: 'text' });
       // 添加这个节点
-      menuList.push(
-        <Menu.Item style={{ padding: 0 }} key={max + i}>
-          {CtrlItem}
-        </Menu.Item>,
-      );
+      menuItems.push({
+        key: max + i,
+        label: CtrlItem,
+      });
     }
 
-    const menu = <Menu style={{ minWidth: 100 }}>{menuList}</Menu>;
-
     ctrlList.push(
-      <Dropdown key={max} overlay={menu} placement="bottomRight">
+      <Dropdown key={max} menu={{ items: menuItems }} placement="bottomRight">
         <GButton type="link" className={classNames('g-button', sub && 'sub')}>
           {more}
         </GButton>
