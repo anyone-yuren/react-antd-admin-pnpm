@@ -1,8 +1,6 @@
-import type { CacheKey, StorageEnum } from "../../types/enum";
+import type { StorageEnum } from "../../types/enum";
 
-export type StorageKey = StorageEnum | CacheKey;
-
-export const getItem = <T>(key: StorageKey): T | null => {
+export const getItem = <T>(key: StorageEnum): T | null => {
   let value = null;
   try {
     const result = window.localStorage.getItem(key);
@@ -15,14 +13,14 @@ export const getItem = <T>(key: StorageKey): T | null => {
   return value;
 };
 
-export const getStringItem = (key: StorageKey): string | null => {
+export const getStringItem = (key: StorageEnum): string | null => {
   return localStorage.getItem(key);
 };
 
-export const setItem = <T>(key: StorageKey, value: T): void => {
+export const setItem = <T>(key: StorageEnum, value: T): void => {
   localStorage.setItem(key, JSON.stringify(value));
 };
-export const removeItem = (key: StorageKey): void => {
+export const removeItem = (key: StorageEnum): void => {
   localStorage.removeItem(key);
 };
 export const clearItems = () => {

@@ -1,16 +1,10 @@
-import { Dropdown, type MenuProps, Tabs, type TabsProps } from 'antd';
+import { Dropdown, type MenuProps, Tabs, TabsProps } from 'antd';
 import { useCallback, useMemo, useRef, useState } from 'react';
-import { DragDropContext, Draggable, Droppable, type OnDragEndResponder } from 'react-beautiful-dnd';
 import { useTranslation } from 'react-i18next';
 
 import IconifyIcon from '@/components/iconify-icon';
 
 import useKeepAlive, { type KeepAliveTab } from '@/hooks/web/useKeepAlive';
-
-import { useRouter } from '@/router/hooks';
-import { replaceDynamicParams } from '@/router/hooks/use-match-route-meta';
-
-import useStyles from './style';
 
 import { MultiTabOperation, ThemeLayout } from '#/enum';
 
@@ -20,10 +14,7 @@ type Props = {
 
 export default function MultiTabs({ offsetTop = true }: Props) {
   const { t } = useTranslation();
-  const { push } = useRouter();
-  const { styles } = useStyles();
   const tabContentRef = useRef(null);
-  const scrollContainer = useRef<HTMLDivElement>(null);
   const [openDropdownTabKey, setopenDropdownTabKey] = useState('');
 
   const [hoveringTabKey, setHoveringTabKey] = useState('');
@@ -169,66 +160,6 @@ export default function MultiTabs({ offsetTop = true }: Props) {
       ),
     }));
   }, [tabs, renderTabLabel]);
-  /**
-   * 拖拽结束事件
-   */
-  const onDragEnd: OnDragEndResponder = ({ destination, source }) => {
-    // 拖拽到非法非 droppable区域
-    if (!destination) {
-      return;
-    }
-    // 原地放下
-    if (destination.droppableId === source.droppableId && destination.index === source.index) {
-      return;
-    }
-
-    const newTabs = Array.from(tabs);
-    const [movedTab] = newTabs.splice(source.index, 1);
-    newTabs.splice(destination.index, 0, movedTab);
-    setTabs(newTabs);
-  };
-  const handleTabClick = ({ key, params = {} }: KeepAliveTab) => {
-    const tabKey = replaceDynamicParams(key, params);
-    push(tabKey);
-  };
-  const renderTabBar: TabsProps['renderTabBar'] = () => {
-    return (
-      <div className={styles.tab_bar}>
-        <DragDropContext onDragEnd={onDragEnd}>
-          <Droppable droppableId='tabsDroppable' direction='horizontal'>
-            {(provided) => (
-              <div ref={provided.innerRef} {...provided.droppableProps} className='flex w-full'>
-                <div ref={scrollContainer} className='hide-scrollbar flex w-full px-2'>
-                  {tabs.map((tab, index) => (
-                    <div
-                      id={`tab-${index}`}
-                      className='flex-shrink-0'
-                      key={tab.key}
-                      onClick={() => handleTabClick(tab)}
-                    >
-                      <Draggable key={tab.key} draggableId={tab.key} index={index}>
-                        {(provided) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            className='w-auto'
-                          >
-                            {renderTabLabel(tab)}
-                          </div>
-                        )}
-                      </Draggable>
-                    </div>
-                  ))}
-                </div>
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
-        </DragDropContext>
-      </div>
-    );
-  };
 
   return (
     <Tabs
@@ -237,7 +168,7 @@ export default function MultiTabs({ offsetTop = true }: Props) {
       tabBarGutter={4}
       activeKey={activeTabRoutePath}
       items={tabItems}
-      renderTabBar={renderTabBar}
+      renderTabBar={() => <></>}
     />
   );
 }
