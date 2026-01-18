@@ -71,7 +71,7 @@ const MANAGEMENT_PERMISSION = {
   children: [
     {
       id: '4359580910369984',
-      parentId: '0901673425580518',
+      parentId: '0249937641030250',
       label: '授权管理',
       name: 'Permission',
       type: PermissionType.MENU,
@@ -80,7 +80,7 @@ const MANAGEMENT_PERMISSION = {
     },
     {
       id: '1689241785490759',
-      parentId: '0901673425580518',
+      parentId: '0249937641030250',
       label: '角色管理',
       name: 'Role',
       type: PermissionType.MENU,
@@ -89,7 +89,7 @@ const MANAGEMENT_PERMISSION = {
     },
     {
       id: '0157880245365433',
-      parentId: '0901673425580518',
+      parentId: '0249937641030250',
       label: '用户管理',
       name: 'User',
       type: PermissionType.MENU,

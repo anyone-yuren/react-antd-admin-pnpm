@@ -78,11 +78,11 @@ export const useSignIn = () => {
   const signIn = async (data: LoginParams): Promise<any> => {
     try {
       const res = await signInMutation.mutateAsync(data);
-      const { token, user } = res;
+      const { token, ...rest } = res;
       debugger;
       setUserToken({ token });
       // 暂未提供，后续再决定权限如何处理
-      setUserInfo(user);
+      setUserInfo(rest);
       notification.success({
         message: t('登录成功'),
         description: `欢迎回来: ${data.username}`,
