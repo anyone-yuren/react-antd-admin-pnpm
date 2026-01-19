@@ -7,7 +7,7 @@ import {
   ReloadOutlined,
   SettingOutlined,
 } from '@ant-design/icons';
-import { Checkbox, Dropdown, Input, Menu, Space, Tooltip } from 'antd';
+import { Checkbox, Dropdown, Input, Space, Tooltip } from 'antd';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import React, { ChangeEvent, Dispatch, useEffect, useState } from 'react';
 import GButton from '../../GButton';
@@ -294,21 +294,25 @@ export default function useExtraBtn(
         {extraSizeVisible ? (
           <Tooltip title={locale.extra.density}>
             <Dropdown
-              overlay={
-                <Menu
-                  style={{ width: 100 }}
-                  selectedKeys={[size + '']}
-                  onClick={handleSizeChange}
-                >
-                  <Menu.Item key="large">
-                    {locale.extra.densityLarger}
-                  </Menu.Item>
-                  <Menu.Item key="middle">
-                    {locale.extra.densityMiddle}
-                  </Menu.Item>
-                  <Menu.Item key="small">{locale.extra.densitySmall}</Menu.Item>
-                </Menu>
-              }
+              menu={{
+                items: [
+                  {
+                    key: 'large',
+                    label: locale.extra.densityLarger,
+                  },
+                  {
+                    key: 'middle',
+                    label: locale.extra.densityMiddle,
+                  },
+                  {
+                    key: 'small',
+                    label: locale.extra.densitySmall,
+                  },
+                ],
+                selectedKeys: [size + ''],
+                onClick: handleSizeChange,
+                style: { width: 100 },
+              }}
             >
               <ColumnHeightOutlined />
             </Dropdown>

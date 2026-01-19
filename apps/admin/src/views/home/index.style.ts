@@ -15,6 +15,7 @@ const useStyles = createStyles(({ token }) => {
         backgroundColor: token.colorPrimaryBg,
         display: 'flex',
         alignItems: 'center',
+        overflow: 'hidden',
       },
       '.slick': {
         height: '100%',
