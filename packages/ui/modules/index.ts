@@ -6,5 +6,7 @@ import BaseSlick from './Slick/BaseSlick';
 import SvgIcon from './SvgIcon';
 import DrawBoard from './DrawBoard';
 import PointCloud from './PointCloud';
+import InstancedPoints from './InstancedPoints';
 
-export { AnimatePanel, BaseCard, BaseSlick, GlobalConfig, SvgIcon, Translatex, DrawBoard, PointCloud };
+export { AnimatePanel, BaseCard, BaseSlick, GlobalConfig, SvgIcon, Translatex, DrawBoard, PointCloud, InstancedPoints };
+

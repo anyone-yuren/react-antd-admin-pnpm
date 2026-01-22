@@ -16,12 +16,7 @@
     "konva": "^9.3.3",
     "react": "^18.2.0",
     "react-konva": "^18.2.10",
-    "react-slick": "^0.29.0",
-    "reactflow": "^11.10.1",
-    "three": "^0.160.0",
-    "@gbeata/three": "workspace:^",
-    "@react-three/drei": "^9.94.1",
-    "@react-three/fiber": "^8.15.14"
+    "react-slick": "^0.29.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.45",

@@ -79,6 +79,9 @@
     "ui": "workspace:^",
     "use-merge-value": "^1",
     "zustand": "^4.4.1",
-    "zustand-utils": "^1"
+    "zustand-utils": "^1",
+    "three": "^0.160.0",
+    "@react-three/fiber": "^8.15.0",
+    "@react-three/drei": "^9.96.0"
   }
 }
