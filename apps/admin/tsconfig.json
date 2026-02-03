@@ -1,9 +1,10 @@
+// @ts-nocheck
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@gbeata/ts-config/react-app.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "types": ["vite/client", "vite-plugin-svg-icons/client"],
+    "types": ["vite/client", "vite-plugin-svg-icons/client", "@webgpu/types"],
     "paths": {
       "@/*": ["src/*"],
       "#/*": ["types/*"]

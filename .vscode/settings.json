@@ -59,7 +59,14 @@
     "**/yarn.lock": true
   },
   "stylelint.enable": true,
-  "stylelint.validate": ["css", "less", "postcss", "scss", "vue", "sass"],
+  "stylelint.validate": [
+    "css",
+    "less",
+    "postcss",
+    "scss",
+    "vue",
+    "sass"
+  ],
   "path-intellisense.mappings": {
     "@/": "${workspaceRoot}/src"
   },
@@ -91,15 +98,22 @@
     "source.fixAll.eslint": "explicit",
     "source.fixAll.stylelint": "explicit"
   },
-  "i18n-ally.localesPaths": ["*/**/public/locales"],
+  "i18n-ally.localesPaths": [
+    "*/**/public/locales"
+  ],
   "i18n-ally.keystyle": "nested",
   "i18n-ally.sortKeys": true,
   "i18n-ally.namespace": true,
   "i18n-ally.pathMatcher": "{locale}/{namespaces}.{ext}",
-  "i18n-ally.enabledParsers": ["json"],
+  "i18n-ally.enabledParsers": [
+    "json"
+  ],
   "i18n-ally.sourceLanguage": "zh",
   "i18n-ally.displayLanguage": "zh-CN",
-  "i18n-ally.enabledFrameworks": ["vue", "react"],
+  "i18n-ally.enabledFrameworks": [
+    "vue",
+    "react"
+  ],
   "MicroPython.executeButton": [
     {
       "text": "▶",
@@ -131,5 +145,6 @@
     ".eslintrc.mjs": ".eslintignore,.prettierignore,.stylelintignore,.commitlintrc.*,.prettierrc.*,.stylelintrc.*"
   },
   "terminal.integrated.scrollback": 10000,
-  "i18next.i18nPaths": "/Users/niyonggui/multiway/learn/2024/pnpm-monorepo-mui/packages/gbeata/es/locale,/Users/niyonggui/multiway/learn/2024/pnpm-monorepo-mui/packages/gbeata/lib/locale,/Users/niyonggui/multiway/learn/2024/pnpm-monorepo-mui/packages/gbeata/src/locale"
+  "i18next.i18nPaths": "/Users/niyonggui/multiway/learn/2024/pnpm-monorepo-mui/packages/gbeata/es/locale,/Users/niyonggui/multiway/learn/2024/pnpm-monorepo-mui/packages/gbeata/lib/locale,/Users/niyonggui/multiway/learn/2024/pnpm-monorepo-mui/packages/gbeata/src/locale",
+  "liveServer.settings.port": 5501
 }

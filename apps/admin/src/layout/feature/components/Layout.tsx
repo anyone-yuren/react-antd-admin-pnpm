@@ -1,38 +1,57 @@
 import { Segmented } from 'antd';
 import { useTheme } from 'antd-style';
-import { useState } from 'react';
 
 import SvgIcon from '@/components/SvgIcon';
 
+import { useSettingActions, useSettings } from '@/stores/modules/settingStore';
+
 import type { SegmentedLabeledOption, SegmentedValue } from 'antd/lib/segmented';
 
+import { ThemeLayout } from '#/enum';
+
 export default function LayoutSettings() {
-  const [value, setValue] = useState<SegmentedValue>('1');
+  const settings = useSettings();
+  const { setSettings } = useSettingActions();
   const token = useTheme();
   const options: SegmentedLabeledOption[] = [
     {
       label: (
-        <div style={{ padding: '16px', color: value === '1' ? token.colorPrimary : token.colorText }}>
+        <div
+          style={{
+            padding: '16px',
+            color: settings.themeLayout === ThemeLayout.Vertical ? token.colorPrimary : token.colorText,
+          }}
+        >
           <SvgIcon name='fill' size={32} />
         </div>
       ),
-      value: '1',
+      value: ThemeLayout.Vertical,
     },
     {
       label: (
-        <div style={{ padding: '16px', color: value === '2' ? token.colorPrimary : token.colorText }}>
+        <div
+          style={{
+            padding: '16px',
+            color: settings.themeLayout === ThemeLayout.Horizontal ? token.colorPrimary : token.colorText,
+          }}
+        >
           <SvgIcon name='filling' size={32} />
         </div>
       ),
-      value: '2',
+      value: ThemeLayout.Horizontal,
     },
     {
       label: (
-        <div style={{ padding: '16px', color: value === '3' ? token.colorPrimary : token.colorText }}>
+        <div
+          style={{
+            padding: '16px',
+            color: settings.themeLayout === ThemeLayout.Mini ? token.colorPrimary : token.colorText,
+          }}
+        >
           <SvgIcon name='topFill' size={32} />
         </div>
       ),
-      value: '3',
+      value: ThemeLayout.Mini,
     },
   ];
   return (
@@ -41,8 +60,8 @@ export default function LayoutSettings() {
         backgroundColor: token.colorBgContainerDisabled,
       }}
       block
-      value={value}
-      onChange={(v) => setValue(v)}
+      value={settings.themeLayout}
+      onChange={(v) => setSettings({ ...settings, themeLayout: v as ThemeLayout })}
       options={options}
     />
   );

@@ -295,6 +295,9 @@ export default function useExtraBtn(
           <Tooltip title={locale.extra.density}>
             <Dropdown
               menu={{
+                style: { width: 100 },
+                selectedKeys: [size + ''],
+                onClick: handleSizeChange,
                 items: [
                   {
                     key: 'large',
@@ -309,9 +312,6 @@ export default function useExtraBtn(
                     label: locale.extra.densitySmall,
                   },
                 ],
-                selectedKeys: [size + ''],
-                onClick: handleSizeChange,
-                style: { width: 100 },
               }}
             >
               <ColumnHeightOutlined />

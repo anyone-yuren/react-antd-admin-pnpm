@@ -1,6 +1,4 @@
 import { lazy } from '@loadable/component';
-import { t } from 'i18next';
-import { useTranslation } from 'react-i18next';
 
 import LazyLoad from '@/components/LazyLoad';
 
@@ -19,6 +17,15 @@ const CompoRoute: RouteObject = {
     orderNo: 6,
   },
   children: [
+    {
+      path: 'point-cloud',
+      name: 'pointCloud',
+      element: LazyLoad(lazy(() => import('@/views/compo/point-cloud'))),
+      meta: {
+        title: '10w点云',
+        key: 'pointCloud',
+      },
+    },
     {
       path: 'image-upload',
       name: 'ImageUpload',
@@ -75,6 +82,60 @@ const CompoRoute: RouteObject = {
       meta: {
         title: '数字滚动',
         key: 'countUp',
+      },
+    },
+    {
+      path: 'loading-test',
+      name: 'LoadingTest',
+      element: LazyLoad(lazy(() => import('@/views/compo/loading-test'))),
+      meta: {
+        title: '加载组件',
+        key: 'loadingTest',
+      },
+    },
+    {
+      path: 'point-cloud-viewer',
+      name: 'PointCloudViewer',
+      element: LazyLoad(lazy(() => import('@/views/compo/point-cloud'))),
+      meta: {
+        title: '点云渲染',
+        key: 'pointCloudViewer',
+      },
+    },
+    {
+      path: 'point-cloud-lod',
+      name: 'PointCloudLod',
+      element: LazyLoad(lazy(() => import('@/views/compo/point-cloud-lod'))),
+      meta: {
+        title: '海量点云模拟-LOD',
+        key: 'pointCloudLod',
+      },
+    },
+    {
+      path: 'point-cloud-mesh',
+      name: 'PointCloudMesh',
+      element: LazyLoad(lazy(() => import('@/views/compo/point-cloud-mesh'))),
+      meta: {
+        title: '点云网格化',
+        key: 'pointCloudMesh',
+      },
+    },
+    {
+      path: 'flow-editor',
+      name: 'FlowEditor',
+      element: LazyLoad(lazy(() => import('@/views/compo/flow-editor'))),
+      meta: {
+        title: '流程编辑器',
+        key: 'flowEditor',
+      },
+    },
+    {
+      path: 'robot-viewer',
+      name: 'RobotViewer',
+      element: LazyLoad(lazy(() => import('@/views/compo/robot-viewer'))),
+      meta: {
+        title: '机器人编辑器',
+        key: 'robotViewer',
       },
     },
   ],
