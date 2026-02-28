@@ -32,12 +32,12 @@ export default function App() {
     },
   });
 
-  useEffect(() => {
-    login({
-      username: 'admin',
-      password: md5('123456'),
-    });
-  }, []);
+  // useEffect(() => {
+  //   login({
+  //     username: 'admin',
+  //     password: md5('123456'),
+  //   });
+  // }, []);
   // console.log(preset);
 
   useEffect(() => {
